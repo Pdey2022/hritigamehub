@@ -32,10 +32,10 @@ const dom = {
 // ===== STATE =====
 const state = {
     running: false,
-    score: 0, height: 0, bestHeight: 0, stars: 0,
+    score: 0, height: 0, bestHeight: 0, starCount: 0,
     scrollY: 0, // camera scroll
     platforms: [],
-    stars: [],
+    stars: [],   // array of collectible star objects
     obstacles: [],
     particles: [],
     floatingTexts: [],
@@ -205,7 +205,7 @@ function update() {
         if (s.collected) continue;
         if (Math.abs(ninja.x + ninja.w/2 - s.x) < 20 && Math.abs(ninja.y + ninja.h/2 - s.y) < 20) {
             s.collected = true;
-            state.stars++;
+            state.starCount++;
             state.score += 50;
             playCollect();
             spawnParticles(s.x, s.y, '#ffd700', 8);
@@ -371,7 +371,7 @@ function updateHUD() {
     const h = Math.max(0, state.height);
     dom.height.textContent = h;
     dom.heightB.textContent = h;
-    dom.stars.textContent = state.stars;
+    dom.stars.textContent = state.starCount;
     dom.best.textContent = Math.max(state.highHeight, state.height);
 }
 
@@ -413,7 +413,7 @@ function gameLoop() {
 
 // ===== START =====
 function startGame() {
-    state.score = 0; state.height = 0; state.stars = 0;
+    state.score = 0; state.height = 0; state.starCount = 0;
     state.scrollY = 0; state.scrollSpeed = 1.5;
     state.platforms = []; state.particles = [];
     state.floatingTexts = []; state.obstacles = [];
