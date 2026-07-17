@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <base href="/hritigamehub/">
+    <title>🎯 Dart Dash — Hriti's Game Hub</title>
+    <meta name="description" content="Test your aim! Hit moving targets, pop balloons, and climb the levels!">
+    <meta name="theme-color" content="#d35400">
+    <meta property="og:title" content="🎯 Dart Dash">
+    <meta property="og:description" content="An aim-training dart game with moving targets, balloons, and combos!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="google-adsense-account" content="ca-pub-xxxxxxxxxxxxxxxx">
+</head>
+<body class="dart-dash-page">
+
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <header id="dd-hud">
+        <div class="dd-hud-left">
+            <a href="../../index.html" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="dd-title">🎯 Dart Dash</span>
+        </div>
+        <div class="dd-hud-center">
+            <span class="dd-level-display">Level <span id="dd-level">1</span></span>
+        </div>
+        <div class="dd-hud-right">
+            <span class="dd-score-display">⭐ <span id="dd-score">0</span></span>
+            <button class="hud-btn mute-btn" id="dd-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn dd-reset-btn" id="dd-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <section id="dd-game-area">
+        <div class="dd-canvas-wrapper" id="dd-canvas-wrapper">
+            <canvas id="dd-canvas" width="500" height="550"></canvas>
+
+            <div class="dd-overlay" id="dd-start-overlay">
+                <div class="dd-overlay-content">
+                    <div class="dd-overlay-icon">🎯</div>
+                    <div class="dd-overlay-title">Dart Dash!</div>
+                    <div class="dd-overlay-sub">Click the moving targets to throw darts!</div>
+                    <button class="dd-btn" id="dd-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <div class="dd-overlay hidden" id="dd-levelup-overlay">
+                <div class="dd-overlay-content">
+                    <div class="dd-overlay-icon">🎉</div>
+                    <div class="dd-overlay-title" id="dd-levelup-title">Level Complete!</div>
+                    <div class="dd-overlay-sub" id="dd-levelup-stats">Score: 0 | Accuracy: 0%</div>
+                    <button class="dd-btn" id="dd-next-btn">Next Level →</button>
+                </div>
+            </div>
+
+            <div class="dd-overlay hidden" id="dd-gameover-overlay">
+                <div class="dd-overlay-content">
+                    <div class="dd-overlay-icon">💥</div>
+                    <div class="dd-overlay-title">Game Over!</div>
+                    <div class="dd-overlay-sub" id="dd-gameover-stats">Score: 0 | Level: 1 | Best: 0</div>
+                    <button class="dd-btn" id="dd-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="dd-bottom-hud">
+            <span class="dd-lives" id="dd-lives">❤️❤️❤️</span>
+            <span class="dd-stat"><span class="dd-stat-label">Darts</span> <span id="dd-darts">10</span></span>
+            <span class="dd-stat"><span class="dd-stat-label">Hits</span> <span id="dd-hits">0</span></span>
+            <span class="dd-stat"><span class="dd-stat-label">Accuracy</span> <span id="dd-accuracy">0%</span></span>
+            <span class="dd-combo" id="dd-combo-display"></span>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>

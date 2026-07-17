@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <base href="/hritigamehub/">
+    <title>🌊 Bubble Pop — Hriti's Game Hub</title>
+    <meta name="description" content="Pop colorful bubbles, beat your high score, climb the levels, and collect power-ups!">
+    <meta name="theme-color" content="#2980b9">
+    <meta property="og:title" content="🌊 Bubble Pop">
+    <meta property="og:description" content="A fast-paced bubble-popping arcade game with power-ups and combos!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bubble-pop-page">
+
+    <!-- ===== HUD ===== -->
+    <header id="bp-hud">
+        <div class="bp-hud-left">
+            <a href="../../index.html" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="bp-title">🌊 Bubble Pop</span>
+        </div>
+        <div class="bp-hud-center">
+            <span class="bp-level-display">Level <span id="bp-level">1</span></span>
+        </div>
+        <div class="bp-hud-right">
+            <span class="bp-score-display">⭐ <span id="bp-score">0</span></span>
+            <button class="hud-btn mute-btn" id="bp-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn bp-reset-btn" id="bp-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="bp-game-area">
+        <div class="bp-canvas-wrapper" id="bp-canvas-wrapper">
+            <canvas id="bp-canvas" width="500" height="550"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="bp-overlay" id="bp-start-overlay">
+                <div class="bp-overlay-content">
+                    <div class="bp-overlay-icon">🫧</div>
+                    <div class="bp-overlay-title">Bubble Pop!</div>
+                    <div class="bp-overlay-sub">Click the bubbles before they escape!</div>
+                    <button class="bp-btn" id="bp-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="bp-overlay hidden" id="bp-gameover-overlay">
+                <div class="bp-overlay-content">
+                    <div class="bp-overlay-icon">💥</div>
+                    <div class="bp-overlay-title">Game Over!</div>
+                    <div class="bp-overlay-sub" id="bp-gameover-stats">Score: 0 | Level: 1</div>
+                    <button class="bp-btn" id="bp-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+
+            <!-- Level Complete Overlay -->
+            <div class="bp-overlay hidden" id="bp-levelup-overlay">
+                <div class="bp-overlay-content">
+                    <div class="bp-overlay-icon">🎉</div>
+                    <div class="bp-overlay-title">Level Complete!</div>
+                    <div class="bp-overlay-sub" id="bp-levelup-stats">Level 1 → Level 2</div>
+                    <button class="bp-btn" id="bp-next-btn">Next Level →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom HUD -->
+        <div id="bp-bottom-hud">
+            <div class="bp-lives" id="bp-lives">❤️❤️❤️</div>
+            <div class="bp-progress-container">
+                <div class="bp-progress-label">Progress</div>
+                <div class="bp-progress-track">
+                    <div class="bp-progress-fill" id="bp-progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="bp-progress-text" id="bp-progress-text">0 / 10</div>
+            </div>
+            <div class="bp-combo" id="bp-combo-display"></div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>

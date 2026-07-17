@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/hritigamehub/">
+    <title>🧩 Memory Match — Hriti's Game Hub</title>
+    <meta name="description" content="Flip cards, find matching pairs, and climb through levels with increasing difficulty!">
+    <meta name="theme-color" content="#6c3483">
+    <meta property="og:title" content="🧩 Memory Match">
+    <meta property="og:description" content="A classic memory card game with 3D flips, combos, and multiple themes!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="memory-match-page">
+
+    <!-- ===== HUD ===== -->
+    <header id="mm-hud">
+        <div class="mm-hud-left">
+            <a href="../../index.html" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="mm-title">🧩 Memory Match</span>
+        </div>
+        <div class="mm-hud-center">
+            <span class="mm-level-display">Level <span id="mm-level">1</span></span>
+        </div>
+        <div class="mm-hud-right">
+            <span class="mm-score-display">⭐ <span id="mm-score">0</span></span>
+            <button class="hud-btn mute-btn" id="mm-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn mm-reset-btn" id="mm-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="mm-game-area">
+        <div class="mm-board-wrapper" id="mm-board-wrapper">
+            <div class="mm-board" id="mm-board"></div>
+
+            <!-- Start Overlay -->
+            <div class="mm-overlay" id="mm-start-overlay">
+                <div class="mm-overlay-content">
+                    <div class="mm-overlay-icon">🧩</div>
+                    <div class="mm-overlay-title">Memory Match!</div>
+                    <div class="mm-overlay-sub">Flip cards and find matching pairs!</div>
+                    <button class="mm-btn" id="mm-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Level Complete Overlay -->
+            <div class="mm-overlay hidden" id="mm-levelup-overlay">
+                <div class="mm-overlay-content">
+                    <div class="mm-overlay-icon">🎉</div>
+                    <div class="mm-overlay-title" id="mm-levelup-title">Level Complete!</div>
+                    <div class="mm-overlay-sub" id="mm-levelup-stats">Moves: 0 | Time: 0s</div>
+                    <button class="mm-btn" id="mm-next-btn">Next Level →</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="mm-overlay hidden" id="mm-gameover-overlay">
+                <div class="mm-overlay-content">
+                    <div class="mm-overlay-icon">💔</div>
+                    <div class="mm-overlay-title">Out of Moves!</div>
+                    <div class="mm-overlay-sub" id="mm-gameover-stats">Score: 0 | Level: 1 | Pairs: 0</div>
+                    <button class="mm-btn" id="mm-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom HUD -->
+        <div id="mm-bottom-hud">
+            <span class="mm-lives" id="mm-lives">❤️❤️❤️</span>
+            <span class="mm-stat"><span class="mm-stat-label">Moves</span> <span id="mm-moves">0</span></span>
+            <span class="mm-stat"><span class="mm-stat-label">Pairs</span> <span id="mm-pairs">0</span> / <span id="mm-total-pairs">6</span></span>
+            <span class="mm-stat"><span class="mm-stat-label">Time</span> <span id="mm-timer">0s</span></span>
+            <span class="mm-combo" id="mm-combo-display"></span>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>

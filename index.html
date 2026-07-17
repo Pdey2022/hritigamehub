@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/hritigamehub/">
+    <title>🌟 Hriti's Game Hub</title>
+    <meta name="description" content="Hriti's Game Hub — A collection of fun, cozy games! Play Penguin Paradise, Bubble Pop, Memory Match, and more!">
+    <meta name="theme-color" content="#667eea">
+    <meta property="og:title" content="Hriti's Game Hub">
+    <meta property="og:description" content="A collection of fun, cozy games made with love!">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AdSense placeholder (hidden) -->
+    <meta name="google-adsense-account" content="ca-pub-xxxxxxxxxxxxxxxx">
+</head>
+<body class="landing-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LANDING HEADER ===== -->
+    <header class="landing-header">
+        <div class="landing-header-content">
+            <h1 class="landing-title">🌟 Hriti's Game Hub</h1>
+            <p class="landing-subtitle">Pick a game and play!</p>
+        </div>
+    </header>
+
+    <!-- ===== SEARCH BAR ===== -->
+    <div class="search-container">
+        <input type="text" class="search-input" id="game-search" placeholder="🔍 Search games..." autocomplete="off">
+    </div>
+
+    <!-- ===== GAME CAROUSEL ===== -->
+    <div class="carousel-container">
+        <button class="carousel-arrow carousel-prev" id="carousel-prev" aria-label="Previous">‹</button>
+        <main class="game-grid" id="game-grid">
+
+        <!-- Penguin Paradise -->
+        <a href="games/penguin-paradise/index.html" class="game-card featured">
+            <div class="game-card-badge">🎮 Play Now</div>
+            <div class="game-card-icon">🐧</div>
+            <h2 class="game-card-title">Penguin Paradise</h2>
+            <p class="game-card-desc">Raise a virtual penguin, catch fish, unlock magical sanctuaries, and collect accessories!</p>
+            <div class="game-card-tags">
+                <span class="tag">🐟 Fishing</span>
+                <span class="tag">🐾 Pet Care</span>
+                <span class="tag">🛒 Shop</span>
+            </div>
+            <div class="game-card-stats">
+                <span>⭐ 3 Sanctuaries</span>
+                <span>🎀 9 Accessories</span>
+                <span>🏅 10 Achievements</span>
+            </div>
+            <span class="play-btn">Play Now →</span>
+        </a>
+
+        <!-- Bubble Pop -->
+        <a href="games/bubble-pop/index.html" class="game-card">
+            <div class="game-card-badge">🎮 Play Now</div>
+            <div class="game-card-icon">🌊</div>
+            <h2 class="game-card-title">Bubble Pop</h2>
+            <p class="game-card-desc">Pop colorful bubbles, beat your high score, climb the levels, and collect power-ups!</p>
+            <div class="game-card-tags">
+                <span class="tag">💥 Arcade</span>
+                <span class="tag">🎯 Reflex</span>
+                <span class="tag">🆙 10 Levels</span>
+            </div>
+            <div class="game-card-stats">
+                <span>🫧 7 Bubble Types</span>
+                <span>❄️ Freeze Power</span>
+                <span>🔥 Combo System</span>
+            </div>
+            <span class="play-btn">Play Now →</span>
+        </a>
+
+        <!-- Memory Match -->
+        <a href="games/memory-match/index.html" class="game-card">
+            <div class="game-card-badge">🎮 Play Now</div>
+            <div class="game-card-icon">🧩</div>
+            <h2 class="game-card-title">Memory Match</h2>
+            <p class="game-card-desc">Flip cards, find matching pairs, and climb through levels with increasing difficulty!</p>
+            <div class="game-card-tags">
+                <span class="tag">🧠 Puzzle</span>
+                <span class="tag">🎴 Cards</span>
+                <span class="tag">🆙 8+ Levels</span>
+            </div>
+            <div class="game-card-stats">
+                <span>🃏 3D Card Flip</span>
+                <span>🔥 Combo System</span>
+                <span>🎨 3 Themes</span>
+            </div>
+            <span class="play-btn">Play Now →</span>
+        </a>
+
+        <!-- Dart Dash -->
+        <a href="games/dart-dash/index.html" class="game-card">
+            <div class="game-card-badge">🎮 Play Now</div>
+            <div class="game-card-icon">🎯</div>
+            <h2 class="game-card-title">Dart Dash</h2>
+            <p class="game-card-desc">Test your aim! Hit moving targets, pop balloons, and climb the levels!</p>
+            <div class="game-card-tags">
+                <span class="tag">🎯 Precision</span>
+                <span class="tag">⚡ Speed</span>
+                <span class="tag">🆙 10 Levels</span>
+            </div>
+            <div class="game-card-stats">
+                <span>🎯 Moving Targets</span>
+                <span>🎈 Bonus Balloons</span>
+                <span>🔥 Streak System</span>
+            </div>
+            <span class="play-btn">Play Now →</span>
+        </a>
+
+        <!-- Space Blaster (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🚀</div>
+            <h2 class="game-card-title">Space Blaster</h2>
+            <p class="game-card-desc">Blast through asteroid fields and alien ships in this cosmic shooter!</p>
+            <div class="game-card-tags">
+                <span class="tag">👾 Arcade</span>
+                <span class="tag">🚀 Space</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Word Wizard (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">📖</div>
+            <h2 class="game-card-title">Word Wizard</h2>
+            <p class="game-card-desc">Spell words, solve anagrams, and become a word wizard!</p>
+            <div class="game-card-tags">
+                <span class="tag">📚 Word</span>
+                <span class="tag">🧠 Brain</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Race Rush (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🏎️</div>
+            <h2 class="game-card-title">Race Rush</h2>
+            <p class="game-card-desc">Race against the clock on twisting tracks with power-ups and shortcuts!</p>
+            <div class="game-card-tags">
+                <span class="tag">🏁 Racing</span>
+                <span class="tag">⚡ Speed</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Farm Friends (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🌾</div>
+            <h2 class="game-card-title">Farm Friends</h2>
+            <p class="game-card-desc">Grow crops, raise animals, and build your dream farm!</p>
+            <div class="game-card-tags">
+                <span class="tag">🌱 Farming</span>
+                <span class="tag">🐄 Animals</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Puzzle Path (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🗺️</div>
+            <h2 class="game-card-title">Puzzle Path</h2>
+            <p class="game-card-desc">Navigate mazes, solve puzzles, and find the hidden treasure!</p>
+            <div class="game-card-tags">
+                <span class="tag">🧩 Puzzle</span>
+                <span class="tag">🗺️ Maze</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Pet Rescue (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🐾</div>
+            <h2 class="game-card-title">Pet Rescue</h2>
+            <p class="game-card-desc">Rescue adorable animals, heal them, and find them loving homes!</p>
+            <div class="game-card-tags">
+                <span class="tag">🐾 Rescue</span>
+                <span class="tag">💕 Care</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Ninja Jump (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🥷</div>
+            <h2 class="game-card-title">Ninja Jump</h2>
+            <p class="game-card-desc">Jump, dash, and flip through treacherous platforms as a ninja!</p>
+            <div class="game-card-tags">
+                <span class="tag">🎮 Platform</span>
+                <span class="tag">⚡ Action</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+        <!-- Ocean Explorer (coming soon) -->
+        <div class="game-card disabled">
+            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+            <div class="game-card-icon">🐙</div>
+            <h2 class="game-card-title">Ocean Explorer</h2>
+            <p class="game-card-desc">Dive into the deep sea, discover marine life, and build your aquarium!</p>
+            <div class="game-card-tags">
+                <span class="tag">🌊 Ocean</span>
+                <span class="tag">🐠 Discovery</span>
+            </div>
+            <button class="play-btn disabled" disabled>Coming Soon</button>
+        </div>
+
+    </main>
+        <button class="carousel-arrow carousel-next" id="carousel-next" aria-label="Next">›</button>
+    </div>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== SCROLL TO TOP ===== -->
+    <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top">↑</button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="landing-footer">
+        <p>Made with 💕 for Hriti &nbsp;|&nbsp; 🌟 v1.0</p>
+    </footer>
+
+<script>
+    // Scroll to top button
+    const scrollBtn = document.getElementById('scroll-top-btn');
+    window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('visible', window.scrollY > 200);
+    });
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+
+    // Search filter for game cards
+    document.getElementById('game-search').addEventListener('input', function() {
+        const q = this.value.toLowerCase().trim();
+        document.querySelectorAll('.game-card').forEach(card => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = !q || text.includes(q) ? '' : 'none';
+        });
+        // Show/hide arrows based on results
+        updateArrowVisibility();
+    });
+
+    // Carousel scroll
+    const grid = document.getElementById('game-grid');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+
+    function scrollCarousel(dir) {
+        const card = grid.querySelector('.game-card');
+        if (!card) return;
+        const scrollAmt = card.offsetWidth + 14; // card width + gap
+        grid.scrollBy({ left: dir * scrollAmt, behavior: 'smooth' });
+    }
+
+    function updateArrowVisibility() {
+        const visible = grid.querySelector('.game-card[style*="display: none"]');
+        const hasVisible = grid.querySelector('.game-card:not([style*="display: none"])');
+        // Hide arrows if no visible cards or all filtered out
+        const anyVisible = !visible || hasVisible;
+        const container = document.querySelector('.carousel-container');
+        if (container) {
+            container.style.display = anyVisible ? '' : 'none';
+        }
+    }
+
+    prevBtn.addEventListener('click', () => scrollCarousel(-1));
+    nextBtn.addEventListener('click', () => scrollCarousel(1));
+
+    // Touch swipe support
+    let touchStartX = 0;
+    grid.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    grid.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) {
+            scrollCarousel(diff > 0 ? 1 : -1);
+        }
+    }, { passive: true });
+
+    // Initial arrow visibility
+    updateArrowVisibility();
+</script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>
