@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>📖 Word Wizard — Hriti's Game Hub</title>
+    <meta name="description" content="Spell words, solve anagrams, and become a word wizard!">
+    <meta name="theme-color" content="#6c3483">
+    <meta property="og:title" content="📖 Word Wizard">
+    <meta property="og:description" content="Unscramble letters, solve word puzzles, and become a word wizard!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="word-wizard-page">
+
+    <!-- ===== HUD ===== -->
+    <header id="ww-hud">
+        <div class="ww-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="ww-title">📖 Word Wizard</span>
+        </div>
+        <div class="ww-hud-center">
+            <span class="ww-level-display">Level <span id="ww-level">1</span></span>
+        </div>
+        <div class="ww-hud-right">
+            <span class="ww-score-display">⭐ <span id="ww-score">0</span></span>
+            <button class="hud-btn mute-btn" id="ww-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn ww-reset-btn" id="ww-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="ww-game-area">
+        <div class="ww-canvas-wrapper" id="ww-canvas-wrapper">
+            <canvas id="ww-canvas" width="500" height="550"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="ww-overlay" id="ww-start-overlay">
+                <div class="ww-overlay-content">
+                    <div class="ww-overlay-icon">📖</div>
+                    <div class="ww-overlay-title">Word Wizard!</div>
+                    <div class="ww-overlay-sub">Unscramble the letters and spell words!</div>
+                    <button class="ww-btn" id="ww-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="ww-overlay hidden" id="ww-gameover-overlay">
+                <div class="ww-overlay-content">
+                    <div class="ww-overlay-icon">🏆</div>
+                    <div class="ww-overlay-title">Game Over!</div>
+                    <div class="ww-overlay-sub" id="ww-gameover-stats">Score: 0 | Best: 0</div>
+                    <button class="ww-btn" id="ww-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+
+            <!-- Level Complete Overlay -->
+            <div class="ww-overlay hidden" id="ww-levelcomplete-overlay">
+                <div class="ww-overlay-content">
+                    <div class="ww-overlay-icon">🎉</div>
+                    <div class="ww-overlay-title">Level Complete!</div>
+                    <div class="ww-overlay-sub" id="ww-levelcomplete-stats">Score: 0</div>
+                    <button class="ww-btn" id="ww-nextlevel-btn">Next Level ▶</button>
+                </div>
+            </div>
+
+            <!-- Won overlay -->
+            <div class="ww-overlay hidden" id="ww-won-overlay">
+                <div class="ww-overlay-content">
+                    <div class="ww-overlay-icon">👑</div>
+                    <div class="ww-overlay-title">You Win!</div>
+                    <div class="ww-overlay-sub" id="ww-won-stats">Final Score: 0</div>
+                    <button class="ww-btn" id="ww-playagain-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Word Display Area -->
+        <div id="ww-word-area">
+            <div id="ww-hint-text" class="ww-hint">Category: <span id="ww-category">General</span></div>
+            <div id="ww-scrambled-word"></div>
+            <div id="ww-input-area">
+                <input type="text" id="ww-input" placeholder="Type the word..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <button class="ww-btn ww-btn-small" id="ww-submit-btn">Submit ✓</button>
+                <button class="ww-btn ww-btn-small ww-btn-hint" id="ww-hint-btn">💡 Hint</button>
+            </div>
+            <div id="ww-feedback" class="ww-feedback"></div>
+            <div id="ww-word-counter">
+                Word <span id="ww-word-current">1</span> of <span id="ww-word-total">5</span>
+            </div>
+        </div>
+
+        <!-- Bottom Stats -->
+        <div id="ww-bottom-hud">
+            <span class="ww-stat"><span class="ww-stat-label">Lives</span> <span id="ww-lives">❤️❤️❤️</span></span>
+            <span class="ww-stat"><span class="ww-stat-label">Score</span> <span id="ww-score-bottom">0</span></span>
+            <span class="ww-stat"><span class="ww-stat-label">Streak</span> <span id="ww-streak">0</span>🔥</span>
+            <span class="ww-stat"><span class="ww-stat-label">Best</span> <span id="ww-best">0</span></span>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="/games/word-wizard/js/game.js"></script>
+</body>
+</html>
