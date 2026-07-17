@@ -140,9 +140,11 @@ const state = {
     wordIndex: 0,
     words: [],       // current level's word pool
     currentWord: null,
+    scrambledWord: '', // scrambled version of current word
     hintsUsed: 0,
     timeLeft: 0,
     timerInterval: null,
+    animFrame: null,
     particles: [],
     floatingTexts: []
 };
@@ -276,8 +278,9 @@ function loadWord() {
     dom.submitBtn.disabled = false;
     dom.hintBtn.disabled = false;
 
-    // Draw the scrambled word on canvas
-    drawScrambledWord(scrambleWord(wordData.word));
+    // Scramble and store
+    state.scrambledWord = scrambleWord(wordData.word);
+    drawScrambledWord(state.scrambledWord);
 
     // Start timer
     startTimer();
@@ -408,17 +411,12 @@ function startTimer() {
     if (state.timerInterval) clearInterval(state.timerInterval);
     state.timerInterval = setInterval(() => {
         state.timeLeft--;
-        drawScrambledWord(getCurrentScrambled());
+        drawScrambledWord(state.scrambledWord);
         if (state.timeLeft <= 0) {
             clearInterval(state.timerInterval);
             handleWrong();
         }
     }, 1000);
-}
-
-function getCurrentScrambled() {
-    if (!state.currentWord) return '';
-    return scrambleWord(state.currentWord.word);
 }
 
 // ===== CHECK ANSWER =====
@@ -673,7 +671,9 @@ function startGame() {
     updateHUD();
 
     state.running = true;
+    if (state.animFrame) cancelAnimationFrame(state.animFrame);
     drawLevelStart();
+    gameLoop();
     setTimeout(() => {
         if (state.running) {
             loadWord();
@@ -683,13 +683,12 @@ function startGame() {
 
 // ===== ANIMATION LOOP =====
 function gameLoop() {
-    if (!state.running) return;
-    // Only update particles/floating texts if word is being displayed
+    if (!state.running) { state.animFrame = null; return; }
     if (state.currentWord) {
         updateParticles();
-        drawScrambledWord(getCurrentScrambled());
+        drawScrambledWord(state.scrambledWord);
     }
-    requestAnimationFrame(gameLoop);
+    state.animFrame = requestAnimationFrame(gameLoop);
 }
 
 // ===== INPUT HANDLING =====
