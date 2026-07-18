@@ -444,6 +444,32 @@ function init() {
         startJump(mx < W / 2 ? -1 : 1);
     });
 
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (!state.running) return;
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'a':
+            case 'A':
+                e.preventDefault();
+                startJump(-1);
+                break;
+            case 'ArrowRight':
+            case 'd':
+            case 'D':
+                e.preventDefault();
+                startJump(1);
+                break;
+            case 'ArrowUp':
+            case 'w':
+            case 'W':
+            case ' ':
+                e.preventDefault();
+                startJump(ninja.dir || 1);
+                break;
+        }
+    });
+
     dom.startBtn.addEventListener('click', startGame);
     dom.restartBtn.addEventListener('click', startGame);
     document.getElementById('nj-mute-btn').addEventListener('click', toggleMute);
