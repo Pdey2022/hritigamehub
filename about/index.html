@@ -60,6 +60,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%;
             border-radius: 50%;
         }
         .about-avatar-placeholder {
@@ -128,16 +129,12 @@
     </nav>
 
     <div class="about-container">
-        <!-- Avatar — upload your photo to /assets/images/about-me.png -->
+       
         <div class="about-avatar" id="avatar-container">
             <img src="/assets/images/about-me.png" alt="My Photo" id="avatar-img"
                  onerror="this.style.display='none'; document.getElementById('avatar-emoji').style.display=''">
             <span id="avatar-emoji" style="display:none">👤</span>
         </div>
-        <div class="about-avatar-placeholder">
-            📁 Upload your photo to <code>assets/images/about-me.png</code>
-        </div>
-
         <h1>Hi, I'm [Your Name] 👋</h1>
         <p class="tagline">Builder of games, dreamer of fun 🚀</p>
 
