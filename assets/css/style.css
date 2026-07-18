@@ -1563,31 +1563,44 @@ body.night-mode .scroll-top-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 20px 12px;
-    background: rgba(255,255,255,0.12);
+    gap: 4px;
+    padding: 16px 8px;
     border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 16px;
+    border-radius: 14px;
     text-decoration: none;
     transition: all 0.25s ease;
     text-align: center;
-    backdrop-filter: blur(4px);
 }
+.category-card:nth-child(1) { background: linear-gradient(135deg, rgba(124,58,237,0.25), rgba(168,85,247,0.15)); }
+.category-card:nth-child(2) { background: linear-gradient(135deg, rgba(139,195,74,0.25), rgba(76,175,80,0.15)); }
+.category-card:nth-child(3) { background: linear-gradient(135deg, rgba(243,156,18,0.25), rgba(230,126,34,0.15)); }
+.category-card:nth-child(4) { background: linear-gradient(135deg, rgba(52,152,219,0.25), rgba(41,128,185,0.15)); }
+.category-card:nth-child(5) { background: linear-gradient(135deg, rgba(155,89,182,0.25), rgba(142,68,173,0.15)); }
+.category-card:nth-child(6) { background: linear-gradient(135deg, rgba(231,76,60,0.25), rgba(192,57,43,0.15)); }
+.category-card:nth-child(7) { background: linear-gradient(135deg, rgba(241,196,15,0.25), rgba(243,156,18,0.15)); }
+.category-card:nth-child(8) { background: linear-gradient(135deg, rgba(46,204,113,0.25), rgba(39,174,96,0.15)); }
 .category-card:hover {
-    background: rgba(255,255,255,0.2);
-    border-color: rgba(255,255,255,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.35);
 }
-.category-icon { font-size: 2rem; margin-bottom: 2px; }
+.category-card:nth-child(1):hover { background: linear-gradient(135deg, rgba(124,58,237,0.4), rgba(168,85,247,0.25)); }
+.category-card:nth-child(2):hover { background: linear-gradient(135deg, rgba(139,195,74,0.4), rgba(76,175,80,0.25)); }
+.category-card:nth-child(3):hover { background: linear-gradient(135deg, rgba(243,156,18,0.4), rgba(230,126,34,0.25)); }
+.category-card:nth-child(4):hover { background: linear-gradient(135deg, rgba(52,152,219,0.4), rgba(41,128,185,0.25)); }
+.category-card:nth-child(5):hover { background: linear-gradient(135deg, rgba(155,89,182,0.4), rgba(142,68,173,0.25)); }
+.category-card:nth-child(6):hover { background: linear-gradient(135deg, rgba(231,76,60,0.4), rgba(192,57,43,0.25)); }
+.category-card:nth-child(7):hover { background: linear-gradient(135deg, rgba(241,196,15,0.4), rgba(243,156,18,0.25)); }
+.category-card:nth-child(8):hover { background: linear-gradient(135deg, rgba(46,204,113,0.4), rgba(39,174,96,0.25)); }
+.category-icon { font-size: 1.8rem; }
 .category-name {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     font-weight: 700;
     color: #fff;
 }
 .category-desc {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.55);
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
 }
 @media (max-width: 600px) {
     .categories-grid { grid-template-columns: repeat(2, 1fr); }
