@@ -121,6 +121,10 @@
         <input type="text" class="search-input" id="game-search" placeholder="🔍 Search games..." autocomplete="off">
     </div>
 
+    <!-- ===== AUTH CONTAINER (Firebase login) ===== -->
+    <div class="auth-container" id="auth-container"></div>
+    <div class="sync-status" id="sync-status"></div>
+
     <!-- ===== GAME CAROUSEL ===== -->
     <div class="carousel-container">
         <button class="carousel-arrow carousel-prev" id="carousel-prev" aria-label="Previous">‹</button>
@@ -599,5 +603,12 @@
     updateArrowVisibility();
 </script>
 <script>document.body.classList.add('loaded')</script>
+
+    <!-- Firebase SDK (Auth + Firestore for cloud saves) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="/firebase-config.js"></script>
+    <script src="/firebase-integration.js"></script>
 </body>
 </html>
