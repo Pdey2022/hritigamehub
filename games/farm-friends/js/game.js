@@ -66,7 +66,10 @@ const state = {
     dayTimer: 0,
     floatingTexts: [],
     particles: [],
-    notifications: []
+    notifications: [],
+    totalEarned: 0,
+    totalPlanted: 0,
+    totalHarvested: 0
 };
 
 // ===== PLOT LAYOUT =====
@@ -145,6 +148,41 @@ function playHarvest() {
     } catch (e) {}
 }
 
+function playDayChange() {
+    if (isMuted) return;
+    try {
+        const ctx = getAudio();
+        // Pleasant morning chime — ascending arpeggio
+        [523, 659, 784, 1047].forEach((f, i) => {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.type = 'sine';
+            o.frequency.setValueAtTime(f, ctx.currentTime + i * 0.12);
+            g.gain.setValueAtTime(0.07, ctx.currentTime + i * 0.12);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.3);
+            o.connect(g); g.connect(ctx.destination);
+            o.start(ctx.currentTime + i * 0.12);
+            o.stop(ctx.currentTime + i * 0.12 + 0.3);
+        });
+    } catch (e) {}
+}
+
+function playBuy() {
+    if (isMuted) return;
+    try {
+        const ctx = getAudio();
+        [400, 600, 800].forEach((f, i) => {
+            const o = ctx.createOscillator(), g = ctx.createGain();
+            o.type = 'triangle';
+            o.frequency.setValueAtTime(f, ctx.currentTime + i * 0.07);
+            g.gain.setValueAtTime(0.06, ctx.currentTime + i * 0.07);
+            g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.07 + 0.15);
+            o.connect(g); g.connect(ctx.destination);
+            o.start(ctx.currentTime + i * 0.07);
+            o.stop(ctx.currentTime + i * 0.07 + 0.15);
+        });
+    } catch (e) {}
+}
+
 // ===== UTILITY =====
 function rand(min, max) { return Math.random() * (max - min) + min; }
 function randInt(min, max) { return Math.floor(rand(min, max + 1)); }
@@ -206,6 +244,9 @@ function resetGame() {
     state.floatingTexts = [];
     state.particles = [];
     state.notifications = [];
+    state.totalEarned = 0;
+    state.totalPlanted = 0;
+    state.totalHarvested = 0;
     state.totalPlotsUnlocked = 12;
     initPlots();
     updateHUD();
@@ -214,6 +255,11 @@ function resetGame() {
 
 function startGame() {
     resetGame();
+    // Try to load saved progress
+    if (!loadGame()) {
+        // First time — give welcome bonus
+        spawnFloatingText(W / 2, 200, '🌱 Welcome to your farm!', '#8bc34a');
+    }
     state.running = true;
 }
 
@@ -229,6 +275,7 @@ function plantCrop(plot, cropType) {
     if (!crop || state.coins < crop.cost) return false;
 
     state.coins -= crop.cost;
+    state.totalPlanted++;
     plot.crop = cropType;
     plot.planted = true;
     plot.growth = 0;
@@ -238,6 +285,7 @@ function plantCrop(plot, cropType) {
     spawnParticles(plot.x, plot.y, '#8bc34a');
     playPlant();
     updateHUD();
+    saveGame();
     return true;
 }
 
@@ -247,6 +295,8 @@ function harvestCrop(plot) {
     if (!crop) return false;
 
     state.coins += crop.sell;
+    state.totalEarned += crop.sell;
+    state.totalHarvested++;
     spawnParticles(plot.x, plot.y, '#ffd700', 12);
     spawnFloatingText(plot.x, plot.y - 20, `+${crop.sell} 🪙`, '#ffd700');
     playHarvest();
@@ -257,6 +307,7 @@ function harvestCrop(plot) {
     plot.ready = false;
 
     updateHUD();
+    saveGame();
     return true;
 }
 
@@ -278,9 +329,12 @@ function buyAnimal(type) {
         ready: false
     });
 
-    playCoin();
+    playBuy();
+    spawnParticles(W / 2, 400, '#ffd700', 15);
+    spawnFloatingText(W / 2, 380, `🐾 ${def.name} arrived!`, '#ffd700');
     updateHUD();
     updateAnimalPanel();
+    saveGame();
     return true;
 }
 
@@ -289,13 +343,16 @@ function collectAnimalProduce(index) {
     if (!animal || !animal.ready) return;
 
     state.coins += animal.sellPrice;
+    state.totalEarned += animal.sellPrice;
     animal.timer = 0;
     animal.ready = false;
 
     spawnFloatingText(W / 2, H - 20, `+${animal.sellPrice} 🪙`, '#ffd700');
+    spawnParticles(W / 2, H - 30, '#ffd700', 8);
     playCoin();
     updateHUD();
     updateAnimalPanel();
+    saveGame();
 }
 
 function updateAnimalPanel() {
@@ -370,6 +427,19 @@ function update() {
         state.dayTimer = 0;
         state.day++;
         updateHUD();
+
+        // Day change celebration
+        playDayChange();
+        spawnFloatingText(W / 2, 140, '🌅 New Day!', '#ffd700');
+        spawnParticles(W / 2, 150, '#ffd700', 20);
+
+        // Chance for daily bonus coins
+        const bonus = 5 + Math.floor(state.day * 1.5);
+        state.coins += bonus;
+        spawnFloatingText(W / 2, 170, `+${bonus} 🪙 daily bonus`, '#8bc34a');
+        updateHUD();
+
+        saveGame();
     }
 
     // Grow crops
@@ -693,10 +763,13 @@ function setupUI() {
     dom.muteBtn.addEventListener('click', toggleMute);
 
     dom.resetBtn.addEventListener('click', () => {
-        if (confirm('Reset your farm?')) {
-            localStorage.removeItem('ff_data');
+        if (confirm('Reset your farm? This will erase all progress!')) {
+            localStorage.removeItem('ff_save');
             resetGame();
             dom.startOverlay.classList.remove('hidden');
+            dom.panelPlant.classList.remove('hidden');
+            dom.panelShop.classList.add('hidden');
+            dom.panelAnimals.classList.add('hidden');
         }
     });
 
@@ -731,7 +804,54 @@ function updatePanels() {
 
 // ===== SAVE/LOAD =====
 function saveGame() {
-    // Auto-save handled by localStorage persistence
+    try {
+        const data = {
+            coins: state.coins,
+            day: state.day,
+            dayTimer: state.dayTimer,
+            animals: state.animals,
+            totalPlotsUnlocked: state.totalPlotsUnlocked,
+            totalEarned: state.totalEarned,
+            totalPlanted: state.totalPlanted,
+            totalHarvested: state.totalHarvested,
+            plots: state.plots.map(p => ({
+                id: p.id, row: p.row, col: p.col,
+                unlocked: p.unlocked, crop: p.crop,
+                growth: p.growth, planted: p.planted,
+                ready: p.ready
+            }))
+        };
+        localStorage.setItem('ff_save', JSON.stringify(data));
+    } catch (e) {}
+}
+
+function loadGame() {
+    try {
+        const raw = localStorage.getItem('ff_save');
+        if (!raw) return false;
+        const data = JSON.parse(raw);
+
+        state.coins = data.coins || 100;
+        state.day = data.day || 1;
+        state.dayTimer = data.dayTimer || 0;
+        state.animals = data.animals || [];
+        state.totalPlotsUnlocked = data.totalPlotsUnlocked || 12;
+        state.totalEarned = data.totalEarned || 0;
+        state.totalPlanted = data.totalPlanted || 0;
+        state.totalHarvested = data.totalHarvested || 0;
+
+        if (data.plots && data.plots.length === state.plots.length) {
+            for (let i = 0; i < data.plots.length; i++) {
+                Object.assign(state.plots[i], data.plots[i]);
+            }
+        }
+
+        updateHUD();
+        updateAnimalPanel();
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 // ===== INIT =====
