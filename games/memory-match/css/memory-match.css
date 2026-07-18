@@ -1,0 +1,22 @@
+/* ============================================
+   MEMORY MATCH — Responsive Styles
+   ============================================ */
+
+body.memory-match-page {
+    background: linear-gradient(135deg, #1a0a2e 0%, #3a1a5e 50%, #2a0a3e 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+/* Card grid responsive scaling */
+@media (max-width: 540px) {
+    .mm-card-grid { gap: 4px; }
+    #mm-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .mm-title { font-size: 1rem; }
+    #mm-bottom-hud { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .mm-overlay-content { padding: 24px 20px; }
+}

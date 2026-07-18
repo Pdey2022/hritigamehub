@@ -633,14 +633,36 @@ function startGame() {
 // ===== INIT =====
 function init() {
     // Click to throw
-    canvas.addEventListener('click', (e) => {
+    function getCanvasCoords(clientX, clientY) {
         const rect = canvas.getBoundingClientRect();
-        const sx = W / rect.width;
-        const sy = H / rect.height;
-        const mx = (e.clientX - rect.left) * sx;
-        const my = (e.clientY - rect.top) * sy;
+        return {
+            mx: (clientX - rect.left) * (W / rect.width),
+            my: (clientY - rect.top) * (H / rect.height)
+        };
+    }
+
+    canvas.addEventListener('click', (e) => {
+        const { mx, my } = getCanvasCoords(e.clientX, e.clientY);
         throwDart(mx, my);
     });
+
+    // Touch support
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const { mx, my } = getCanvasCoords(touch.clientX, touch.clientY);
+        throwDart(mx, my);
+    }, { passive: false });
+
+    // Handle resize for mobile
+    function handleResize() {
+        const maxWidth = Math.min(W, window.innerWidth - 20);
+        const scale = maxWidth / W;
+        canvas.style.width = maxWidth + 'px';
+        canvas.style.height = (H * scale) + 'px';
+    }
+    window.addEventListener('resize', handleResize);
+    handleResize();
 
     dom.startBtn.addEventListener('click', startGame);
     dom.restartBtn.addEventListener('click', startGame);

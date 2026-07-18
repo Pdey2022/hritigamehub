@@ -160,3 +160,13 @@ body.word-wizard-page {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
 }
+
+@media (max-width: 540px) {
+    #ww-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
+    #ww-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .ww-title { font-size: 1rem; }
+    #ww-bottom-hud { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .ww-overlay-content { padding: 24px 20px; }
+    #ww-word-area { padding: 14px; }
+    #ww-input { font-size: 0.95rem; }
+}

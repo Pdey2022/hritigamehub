@@ -1,0 +1,21 @@
+/* ============================================
+   DART DASH — Responsive Styles
+   ============================================ */
+
+body.dart-dash-page {
+    background: linear-gradient(135deg, #2c1810 0%, #4a2c1e 50%, #5d4037 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+@media (max-width: 540px) {
+    #dd-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
+    #dd-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .dd-title { font-size: 1rem; }
+    #dd-bottom-hud { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .dd-overlay-content { padding: 24px 20px; }
+}

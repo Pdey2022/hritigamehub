@@ -1,0 +1,22 @@
+/* ============================================
+   BUBBLE POP — Responsive Styles
+   ============================================ */
+
+body.bubble-pop-page {
+    background: linear-gradient(135deg, #0c3b5c 0%, #1a6b9a 50%, #2980b9 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (max-width: 540px) {
+    #bp-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
+    #bp-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .bp-title { font-size: 1rem; }
+    #bp-bottom-hud { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .bp-overlay-content { padding: 24px 20px; }
+}

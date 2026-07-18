@@ -110,3 +110,11 @@ body.puzzle-path-page {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-4px); }
 }
+
+@media (max-width: 540px) {
+    #pp-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
+    #pp-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .pp-title { font-size: 1rem; }
+    #pp-bottom-hud { flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .pp-overlay-content { padding: 24px 20px; }
+}

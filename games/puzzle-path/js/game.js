@@ -792,6 +792,16 @@ dom.resetBtn.addEventListener('click', () => {
     }
 });
 
+// Handle resize for mobile
+function handleResize() {
+    const maxWidth = Math.min(W, window.innerWidth - 20);
+    const scale = maxWidth / W;
+    canvas.style.width = maxWidth + 'px';
+    canvas.style.height = (H * scale) + 'px';
+}
+window.addEventListener('resize', handleResize);
+handleResize();
+
 // ===== INIT =====
 function init() {
     drawStartScreen();

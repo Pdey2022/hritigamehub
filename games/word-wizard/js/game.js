@@ -697,6 +697,26 @@ dom.input.addEventListener('keydown', (e) => {
 });
 
 dom.submitBtn.addEventListener('click', checkAnswer);
+// Touch support for canvas
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const clickEvent = new MouseEvent('click', {
+        clientX: touch.clientX, clientY: touch.clientY
+    });
+    canvas.dispatchEvent(clickEvent);
+}, { passive: false });
+
+// Handle resize for mobile
+function handleResize() {
+    const maxWidth = Math.min(W, window.innerWidth - 20);
+    const scale = maxWidth / W;
+    canvas.style.width = maxWidth + 'px';
+    canvas.style.height = (H * scale) + 'px';
+}
+window.addEventListener('resize', handleResize);
+handleResize();
+
 dom.hintBtn.addEventListener('click', useHint);
 
 dom.startBtn.addEventListener('click', startGame);
