@@ -529,6 +529,23 @@ function drawMaze() {
     ctx.fill();
     ctx.restore();
 
+    // Directional hints around player
+    const grid = state.maze;
+    const dirs = [[0,-1,'↑'],[1,0,'→'],[0,1,'↓'],[-1,0,'←']];
+    for (const [ddx, ddy, arrow] of dirs) {
+        const nx = state.player.x + ddx, ny = state.player.y + ddy;
+        if (nx >= 0 && nx < grid[0].length && ny >= 0 && ny < grid.length && grid[ny][nx] === 0) {
+            ctx.save();
+            ctx.globalAlpha = 0.35 + Math.sin(Date.now() / 500 + ddx * 2 + ddy * 3) * 0.15;
+            ctx.font = `${Math.max(10, cs * 0.35)}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#2ecc71';
+            ctx.fillText(arrow, cx + ddx * cs * 0.55, cy + ddy * cs * 0.55);
+            ctx.restore();
+        }
+    }
+
     // Level info
     ctx.font = '12px Fredoka, sans-serif';
     ctx.textAlign = 'left';
