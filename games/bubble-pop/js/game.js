@@ -810,6 +810,7 @@ function init() {
     // Event listeners
     canvas.addEventListener('click', handleClick);
     canvas.addEventListener('touchstart', (e) => {
+        if (e.target.closest('button, a, input')) return;
         e.preventDefault();
         const touch = e.touches[0];
         handleClick({ clientX: touch.clientX, clientY: touch.clientY });

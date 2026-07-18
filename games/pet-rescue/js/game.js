@@ -537,6 +537,7 @@ function handleClick(e) {
 
 canvas.addEventListener('click', handleClick);
 canvas.addEventListener('touchstart', (e) => {
+    if (e.target.closest('button, a, input')) return;
     e.preventDefault();
     const touch = e.touches[0];
     const rect = canvas.getBoundingClientRect();

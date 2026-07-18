@@ -882,6 +882,8 @@ function bindEvents() {
     let touchCurrentX = 0;
 
     wrapper.addEventListener('touchstart', (e) => {
+        // Don't block button/link touches — let them fire click events
+        if (e.target.closest('button, a, input')) return;
         e.preventDefault();
         const touch = e.touches[0];
         touchStartX = touch.clientX;

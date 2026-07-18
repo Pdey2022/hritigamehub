@@ -750,8 +750,16 @@ function setupUI() {
         });
     });
 
-    // Canvas click
+    // Canvas click (mouse)
     canvas.addEventListener('click', handleCanvasClick);
+
+    // Canvas touch (mobile)
+    canvas.addEventListener('touchstart', (e) => {
+        if (e.target.closest('button, a, input')) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        handleCanvasClick({ clientX: touch.clientX, clientY: touch.clientY });
+    }, { passive: false });
 
     // Buttons
     dom.startBtn.addEventListener('click', () => {

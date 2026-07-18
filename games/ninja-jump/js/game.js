@@ -437,6 +437,7 @@ function init() {
         startJump(mx < W / 2 ? -1 : 1);
     });
     canvas.addEventListener('touchstart', (e) => {
+        if (e.target.closest('button, a, input')) return;
         e.preventDefault();
         if (!state.running) return;
         const rect = canvas.getBoundingClientRect();

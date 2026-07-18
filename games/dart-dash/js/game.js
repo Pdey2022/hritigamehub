@@ -648,6 +648,7 @@ function init() {
 
     // Touch support
     canvas.addEventListener('touchstart', (e) => {
+        if (e.target.closest('button, a, input')) return;
         e.preventDefault();
         const touch = e.touches[0];
         const { mx, my } = getCanvasCoords(touch.clientX, touch.clientY);

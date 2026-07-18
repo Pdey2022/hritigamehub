@@ -699,6 +699,7 @@ dom.input.addEventListener('keydown', (e) => {
 dom.submitBtn.addEventListener('click', checkAnswer);
 // Touch support for canvas
 canvas.addEventListener('touchstart', (e) => {
+    if (e.target.closest('button, a, input')) return;
     e.preventDefault();
     const touch = e.touches[0];
     const clickEvent = new MouseEvent('click', {
