@@ -83,6 +83,10 @@ body.race-rush-page {
     height: 600px;
 }
 
+.rr-canvas-wrapper {
+    touch-action: manipulation;
+}
+
 /* Overlays */
 .rr-overlay {
     position: absolute; top: 0; left: 0;

@@ -757,7 +757,7 @@ canvas.addEventListener('click', (e) => {
 });
 
 canvas.addEventListener('touchstart', (e) => {
-    if (e.target.closest('button, a, input')) return;
+    if (e.target.closest('.pp-overlay, .sb-overlay, .rr-overlay, button, a, input, select, textarea')) return;
     e.preventDefault();
     if (!state.running) return;
     const rect = canvas.getBoundingClientRect();

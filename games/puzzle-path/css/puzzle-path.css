@@ -111,6 +111,10 @@ body.puzzle-path-page {
     50% { transform: translateY(-4px); }
 }
 
+.pp-canvas-wrapper {
+    touch-action: manipulation;
+}
+
 @media (max-width: 540px) {
     #pp-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
     #pp-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }

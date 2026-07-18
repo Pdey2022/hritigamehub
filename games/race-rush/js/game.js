@@ -882,8 +882,8 @@ function bindEvents() {
     let touchCurrentX = 0;
 
     wrapper.addEventListener('touchstart', (e) => {
-        // Don't block button/link touches — let them fire click events
-        if (e.target.closest('button, a, input')) return;
+        // Don't block touches on overlays, buttons, links, or inputs — let them fire click events
+        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
         e.preventDefault();
         const touch = e.touches[0];
         touchStartX = touch.clientX;
@@ -895,6 +895,7 @@ function bindEvents() {
     }, { passive: false });
 
     wrapper.addEventListener('touchmove', (e) => {
+        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
         e.preventDefault();
         const touch = e.touches[0];
         touchCurrentX = touch.clientX;
@@ -906,6 +907,7 @@ function bindEvents() {
     }, { passive: false });
 
     wrapper.addEventListener('touchend', (e) => {
+        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
         e.preventDefault();
         state.keys.left = false;
         state.keys.right = false;
