@@ -1,5 +1,5 @@
 {
-    "version":  7,
+    "version":  8,
     "lastUpdated":  "2026-07-18",
     "description":  "Bump this version number after every update to force browsers to refresh CSS/JS cache"
 }
