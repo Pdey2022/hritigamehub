@@ -1547,6 +1547,49 @@ body.night-mode .scroll-top-btn {
     color: rgba(255,255,255,0.7);
 }
 
+/* ===== Game Categories ===== */
+.categories-section {
+    width: 100%;
+    max-width: 960px;
+    padding: 0 20px 20px;
+    margin: 0 auto;
+}
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+.category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 14px 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+.category-card:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+}
+.category-icon { font-size: 1.6rem; }
+.category-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.8);
+}
+.category-desc {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.4);
+}
+@media (max-width: 600px) {
+    .categories-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 /* ===== BUBBLE POP ===== */
 body.bubble-pop-page {
     background: linear-gradient(135deg, #0c3b5c 0%, #1a6b9a 50%, #2980b9 100%);
