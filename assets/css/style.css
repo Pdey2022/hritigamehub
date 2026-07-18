@@ -1330,6 +1330,36 @@ body.landing-page {
     box-shadow: none;
 }
 
+/* Favorite heart button on game cards */
+.fav-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    z-index: 5;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    line-height: 1;
+    padding: 0;
+}
+.fav-btn:hover {
+    transform: scale(1.2);
+    background: rgba(0,0,0,0.5);
+}
+.fav-btn.faved {
+    background: rgba(231,76,60,0.25);
+    border-color: rgba(231,76,60,0.4);
+}
+
 .game-card-badge {
     position: absolute;
     top: 14px;
@@ -2579,12 +2609,14 @@ body.night-mode .carousel-arrow:hover {
     border-color: rgba(231,76,60,0.3);
 }
 .sync-status {
-    font-size: 0.65rem;
+    position: absolute;
+    top: 52px;
+    right: 20px;
+    font-size: 0.6rem;
     font-weight: 600;
-    text-align: center;
     color: rgba(255,255,255,0.3);
-    min-height: 16px;
-    margin-top: 2px;
+    min-height: 14px;
+    text-align: right;
 }
 .sync-ok {
     color: #2ecc71;

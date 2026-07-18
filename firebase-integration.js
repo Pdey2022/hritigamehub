@@ -59,7 +59,7 @@ function updateAuthUI() {
             <div class="auth-bar">
                 <button class="auth-btn auth-google" onclick="signInGoogle()">
                     <span class="auth-google-icon">G</span>
-                    Sign in to save progress
+                    Sign in
                 </button>
             </div>
         `;

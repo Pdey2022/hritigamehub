@@ -115,6 +115,7 @@
             <p class="landing-subtitle">Free online games for kids — no download, just play! 🎮</p>
         </div>
         <div class="auth-container" id="auth-container"></div>
+        <div class="sync-status" id="sync-status"></div>
     </header>
 
     <!-- ===== SEARCH BAR ===== -->
@@ -455,6 +456,12 @@
         </div>
     </section>
 
+    <!-- ===== FAVORITES ===== -->
+    <section class="recent-section" id="fav-section" style="display:none">
+        <h2 class="recent-title">❤️ Favorites</h2>
+        <div class="recent-grid" id="fav-grid"></div>
+    </section>
+
     <!-- ===== RECENTLY PLAYED ===== -->
     <section class="recent-section" id="recent-section" style="display:none">
         <h2 class="recent-title">🕐 Recently Played</h2>
@@ -477,7 +484,7 @@
     </footer>
 
 <script>
-    // ===== RECENTLY PLAYED & FAVORITES =====
+    // ===== RECENTLY PLAYED, FAVORITES & TRACKING =====
     (function() {
         const GAMES = [
             { id:'penguin-paradise', name:'Penguin Paradise', icon:'🐧', url:'/games/penguin-paradise/' },
@@ -493,7 +500,75 @@
             { id:'ninja-jump', name:'Ninja Jump', icon:'🥷', url:'/games/ninja-jump/' }
         ];
 
-        // Track when a game is played (add to recently played)
+        // ----- Favorites -----
+        function getFavs() {
+            return JSON.parse(localStorage.getItem('hub_favs') || '[]');
+        }
+        function setFavs(f) {
+            localStorage.setItem('hub_favs', JSON.stringify(f));
+        }
+        function toggleFav(id) {
+            let f = getFavs();
+            f = f.includes(id) ? f.filter(x => x !== id) : [...f, id];
+            setFavs(f);
+            updateFavButtons();
+            renderFavSection();
+        }
+
+        // Add ♥ buttons to game cards
+        function addFavButtons() {
+            document.querySelectorAll('.game-card').forEach(card => {
+                if (card.classList.contains('disabled')) return;
+                const gameId = card.getAttribute('href')?.split('/games/')[1]?.split('/')[0];
+                if (!gameId || card.querySelector('.fav-btn')) return;
+                const btn = document.createElement('button');
+                btn.className = 'fav-btn';
+                btn.setAttribute('aria-label', 'Add to favorites');
+                btn.innerHTML = '♡';
+                btn.addEventListener('click', e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleFav(gameId);
+                });
+                card.style.position = 'relative';
+                card.appendChild(btn);
+            });
+            updateFavButtons();
+        }
+        function updateFavButtons() {
+            const favs = getFavs();
+            document.querySelectorAll('.fav-btn').forEach(btn => {
+                const card = btn.closest('.game-card');
+                const id = card?.getAttribute('href')?.split('/games/')[1]?.split('/')[0];
+                if (id && favs.includes(id)) {
+                    btn.innerHTML = '❤️';
+                    btn.classList.add('faved');
+                } else {
+                    btn.innerHTML = '♡';
+                    btn.classList.remove('faved');
+                }
+            });
+        }
+
+        // Favorites section (above recently played)
+        function renderFavSection() {
+            const favs = getFavs();
+            const section = document.getElementById('fav-section');
+            const grid = document.getElementById('fav-grid');
+            if (!section || !grid) return;
+            if (!favs.length) { section.style.display = 'none'; return; }
+            section.style.display = '';
+            grid.innerHTML = favs.map(id => {
+                const g = GAMES.find(x => x.id === id);
+                if (!g) return '';
+                return '<a href="' + g.url + '" class="recent-card" onclick="window.trackPlay(\'' + g.id + '\')">' +
+                    '<span class="recent-icon">' + g.icon + '</span>' +
+                    '<span class="recent-name">' + g.name + '</span>' +
+                    '</a>';
+            }).join('');
+        }
+
+        // ----- Recently Played -----
         function trackPlay(gameId) {
             let recent = JSON.parse(localStorage.getItem('hub_recent') || '[]');
             recent = recent.filter(id => id !== gameId);
@@ -503,24 +578,23 @@
             renderRecent();
         }
 
-        // Render recently played section
         function renderRecent() {
             const recent = JSON.parse(localStorage.getItem('hub_recent') || '[]');
             const section = document.getElementById('recent-section');
             const grid = document.getElementById('recent-grid');
-            if (!recent.length || !section) return;
+            if (!section || !grid) return;
+            if (!recent.length) { section.style.display = 'none'; return; }
             section.style.display = '';
             grid.innerHTML = recent.map(id => {
-                const game = GAMES.find(g => g.id === id);
-                if (!game) return '';
-                return '<a href="' + game.url + '" class="recent-card" onclick="event.stopPropagation(); window.trackPlay(\'' + game.id + '\')">' +
-                    '<span class="recent-icon">' + game.icon + '</span>' +
-                    '<span class="recent-name">' + game.name + '</span>' +
+                const g = GAMES.find(x => x.id === id);
+                if (!g) return '';
+                return '<a href="' + g.url + '" class="recent-card" onclick="window.trackPlay(\'' + g.id + '\')">' +
+                    '<span class="recent-icon">' + g.icon + '</span>' +
+                    '<span class="recent-name">' + g.name + '</span>' +
                     '</a>';
             }).join('');
         }
 
-        // Expose for game links to call
         window.trackPlay = trackPlay;
 
         // Track clicks on game card links
@@ -532,6 +606,9 @@
             }
         });
 
+        // Init
+        addFavButtons();
+        renderFavSection();
         renderRecent();
     })();
 </script>
