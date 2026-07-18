@@ -118,13 +118,24 @@ const player = {
 // ===== STARFIELD =====
 function initStars() {
     state.stars = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 120; i++) {
         state.stars.push({
             x: Math.random() * W,
             y: Math.random() * H,
             size: Math.random() * 2.5 + 0.5,
             speed: Math.random() * 2 + 0.5,
-            brightness: Math.random() * 0.6 + 0.4
+            brightness: Math.random() * 0.5 + 0.5
+        });
+    }
+    // Add a few brighter stars
+    for (let i = 0; i < 8; i++) {
+        state.stars.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            size: Math.random() * 1.5 + 3,
+            speed: Math.random() * 0.5 + 0.2,
+            brightness: 1,
+            twinkle: Math.random() * Math.PI * 2
         });
     }
 }
@@ -294,11 +305,11 @@ function drawShip(x, y) {
     ctx.fill();
 
     // Ship body
-    ctx.shadowColor = '#3498db';
-    ctx.shadowBlur = 15;
+    ctx.shadowColor = '#00d4ff';
+    ctx.shadowBlur = 20;
 
-    // Main hull
-    ctx.fillStyle = '#2c3e50';
+    // Main hull (brighter for visibility)
+    ctx.fillStyle = '#4a6fa5';
     ctx.beginPath();
     ctx.moveTo(0, -20);
     ctx.lineTo(-16, 14);
@@ -318,7 +329,7 @@ function drawShip(x, y) {
 
     // Wing accents
     ctx.shadowBlur = 0;
-    ctx.fillStyle = '#e74c3c';
+    ctx.fillStyle = '#ff6b6b';
     ctx.beginPath();
     ctx.moveTo(-16, 14);
     ctx.lineTo(-20, 20);
@@ -334,10 +345,24 @@ function drawShip(x, y) {
     ctx.fill();
 
     // Cockpit glow
-    ctx.fillStyle = 'rgba(52, 152, 219, 0.3)';
+    ctx.fillStyle = 'rgba(0, 212, 255, 0.4)';
     ctx.beginPath();
-    ctx.ellipse(0, -2, 8, 12, 0, 0, Math.PI * 2);
+    ctx.ellipse(0, -2, 10, 14, 0, 0, Math.PI * 2);
     ctx.fill();
+
+    // Bright outline for contrast
+    ctx.shadowBlur = 0;
+    ctx.strokeStyle = 'rgba(0, 212, 255, 0.6)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -20);
+    ctx.lineTo(-16, 14);
+    ctx.lineTo(-8, 18);
+    ctx.lineTo(0, 14);
+    ctx.lineTo(8, 18);
+    ctx.lineTo(16, 14);
+    ctx.closePath();
+    ctx.stroke();
 
     ctx.restore();
 }
@@ -493,24 +518,41 @@ function drawBullet(bullet) {
     ctx.shadowBlur = 10;
 
     if (bullet.isEnemy) {
-        ctx.fillStyle = '#e74c3c';
+        // Trail
+        ctx.fillStyle = 'rgba(255, 50, 50, 0.15)';
+        ctx.beginPath();
+        ctx.arc(bullet.x - bullet.vx * 0.5, bullet.y - bullet.vy * 0.5, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowColor = '#ff3333';
+        ctx.shadowBlur = 15;
+        ctx.fillStyle = '#ff4444';
         ctx.beginPath();
         ctx.arc(bullet.x, bullet.y, 4, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = 'rgba(255,100,100,0.3)';
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = 'rgba(255,200,200,0.6)';
         ctx.beginPath();
-        ctx.arc(bullet.x, bullet.y, 8, 0, Math.PI * 2);
+        ctx.arc(bullet.x, bullet.y, 2, 0, Math.PI * 2);
         ctx.fill();
     } else {
-        ctx.fillStyle = '#f1c40f';
-        const len = bullet.spread ? 6 : 12;
-        ctx.fillRect(bullet.x - 2, bullet.y - len, 4, len * 2);
+        // Bright core
+        ctx.shadowColor = bullet.color || '#f1c40f';
+        ctx.shadowBlur = 18;
+        const len = bullet.spread ? 6 : 14;
+        ctx.fillStyle = bullet.spread ? '#f39c12' : '#f1c40f';
+        ctx.fillRect(bullet.x - 2.5, bullet.y - len, 5, len * 2);
 
         // Glow
-        ctx.fillStyle = 'rgba(241, 196, 15, 0.2)';
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = (bullet.spread ? '#f39c12' : '#f1c40f') + '22';
         ctx.beginPath();
-        ctx.arc(bullet.x, bullet.y, 6, 0, Math.PI * 2);
+        ctx.arc(bullet.x, bullet.y, 10, 0, Math.PI * 2);
         ctx.fill();
+
+        // Tip flash
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(bullet.x - 1.5, bullet.y - len - 2, 3, 4);
     }
 
     ctx.restore();
@@ -987,28 +1029,46 @@ function render() {
 
     // Background - deep space
     const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
-    bgGrad.addColorStop(0, '#0a0015');
-    bgGrad.addColorStop(0.3, '#0d0024');
-    bgGrad.addColorStop(0.6, '#110033');
-    bgGrad.addColorStop(1, '#050010');
+    bgGrad.addColorStop(0, '#0a0018');
+    bgGrad.addColorStop(0.3, '#10002a');
+    bgGrad.addColorStop(0.6, '#180040');
+    bgGrad.addColorStop(1, '#080010');
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // Nebula effect
-    const nebGrad = ctx.createRadialGradient(200, 300, 0, 200, 300, 300);
-    nebGrad.addColorStop(0, 'rgba(100, 0, 150, 0.05)');
-    nebGrad.addColorStop(0.5, 'rgba(50, 0, 100, 0.03)');
-    nebGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-    ctx.fillStyle = nebGrad;
-    ctx.fillRect(0, 0, W, H);
+    // Nebula effects (multiple for richer depth)
+    const nebulae = [
+        { x: 150, y: 200, r: 250, c: 'rgba(100, 0, 180, ' },
+        { x: 380, y: 400, r: 200, c: 'rgba(0, 80, 180, ' },
+        { x: 80,  y: 480, r: 180, c: 'rgba(180, 0, 100, ' }
+    ];
+    for (const neb of nebulae) {
+        const grad = ctx.createRadialGradient(neb.x, neb.y, 0, neb.x, neb.y, neb.r);
+        grad.addColorStop(0, neb.c + '0.07)');
+        grad.addColorStop(0.5, neb.c + '0.04)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+    }
 
     // Stars
     for (const star of state.stars) {
-        ctx.globalAlpha = star.brightness;
+        let alpha = star.brightness;
+        if (star.twinkle !== undefined) {
+            alpha *= 0.5 + 0.5 * Math.sin(Date.now() * 0.003 + star.twinkle);
+        }
+        ctx.globalAlpha = alpha;
         ctx.fillStyle = '#fff';
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
         ctx.fill();
+        // Glow on brighter stars
+        if (star.size > 2.5) {
+            ctx.globalAlpha = alpha * 0.2;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.size * 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
     ctx.globalAlpha = 1;
 
@@ -1023,6 +1083,32 @@ function render() {
 
     // Player ship (if game not over)
     if (!state.gameOver) {
+        // Crosshair cursor (dot + ring)
+        ctx.save();
+        ctx.shadowBlur = 0;
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.3)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(state.mouseX, state.mouseY, 14, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+        ctx.beginPath();
+        ctx.arc(state.mouseX, state.mouseY, 2, 0, Math.PI * 2);
+        ctx.fill();
+        // Crosshair lines
+        ctx.strokeStyle = 'rgba(0, 212, 255, 0.15)';
+        ctx.beginPath();
+        ctx.moveTo(state.mouseX - 20, state.mouseY);
+        ctx.lineTo(state.mouseX - 16, state.mouseY);
+        ctx.moveTo(state.mouseX + 16, state.mouseY);
+        ctx.lineTo(state.mouseX + 20, state.mouseY);
+        ctx.moveTo(state.mouseX, state.mouseY - 20);
+        ctx.lineTo(state.mouseX, state.mouseY - 16);
+        ctx.moveTo(state.mouseX, state.mouseY + 16);
+        ctx.lineTo(state.mouseX, state.mouseY + 20);
+        ctx.stroke();
+        ctx.restore();
+
         // Warning flash when lives are low
         if (state.lives === 1) {
             state.warningFlash += 0.05;
