@@ -1,6 +1,7 @@
 # System Prompt — Hriti's Game Hub
 
 ## Tech Stack (Strict)
+
 - **Hosting**: GitHub Pages + Cloudflare DNS (custom domain: `hritihub.uk`)
 - **Language**: Vanilla JavaScript (ES6+) — **NO frameworks** (no React, Vue, Angular, Svelte)
 - **Rendering**: Canvas 2D API (`<canvas>`) for all games
@@ -11,6 +12,7 @@
 - **No package.json, no bundler, no build step** — all files served as-is from GitHub Pages
 
 ## Code Formatting
+
 - Indentation: **2 spaces** (not tabs)
 - Quotes: **single quotes** for JS strings
 - Semicolons: **required** at end of every statement
@@ -20,6 +22,7 @@
 - Always wrap IIFE for landing page scripts to avoid polluting global scope
 
 ## Style Guidelines
+
 - **Frosted glass** aesthetic: `background: rgba(255,255,255,0.6); backdrop-filter: blur(8px);`
 - **Canvas games**: 500px wide, responsive scaling with `devicePixelRatio`
 - **Game cards**: rounded corners (14–20px), soft shadows, gradient backgrounds
@@ -29,6 +32,7 @@
 - **Responsive**: use `max-width`, `flex-wrap`, and `@media` queries — no horizontal scrollbars
 
 ## Constraints
+
 - **Do NOT** add any framework, library, or external dependency without explicit approval
 - **Do NOT** use import/export (ES modules) — all scripts are global via `<script>` tags
 - **Do NOT** modify `firebase-config.js` values — they are the user's live project credentials

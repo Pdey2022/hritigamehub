@@ -70,18 +70,20 @@ HritiGame/                        # GitHub Pages root
 ## State Management
 
 ### Client-Side (localStorage)
+
 All game data persists in `localStorage` under scoped keys. Pattern:
 
-| Scope | Key Pattern | Example |
-|-------|------------|---------|
-| High scores | `{game}_high` or `{game}_best` | `sb_high`, `pp_best` |
-| Mute preference | `{game}_muted` | `bp_muted`, `ff_muted` |
-| Favorites | `hub_favs` | JSON array of game IDs |
-| Recently played | `hub_recent` | JSON array (max 5, newest first) |
-| Farm save | `ff_save` | JSON with crops, coins, animals, day |
-| Penguin save | `penguin_paradise_save` | JSON with full game state |
+| Scope           | Key Pattern                    | Example                              |
+| --------------- | ------------------------------ | ------------------------------------ |
+| High scores     | `{game}_high` or `{game}_best` | `sb_high`, `pp_best`                 |
+| Mute preference | `{game}_muted`                 | `bp_muted`, `ff_muted`               |
+| Favorites       | `hub_favs`                     | JSON array of game IDs               |
+| Recently played | `hub_recent`                   | JSON array (max 5, newest first)     |
+| Farm save       | `ff_save`                      | JSON with crops, coins, animals, day |
+| Penguin save    | `penguin_paradise_save`        | JSON with full game state            |
 
 ### Cloud-Side (Firebase Firestore)
+
 - **Collection**: `gameSaves`
 - **Document ID**: `{uid}` (Firebase Auth UID)
 - **Fields**: flat key-value pairs mirroring localStorage keys
@@ -110,11 +112,13 @@ Page refresh
 ```
 
 ## Cache-Busting Strategy
+
 - All `<link>` and `<script>` tags include `?v=N` where N is a global version number
 - `bump-version.ps1` increments `.cache-version.json` and replaces ALL `?v=OLD` with `?v=NEW` in every `.html` file
 - Run after every CSS/JS change before deploying
 
 ## SEO Structure
+
 - **Per-game**: unique `<title>`, `<meta name="description">`, OG tags, Twitter cards
 - **Hub page**: Schema.org `CollectionPage` + `ItemList` (VideoGame entries) + `FAQPage`
 - **Sitemap**: `sitemap.xml` lists all game URLs with priorities

@@ -3,6 +3,7 @@
 ## ✅ Completed
 
 ### Hub & Infrastructure
+
 - [x] Landing page with floating frosted-glass nav bar (Hriti's HUB, About Me, auth)
 - [x] Game cards with icons, tags, stats, Play Now buttons
 - [x] Search-as-you-type filter across all game cards
@@ -21,6 +22,7 @@
 - [x] Custom domain (hritihub.uk) via CNAME + Cloudflare DNS
 
 ### Firebase Integration
+
 - [x] Firebase project configured (Auth + Firestore)
 - [x] Google Sign-In with popup (redirect fallback)
 - [x] Auth UI: Google pill button → avatar + Sign Out
@@ -30,6 +32,7 @@
 - [x] localStorage.setItem override for automatic sync
 
 ### Playable Games (11)
+
 - [x] **Penguin Paradise** — pet care + fishing minigame + 3 sanctuaries + shop + accessories + achievements + moods
 - [x] **Bubble Pop** — arcade popper with 7 bubble types, freeze power-up, combo system, 10 levels
 - [x] **Memory Match** — 3D card flip, combo system, 3 themes, 8+ levels
@@ -43,6 +46,7 @@
 - [x] **Ninja Jump** — vertical platformer (parked — needs balancing)
 
 ### Accessibility & Mobile
+
 - [x] Touch support on all games (touchstart/touchend on canvas)
 - [x] Responsive CSS (max-width, flex-wrap, mobile-friendly cards)
 - [x] Game over overlays with restart/next wave buttons
@@ -62,10 +66,12 @@
 ## 📋 Future Scope
 
 ### Pages
+
 - [ ] **About Me page** (`/about/`) — create when user asks (link already in nav bar)
 - [ ] **Individual game pages** — add `/game/` route with details, screenshots, reviews
 
 ### Planned Games (Coming Soon)
+
 - [ ] **Ocean Explorer** — dive, discover marine life, build aquarium
 - [ ] **Chef's Kitchen** — cooking timer management + restaurant
 - [ ] **Dino Dig** — fossil excavation + skeleton assembly puzzle
@@ -73,6 +79,7 @@
 - [ ] **Magic Canvas** — drawing with magical tools and effects
 
 ### Enhancements
+
 - [ ] **AdSense** — un-hide ad banners and replace `ca-pub-xxxxxxxxxxxxxxxx` with real publisher ID
 - [ ] **High score leaderboard** — global scores via Firestore (read all, show top 10)
 - [ ] **Daily challenges** — rotating objectives with rewards

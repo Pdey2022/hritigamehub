@@ -4,25 +4,25 @@ A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https
 
 ## 🎮 Current Games (11/17 playable)
 
-| #     | Game                    | Status           | Tags                                 |
-| ----- | ----------------------- | ---------------- | ------------------------------------ |
-| 1     | 🐧 **Penguin Paradise** | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop     |
-| 2     | 🌊 **Bubble Pop**       | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles     |
-| 3     | 🧩 **Memory Match**     | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip      |
-| 4     | 🎯 **Dart Dash**        | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons  |
-| 5     | 📖 **Word Wizard**      | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble     |
-| 6     | 🥷 **Ninja Jump**       | ✅ Live (parked) | 🎮 Platform, ⚡ Action               |
-| 7     | 🗺️ **Puzzle Path**      | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                   |
-| 8     | 🐾 **Pet Rescue**       | ✅ Live          | 🐾 Rescue, 💕 Care                   |
-| 9     | 🚀 **Space Blaster**    | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights  |
-| 10    | 🏎️ **Race Rush**        | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins        |
-| 11    | 🌾 **Farm Friends**     | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
-| 12    | 🐙 **Ocean Explorer**   | ⬜ Coming Soon   | 🌊 Ocean, 🐠 Discovery               |
-| 13    | 👨‍🍳 **Chef's Kitchen**  | ⬜ Coming Soon   | 🍳 Cooking, 💰 Management            |
-| 14    | 🦕 **Dino Dig**         | ⬜ Coming Soon   | 🦴 Digging, 🧩 Puzzle                |
-| 15    | 🏗️ **Super Builder**    | ⬜ Coming Soon   | 🔨 Building, 🎨 Creative             |
-| 16    | 🎨 **Magic Canvas**     | ⬜ Coming Soon   | 🖌️ Drawing, ✨ Creative              |
-| 17    | 🌟 More coming...       | ⬜ Coming Soon   | —                                    |
+| #   | Game                    | Status           | Tags                                 |
+| --- | ----------------------- | ---------------- | ------------------------------------ |
+| 1   | 🐧 **Penguin Paradise** | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop     |
+| 2   | 🌊 **Bubble Pop**       | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles     |
+| 3   | 🧩 **Memory Match**     | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip      |
+| 4   | 🎯 **Dart Dash**        | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons  |
+| 5   | 📖 **Word Wizard**      | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble     |
+| 6   | 🥷 **Ninja Jump**       | ✅ Live (parked) | 🎮 Platform, ⚡ Action               |
+| 7   | 🗺️ **Puzzle Path**      | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                   |
+| 8   | 🐾 **Pet Rescue**       | ✅ Live          | 🐾 Rescue, 💕 Care                   |
+| 9   | 🚀 **Space Blaster**    | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights  |
+| 10  | 🏎️ **Race Rush**        | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins        |
+| 11  | 🌾 **Farm Friends**     | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
+| 12  | 🐙 **Ocean Explorer**   | ⬜ Coming Soon   | 🌊 Ocean, 🐠 Discovery               |
+| 13  | 👨‍🍳 **Chef's Kitchen**   | ⬜ Coming Soon   | 🍳 Cooking, 💰 Management            |
+| 14  | 🦕 **Dino Dig**         | ⬜ Coming Soon   | 🦴 Digging, 🧩 Puzzle                |
+| 15  | 🏗️ **Super Builder**    | ⬜ Coming Soon   | 🔨 Building, 🎨 Creative             |
+| 16  | 🎨 **Magic Canvas**     | ⬜ Coming Soon   | 🖌️ Drawing, ✨ Creative              |
+| 17  | 🌟 More coming...       | ⬜ Coming Soon   | —                                    |
 
 ## 📁 Project Structure
 
