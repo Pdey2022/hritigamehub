@@ -910,15 +910,11 @@ function bindEvents() {
     }, { passive: false });
 
     // Buttons
-    dom.startBtn.addEventListener('click', () => {
-        dom.startOverlay.classList.add('hidden');
-        startGame();
-    });
+    dom.startBtn.addEventListener('click', () => { dom.startOverlay.classList.add('hidden'); startGame(); });
+    dom.startBtn.addEventListener('touchend', (e) => { e.preventDefault(); dom.startOverlay.classList.add('hidden'); startGame(); });
 
-    dom.restartBtn.addEventListener('click', () => {
-        dom.gameoverOverlay.classList.add('hidden');
-        startGame();
-    });
+    dom.restartBtn.addEventListener('click', () => { dom.gameoverOverlay.classList.add('hidden'); startGame(); });
+    dom.restartBtn.addEventListener('touchend', (e) => { e.preventDefault(); dom.gameoverOverlay.classList.add('hidden'); startGame(); });
 
     dom.muteBtn = document.getElementById('rr-mute-btn');
     dom.muteBtn.addEventListener('click', toggleMute);

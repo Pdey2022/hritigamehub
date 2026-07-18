@@ -774,9 +774,13 @@ canvas.addEventListener('touchstart', (e) => {
 
 // ===== BUTTONS =====
 dom.startBtn.addEventListener('click', startGame);
+dom.startBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
 dom.restartBtn.addEventListener('click', startGame);
+dom.restartBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
 dom.nextLevelBtn.addEventListener('click', nextLevel);
+dom.nextLevelBtn.addEventListener('touchend', (e) => { e.preventDefault(); nextLevel(); });
 dom.playAgainBtn.addEventListener('click', startGame);
+dom.playAgainBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
 
 document.getElementById('pp-mute-btn').addEventListener('click', toggleMute);
 if (isMuted) document.getElementById('pp-mute-btn').textContent = '🔇';

@@ -1242,21 +1242,23 @@ function bindEvents() {
     }, { passive: false });
 
     // Buttons
-    dom.startBtn.addEventListener('click', () => {
+    function startPlaying() {
         dom.startOverlay.classList.add('hidden');
-        resetGame();
-        startWave();
-        state.running = true;
-    });
-
-    dom.restartBtn.addEventListener('click', () => {
         dom.gameoverOverlay.classList.add('hidden');
+        dom.waveupOverlay.classList.add('hidden');
         resetGame();
         startWave();
         state.running = true;
-    });
+    }
 
-    dom.nextBtn.addEventListener('click', nextWave);
+    dom.startBtn.addEventListener('click', startPlaying);
+    dom.startBtn.addEventListener('touchend', (e) => { e.preventDefault(); startPlaying(); });
+
+    dom.restartBtn.addEventListener('click', startPlaying);
+    dom.restartBtn.addEventListener('touchend', (e) => { e.preventDefault(); startPlaying(); });
+
+    dom.nextBtn.addEventListener('click', () => { dom.waveupOverlay.classList.add('hidden'); nextWave(); });
+    dom.nextBtn.addEventListener('touchend', (e) => { e.preventDefault(); dom.waveupOverlay.classList.add('hidden'); nextWave(); });
 
     dom.muteBtn = document.getElementById('sb-mute-btn');
     dom.muteBtn.addEventListener('click', toggleMute);
