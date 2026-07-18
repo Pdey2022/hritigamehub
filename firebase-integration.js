@@ -49,8 +49,6 @@ function updateAuthUI() {
         container.innerHTML = `
             <div class="auth-bar">
                 <span class="auth-avatar">${currentUser.photoURL ? '<img src="' + currentUser.photoURL + '" class="auth-pic">' : '👤'}</span>
-                <span class="auth-name">${currentUser.displayName || 'Player'}</span>
-                <span class="auth-badge">☁️ Cloud Sync ON</span>
                 <button class="auth-btn auth-logout" onclick="signOutUser()">Sign Out</button>
             </div>
         `;
