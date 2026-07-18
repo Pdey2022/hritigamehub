@@ -4,24 +4,24 @@ A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https
 
 ## 🎮 Current Games (11/13 playable)
 
-| #     | Game                               | Status           | Tags                                |
-| ----- | ---------------------------------- | ---------------- | ----------------------------------- |
-| 1     | 🐧 **Penguin Paradise**            | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop    |
-| 2     | 🌊 **Bubble Pop**                  | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles    |
-| 3     | 🧩 **Memory Match**                | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip     |
-| 4     | 🎯 **Dart Dash**                   | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
-| 5     | 📖 **Word Wizard**                 | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble    |
-| 6     | 🥷 **Ninja Jump**                  | ✅ Live (parked) | 🎮 Platform, ⚡ Action              |
-| 7     | 🗺️ **Puzzle Path**                 | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                  |
-| 8     | 🐾 **Pet Rescue**                  | ✅ Live          | 🐾 Rescue, 💕 Care                  |
-| 9     | 🚀 **Space Blaster**               | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights |
-| 10    | 🏎️ **Race Rush**                   | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins       |
-| 11    | 🌾 **Farm Friends**                 | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
-| 12-13 | 🐙 Ocean Explorer                   | ⬜ Coming Soon   | —                                   |
+| #     | Game                    | Status           | Tags                                 |
+| ----- | ----------------------- | ---------------- | ------------------------------------ |
+| 1     | 🐧 **Penguin Paradise** | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop     |
+| 2     | 🌊 **Bubble Pop**       | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles     |
+| 3     | 🧩 **Memory Match**     | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip      |
+| 4     | 🎯 **Dart Dash**        | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons  |
+| 5     | 📖 **Word Wizard**      | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble     |
+| 6     | 🥷 **Ninja Jump**       | ✅ Live (parked) | 🎮 Platform, ⚡ Action               |
+| 7     | 🗺️ **Puzzle Path**      | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                   |
+| 8     | 🐾 **Pet Rescue**       | ✅ Live          | 🐾 Rescue, 💕 Care                   |
+| 9     | 🚀 **Space Blaster**    | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights  |
+| 10    | 🏎️ **Race Rush**        | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins        |
+| 11    | 🌾 **Farm Friends**     | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
+| 12-13 | 🐙 Ocean Explorer       | ⬜ Coming Soon   | —                                    |
 
 ## 📁 Project Structure
 
-```
+````
 HritiGame/
 ├── index.html              # Landing page (game hub with carousel + search)
 ├── 404.html                # Custom 404 page
@@ -68,7 +68,7 @@ The shared CSS has `body { opacity: 0 }` — every page starts invisible!
   document.body.classList.add("loaded");
 </script>
 <!-- ← CRITICAL -->
-```
+````
 
 ### 3. Standard game template
 
@@ -95,7 +95,21 @@ The shared CSS has `body { opacity: 0 }` — every page starts invisible!
 </body>
 ```
 
-### 4. Landing page update
+### 6. Cache-busting `?v=N` ❗
+
+Every CSS and JS link has `?v=N` appended (e.g. `style.css?v=3`). This forces browsers to download **fresh files** instead of using old cached ones.
+
+**After every update**, increment the version:
+
+```powershell
+.\bump-version.ps1
+git add .
+git commit -m "🔧 Bump cache version to vN"
+git push
+```
+
+Or manually search-and-replace `?v=N` with the next number across all HTML files.
+Then update `.cache-version.json` with the new version number.
 
 Replace "Coming Soon" card in `index.html` with an `<a href="/games/game-name/" class="game-card">`.
 
