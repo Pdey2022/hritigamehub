@@ -13,9 +13,6 @@ canvas.style.width = W + 'px';
 canvas.style.height = H + 'px';
 ctx.scale(dpr, dpr);
 
-// Disable canvas pointer events initially so taps reach the overlay buttons
-canvas.style.pointerEvents = 'none';
-
 // ===== DOM REFS =====
 const dom = {
     score: document.getElementById('pp-score'),
@@ -389,7 +386,6 @@ function reachGoal() {
 
 function levelComplete() {
     state.running = false;
-    canvas.style.pointerEvents = 'none';
     dom.levelCompleteStats.textContent = `Score: ${state.score} | Moves: ${state.moves}`;
     dom.levelCompleteOverlay.classList.remove('hidden');
 }
@@ -397,7 +393,6 @@ function levelComplete() {
 function nextLevel() {
     state.level++;
     state.running = true;
-    canvas.style.pointerEvents = 'auto';
     dom.levelCompleteOverlay.classList.add('hidden');
     setupMaze();
     drawMaze();
@@ -408,7 +403,6 @@ function nextLevel() {
 
 function won() {
     state.running = false;
-    canvas.style.pointerEvents = 'none';
     if (state.score > state.best) {
         state.best = state.score;
         localStorage.setItem('pp_best', state.best);
@@ -419,7 +413,6 @@ function won() {
 
 function gameOver() {
     state.running = false;
-    canvas.style.pointerEvents = 'none';
     playLose();
     if (state.score > state.best) {
         state.best = state.score;
@@ -537,7 +530,6 @@ function drawMaze() {
     ctx.restore();
 
     // Directional hints around player
-    const grid = state.maze;
     const dirs = [[0,-1,'↑'],[1,0,'→'],[0,1,'↓'],[-1,0,'←']];
     for (const [ddx, ddy, arrow] of dirs) {
         const nx = state.player.x + ddx, ny = state.player.y + ddy;
@@ -732,7 +724,6 @@ function startGame() {
     updateHUD();
 
     state.running = true;
-    canvas.style.pointerEvents = 'auto';
     if (state.animFrame) cancelAnimationFrame(state.animFrame);
     drawMaze();
     gameLoop();
