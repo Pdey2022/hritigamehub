@@ -2507,29 +2507,60 @@ body.night-mode .carousel-arrow:hover {
     font-weight: 400;
 }
 
-/* ===== Auth Container (Firebase Login) — Top Right ===== */
+/* ===== Floating Top Nav Bar ===== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 20px;
+    background: rgba(10,10,30,0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.top-nav-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+}
+.top-nav-logo {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.top-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.top-nav-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+.top-nav-link:hover {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Auth in nav bar */
 .auth-container {
-    position: absolute;
-    top: 12px;
-    right: 20px;
-    z-index: 50;
+    display: flex;
+    align-items: center;
 }
 .auth-bar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 10px 6px 14px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 100px;
-    font-size: 0.78rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-.auth-bar:hover {
-    background: rgba(255,255,255,0.18);
-    border-color: rgba(255,255,255,0.25);
+    gap: 6px;
 }
 .auth-avatar {
     font-size: 1rem;
@@ -2538,33 +2569,20 @@ body.night-mode .carousel-arrow:hover {
     align-items: center;
 }
 .auth-pic {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     vertical-align: middle;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s;
 }
-.auth-name {
-    font-weight: 600;
-    color: #fff;
-    font-size: 0.78rem;
-    max-width: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.auth-badge {
-    font-size: 0.6rem;
-    color: #2ecc71;
-    font-weight: 600;
-    background: rgba(46,204,113,0.12);
-    padding: 2px 8px;
-    border-radius: 20px;
+.auth-pic:hover {
+    border-color: rgba(255,255,255,0.5);
 }
 .auth-btn {
     padding: 5px 12px;
     border: none;
-    border-radius: 100px;
+    border-radius: 8px;
     font-size: 0.72rem;
     font-weight: 600;
     cursor: pointer;
@@ -2573,53 +2591,57 @@ body.night-mode .carousel-arrow:hover {
     white-space: nowrap;
 }
 .auth-google {
-    background: #fff;
-    color: #444;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 7px 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 .auth-google:hover {
-    background: #f5f5f5;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.25);
 }
 .auth-google-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    background: #4285f4;
-    color: #fff;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    color: #4285f4;
     border-radius: 50%;
     font-weight: 700;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
 }
 .auth-logout {
-    background: rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.7);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px;
+    padding: 4px 10px;
+    font-size: 0.65rem;
 }
 .auth-logout:hover {
-    background: rgba(231,76,60,0.2);
+    background: rgba(231,76,60,0.15);
     color: #e74c3c;
-    border-color: rgba(231,76,60,0.3);
+    border-color: rgba(231,76,60,0.2);
 }
 .sync-status {
-    position: absolute;
-    top: 52px;
-    right: 20px;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 600;
-    color: rgba(255,255,255,0.3);
-    min-height: 14px;
+    color: rgba(255,255,255,0.25);
     text-align: right;
 }
 .sync-ok {
     color: #2ecc71;
+}
+
+/* Push page content below fixed nav */
+body.landing-page {
+    padding-top: 48px;
 }
     padding: 0 20px;
     margin: -6px auto 6px;
