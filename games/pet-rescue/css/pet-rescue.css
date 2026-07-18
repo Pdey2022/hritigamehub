@@ -66,8 +66,24 @@ body.pet-rescue-page {
 .pr-overlay-content {
     text-align: center;
     background: rgba(255,255,255,0.08);
-    padding: 36px 48px; border-radius: 24px;
+    padding: 28px 36px; border-radius: 24px;
     backdrop-filter: blur(4px); animation: modalPop 0.4s ease;
+    max-width: 90%;
+}
+
+.pr-how-to {
+    display: flex; flex-direction: column; gap: 4px;
+    margin: 10px 0 16px;
+    text-align: left;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+.pr-how-to span {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
 }
 .pr-overlay-icon { font-size: 4rem; margin-bottom: 8px; animation: float 2s ease-in-out infinite; }
 .pr-overlay-title { font-size: 1.8rem; font-weight: 800; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.4); margin-bottom: 6px; }
