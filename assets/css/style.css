@@ -1200,6 +1200,30 @@ body {
     transform: scale(1.15) !important;
 }
 
+/* Breadcrumb navigation */
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    margin-left: 4px;
+    padding-left: 4px;
+}
+.breadcrumb a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.breadcrumb a:hover {
+    color: rgba(255,255,255,0.8);
+}
+.bc-sep {
+    margin: 0 2px;
+    color: rgba(255,255,255,0.2);
+}
+
 /* ===== LANDING PAGE ===== */
 body.landing-page {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
