@@ -1,0 +1,114 @@
+/* ============================================
+   NINJA JUMP — Stylesheet
+   ============================================ */
+
+body.ninja-jump-page {
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #4a2c6e 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+#nj-hud {
+    width: 100%; max-width: 900px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 24px; margin-top: 8px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.nj-hud-left, .nj-hud-center, .nj-hud-right { display: flex; align-items: center; gap: 8px; }
+.nj-hud-right { gap: 6px; }
+
+.nj-title { font-size: 1.2rem; font-weight: 700; color: #e74c3c; }
+
+.nj-level-display {
+    font-size: 0.95rem; font-weight: 700; color: white;
+    background: rgba(255,255,255,0.12); padding: 4px 16px; border-radius: 20px;
+}
+
+.nj-score-display {
+    font-size: 1.1rem; font-weight: 700; color: #ffd700;
+    background: rgba(255,215,0,0.12); padding: 4px 16px; border-radius: 20px;
+}
+
+.nj-reset-btn { margin-left: 8px !important; }
+.nj-reset-btn:hover { transform: rotate(-30deg) !important; }
+
+#nj-game-area {
+    width: 100%; max-width: 900px; margin-top: 16px;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.nj-canvas-wrapper {
+    position: relative;
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+}
+
+#nj-canvas { display: block; cursor: pointer; width: 500px; height: 550px; }
+
+/* Overlays */
+.nj-overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; animation: fadeIn 0.3s ease;
+    border-radius: 16px;
+}
+.nj-overlay.hidden { display: none; }
+.nj-overlay-content {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 36px 48px; border-radius: 24px;
+    backdrop-filter: blur(4px); animation: modalPop 0.4s ease;
+}
+.nj-overlay-icon { font-size: 4rem; margin-bottom: 8px; animation: float 2s ease-in-out infinite; }
+.nj-overlay-title { font-size: 1.8rem; font-weight: 800; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.4); margin-bottom: 6px; }
+.nj-overlay-sub { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-bottom: 20px; }
+
+.nj-btn {
+    padding: 12px 36px; border: none; border-radius: 14px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+    box-shadow: 0 4px 16px rgba(231,76,60,0.3);
+}
+.nj-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(231,76,60,0.5); }
+
+/* Bottom HUD */
+#nj-bottom-hud {
+    width: 100%; max-width: 540px;
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 20px; margin-top: 10px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+}
+.nj-stat { font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.8); text-align: center; }
+.nj-stat-label { font-size: 0.65rem; color: rgba(255,255,255,0.4); display: block; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Shared animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalPop {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
