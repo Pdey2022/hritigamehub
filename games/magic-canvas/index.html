@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🎨 Magic Canvas — Free Drawing Game for Kids | Online Art</title>
-    <meta name="description" content="Paint, draw, and create stunning artwork with magical tools in Magic Canvas! A free online drawing game for kids with rainbow brushes, sparkles, and glow effects. No download needed!">
+    <title>🎨 Magic Canvas — Glow Chase Game for Kids | Free Online</title>
+    <meta name="description" content="Play Magic Canvas, a fun glow chase game! Paint over glowing orbs to collect them, build combos, and climb the waves. Free online game for kids — no download needed!">
     <meta name="theme-color" content="#1a1a2e">
-    <meta property="og:title" content="🎨 Magic Canvas — Free Online Drawing Game">
-    <meta property="og:description" content="Create stunning artwork with magical brushes, rainbow sparkles, and glow effects! Free online drawing game for kids.">
+    <meta property="og:title" content="🎨 Magic Canvas — Glow Chase Game">
+    <meta property="og:description" content="Paint over glowing orbs, build combos, and chase high scores! Free online game for kids.">
     <meta property="og:url" content="https://hritihub.uk/games/magic-canvas/">
     <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
     <meta property="og:site_name" content="Hriti's Game Hub">
@@ -17,7 +17,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
     <link rel="canonical" href="https://hritihub.uk/games/magic-canvas/">
     <link rel="stylesheet" href="/assets/css/style.css?v=7">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Magic Canvas","description":"Paint, draw, and create stunning artwork with magical tools! A free online drawing game for kids with rainbow brushes, sparkles, and glow effects.","url":"https://hritihub.uk/games/magic-canvas/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Magic Canvas","description":"Paint over glowing orbs to collect them in this fun glow chase game! Build combos, survive waves, and chase high scores.","url":"https://hritihub.uk/games/magic-canvas/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
     <link rel="stylesheet" href="/games/magic-canvas/css/magic-canvas.css?v=7">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -33,8 +33,10 @@
                 <span>Magic Canvas</span>
             </nav>
         </div>
-        <div class="mc-hud-right">
-            <span class="mc-score-display">🎨 <span id="mc-score">0</span></span>
+        <div class="mc-hud-right" id="mc-game-hud">
+            <span class="mc-score-display">🌊 Wave <span id="mc-wave">1</span></span>
+            <span class="mc-score-display">❤️ <span id="mc-lives">❤️❤️❤️</span></span>
+            <span class="mc-score-display">⭐ <span id="mc-score">0</span></span>
             <button class="hud-btn mute-btn" id="mc-mute-btn" title="Toggle sound">🔊</button>
         </div>
     </header>
@@ -49,53 +51,32 @@
                 <div class="mc-overlay-content">
                     <div class="mc-overlay-icon">🎨</div>
                     <div class="mc-overlay-title">Magic Canvas</div>
-                    <div class="mc-overlay-sub">Pick a brush, choose your colors, and create magical art! ✨</div>
-                    <button class="mc-btn" id="mc-start-btn">Start Drawing 🖌️</button>
+                    <div class="mc-overlay-sub">✨ Paint over glowing orbs to collect them!<br>Build combos, survive waves, chase the high score!</div>
+                    <div style="margin: 10px 0; font-size: 0.8rem; color: rgba(255,255,255,0.5);">
+                        🖱️ Move mouse to chase orbs
+                    </div>
+                    <button class="mc-btn" id="mc-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="mc-overlay hidden" id="mc-gameover-overlay">
+                <div class="mc-overlay-content">
+                    <div class="mc-overlay-icon">💫</div>
+                    <div class="mc-overlay-title">Game Over!</div>
+                    <div class="mc-overlay-sub" id="mc-gameover-stats">Score: 0 | Wave: 1</div>
+                    <button class="mc-btn" id="mc-restart-btn">Play Again 🔄</button>
                 </div>
             </div>
         </div>
 
-        <!-- Toolbar -->
-        <div class="mc-toolbar" id="mc-toolbar">
-            <!-- Brush Tools -->
-            <div class="mc-tool-group">
-                <button class="mc-tool-btn active" data-tool="pen" title="Pen">✏️</button>
-                <button class="mc-tool-btn" data-tool="rainbow" title="Rainbow">🌈</button>
-                <button class="mc-tool-btn" data-tool="sparkle" title="Sparkle">✨</button>
-                <button class="mc-tool-btn" data-tool="glow" title="Glow">💡</button>
-                <button class="mc-tool-btn" data-tool="stars" title="Stars">⭐</button>
-                <button class="mc-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
-            </div>
-
-            <div class="mc-separator"></div>
-
-            <!-- Colors -->
-            <div class="mc-colors" id="mc-colors"></div>
-
-            <div class="mc-separator"></div>
-
-            <!-- Brush Size -->
-            <div class="mc-size-group">
-                <button class="mc-size-btn active" data-size="3">S</button>
-                <button class="mc-size-btn" data-size="6">M</button>
-                <button class="mc-size-btn" data-size="12">L</button>
-            </div>
-
-            <div class="mc-separator"></div>
-
-            <!-- Actions -->
-            <button class="mc-undo-btn mc-action-btn" id="mc-undo-btn">↩ Undo</button>
-            <button class="mc-clear-btn mc-action-btn" id="mc-clear-btn">🗑️ Clear</button>
-            <button class="mc-save-btn mc-action-btn" id="mc-save-btn">💾 Save</button>
-        </div>
-
-        <div class="mc-stats">Masterpieces: <span id="mc-score-bottom">0</span></div>
+        <div class="mc-stats">⭐ Score: <span id="mc-score-bottom">0</span></div>
     </section>
 
     <!-- ===== LEADERBOARD ===== -->
     <section class="lb-section" id="mc-leaderboard">
         <div class="lb-header">
-            <span class="lb-title">🏆 Top Artists</span>
+            <span class="lb-title">🏆 Top Glow Chasers</span>
             <button class="share-btn" id="mc-share-btn">📤 Share</button>
         </div>
         <div id="lb-mc-content">

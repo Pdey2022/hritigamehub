@@ -1,12 +1,12 @@
 /* ============================================
-   MAGIC CANVAS — Full Game Engine
+   MAGIC CANVAS — Glow Chase Game
+   ⭐ Paint over glowing orbs to collect them!
    ============================================ */
 
 // ----- Canvas Setup -----
 const canvas = document.getElementById('mc-canvas');
 const ctx = canvas.getContext('2d');
 const W = 500, H = 500;
-
 const dpr = window.devicePixelRatio || 1;
 canvas.width = W * dpr;
 canvas.height = H * dpr;
@@ -16,394 +16,245 @@ ctx.scale(dpr, dpr);
 
 // ----- DOM Refs -----
 const dom = {
-    score:       document.getElementById('mc-score'),
-    scoreBottom: document.getElementById('mc-score-bottom'),
+    score:        document.getElementById('mc-score'),
+    scoreBottom:  document.getElementById('mc-score-bottom'),
+    lives:        document.getElementById('mc-lives'),
+    wave:         document.getElementById('mc-wave'),
     startOverlay: document.getElementById('mc-start-overlay'),
+    gameoverOverlay: document.getElementById('mc-gameover-overlay'),
+    gameoverStats:   document.getElementById('mc-gameover-stats'),
     startBtn:     document.getElementById('mc-start-btn'),
-    toolbar:      document.getElementById('mc-toolbar'),
-    undoBtn:      document.getElementById('mc-undo-btn'),
-    clearBtn:     document.getElementById('mc-clear-btn'),
-    saveBtn:      document.getElementById('mc-save-btn'),
-    muteBtn:      document.getElementById('mc-mute-btn'),
-    colors:       document.getElementById('mc-colors')
+    restartBtn:   document.getElementById('mc-restart-btn'),
+    muteBtn:      document.getElementById('mc-mute-btn')
 };
 
 // ===== State =====
 const state = {
-    drawing: false,
-    tool: 'pen',
-    color: '#e74c3c',
-    size: 3,
-    masterpieceCount: 0,
-    strokes: [],
-    currentStroke: null,
-    muted: false,
-    running: false
+    score: 0, highScore: 0, lives: 3, wave: 1, combo: 0, maxCombo: 0,
+    running: false, gameOver: false,
+    orbs: [], particles: [], stars: [], trail: [],
+    spawnTimer: 0, orbInterval: 55, orbLifetime: 160, pulse: 0,
+    muted: false, rainbowHue: 0
 };
-
-// Load saved data
 try {
-    const saved = localStorage.getItem('mc_masterpieces');
-    if (saved) state.masterpieceCount = parseInt(saved) || 0;
-    const muted = localStorage.getItem('mc_muted');
-    if (muted === '1') state.muted = true;
+    const hs = localStorage.getItem('mc_high');
+    if (hs) state.highScore = parseInt(hs) || 0;
+    if (localStorage.getItem('mc_muted') === '1') state.muted = true;
 } catch(e) {}
 
-// ===== Color Palette =====
-const COLORS = [
-    '#e74c3c', '#e67e22', '#f1c40f', '#2ecc71', '#3498db',
-    '#9b59b6', '#1a1a2e', '#e84393', '#00cec9', '#fd79a8',
-    '#fff', '#ccc', '#555', '#000'
-];
-
-// ===== Sound (Web Audio) =====
+// ===== Audio =====
 let audioCtx = null;
-function initAudio() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
-function playNote(freq, duration, type) {
+function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+function tone(freq, dur, type, vol) {
     if (state.muted || !audioCtx) return;
     try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type || 'sine';
-        osc.frequency.value = freq;
-        gain.gain.value = 0.08;
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.type = type || 'sine';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(vol || 0.08, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start(); o.stop(audioCtx.currentTime + dur);
     } catch(e) {}
 }
-function playBrush() {
-    playNote(600 + Math.random() * 400, 0.05, 'sine');
+function sndCollect() { tone(880,0.08,'sine',0.1); setTimeout(()=>tone(1100,0.1,'sine',0.08),60); }
+function sndMiss() { tone(200,0.2,'sawtooth',0.06); }
+function sndOver() {
+    tone(400,0.15,'sine',0.08); setTimeout(()=>tone(300,0.15,'sine',0.08),150);
+    setTimeout(()=>tone(200,0.3,'sine',0.08),300);
 }
-function playSave() {
-    playNote(523, 0.1, 'sine');
-    setTimeout(() => playNote(659, 0.1, 'sine'), 100);
-    setTimeout(() => playNote(784, 0.15, 'sine'), 200);
-}
+function sndWave() { [523,659,784].forEach((f,i)=>setTimeout(()=>tone(f,0.1,'sine',0.08),i*100)); }
+function sndBrush() { tone(600+Math.random()*400,0.03,'sine',0.04); }
+
+// ===== Orb Colors =====
+const ORB_COLORS = [
+    {fill:'#ff6b6b',glow:'rgba(255,107,107,0.6)'},
+    {fill:'#feca57',glow:'rgba(254,202,87,0.6)'},
+    {fill:'#48dbfb',glow:'rgba(72,219,251,0.6)'},
+    {fill:'#ff9ff3',glow:'rgba(255,159,243,0.6)'},
+    {fill:'#54a0ff',glow:'rgba(84,160,255,0.6)'},
+    {fill:'#5f27cd',glow:'rgba(95,39,205,0.6)'},
+    {fill:'#1dd1a1',glow:'rgba(29,209,161,0.6)'},
+    {fill:'#f368e0',glow:'rgba(243,104,224,0.6)'}
+];
 
 // ===== Particles =====
-let particles = [];
-function spawnParticles(x, y, color, count) {
-    for (let i = 0; i < count; i++) {
-        const a = Math.random() * Math.PI * 2;
-        const s = 1 + Math.random() * 3;
-        particles.push({
-            x, y,
-            vx: Math.cos(a) * s,
-            vy: Math.sin(a) * s - 1,
-            life: 1,
-            decay: 0.02 + Math.random() * 0.03,
-            size: 2 + Math.random() * 4,
-            color: color || '#fff'
-        });
-    }
-}
-function updateParticles() {
-    for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.05;
-        p.life -= p.decay;
-        if (p.life <= 0) { particles.splice(i, 1); continue; }
-        ctx.globalAlpha = p.life;
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-}
-
-// ===== Rainbow Color =====
-let rainbowHue = 0;
-function getRainbowColor() {
-    rainbowHue = (rainbowHue + 3) % 360;
-    return `hsl(${rainbowHue}, 100%, 60%)`;
-}
-
-// ===== Drawing =====
-function getPos(e) {
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return {
-        x: (clientX - rect.left) * (W / rect.width),
-        y: (clientY - rect.top) * (H / rect.height)
-    };
-}
-
-function startStroke(pos) {
-    if (!state.running) return;
-    state.drawing = true;
-    state.currentStroke = {
-        points: [pos],
-        tool: state.tool,
-        color: state.tool === 'rainbow' ? '#fff' : state.color,
-        size: state.size
-    };
-    state.strokes.push(state.currentStroke);
-    drawDot(pos.x, pos.y, state.tool, state.color, state.size);
-    if (state.tool !== 'eraser') playBrush();
-}
-
-function continueStroke(pos) {
-    if (!state.drawing || !state.currentStroke) return;
-    const last = state.currentStroke.points[state.currentStroke.points.length - 1];
-    state.currentStroke.points.push(pos);
-    drawLine(last.x, last.y, pos.x, pos.y, state.tool, state.color, state.size);
-
-    // Sparkle/star particles
-    if (state.tool === 'sparkle') {
-        spawnParticles(pos.x, pos.y, '#f1c40f', 2);
-    } else if (state.tool === 'stars') {
-        spawnParticles(pos.x, pos.y, '#fff', 1);
+function burst(x,y,color,n,speed) {
+    for(let i=0;i<(n||15);i++) {
+        const a=Math.random()*Math.PI*2, sp=(speed||3)+Math.random()*3;
+        state.particles.push({x,y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1,life:1,decay:0.015+Math.random()*0.02,size:2+Math.random()*5,color:color||'#fff'});
     }
 }
 
-function endStroke() {
-    state.drawing = false;
-    state.currentStroke = null;
+function initStars() {
+    state.stars=[];
+    for(let i=0;i<80;i++) state.stars.push({x:Math.random()*W,y:Math.random()*H,size:0.5+Math.random()*1.5,speed:0.2+Math.random()*0.5,phase:Math.random()*Math.PI*2});
 }
 
-function drawDot(x, y, tool, color, size) {
-    if (tool === 'eraser') {
-        ctx.clearRect(x - size, y - size, size * 2, size * 2);
-        return;
-    }
-    const c = tool === 'rainbow' ? getRainbowColor() : color;
-    ctx.save();
-    if (tool === 'glow') {
-        ctx.shadowColor = c;
-        ctx.shadowBlur = 20;
-    }
-    ctx.fillStyle = c;
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.restore();
+// ===== Orb Management =====
+function spawnOrb() {
+    const c=ORB_COLORS[Math.floor(Math.random()*ORB_COLORS.length)], s=16+Math.random()*16, p=s+10;
+    state.orbs.push({x:p+Math.random()*(W-p*2),y:p+Math.random()*(H-p*2),size:s,color:c,life:state.orbLifetime,maxLife:state.orbLifetime,collected:false});
 }
 
-function drawLine(x1, y1, x2, y2, tool, color, size) {
-    const dist = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-    const steps = Math.max(Math.ceil(dist / 2), 1);
-    for (let i = 0; i <= steps; i++) {
-        const t = i / steps;
-        const x = x1 + (x2 - x1) * t;
-        const y = y1 + (y2 - y1) * t;
-        drawDot(x, y, tool, color, size);
-    }
+function collectOrb(orb) {
+    orb.collected=true;
+    state.score+=10+Math.floor(state.wave*2)+state.combo*2;
+    state.combo++;
+    if(state.combo>state.maxCombo) state.maxCombo=state.combo;
+    sndCollect();
+    burst(orb.x,orb.y,orb.color.fill,20,4);
+    updateHUD();
 }
 
-// ===== Undo =====
-function undo() {
-    if (!state.strokes.length) return;
-    state.strokes.pop();
-    redrawAll();
-    playNote(300, 0.08, 'sine');
-}
-function redrawAll() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, W, H);
-    rainbowHue = 0;
-    state.strokes.forEach(stroke => {
-        if (!stroke.points.length) return;
-        // Reset rainbow hue per stroke for consistent colors
-        if (stroke.tool === 'rainbow') rainbowHue = 0;
-        drawDot(stroke.points[0].x, stroke.points[0].y, stroke.tool, stroke.color, stroke.size);
-        for (let i = 1; i < stroke.points.length; i++) {
-            drawLine(
-                stroke.points[i - 1].x, stroke.points[i - 1].y,
-                stroke.points[i].x, stroke.points[i].y,
-                stroke.tool, stroke.color, stroke.size
-            );
-        }
-    });
+function missOrb() {
+    state.lives--; state.combo=0; sndMiss();
+    burst(W/2,H-30,'#e74c3c',8,2);
+    updateHUD();
+    if(state.lives<=0) gameOver();
 }
 
-// ===== Save Artwork =====
-function saveArt() {
-    state.masterpieceCount++;
-    localStorage.setItem('mc_masterpieces', state.masterpieceCount);
-    updateScore();
-    playSave();
-
-    // Create download
-    const link = document.createElement('a');
-    link.download = `magic-canvas-${Date.now()}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-
-    // Submit to leaderboard
-    if (typeof saveScore === 'function') saveScore('magic-canvas', state.masterpieceCount);
-    if (typeof renderLeaderboard === 'function') renderLeaderboard('magic-canvas', 'lb-mc-content', 'Magic Canvas');
-
-    showToast('💾 Saved! +1 Masterpiece');
-}
-
-// ===== Clear =====
-function clearCanvas() {
-    if (!state.strokes.length) return;
-    if (!confirm('🗑️ Clear your entire drawing?')) return;
-    state.strokes = [];
-    redrawAll();
-    playNote(200, 0.15, 'sawtooth');
-}
-
-// ===== Score =====
-function updateScore() {
-    dom.score.textContent = state.masterpieceCount;
-    dom.scoreBottom.textContent = state.masterpieceCount;
-}
-
-// ===== Toast =====
-function showToast(msg) {
-    const existing = document.querySelector('.toast');
-    if (existing) existing.remove();
-    const el = document.createElement('div');
-    el.className = 'toast';
-    el.textContent = msg;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 2500);
-}
-
-// ===== Init Colors =====
-function initColors() {
-    COLORS.forEach(c => {
-        const swatch = document.createElement('button');
-        swatch.className = 'mc-color-swatch' + (c === state.color ? ' active' : '');
-        swatch.style.background = c;
-        if (c === '#fff') swatch.style.border = '2px solid #ddd';
-        swatch.addEventListener('click', () => {
-            document.querySelectorAll('.mc-color-swatch').forEach(s => s.classList.remove('active'));
-            swatch.classList.add('active');
-            state.color = c;
-            if (state.tool === 'eraser') {
-                // Switch back to pen when picking color
-                selectTool('pen');
-            }
-            playNote(500, 0.05, 'sine');
-        });
-        dom.colors.appendChild(swatch);
-    });
-}
-
-// ===== Tool Selection =====
-function selectTool(tool) {
-    state.tool = tool;
-    document.querySelectorAll('.mc-tool-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tool === tool);
-    });
-    canvas.style.cursor = tool === 'eraser' ? 'cell' : 'crosshair';
-    playNote(400, 0.04, 'sine');
-}
-
-// ===== Mute =====
-function toggleMute() {
-    state.muted = !state.muted;
-    localStorage.setItem('mc_muted', state.muted ? '1' : '0');
-    dom.muteBtn.textContent = state.muted ? '🔇' : '🔊';
-}
-
-// ===== Bind Events =====
-function bindEvents() {
-    // Mouse
-    canvas.addEventListener('mousedown', e => startStroke(getPos(e)));
-    canvas.addEventListener('mousemove', e => { if (state.drawing) continueStroke(getPos(e)); });
-    canvas.addEventListener('mouseup', endStroke);
-    canvas.addEventListener('mouseleave', endStroke);
-
-    // Touch
-    canvas.addEventListener('touchstart', e => {
-        if (e.target.closest('button, a, input')) return;
-        e.preventDefault();
-        startStroke(getPos(e));
-    }, { passive: false });
-    canvas.addEventListener('touchmove', e => {
-        e.preventDefault();
-        if (state.drawing) continueStroke(getPos(e));
-    }, { passive: false });
-    canvas.addEventListener('touchend', e => { e.preventDefault(); endStroke(); }, { passive: false });
-
-    // Tool buttons
-    document.querySelectorAll('.mc-tool-btn').forEach(btn => {
-        btn.addEventListener('click', () => selectTool(btn.dataset.tool));
-    });
-
-    // Size buttons
-    document.querySelectorAll('.mc-size-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.mc-size-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            state.size = parseInt(btn.dataset.size);
-        });
-    });
-
-    // Action buttons
-    dom.startBtn.addEventListener('click', startGame);
-    dom.undoBtn.addEventListener('click', undo);
-    dom.clearBtn.addEventListener('click', clearCanvas);
-    dom.saveBtn.addEventListener('click', saveArt);
-
-    // Mute
-    dom.muteBtn.addEventListener('click', toggleMute);
-    if (state.muted) dom.muteBtn.textContent = '🔇';
-
-    // Handle resize
-    function handleResize() {
-        const maxWidth = Math.min(W, window.innerWidth - 20);
-        const scale = maxWidth / W;
-        canvas.style.width = maxWidth + 'px';
-        canvas.style.height = (H * scale) + 'px';
-    }
-    window.addEventListener('resize', handleResize);
-    handleResize();
-}
-
-// ===== Game Loop (particles) =====
-function gameLoop() {
-    if (particles.length) {
-        // Only redraw if particles are visible
-        redrawAll();
-        updateParticles();
-    }
-    requestAnimationFrame(gameLoop);
-}
-
-// ===== Start =====
+// ===== Game Flow =====
 function startGame() {
-    state.running = true;
+    state.score=0; state.lives=3; state.wave=1; state.combo=0; state.maxCombo=0;
+    state.running=true; state.gameOver=false; state.orbs=[]; state.particles=[]; state.trail=[];
+    state.spawnTimer=0; state.orbInterval=55; state.orbLifetime=160;
     dom.startOverlay.classList.add('hidden');
-    initAudio();
+    dom.gameoverOverlay.classList.add('hidden');
+    document.getElementById('mc-game-hud').classList.remove('hidden');
+    document.getElementById('mc-draw-tools').classList.add('hidden');
+    initAudio(); initStars(); updateHUD();
+}
 
-    // Load leaderboard
-    if (typeof renderLeaderboard === 'function') renderLeaderboard('magic-canvas', 'lb-mc-content', 'Magic Canvas');
+function gameOver() {
+    state.running=false; state.gameOver=true; sndOver();
+    if(state.score>state.highScore) { state.highScore=state.score; localStorage.setItem('mc_high',state.highScore); }
+    dom.gameoverStats.innerHTML=`Score: ${state.score} | Wave: ${state.wave}<br>🏆 Best: ${state.highScore} | 🔥 Best Combo: ${state.maxCombo}x`;
+    dom.gameoverOverlay.classList.remove('hidden');
+    if(state.score>0 && typeof saveScore==='function') saveScore('magic-canvas',state.score);
+    if(typeof renderLeaderboard==='function') renderLeaderboard('magic-canvas','lb-mc-content','Magic Canvas');
+}
 
-    // Share button
-    document.getElementById('mc-share-btn')?.addEventListener('click', () => {
-        const score = state.masterpieceCount || 0;
-        if (typeof shareScore === 'function') shareScore('Magic Canvas', score, 'https://hritihub.uk/games/magic-canvas/');
+// ===== Render =====
+function render() {
+    ctx.clearRect(0,0,W,H);
+    // Dark space bg
+    const g=ctx.createRadialGradient(W/2,H/2,50,W/2,H/2,350);
+    g.addColorStop(0,'#1a1a3e'); g.addColorStop(0.5,'#0f0f2a'); g.addColorStop(1,'#050510');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    // Stars
+    state.stars.forEach(s=>{
+        const a=0.3+0.7*Math.sin(Date.now()*s.speed*0.001+s.phase);
+        ctx.fillStyle=`rgba(255,255,255,${a})`;
+        ctx.beginPath(); ctx.arc(s.x,s.y,s.size,0,Math.PI*2); ctx.fill();
     });
+    // Orbs
+    state.pulse+=0.05;
+    state.orbs.forEach(orb=>{
+        if(orb.collected) return;
+        const lr=orb.life/orb.maxLife, ps=1+0.08*Math.sin(state.pulse);
+        const gl=ctx.createRadialGradient(orb.x,orb.y,0,orb.x,orb.y,orb.size*2);
+        gl.addColorStop(0,orb.color.glow); gl.addColorStop(1,'transparent');
+        ctx.fillStyle=gl; ctx.beginPath(); ctx.arc(orb.x,orb.y,orb.size*2*ps,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle=orb.color.fill; ctx.globalAlpha=lr;
+        ctx.beginPath(); ctx.arc(orb.x,orb.y,orb.size*ps,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle='rgba(255,255,255,0.3)';
+        ctx.beginPath(); ctx.arc(orb.x-orb.size*0.2,orb.y-orb.size*0.2,orb.size*0.35,0,Math.PI*2); ctx.fill();
+        ctx.globalAlpha=1;
+    });
+    // Trail
+    state.trail.forEach((t,i)=>{ctx.fillStyle=`rgba(255,255,255,${t.life*0.3})`;ctx.beginPath();ctx.arc(t.x,t.y,4*t.life,0,Math.PI*2);ctx.fill();});
+    // Particles
+    for(let i=state.particles.length-1;i>=0;i--){
+        const p=state.particles[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=0.05; p.life-=p.decay;
+        if(p.life<=0){state.particles.splice(i,1);continue;}
+        ctx.globalAlpha=p.life; ctx.fillStyle=p.color;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2); ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    // Bottom bar
+    ctx.fillStyle='rgba(0,0,0,0.4)'; ctx.fillRect(0,H-30,W,30);
+    ctx.fillStyle='#fff'; ctx.font='bold 13px Fredoka,sans-serif';
+    ctx.textAlign='left'; ctx.fillText(`❤️ x${state.lives}`,10,H-8);
+    ctx.textAlign='center'; ctx.fillText(`⭐ ${state.score}`,W/2,H-8);
+    ctx.textAlign='right'; ctx.fillText(`🔥 ${state.combo}x`,W-10,H-8);
+}
+
+// ===== HUD =====
+function updateHUD() {
+    dom.score.textContent=state.score;
+    dom.scoreBottom.textContent=state.score;
+    if(dom.lives) dom.lives.textContent='❤️'.repeat(Math.max(0,state.lives));
+    if(dom.wave) dom.wave.textContent=state.wave;
+}
+
+// ===== Input =====
+function getPos(e) {
+    const r=canvas.getBoundingClientRect();
+    const cx=e.touches?e.touches[0].clientX:e.clientX;
+    const cy=e.touches?e.touches[0].clientY:e.clientY;
+    return {x:(cx-r.left)*(W/r.width),y:(cy-r.top)*(H/r.height)};
+}
+
+function onPointerDown(pos) {
+    if(!state.running||state.gameOver) return;
+    let hit=false;
+    for(const orb of state.orbs){
+        if(orb.collected) continue;
+        const dx=pos.x-orb.x, dy=pos.y-orb.y;
+        if(Math.sqrt(dx*dx+dy*dy)<orb.size+10){collectOrb(orb);hit=true;break;}
+    }
+    if(!hit) sndBrush();
+}
+
+function onPointerMove(pos) {
+    state.trail.push({x:pos.x,y:pos.y,life:1});
+    if(state.trail.length>15) state.trail.shift();
+    if(!state.running||state.gameOver) return;
+    for(const orb of state.orbs){
+        if(orb.collected) continue;
+        const dx=pos.x-orb.x, dy=pos.y-orb.y;
+        if(Math.sqrt(dx*dx+dy*dy)<orb.size+12){collectOrb(orb);break;}
+    }
+}
+
+// ===== Events =====
+function bindEvents() {
+    canvas.addEventListener('mousedown',e=>onPointerDown(getPos(e)));
+    canvas.addEventListener('mousemove',e=>onPointerMove(getPos(e)));
+    canvas.addEventListener('touchstart',e=>{if(e.target.closest('button,a,input'))return;e.preventDefault();onPointerDown(getPos(e));},{passive:false});
+    canvas.addEventListener('touchmove',e=>{e.preventDefault();onPointerMove(getPos(e));},{passive:false});
+    canvas.addEventListener('touchend',e=>{e.preventDefault();},{passive:false});
+    dom.startBtn.addEventListener('click',startGame);
+    dom.restartBtn.addEventListener('click',startGame);
+    dom.muteBtn?.addEventListener('click',()=>{state.muted=!state.muted;localStorage.setItem('mc_muted',state.muted?'1':'0');dom.muteBtn.textContent=state.muted?'🔇':'🔊';});
+    if(state.muted) dom.muteBtn.textContent='🔇';
+    function resize(){const mw=Math.min(W,window.innerWidth-20),s=mw/W;canvas.style.width=mw+'px';canvas.style.height=(H*s)+'px';}
+    window.addEventListener('resize',resize); resize();
+}
+
+// ===== Game Loop =====
+function gameLoop() {
+    if(state.running&&!state.gameOver){
+        state.spawnTimer++;
+        if(state.spawnTimer>=state.orbInterval&&state.orbs.filter(o=>!o.collected).length<5){spawnOrb();state.spawnTimer=0;}
+        let missed=false;
+        state.orbs.forEach(orb=>{if(!orb.collected){orb.life--;if(orb.life<=0){orb.collected=true;missed=true;}}});
+        if(missed) missOrb();
+        const tc=state.orbs.filter(o=>o.collected).length;
+        if(tc>0&&tc%10===0){const nw=Math.floor(tc/10)+1;if(nw>state.wave){state.wave=nw;state.orbInterval=Math.max(20,55-state.wave*3);state.orbLifetime=Math.max(80,160-state.wave*6);sndWave();updateHUD();}}
+    }
+    for(let i=state.trail.length-1;i>=0;i--){state.trail[i].life-=0.06;if(state.trail[i].life<=0)state.trail.splice(i,1);}
+    render();
+    requestAnimationFrame(gameLoop);
 }
 
 // ===== Init =====
 function init() {
-    // Start white canvas
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, W, H);
-
-    initColors();
-    bindEvents();
-    gameLoop();
-    updateScore();
-
-    // Restore mute
-    if (state.muted) dom.muteBtn.textContent = '🔇';
+    ctx.fillStyle='#0f0f2a'; ctx.fillRect(0,0,W,H);
+    initStars(); bindEvents(); updateHUD(); gameLoop();
+    if(typeof renderLeaderboard==='function') renderLeaderboard('magic-canvas','lb-mc-content','Magic Canvas');
+    document.getElementById('mc-share-btn')?.addEventListener('click',()=>{const s=state.highScore||0;if(typeof shareScore==='function') shareScore('Magic Canvas',s,'https://hritihub.uk/games/magic-canvas/');});
 }
-
 init();
