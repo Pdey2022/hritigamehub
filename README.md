@@ -2,7 +2,7 @@
 
 A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https://hritihub.uk)** via GitHub Pages + Cloudflare.
 
-## 🎮 Current Games (9/13 playable)
+## 🎮 Current Games (10/13 playable)
 
 | #     | Game                                             | Status           | Tags                                |
 | ----- | ------------------------------------------------ | ---------------- | ----------------------------------- |
@@ -15,7 +15,8 @@ A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https
 | 7     | 🗺️ **Puzzle Path**                               | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                  |
 | 8     | 🐾 **Pet Rescue**                                | ✅ Live          | 🐾 Rescue, 💕 Care                  |
 | 9     | 🚀 **Space Blaster**                             | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights |
-| 10-13 | 🏎️ Race Rush, 🌾 Farm Friends, 🐙 Ocean Explorer | ⬜ Coming Soon   | —                                   |
+| 10    | 🏎️ **Race Rush**                                 | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins       |
+| 11-13 | 🌾 Farm Friends, 🐙 Ocean Explorer                 | ⬜ Coming Soon   | —                                   |
 
 ## 📁 Project Structure
 
@@ -35,7 +36,8 @@ HritiGame/
     ├── ninja-jump/         # Vertical platformer (PARKED)
     ├── puzzle-path/        # Maze navigation
     ├── pet-rescue/         # Animal rescue clicker
-    └── space-blaster/      # Space shooter (waves, power-ups, boss battles)
+    ├── space-blaster/      # Space shooter (waves, power-ups, boss battles)
+    └── race-rush/          # Top-down racer (dodge traffic, collect coins)
 ```
 
 Each game has: `index.html` + `css/game-name.css` (separate) + `js/game.js`
