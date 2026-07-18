@@ -420,6 +420,10 @@ function gameOver() {
     }
     dom.gameoverStats.textContent = `Score: ${state.score} | Best: ${state.best}`;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('puzzle-path', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('puzzle-path', 'lb-pp-content', 'Puzzle Path');
+    }
 
     // Particles
     for (let i = 0; i < 15; i++) {
@@ -809,6 +813,15 @@ handleResize();
 function init() {
     drawStartScreen();
     dom.best.textContent = state.best;
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('puzzle-path', 'lb-pp-content', 'Puzzle Path');
+
+    // Share button
+    document.getElementById('pp-share-btn')?.addEventListener('click', () => {
+        const score = state.best || 0;
+        if (typeof shareScore === 'function') shareScore('Puzzle Path', score, 'https://hritihub.uk/games/puzzle-path/');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);

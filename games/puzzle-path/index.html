@@ -17,9 +17,9 @@
     <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗺️</text></svg>">
     <link rel="canonical" href="https://hritihub.uk/games/puzzle-path/">
-    <link rel="stylesheet" href="/assets/css/style.css?v=5">
+    <link rel="stylesheet" href="/assets/css/style.css?v=6">
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Puzzle Path","description":"Navigate mazes, collect stars, dodge obstacles, and find the treasure in this puzzle adventure game!","url":"https://hritihub.uk/games/puzzle-path/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
-    <link rel="stylesheet" href="/games/puzzle-path/css/puzzle-path.css?v=5">
+    <link rel="stylesheet" href="/games/puzzle-path/css/puzzle-path.css?v=6">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="puzzle-path-page">
@@ -102,7 +102,21 @@
 
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
 
-    <script src="/games/puzzle-path/js/game.js?v=5"></script>
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="pp-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="pp-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-pp-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/puzzle-path/js/game.js?v=6"></script>
     <script>document.body.classList.add('loaded')</script>
 </body>
 </html>

@@ -344,6 +344,10 @@ function gameOver() {
 
     dom.gameoverStats.textContent = `Score: ${state.score} | Level: ${state.level} | Pairs: ${state.totalPairsFound} | Best: ${state.highScore}`;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('memory-match', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('memory-match', 'lb-mm-content', 'Memory Match');
+    }
 }
 
 // ===== TIMER =====
@@ -434,6 +438,15 @@ function init() {
     });
 
     drawStartScreen();
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('memory-match', 'lb-mm-content', 'Memory Match');
+
+    // Share button
+    document.getElementById('mm-share-btn')?.addEventListener('click', () => {
+        const score = state.highScore || 0;
+        if (typeof shareScore === 'function') shareScore('Memory Match', score, 'https://hritihub.uk/games/memory-match/');
+    });
 }
 
 function drawStartScreen() {

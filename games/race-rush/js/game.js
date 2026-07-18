@@ -505,6 +505,10 @@ function gameOver() {
         🏆 Best: ${state.highScore}
     `;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('race-rush', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('race-rush', 'lb-rr-content', 'Race Rush');
+    }
 }
 
 function updateHUD() {
@@ -948,6 +952,15 @@ function init() {
     updateHUD();
 
     if (isMuted) document.getElementById('rr-mute-btn').textContent = '🔇';
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('race-rush', 'lb-rr-content', 'Race Rush');
+
+    // Share button
+    document.getElementById('rr-share-btn')?.addEventListener('click', () => {
+        const score = state.highScore || 0;
+        if (typeof shareScore === 'function') shareScore('Race Rush', score, 'https://hritihub.uk/games/race-rush/');
+    });
 }
 
 if (document.readyState === 'loading') {

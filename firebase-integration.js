@@ -199,6 +199,119 @@ function debouncedCloudSave() {
     debounceTimer = setTimeout(saveToCloud, 2000);
 }
 
+// ===== Share Score =====
+window.shareScore = function(gameName, score, url) {
+    const text = `🎮 I scored ${score.toLocaleString()} in ${gameName}! Can you beat me? Play at Hriti's Game Hub 🚀`;
+    if (navigator.share) {
+        navigator.share({ title: gameName, text, url }).catch(() => {});
+    } else {
+        navigator.clipboard.writeText(text).then(() => {
+            showToast('📋 Score copied! Share it with your friends.');
+        }).catch(() => {
+            prompt('Copy this link to share:', text);
+        });
+    }
+};
+
+// ===== Leaderboard =====
+async function saveScore(gameId, score) {
+    if (!currentUser || !firestore) return;
+    try {
+        await firestore.collection('leaderboard').add({
+            gameId,
+            uid: currentUser.uid,
+            displayName: currentUser.displayName || 'Anonymous',
+            photoURL: currentUser.photoURL || '',
+            score: Math.floor(score),
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        });
+    } catch(e) {
+        console.warn('Leaderboard save failed:', e);
+    }
+}
+
+async function getLeaderboard(gameId, limit = 10) {
+    if (!firestore) return [];
+    try {
+        const snapshot = await firestore.collection('leaderboard')
+            .where('gameId', '==', gameId)
+            .orderBy('score', 'desc')
+            .limit(limit)
+            .get();
+        return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } catch(e) {
+        console.warn('Leaderboard fetch failed (may need index):', e);
+        // Fallback: fetch all and sort client-side
+        try {
+            const all = await firestore.collection('leaderboard')
+                .where('gameId', '==', gameId)
+                .get();
+            const entries = all.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            entries.sort((a, b) => (b.score || 0) - (a.score || 0));
+            return entries.slice(0, limit);
+        } catch(e2) {
+            console.warn('Leaderboard fallback also failed:', e2);
+            return [];
+        }
+    }
+}
+
+// Render leaderboard into a container element
+window.renderLeaderboard = async function(gameId, containerId, gameName) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = '<div class="lb-loading">🏆 Loading scores...</div>';
+    
+    const entries = await getLeaderboard(gameId);
+    
+    if (!entries.length) {
+        container.innerHTML = `
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">No scores yet!<br>Sign in and play to top the leaderboard.</div>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '<div class="lb-list">';
+    entries.forEach((entry, i) => {
+        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`;
+        const avatar = entry.photoURL
+            ? `<img src="${entry.photoURL}" class="lb-avatar">`
+            : '<span class="lb-avatar-placeholder">👤</span>';
+        html += `
+            <div class="lb-row ${i === 0 ? 'lb-gold' : ''}">
+                <span class="lb-rank">${medal}</span>
+                ${avatar}
+                <span class="lb-name">${escapeHtml(entry.displayName || 'Anonymous')}</span>
+                <span class="lb-score">${(entry.score || 0).toLocaleString()}</span>
+            </div>
+        `;
+    });
+    html += '</div>';
+    container.innerHTML = html;
+};
+
+// Simple escape for display names
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ===== Toast Notification (for game pages) =====
+function showToast(msg) {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2500);
+}
+
 // ===== Init =====
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initFirebase);

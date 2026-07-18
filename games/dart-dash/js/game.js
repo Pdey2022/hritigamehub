@@ -335,6 +335,10 @@ function gameOver() {
     }
     dom.gameoverStats.textContent = `Score: ${state.score} | Level: ${state.level} | Best: ${state.highScore}`;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('dart-dash', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('dart-dash', 'lb-dd-content', 'Dart Dash');
+    }
 }
 
 // ===== RESET ROUND =====
@@ -681,6 +685,15 @@ function init() {
     });
 
     drawStartScreen();
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('dart-dash', 'lb-dd-content', 'Dart Dash');
+
+    // Share button
+    document.getElementById('dd-share-btn')?.addEventListener('click', () => {
+        const score = state.highScore || 0;
+        if (typeof shareScore === 'function') shareScore('Dart Dash', score, 'https://hritihub.uk/games/dart-dash/');
+    });
 }
 
 function drawStartScreen() {

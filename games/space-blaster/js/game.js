@@ -762,6 +762,12 @@ function gameOver() {
         🏆 Best: ${state.highScore}
     `;
     dom.gameoverOverlay.classList.remove('hidden');
+
+    // Submit score to leaderboard + refresh
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('space-blaster', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('space-blaster', 'lb-sb-content', 'Space Blaster');
+    }
 }
 
 function waveComplete() {
@@ -1311,6 +1317,25 @@ function init() {
 
     // Restore mute state
     if (isMuted) document.getElementById('sb-mute-btn').textContent = '🔇';
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') {
+        renderLeaderboard('space-blaster', 'lb-sb-content', 'Space Blaster');
+    }
+
+    // Share button
+    const shareBtn = document.getElementById('sb-share-btn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+            const score = state.highScore || 0;
+            if (typeof shareScore === 'function') {
+                shareScore('Space Blaster', score, 'https://hritihub.uk/games/space-blaster/');
+            } else {
+                const text = `🚀 I scored ${score.toLocaleString()} in Space Blaster! Can you beat me? https://hritihub.uk/games/space-blaster/`;
+                navigator.clipboard.writeText(text).then(() => alert('📋 Copied! Share it with friends.')).catch(() => prompt('Copy:', text));
+            }
+        });
+    }
 }
 
 // Start when DOM is ready

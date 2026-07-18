@@ -712,6 +712,10 @@ function gameOver() {
             }
             dom.gameoverStats.textContent = `Score: ${state.score} | Level: ${state.level} | Best: ${state.highScore} | Pops: ${state.totalPops}`;
             dom.gameoverOverlay.classList.remove('hidden');
+            if (state.score > 0) {
+                if (typeof saveScore === 'function') saveScore('bubble-pop', state.score);
+                if (typeof renderLeaderboard === 'function') renderLeaderboard('bubble-pop', 'lb-bp-content', 'Bubble Pop');
+            }
             return;
         }
         // Render with slow-motion effect
@@ -847,6 +851,15 @@ function init() {
 
     // Initial draw
     drawStartScreen();
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('bubble-pop', 'lb-bp-content', 'Bubble Pop');
+
+    // Share button
+    document.getElementById('bp-share-btn')?.addEventListener('click', () => {
+        const score = state.highScore || 0;
+        if (typeof shareScore === 'function') shareScore('Bubble Pop', score, 'https://hritihub.uk/games/bubble-pop/');
+    });
 }
 
 function drawStartScreen() {

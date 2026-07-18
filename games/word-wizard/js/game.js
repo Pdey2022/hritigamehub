@@ -611,6 +611,10 @@ function gameOver() {
 
     dom.gameoverStats.textContent = `Score: ${state.score} | Best: ${state.best}`;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('word-wizard', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('word-wizard', 'lb-ww-content', 'Word Wizard');
+    }
 
     // Screen shake particles
     for (let i = 0; i < 20; i++) {
@@ -807,6 +811,15 @@ function init() {
     document.body.classList.add('loaded');
     drawStartScreen();
     dom.best.textContent = state.best;
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('word-wizard', 'lb-ww-content', 'Word Wizard');
+
+    // Share button
+    document.getElementById('ww-share-btn')?.addEventListener('click', () => {
+        const score = state.best || 0;
+        if (typeof shareScore === 'function') shareScore('Word Wizard', score, 'https://hritihub.uk/games/word-wizard/');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);

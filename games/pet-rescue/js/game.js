@@ -341,6 +341,10 @@ function gameOver() {
     }
     dom.gameoverStats.textContent = `Score: ${state.score} | Best: ${state.best}`;
     dom.gameoverOverlay.classList.remove('hidden');
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('pet-rescue', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('pet-rescue', 'lb-pr-content', 'Pet Rescue');
+    }
 
     for (let i = 0; i < 15; i++) {
         const a = Math.random() * Math.PI * 2;
@@ -640,6 +644,15 @@ handleResize();
 function init() {
     drawStartScreen();
     dom.best.textContent = state.best;
+
+    // Load leaderboard
+    if (typeof renderLeaderboard === 'function') renderLeaderboard('pet-rescue', 'lb-pr-content', 'Pet Rescue');
+
+    // Share button
+    document.getElementById('pr-share-btn')?.addEventListener('click', () => {
+        const score = state.best || 0;
+        if (typeof shareScore === 'function') shareScore('Pet Rescue', score, 'https://hritihub.uk/games/pet-rescue/');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);

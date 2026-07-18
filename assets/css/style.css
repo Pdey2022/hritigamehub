@@ -2786,3 +2786,88 @@ body.night-mode .sanctuary-btn.active {
         flex-direction: column;
     }
 }
+
+/* ===== Leaderboard Styles ===== */
+.lb-section {
+    max-width: 500px;
+    width: 100%;
+    margin: 16px auto;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.lb-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.lb-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+}
+.lb-signin-msg {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
+}
+.lb-loading, .lb-empty {
+    text-align: center;
+    padding: 20px 0;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+}
+.lb-empty-icon { font-size: 2rem; margin-bottom: 6px; }
+.lb-empty-text { font-size: 0.78rem; line-height: 1.5; }
+.lb-list { display: flex; flex-direction: column; gap: 4px; }
+.lb-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    transition: background 0.2s;
+}
+.lb-row:hover { background: rgba(255,255,255,0.08); }
+.lb-gold { background: rgba(255,215,0,0.08); }
+.lb-rank { font-size: 0.9rem; min-width: 28px; text-align: center; }
+.lb-avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.lb-avatar-placeholder { font-size: 1.1rem; }
+.lb-name {
+    flex: 1; font-size: 0.78rem; font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.lb-score {
+    font-size: 0.85rem; font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    min-width: 50px; text-align: right;
+}
+
+/* Share button */
+.share-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.share-btn:hover {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.9);
+}
