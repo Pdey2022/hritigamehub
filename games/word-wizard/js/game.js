@@ -783,6 +783,7 @@ function drawStartScreen() {
 
 // ===== INIT =====
 function init() {
+    document.body.classList.add('loaded');
     drawStartScreen();
     dom.best.textContent = state.best;
 }
