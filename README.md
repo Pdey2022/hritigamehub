@@ -2,7 +2,7 @@
 
 A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https://hritihub.uk)** via GitHub Pages + Cloudflare.
 
-## 🎮 Current Games (11/13 playable)
+## 🎮 Current Games (11/17 playable)
 
 | #     | Game                    | Status           | Tags                                 |
 | ----- | ----------------------- | ---------------- | ------------------------------------ |
@@ -17,7 +17,12 @@ A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https
 | 9     | 🚀 **Space Blaster**    | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights  |
 | 10    | 🏎️ **Race Rush**        | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins        |
 | 11    | 🌾 **Farm Friends**     | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
-| 12-13 | 🐙 Ocean Explorer       | ⬜ Coming Soon   | —                                    |
+| 12    | 🐙 **Ocean Explorer**   | ⬜ Coming Soon   | 🌊 Ocean, 🐠 Discovery               |
+| 13    | 👨‍🍳 **Chef's Kitchen**  | ⬜ Coming Soon   | 🍳 Cooking, 💰 Management            |
+| 14    | 🦕 **Dino Dig**         | ⬜ Coming Soon   | 🦴 Digging, 🧩 Puzzle                |
+| 15    | 🏗️ **Super Builder**    | ⬜ Coming Soon   | 🔨 Building, 🎨 Creative             |
+| 16    | 🎨 **Magic Canvas**     | ⬜ Coming Soon   | 🖌️ Drawing, ✨ Creative              |
+| 17    | 🌟 More coming...       | ⬜ Coming Soon   | —                                    |
 
 ## 📁 Project Structure
 
