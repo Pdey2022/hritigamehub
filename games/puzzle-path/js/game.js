@@ -397,6 +397,8 @@ function nextLevel() {
     setupMaze();
     drawMaze();
     updateHUD();
+    if (state.animFrame) cancelAnimationFrame(state.animFrame);
+    gameLoop();
 }
 
 function won() {
