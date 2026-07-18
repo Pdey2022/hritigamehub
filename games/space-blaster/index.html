@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🚀 Space Blaster — Hriti's Game Hub</title>
+    <meta name="description" content="Blast through asteroid fields and alien ships in this cosmic shooter!">
+    <meta name="theme-color" content="#1a0533">
+    <meta property="og:title" content="🚀 Space Blaster">
+    <meta property="og:description" content="A fast-paced space shooter with waves of enemies, power-ups, and epic boss battles!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="space-blaster-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="sb-hud">
+        <div class="sb-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="sb-title">🚀 Space Blaster</span>
+        </div>
+        <div class="sb-hud-center">
+            <span class="sb-wave-display">Wave <span id="sb-wave">1</span></span>
+        </div>
+        <div class="sb-hud-right">
+            <span class="sb-score-display">⭐ <span id="sb-score">0</span></span>
+            <button class="hud-btn mute-btn" id="sb-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn sb-reset-btn" id="sb-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="sb-game-area">
+        <div class="sb-canvas-wrapper" id="sb-canvas-wrapper">
+            <canvas id="sb-canvas" width="500" height="600"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="sb-overlay" id="sb-start-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">🚀</div>
+                    <div class="sb-overlay-title">Space Blaster!</div>
+                    <div class="sb-overlay-sub">Blast aliens, dodge asteroids, survive the cosmos!</div>
+                    <div class="sb-controls-hint">
+                        <span>🖱️ Move mouse to steer</span>
+                        <span>🖱️ Click to shoot</span>
+                    </div>
+                    <button class="sb-btn" id="sb-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="sb-overlay hidden" id="sb-gameover-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">💥</div>
+                    <div class="sb-overlay-title">Game Over!</div>
+                    <div class="sb-overlay-sub" id="sb-gameover-stats">Score: 0 | Wave: 1</div>
+                    <button class="sb-btn" id="sb-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+
+            <!-- Wave Complete Overlay -->
+            <div class="sb-overlay hidden" id="sb-waveup-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">🎉</div>
+                    <div class="sb-overlay-title">Wave Clear!</div>
+                    <div class="sb-overlay-sub" id="sb-waveup-stats">Wave 1 → Wave 2</div>
+                    <button class="sb-btn" id="sb-next-btn">Next Wave →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom HUD -->
+        <div id="sb-bottom-hud">
+            <div class="sb-lives" id="sb-lives">❤️❤️❤️</div>
+            <div class="sb-health-container">
+                <div class="sb-health-label">Shield</div>
+                <div class="sb-health-track">
+                    <div class="sb-health-fill" id="sb-health-fill" style="width: 100%"></div>
+                </div>
+            </div>
+            <div class="sb-weapon-display" id="sb-weapon">🔫 Normal</div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="/games/space-blaster/js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>

@@ -2,19 +2,20 @@
 
 A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https://hritihub.uk)** via GitHub Pages + Cloudflare.
 
-## 🎮 Current Games (8/13 playable)
+## 🎮 Current Games (9/13 playable)
 
-| # | Game | Status | Tags |
-|---|------|--------|------|
-| 1 | 🐧 **Penguin Paradise** | ✅ Live | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop |
-| 2 | 🌊 **Bubble Pop** | ✅ Live | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles |
-| 3 | 🧩 **Memory Match** | ✅ Live | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip |
-| 4 | 🎯 **Dart Dash** | ✅ Live | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
-| 5 | 📖 **Word Wizard** | ✅ Live | 📚 Word, 🧠 Brain, 🔤 Unscramble |
-| 6 | 🥷 **Ninja Jump** | ✅ Live (parked) | 🎮 Platform, ⚡ Action |
-| 7 | 🗺️ **Puzzle Path** | ✅ Live | 🧩 Puzzle, 🗺️ Maze |
-| 8 | 🐾 **Pet Rescue** | ✅ Live | 🐾 Rescue, 💕 Care |
-| 9-13 | 🚀 Space Blaster, 🏎️ Race Rush, 🌾 Farm Friends, 🐙 Ocean Explorer | ⬜ Coming Soon | — |
+| #     | Game                                             | Status           | Tags                                |
+| ----- | ------------------------------------------------ | ---------------- | ----------------------------------- |
+| 1     | 🐧 **Penguin Paradise**                          | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop    |
+| 2     | 🌊 **Bubble Pop**                                | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles    |
+| 3     | 🧩 **Memory Match**                              | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip     |
+| 4     | 🎯 **Dart Dash**                                 | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
+| 5     | 📖 **Word Wizard**                               | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble    |
+| 6     | 🥷 **Ninja Jump**                                | ✅ Live (parked) | 🎮 Platform, ⚡ Action              |
+| 7     | 🗺️ **Puzzle Path**                               | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                  |
+| 8     | 🐾 **Pet Rescue**                                | ✅ Live          | 🐾 Rescue, 💕 Care                  |
+| 9     | 🚀 **Space Blaster**                             | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights |
+| 10-13 | 🏎️ Race Rush, 🌾 Farm Friends, 🐙 Ocean Explorer | ⬜ Coming Soon   | —                                   |
 
 ## 📁 Project Structure
 
@@ -33,7 +34,8 @@ HritiGame/
     ├── word-wizard/        # Word unscramble
     ├── ninja-jump/         # Vertical platformer (PARKED)
     ├── puzzle-path/        # Maze navigation
-    └── pet-rescue/         # Animal rescue clicker
+    ├── pet-rescue/         # Animal rescue clicker
+    └── space-blaster/      # Space shooter (waves, power-ups, boss battles)
 ```
 
 Each game has: `index.html` + `css/game-name.css` (separate) + `js/game.js`
@@ -48,51 +50,64 @@ Each game has: `index.html` + `css/game-name.css` (separate) + `js/game.js`
 ## ⚠️ CRITICAL: New Game Checklist
 
 ### 1. Separate CSS file ❗
+
 Each game gets its own CSS at `games/game-name/css/game-name.css`.
 **DO NOT** add game styles to `assets/css/style.css` — cache conflicts!
 
 ### 2. `body.loaded` script ❗❗
+
 The shared CSS has `body { opacity: 0 }` — every page starts invisible!
 **Every game MUST include** right before `</body>`:
+
 ```html
 <script src="/games/game-name/js/game.js"></script>
-<script>document.body.classList.add('loaded')</script>  <!-- ← CRITICAL -->
+<script>
+  document.body.classList.add("loaded");
+</script>
+<!-- ← CRITICAL -->
 ```
 
 ### 3. Standard game template
+
 ```html
-<head>...</head>
+<head>
+  ...
+</head>
 <body class="game-name-page">
-    <header id="xx-hud">...</header>
-    <section id="xx-game-area">
-        <div class="xx-canvas-wrapper">
-            <canvas id="xx-canvas" width="500" height="550"></canvas>
-            <!-- Start overlay -->
-            <!-- Game over overlay -->
-            <!-- Level complete overlay -->
-            <!-- Won overlay -->
-        </div>
-        <div id="xx-bottom-hud">...</div>
-    </section>
-    <script src="/games/game-name/js/game.js"></script>
-    <script>document.body.classList.add('loaded')</script>
+  <header id="xx-hud">...</header>
+  <section id="xx-game-area">
+    <div class="xx-canvas-wrapper">
+      <canvas id="xx-canvas" width="500" height="550"></canvas>
+      <!-- Start overlay -->
+      <!-- Game over overlay -->
+      <!-- Level complete overlay -->
+      <!-- Won overlay -->
+    </div>
+    <div id="xx-bottom-hud">...</div>
+  </section>
+  <script src="/games/game-name/js/game.js"></script>
+  <script>
+    document.body.classList.add("loaded");
+  </script>
 </body>
 ```
 
 ### 4. Landing page update
+
 Replace "Coming Soon" card in `index.html` with an `<a href="/games/game-name/" class="game-card">`.
 
 ### 5. localStorage keys
+
 Use `{game}_best` for high score and `{game}_muted` for mute state.
 
 ## 🐛 Known Bugs (Avoid These)
 
-| Bug | Symptom | Fix |
-|-----|---------|-----|
-| Missing `body.loaded` | Page invisible (blank/gradient only) | Add inline script before `</body>` |
-| Game styles in shared CSS | Cache serves old CSS without new styles | Use separate CSS per game |
-| `state.stars` as array+counter | `stars.find is not a function` | `stars: []` (array) + `starCount: 0` (number) |
-| `gameLoop()` not restarted | Next level freezes | Call `gameLoop()` in `nextLevel()` |
+| Bug                            | Symptom                                 | Fix                                           |
+| ------------------------------ | --------------------------------------- | --------------------------------------------- |
+| Missing `body.loaded`          | Page invisible (blank/gradient only)    | Add inline script before `</body>`            |
+| Game styles in shared CSS      | Cache serves old CSS without new styles | Use separate CSS per game                     |
+| `state.stars` as array+counter | `stars.find is not a function`          | `stars: []` (array) + `starCount: 0` (number) |
+| `gameLoop()` not restarted     | Next level freezes                      | Call `gameLoop()` in `nextLevel()`            |
 
 ## 🚀 Quick Deploy
 
