@@ -128,13 +128,14 @@
     </nav>
 
     <div class="about-container">
-        <!-- Avatar placeholder — replace the src with your actual photo -->
+        <!-- Avatar — upload your photo to /assets/images/about-me.jpg -->
         <div class="about-avatar" id="avatar-container">
-            <img src="" alt="My Photo" id="avatar-img" style="display:none">
-            <span id="avatar-emoji">👤</span>
+            <img src="/assets/images/about-me.jpg" alt="My Photo" id="avatar-img"
+                 onerror="this.style.display='none'; document.getElementById('avatar-emoji').style.display=''">
+            <span id="avatar-emoji" style="display:none">👤</span>
         </div>
         <div class="about-avatar-placeholder">
-            💡 Replace this with your photo
+            📁 Upload your photo to <code>assets/images/about-me.jpg</code>
         </div>
 
         <h1>Hi, I'm [Your Name] 👋</h1>
