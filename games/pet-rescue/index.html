@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🐾 Pet Rescue — Hriti's Game Hub</title>
+    <meta name="description" content="Rescue adorable animals, heal them, and find them loving homes!">
+    <meta name="theme-color" content="#2ecc71">
+    <meta property="og:title" content="🐾 Pet Rescue">
+    <meta property="og:description" content="Click to rescue animals before they escape!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/games/pet-rescue/css/pet-rescue.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="pet-rescue-page">
+
+    <header id="pr-hud">
+        <div class="pr-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="pr-title">🐾 Pet Rescue</span>
+        </div>
+        <div class="pr-hud-center">
+            <span class="pr-level-display">Level <span id="pr-level">1</span></span>
+        </div>
+        <div class="pr-hud-right">
+            <span class="pr-score-display">⭐ <span id="pr-score">0</span></span>
+            <button class="hud-btn mute-btn" id="pr-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn pr-reset-btn" id="pr-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <section id="pr-game-area">
+        <div class="pr-canvas-wrapper" id="pr-canvas-wrapper">
+            <canvas id="pr-canvas" width="500" height="550"></canvas>
+
+            <div class="pr-overlay" id="pr-start-overlay">
+                <div class="pr-overlay-content">
+                    <div class="pr-overlay-icon">🐾</div>
+                    <div class="pr-overlay-title">Pet Rescue!</div>
+                    <div class="pr-overlay-sub">Click the animals to rescue them before they escape!</div>
+                    <button class="pr-btn" id="pr-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <div class="pr-overlay hidden" id="pr-gameover-overlay">
+                <div class="pr-overlay-content">
+                    <div class="pr-overlay-icon">💔</div>
+                    <div class="pr-overlay-title">Game Over!</div>
+                    <div class="pr-overlay-sub" id="pr-gameover-stats">Score: 0 | Best: 0</div>
+                    <button class="pr-btn" id="pr-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+
+            <div class="pr-overlay hidden" id="pr-levelcomplete-overlay">
+                <div class="pr-overlay-content">
+                    <div class="pr-overlay-icon">🎉</div>
+                    <div class="pr-overlay-title">Level Complete!</div>
+                    <div class="pr-overlay-sub" id="pr-levelcomplete-stats">Score: 0</div>
+                    <button class="pr-btn" id="pr-nextlevel-btn">Next Level ▶</button>
+                </div>
+            </div>
+
+            <div class="pr-overlay hidden" id="pr-won-overlay">
+                <div class="pr-overlay-content">
+                    <div class="pr-overlay-icon">👑</div>
+                    <div class="pr-overlay-title">You Won!</div>
+                    <div class="pr-overlay-sub" id="pr-won-stats">Final Score: 0</div>
+                    <button class="pr-btn" id="pr-playagain-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="pr-bottom-hud">
+            <span class="pr-stat"><span class="pr-stat-label">Lives</span> <span id="pr-lives">❤️❤️❤️</span></span>
+            <span class="pr-stat"><span class="pr-stat-label">Score</span> <span id="pr-score-bottom">0</span></span>
+            <span class="pr-stat"><span class="pr-stat-label">Combo</span> <span id="pr-combo">0</span>🔥</span>
+            <span class="pr-stat"><span class="pr-stat-label">Rescued</span> <span id="pr-rescued">0</span></span>
+            <span class="pr-stat"><span class="pr-stat-label">Best</span> <span id="pr-best">0</span></span>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="/games/pet-rescue/js/game.js"></script>
+    <script>document.body.classList.add('loaded')</script>
+</body>
+</html>
