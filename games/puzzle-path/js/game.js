@@ -13,6 +13,9 @@ canvas.style.width = W + 'px';
 canvas.style.height = H + 'px';
 ctx.scale(dpr, dpr);
 
+// Disable canvas pointer events initially so taps reach the overlay buttons
+canvas.style.pointerEvents = 'none';
+
 // ===== DOM REFS =====
 const dom = {
     score: document.getElementById('pp-score'),
@@ -386,6 +389,7 @@ function reachGoal() {
 
 function levelComplete() {
     state.running = false;
+    canvas.style.pointerEvents = 'none';
     dom.levelCompleteStats.textContent = `Score: ${state.score} | Moves: ${state.moves}`;
     dom.levelCompleteOverlay.classList.remove('hidden');
 }
@@ -393,6 +397,7 @@ function levelComplete() {
 function nextLevel() {
     state.level++;
     state.running = true;
+    canvas.style.pointerEvents = 'auto';
     dom.levelCompleteOverlay.classList.add('hidden');
     setupMaze();
     drawMaze();
@@ -403,6 +408,7 @@ function nextLevel() {
 
 function won() {
     state.running = false;
+    canvas.style.pointerEvents = 'none';
     if (state.score > state.best) {
         state.best = state.score;
         localStorage.setItem('pp_best', state.best);
@@ -413,6 +419,7 @@ function won() {
 
 function gameOver() {
     state.running = false;
+    canvas.style.pointerEvents = 'none';
     playLose();
     if (state.score > state.best) {
         state.best = state.score;
@@ -725,6 +732,7 @@ function startGame() {
     updateHUD();
 
     state.running = true;
+    canvas.style.pointerEvents = 'auto';
     if (state.animFrame) cancelAnimationFrame(state.animFrame);
     drawMaze();
     gameLoop();
@@ -774,13 +782,13 @@ canvas.addEventListener('touchstart', (e) => {
 
 // ===== BUTTONS =====
 dom.startBtn.addEventListener('click', startGame);
-dom.startBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
+dom.startBtn.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); startGame(); });
 dom.restartBtn.addEventListener('click', startGame);
-dom.restartBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
+dom.restartBtn.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); startGame(); });
 dom.nextLevelBtn.addEventListener('click', nextLevel);
-dom.nextLevelBtn.addEventListener('touchend', (e) => { e.preventDefault(); nextLevel(); });
+dom.nextLevelBtn.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); nextLevel(); });
 dom.playAgainBtn.addEventListener('click', startGame);
-dom.playAgainBtn.addEventListener('touchend', (e) => { e.preventDefault(); startGame(); });
+dom.playAgainBtn.addEventListener('touchstart', (e) => { e.preventDefault(); e.stopPropagation(); startGame(); });
 
 document.getElementById('pp-mute-btn').addEventListener('click', toggleMute);
 if (isMuted) document.getElementById('pp-mute-btn').textContent = '🔇';
