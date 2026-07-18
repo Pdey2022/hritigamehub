@@ -1,0 +1,290 @@
+/* ============================================
+   FARM FRIENDS — Game Styles
+   ============================================ */
+
+body.farm-friends-page {
+    background: linear-gradient(135deg, #1a3a0a 0%, #2d5016 50%, #1a2e0e 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#ff-hud {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+
+.ff-hud-left { display: flex; align-items: center; gap: 8px; }
+.ff-hud-center { text-align: center; }
+.ff-hud-right { display: flex; align-items: center; gap: 6px; }
+
+.ff-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8bc34a;
+    text-shadow: 0 0 20px rgba(139, 195, 74, 0.2);
+}
+
+.ff-day-display {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(139, 195, 74, 0.15);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+.ff-coin-display {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    background: rgba(255,215,0,0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+.ff-reset-btn { margin-left: 8px !important; }
+.ff-reset-btn:hover { transform: rotate(-30deg) !important; }
+
+#ff-game-area {
+    width: 100%;
+    max-width: 900px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ff-canvas-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    border: 1px solid rgba(139, 195, 74, 0.1);
+}
+
+#ff-canvas {
+    display: block;
+    cursor: pointer;
+    width: 500px;
+    height: 550px;
+}
+
+/* Overlay */
+.ff-overlay {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10; animation: fadeIn 0.3s ease;
+    border-radius: 16px;
+}
+.ff-overlay.hidden { display: none; }
+.ff-overlay-content {
+    text-align: center;
+    background: rgba(139, 195, 74, 0.06);
+    border: 1px solid rgba(139, 195, 74, 0.15);
+    padding: 36px 48px; border-radius: 24px;
+    backdrop-filter: blur(4px); animation: modalPop 0.4s ease;
+}
+.ff-overlay-icon { font-size: 4rem; margin-bottom: 8px; animation: float 2s ease-in-out infinite; }
+.ff-overlay-title { font-size: 1.8rem; font-weight: 800; color: #8bc34a; text-shadow: 0 2px 30px rgba(139, 195, 74, 0.3); margin-bottom: 6px; }
+.ff-overlay-sub { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-bottom: 12px; }
+.ff-controls-hint {
+    display: flex; flex-direction: column; gap: 4px;
+    margin-bottom: 20px;
+}
+.ff-controls-hint span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+}
+
+.ff-btn {
+    padding: 12px 36px; border: none; border-radius: 14px;
+    background: linear-gradient(135deg, #558b2f, #8bc34a);
+    color: white; font-size: 1.1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+    box-shadow: 0 4px 16px rgba(139, 195, 74, 0.3);
+}
+.ff-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(139, 195, 74, 0.5); }
+
+/* Toolbar */
+#ff-toolbar {
+    width: 100%; max-width: 540px;
+    display: flex; gap: 0;
+    margin-top: 10px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.06);
+}
+.ff-tool-btn {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+.ff-tool-btn.active {
+    background: rgba(139, 195, 74, 0.2);
+    color: #8bc34a;
+}
+.ff-tool-btn:hover:not(.active) {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.8);
+}
+
+/* Panels */
+.ff-panel {
+    width: 100%; max-width: 540px;
+    padding: 12px;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    animation: fadeIn 0.2s ease;
+}
+.ff-panel.hidden { display: none; }
+
+/* Crop options */
+.ff-crop-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+.ff-crop-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.ff-crop-card:hover {
+    background: rgba(139, 195, 74, 0.15);
+    border-color: rgba(139, 195, 74, 0.3);
+    transform: translateY(-2px);
+}
+.ff-crop-card.selected {
+    background: rgba(139, 195, 74, 0.2);
+    border-color: #8bc34a;
+    box-shadow: 0 0 16px rgba(139, 195, 74, 0.2);
+}
+.ff-crop-icon { font-size: 1.6rem; }
+.ff-crop-name { font-size: 0.75rem; font-weight: 700; color: white; margin: 4px 0 2px; }
+.ff-crop-cost { font-size: 0.7rem; color: #ffd700; }
+.ff-crop-time { font-size: 0.65rem; color: rgba(255,255,255,0.4); }
+
+/* Shop */
+.ff-shop-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.ff-shop-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 12px 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.ff-shop-card:hover {
+    background: rgba(255, 193, 7, 0.12);
+    border-color: rgba(255, 193, 7, 0.3);
+    transform: translateY(-2px);
+}
+.ff-shop-card.affordable {
+    border-color: rgba(255, 193, 7, 0.2);
+}
+.ff-shop-card.too-expensive {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.ff-shop-icon { font-size: 2rem; }
+.ff-shop-name { font-size: 0.8rem; font-weight: 700; color: white; margin: 4px 0 2px; }
+.ff-shop-cost { font-size: 0.75rem; color: #ffd700; }
+.ff-shop-produces { font-size: 0.65rem; color: rgba(255,255,255,0.4); }
+
+/* Animals list */
+.ff-animals-list {
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.ff-no-animals {
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    padding: 20px;
+}
+.ff-animal-entry {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+.ff-animal-entry-icon { font-size: 1.4rem; }
+.ff-animal-entry-info { flex: 1; }
+.ff-animal-entry-name { font-size: 0.8rem; font-weight: 700; color: white; }
+.ff-animal-entry-produce { font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+.ff-animal-entry-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffd700;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+.ff-animal-entry-btn:hover {
+    background: rgba(255, 193, 7, 0.3);
+}
+.ff-animal-entry-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 540px) {
+    #ff-canvas {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 500 / 550;
+    }
+    #ff-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .ff-title { font-size: 1rem; }
+    .ff-crop-options { grid-template-columns: repeat(2, 1fr); }
+    .ff-shop-items { grid-template-columns: 1fr; }
+    .ff-overlay-content { padding: 24px 20px; }
+}

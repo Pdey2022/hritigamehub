@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🌾 Farm Friends — Hriti's Game Hub</title>
+    <meta name="description" content="Grow crops, raise animals, and build your dream farm!">
+    <meta name="theme-color" content="#2d5016">
+    <meta property="og:title" content="🌾 Farm Friends">
+    <meta property="og:description" content="A cozy farming game — plant crops, raise animals, and grow your farm!">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/games/farm-friends/css/farm-friends.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="farm-friends-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="ff-hud">
+        <div class="ff-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <span class="ff-title">🌾 Farm Friends</span>
+        </div>
+        <div class="ff-hud-center">
+            <span class="ff-day-display">Day <span id="ff-day">1</span></span>
+        </div>
+        <div class="ff-hud-right">
+            <span class="ff-coin-display">🪙 <span id="ff-coins">100</span></span>
+            <button class="hud-btn mute-btn" id="ff-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn ff-reset-btn" id="ff-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="ff-game-area">
+        <div class="ff-canvas-wrapper" id="ff-canvas-wrapper">
+            <canvas id="ff-canvas" width="500" height="550"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="ff-overlay" id="ff-start-overlay">
+                <div class="ff-overlay-content">
+                    <div class="ff-overlay-icon">🌾</div>
+                    <div class="ff-overlay-title">Farm Friends!</div>
+                    <div class="ff-overlay-sub">Plant crops, raise animals, grow your dream farm!</div>
+                    <div class="ff-controls-hint">
+                        <span>🖱️ Click a plot to plant</span>
+                        <span>🖱️ Click ready crops to harvest</span>
+                        <span>🐄 Buy animals from the shop</span>
+                    </div>
+                    <button class="ff-btn" id="ff-start-btn">Start Farming ▶</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Toolbar -->
+        <div id="ff-toolbar">
+            <button class="ff-tool-btn active" id="ff-tab-plant" data-tab="plant">🌱 Plant</button>
+            <button class="ff-tool-btn" id="ff-tab-shop" data-tab="shop">🏪 Shop</button>
+            <button class="ff-tool-btn" id="ff-tab-animals" data-tab="animals">🐄 Animals</button>
+        </div>
+
+        <!-- Plant Panel -->
+        <div class="ff-panel" id="ff-panel-plant">
+            <div class="ff-crop-options">
+                <div class="ff-crop-card" data-crop="carrot">
+                    <div class="ff-crop-icon">🥕</div>
+                    <div class="ff-crop-name">Carrot</div>
+                    <div class="ff-crop-cost">🪙 5</div>
+                    <div class="ff-crop-time">⏱️ 8s</div>
+                </div>
+                <div class="ff-crop-card" data-crop="tomato">
+                    <div class="ff-crop-icon">🍅</div>
+                    <div class="ff-crop-name">Tomato</div>
+                    <div class="ff-crop-cost">🪙 10</div>
+                    <div class="ff-crop-time">⏱️ 15s</div>
+                </div>
+                <div class="ff-crop-card" data-crop="corn">
+                    <div class="ff-crop-icon">🌽</div>
+                    <div class="ff-crop-name">Corn</div>
+                    <div class="ff-crop-cost">🪙 15</div>
+                    <div class="ff-crop-time">⏱️ 25s</div>
+                </div>
+                <div class="ff-crop-card" data-crop="pumpkin">
+                    <div class="ff-crop-icon">🎃</div>
+                    <div class="ff-crop-name">Pumpkin</div>
+                    <div class="ff-crop-cost">🪙 30</div>
+                    <div class="ff-crop-time">⏱️ 40s</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shop Panel -->
+        <div class="ff-panel hidden" id="ff-panel-shop">
+            <div class="ff-shop-items">
+                <div class="ff-shop-card" data-item="chicken">
+                    <div class="ff-shop-icon">🐔</div>
+                    <div class="ff-shop-name">Chicken</div>
+                    <div class="ff-shop-cost">🪙 50</div>
+                    <div class="ff-shop-produces">🥚 Eggs</div>
+                </div>
+                <div class="ff-shop-card" data-item="cow">
+                    <div class="ff-shop-icon">🐄</div>
+                    <div class="ff-shop-name">Cow</div>
+                    <div class="ff-shop-cost">🪙 120</div>
+                    <div class="ff-shop-produces">🥛 Milk</div>
+                </div>
+                <div class="ff-shop-card" data-item="sheep">
+                    <div class="ff-shop-icon">🐑</div>
+                    <div class="ff-shop-name">Sheep</div>
+                    <div class="ff-shop-cost">🪙 200</div>
+                    <div class="ff-shop-produces">🧶 Wool</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animals Panel -->
+        <div class="ff-panel hidden" id="ff-panel-animals">
+            <div class="ff-animals-list" id="ff-animals-list">
+                <div class="ff-no-animals">No animals yet! Buy some from the shop. 🏪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <script src="/games/farm-friends/js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>
+</body>
+</html>

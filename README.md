@@ -2,21 +2,22 @@
 
 A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https://hritihub.uk)** via GitHub Pages + Cloudflare.
 
-## 🎮 Current Games (10/13 playable)
+## 🎮 Current Games (11/13 playable)
 
-| #     | Game                                             | Status           | Tags                                |
-| ----- | ------------------------------------------------ | ---------------- | ----------------------------------- |
-| 1     | 🐧 **Penguin Paradise**                          | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop    |
-| 2     | 🌊 **Bubble Pop**                                | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles    |
-| 3     | 🧩 **Memory Match**                              | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip     |
-| 4     | 🎯 **Dart Dash**                                 | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
-| 5     | 📖 **Word Wizard**                               | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble    |
-| 6     | 🥷 **Ninja Jump**                                | ✅ Live (parked) | 🎮 Platform, ⚡ Action              |
-| 7     | 🗺️ **Puzzle Path**                               | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                  |
-| 8     | 🐾 **Pet Rescue**                                | ✅ Live          | 🐾 Rescue, 💕 Care                  |
-| 9     | 🚀 **Space Blaster**                             | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights |
-| 10    | 🏎️ **Race Rush**                                 | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins       |
-| 11-13 | 🌾 Farm Friends, 🐙 Ocean Explorer                 | ⬜ Coming Soon   | —                                   |
+| #     | Game                               | Status           | Tags                                |
+| ----- | ---------------------------------- | ---------------- | ----------------------------------- |
+| 1     | 🐧 **Penguin Paradise**            | ✅ Live          | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop    |
+| 2     | 🌊 **Bubble Pop**                  | ✅ Live          | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles    |
+| 3     | 🧩 **Memory Match**                | ✅ Live          | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip     |
+| 4     | 🎯 **Dart Dash**                   | ✅ Live          | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
+| 5     | 📖 **Word Wizard**                 | ✅ Live          | 📚 Word, 🧠 Brain, 🔤 Unscramble    |
+| 6     | 🥷 **Ninja Jump**                  | ✅ Live (parked) | 🎮 Platform, ⚡ Action              |
+| 7     | 🗺️ **Puzzle Path**                 | ✅ Live          | 🧩 Puzzle, 🗺️ Maze                  |
+| 8     | 🐾 **Pet Rescue**                  | ✅ Live          | 🐾 Rescue, 💕 Care                  |
+| 9     | 🚀 **Space Blaster**               | ✅ Live          | 👾 Arcade, 🚀 Space, 👁️ Boss Fights |
+| 10    | 🏎️ **Race Rush**                   | ✅ Live          | 🏁 Racing, ⚡ Speed, 🪙 Coins       |
+| 11    | 🌾 **Farm Friends**                 | ✅ Live          | 🌱 Farming, 🐄 Animals, 🌅 Day Cycle |
+| 12-13 | 🐙 Ocean Explorer                   | ⬜ Coming Soon   | —                                   |
 
 ## 📁 Project Structure
 
@@ -37,8 +38,8 @@ HritiGame/
     ├── puzzle-path/        # Maze navigation
     ├── pet-rescue/         # Animal rescue clicker
     ├── space-blaster/      # Space shooter (waves, power-ups, boss battles)
-    └── race-rush/          # Top-down racer (dodge traffic, collect coins)
-```
+    ├── race-rush/          # Top-down racer (dodge traffic, collect coins)
+    └── farm-friends/       # Cozy farming sim (plant crops, raise animals)    └── farm-friends/       # Cozy farming sim (plant crops, raise animals)```
 
 Each game has: `index.html` + `css/game-name.css` (separate) + `js/game.js`
 
