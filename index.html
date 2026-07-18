@@ -17,7 +17,7 @@
     <meta name="twitter:description" content="Play 11 free online games! No download needed — just click and play!">
     <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
-    <link rel="stylesheet" href="/assets/css/style.css?v=6">
+    <link rel="stylesheet" href="/assets/css/style.css?v=7">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- AdSense placeholder (hidden) -->
@@ -47,7 +47,8 @@
                 {"@type":"VideoGame","position":7,"name":"Pet Rescue","url":"https://hritihub.uk/games/pet-rescue/","applicationCategory":"Game","operatingSystem":"Web Browser"},
                 {"@type":"VideoGame","position":8,"name":"Space Blaster","url":"https://hritihub.uk/games/space-blaster/","applicationCategory":"Game","operatingSystem":"Web Browser"},
                 {"@type":"VideoGame","position":9,"name":"Race Rush","url":"https://hritihub.uk/games/race-rush/","applicationCategory":"Game","operatingSystem":"Web Browser"},
-                {"@type":"VideoGame","position":10,"name":"Farm Friends","url":"https://hritihub.uk/games/farm-friends/","applicationCategory":"Game","operatingSystem":"Web Browser"}
+                {"@type":"VideoGame","position":10,"name":"Farm Friends","url":"https://hritihub.uk/games/farm-friends/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":11,"name":"Magic Canvas","url":"https://hritihub.uk/games/magic-canvas/","applicationCategory":"Game","operatingSystem":"Web Browser"}
             ]
         }
     }
@@ -72,7 +73,7 @@
                 "name": "What games are available for kids?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "We have 11 free online games for kids including Penguin Paradise (pet care), Space Blaster (space shooter), Bubble Pop (arcade), Farm Friends (farming), Race Rush (racing), Memory Match, Word Wizard, Puzzle Path, Pet Rescue, Dart Dash, and Ninja Jump."
+                    "text": "We have 12 free online games for kids including Penguin Paradise (pet care), Space Blaster (space shooter), Bubble Pop (arcade), Farm Friends (farming), Race Rush (racing), Magic Canvas (drawing), Memory Match, Word Wizard, Puzzle Path, Pet Rescue, Dart Dash, and Ninja Jump."
                 }
             },
             {
@@ -400,21 +401,23 @@
             </div>
         </div>
 
-        <!-- Magic Canvas (coming soon) -->
-        <div class="game-card disabled">
-            <div class="game-card-badge coming-soon">🚧 Coming Soon</div>
+        <!-- Magic Canvas -->
+        <a href="/games/magic-canvas/" class="game-card">
             <div class="game-card-icon">🎨</div>
             <h2 class="game-card-title">Magic Canvas</h2>
-            <p class="game-card-desc">Paint, draw, and create stunning artwork with magical tools!</p>
+            <p class="game-card-desc">Paint, draw, and create stunning artwork with magical brushes, sparkles, and glow effects!</p>
             <div class="game-card-tags">
                 <span class="tag">🖌️ Drawing</span>
                 <span class="tag">✨ Creative</span>
+                <span class="tag">🎨 Art</span>
             </div>
             <div class="game-card-stats">
-                <span>🎨 Art Tools</span>
-                <span>🏗️ Under Construction</span>
+                <span>🌈 Rainbow Brush</span>
+                <span>⭐ Sparkle Effect</span>
+                <span>💾 Save Art</span>
             </div>
-        </div>
+            <span class="play-btn">Play Now →</span>
+        </a>
 
     </main>
         <button class="carousel-arrow carousel-next" id="carousel-next" aria-label="Next">›</button>
@@ -493,7 +496,7 @@
             <span class="footer-sep">·</span>
             <a href="/sitemap.xml">📄 Sitemap</a>
             <span class="footer-sep">·</span>
-            <span class="footer-game-count">🎮 <span id="game-count">11</span> free online games for kids</span>
+            <span class="footer-game-count">🎮 <span id="game-count">12</span> free online games for kids</span>
         </p>
     </footer>
 
@@ -511,7 +514,8 @@
             { id:'space-blaster', name:'Space Blaster', icon:'🚀', url:'/games/space-blaster/' },
             { id:'race-rush', name:'Race Rush', icon:'🏎️', url:'/games/race-rush/' },
             { id:'farm-friends', name:'Farm Friends', icon:'🌾', url:'/games/farm-friends/' },
-            { id:'ninja-jump', name:'Ninja Jump', icon:'🥷', url:'/games/ninja-jump/' }
+            { id:'ninja-jump', name:'Ninja Jump', icon:'🥷', url:'/games/ninja-jump/' },
+            { id:'magic-canvas', name:'Magic Canvas', icon:'🎨', url:'/games/magic-canvas/' }
         ];
 
         // ----- Favorites -----

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🎨 Magic Canvas — Free Drawing Game for Kids | Online Art</title>
+    <meta name="description" content="Paint, draw, and create stunning artwork with magical tools in Magic Canvas! A free online drawing game for kids with rainbow brushes, sparkles, and glow effects. No download needed!">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta property="og:title" content="🎨 Magic Canvas — Free Online Drawing Game">
+    <meta property="og:description" content="Create stunning artwork with magical brushes, rainbow sparkles, and glow effects! Free online drawing game for kids.">
+    <meta property="og:url" content="https://hritihub.uk/games/magic-canvas/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🎨 Magic Canvas — Free Online Drawing Game">
+    <meta name="twitter:description" content="Paint with magical brushes and sparkles! Free drawing game for kids.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎨</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/magic-canvas/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=7">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Magic Canvas","description":"Paint, draw, and create stunning artwork with magical tools! A free online drawing game for kids with rainbow brushes, sparkles, and glow effects.","url":"https://hritihub.uk/games/magic-canvas/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/magic-canvas/css/magic-canvas.css?v=7">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="magic-canvas-page">
+
+    <!-- ===== HUD ===== -->
+    <header id="mc-hud">
+        <div class="mc-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Magic Canvas</span>
+            </nav>
+        </div>
+        <div class="mc-hud-right">
+            <span class="mc-score-display">🎨 <span id="mc-score">0</span></span>
+            <button class="hud-btn mute-btn" id="mc-mute-btn" title="Toggle sound">🔊</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="mc-game-area">
+        <div class="mc-canvas-wrapper" id="mc-canvas-wrapper">
+            <canvas id="mc-canvas" width="500" height="500"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="mc-overlay" id="mc-start-overlay">
+                <div class="mc-overlay-content">
+                    <div class="mc-overlay-icon">🎨</div>
+                    <div class="mc-overlay-title">Magic Canvas</div>
+                    <div class="mc-overlay-sub">Pick a brush, choose your colors, and create magical art! ✨</div>
+                    <button class="mc-btn" id="mc-start-btn">Start Drawing 🖌️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="mc-toolbar" id="mc-toolbar">
+            <!-- Brush Tools -->
+            <div class="mc-tool-group">
+                <button class="mc-tool-btn active" data-tool="pen" title="Pen">✏️</button>
+                <button class="mc-tool-btn" data-tool="rainbow" title="Rainbow">🌈</button>
+                <button class="mc-tool-btn" data-tool="sparkle" title="Sparkle">✨</button>
+                <button class="mc-tool-btn" data-tool="glow" title="Glow">💡</button>
+                <button class="mc-tool-btn" data-tool="stars" title="Stars">⭐</button>
+                <button class="mc-tool-btn" data-tool="eraser" title="Eraser">🧹</button>
+            </div>
+
+            <div class="mc-separator"></div>
+
+            <!-- Colors -->
+            <div class="mc-colors" id="mc-colors"></div>
+
+            <div class="mc-separator"></div>
+
+            <!-- Brush Size -->
+            <div class="mc-size-group">
+                <button class="mc-size-btn active" data-size="3">S</button>
+                <button class="mc-size-btn" data-size="6">M</button>
+                <button class="mc-size-btn" data-size="12">L</button>
+            </div>
+
+            <div class="mc-separator"></div>
+
+            <!-- Actions -->
+            <button class="mc-undo-btn mc-action-btn" id="mc-undo-btn">↩ Undo</button>
+            <button class="mc-clear-btn mc-action-btn" id="mc-clear-btn">🗑️ Clear</button>
+            <button class="mc-save-btn mc-action-btn" id="mc-save-btn">💾 Save</button>
+        </div>
+
+        <div class="mc-stats">Masterpieces: <span id="mc-score-bottom">0</span></div>
+    </section>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="mc-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Top Artists</span>
+            <button class="share-btn" id="mc-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-mc-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and create art to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/magic-canvas/js/game.js?v=7"></script>
+    <script>document.body.classList.add('loaded')</script>
+</body>
+</html>

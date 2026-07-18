@@ -1,0 +1,271 @@
+/* ============================================
+   MAGIC CANVAS — Stylesheet
+   ============================================ */
+
+/* ----- Page Background ----- */
+.magic-canvas-page {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Fredoka', 'Segoe UI', system-ui, sans-serif;
+    padding-top: 56px;
+}
+
+/* ----- HUD ----- */
+#mc-hud {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    margin: 8px auto 4px;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.mc-hud-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.mc-hud-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.mc-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+}
+.mc-score-display {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+}
+
+/* ----- Game Area ----- */
+#mc-game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 540px;
+    margin-top: 4px;
+}
+.mc-canvas-wrapper {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255,255,255,0.08);
+}
+#mc-canvas {
+    display: block;
+    background: #fff;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+/* ----- Toolbar ----- */
+.mc-toolbar {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    margin-top: 6px;
+    justify-content: center;
+}
+.mc-tool-group {
+    display: flex;
+    gap: 4px;
+}
+.mc-tool-btn {
+    width: 36px;
+    height: 36px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+}
+.mc-tool-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+.mc-tool-btn.active {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255,255,255,0.1);
+}
+.mc-separator {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,0.08);
+    margin: 0 2px;
+}
+
+/* ---- Color Palette ----- */
+.mc-colors {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.mc-color-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+.mc-color-swatch:hover {
+    transform: scale(1.2);
+}
+.mc-color-swatch.active {
+    border-color: #fff;
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+/* ----- Brush Size ----- */
+.mc-size-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.mc-size-label {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.35);
+    font-weight: 600;
+}
+.mc-size-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: inherit;
+}
+.mc-size-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.mc-size-btn.active {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* ----- Action Buttons ----- */
+.mc-action-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.mc-save-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: #fff;
+}
+.mc-save-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(46,204,113,0.3); }
+.mc-clear-btn {
+    background: rgba(231,76,60,0.15);
+    color: #e74c3c;
+}
+.mc-clear-btn:hover { background: rgba(231,76,60,0.25); }
+.mc-undo-btn {
+    background: rgba(52,152,219,0.15);
+    color: #3498db;
+}
+.mc-undo-btn:hover { background: rgba(52,152,219,0.25); }
+
+/* ----- Drawing Stats ----- */
+.mc-stats {
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* ----- Overlay ----- */
+.mc-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: opacity 0.3s;
+}
+.mc-overlay.hidden { opacity: 0; pointer-events: none; }
+.mc-overlay-content {
+    text-align: center;
+    padding: 30px;
+}
+.mc-overlay-icon { font-size: 3rem; margin-bottom: 8px; }
+.mc-overlay-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.mc-overlay-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    margin: 4px 0 16px;
+}
+.mc-btn {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.mc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(155,89,182,0.4);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 480px) {
+    .mc-tool-btn { width: 32px; height: 32px; font-size: 0.95rem; }
+    .mc-color-swatch { width: 20px; height: 20px; }
+    .mc-title { font-size: 0.85rem; }
+}
