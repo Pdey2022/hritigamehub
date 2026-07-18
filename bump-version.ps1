@@ -29,14 +29,16 @@ $htmlFiles = Get-ChildItem -Path $scriptPath -Recurse -Filter "*.html"
 if (Test-Path $versionFile) {
     $config = Get-Content $versionFile | ConvertFrom-Json
     $currentVersion = $config.version
-} else {
+}
+else {
     $currentVersion = 1
 }
 
 # Calculate new version
 if ($Version -gt 0) {
     $newVersion = $Version
-} else {
+}
+else {
     $newVersion = $currentVersion + 1
 }
 
@@ -64,4 +66,4 @@ $config | ConvertTo-Json | Set-Content $versionFile
 Write-Host ""
 Write-Host "✅ Done! Updated $count file(s) to v$newVersion" -ForegroundColor Green
 Write-Host ""
-Write-Host "💡 Next step: git add . && git commit -m ""🔧 Bump cache version to v$newVersion"" && git push"
+Write-Host "💡 Next step: git add . ; git commit -m ""🔧 Bump cache version to v$newVersion"" ; git push"

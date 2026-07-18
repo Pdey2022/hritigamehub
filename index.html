@@ -10,11 +10,40 @@
     <meta property="og:description" content="A collection of fun, cozy games made with love!">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌟</text></svg>">
-    <link rel="stylesheet" href="/assets/css/style.css?v=2">
+    <link rel="stylesheet" href="/assets/css/style.css?v=3">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- AdSense placeholder (hidden) -->
     <meta name="google-adsense-account" content="ca-pub-xxxxxxxxxxxxxxxx">
+
+    <!-- Google Search Console verification -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
+
+    <!-- Schema.org structured data (SEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Hriti's Game Hub",
+        "description": "A collection of fun, cozy free online games for kids. Play Penguin Paradise, Space Blaster, Bubble Pop and more!",
+        "url": "https://hritihub.uk/",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {"@type":"VideoGame","position":1,"name":"Penguin Paradise","url":"https://hritihub.uk/games/penguin-paradise/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":2,"name":"Bubble Pop","url":"https://hritihub.uk/games/bubble-pop/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":3,"name":"Memory Match","url":"https://hritihub.uk/games/memory-match/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":4,"name":"Dart Dash","url":"https://hritihub.uk/games/dart-dash/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":5,"name":"Word Wizard","url":"https://hritihub.uk/games/word-wizard/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":6,"name":"Puzzle Path","url":"https://hritihub.uk/games/puzzle-path/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":7,"name":"Pet Rescue","url":"https://hritihub.uk/games/pet-rescue/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":8,"name":"Space Blaster","url":"https://hritihub.uk/games/space-blaster/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":9,"name":"Race Rush","url":"https://hritihub.uk/games/race-rush/","applicationCategory":"Game","operatingSystem":"Web Browser"},
+                {"@type":"VideoGame","position":10,"name":"Farm Friends","url":"https://hritihub.uk/games/farm-friends/","applicationCategory":"Game","operatingSystem":"Web Browser"}
+            ]
+        }
+    }
+    </script>
 </head>
 <body class="landing-page">
 
@@ -320,13 +349,86 @@
     <!-- ===== ADSENSE BANNER (hidden) ===== -->
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
 
+    <!-- ===== RECENTLY PLAYED ===== -->
+    <section class="recent-section" id="recent-section" style="display:none">
+        <h2 class="recent-title">🕐 Recently Played</h2>
+        <div class="recent-grid" id="recent-grid"></div>
+    </section>
+
     <!-- ===== SCROLL TO TOP ===== -->
     <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to top">↑</button>
 
     <!-- ===== FOOTER ===== -->
     <footer class="landing-footer">
         <p>Made with 💕 for Hriti &nbsp;|&nbsp; 🌟 v1.0</p>
+        <p class="footer-links">
+            <a href="/">🏠 Home</a>
+            <span class="footer-sep">·</span>
+            <a href="/sitemap.xml">📄 Sitemap</a>
+            <span class="footer-sep">·</span>
+            <span class="footer-game-count">🎮 <span id="game-count">11</span> free online games for kids</span>
+        </p>
     </footer>
+
+<script>
+    // ===== RECENTLY PLAYED & FAVORITES =====
+    (function() {
+        const GAMES = [
+            { id:'penguin-paradise', name:'Penguin Paradise', icon:'🐧', url:'/games/penguin-paradise/' },
+            { id:'bubble-pop', name:'Bubble Pop', icon:'🌊', url:'/games/bubble-pop/' },
+            { id:'memory-match', name:'Memory Match', icon:'🧩', url:'/games/memory-match/' },
+            { id:'dart-dash', name:'Dart Dash', icon:'🎯', url:'/games/dart-dash/' },
+            { id:'word-wizard', name:'Word Wizard', icon:'📖', url:'/games/word-wizard/' },
+            { id:'puzzle-path', name:'Puzzle Path', icon:'🗺️', url:'/games/puzzle-path/' },
+            { id:'pet-rescue', name:'Pet Rescue', icon:'🐾', url:'/games/pet-rescue/' },
+            { id:'space-blaster', name:'Space Blaster', icon:'🚀', url:'/games/space-blaster/' },
+            { id:'race-rush', name:'Race Rush', icon:'🏎️', url:'/games/race-rush/' },
+            { id:'farm-friends', name:'Farm Friends', icon:'🌾', url:'/games/farm-friends/' },
+            { id:'ninja-jump', name:'Ninja Jump', icon:'🥷', url:'/games/ninja-jump/' }
+        ];
+
+        // Track when a game is played (add to recently played)
+        function trackPlay(gameId) {
+            let recent = JSON.parse(localStorage.getItem('hub_recent') || '[]');
+            recent = recent.filter(id => id !== gameId);
+            recent.unshift(gameId);
+            if (recent.length > 5) recent = recent.slice(0, 5);
+            localStorage.setItem('hub_recent', JSON.stringify(recent));
+            renderRecent();
+        }
+
+        // Render recently played section
+        function renderRecent() {
+            const recent = JSON.parse(localStorage.getItem('hub_recent') || '[]');
+            const section = document.getElementById('recent-section');
+            const grid = document.getElementById('recent-grid');
+            if (!recent.length || !section) return;
+            section.style.display = '';
+            grid.innerHTML = recent.map(id => {
+                const game = GAMES.find(g => g.id === id);
+                if (!game) return '';
+                return '<a href="' + game.url + '" class="recent-card" onclick="event.stopPropagation(); window.trackPlay(\'' + game.id + '\')">' +
+                    '<span class="recent-icon">' + game.icon + '</span>' +
+                    '<span class="recent-name">' + game.name + '</span>' +
+                    '</a>';
+            }).join('');
+        }
+
+        // Expose for game links to call
+        window.trackPlay = trackPlay;
+
+        // Track clicks on game card links
+        document.addEventListener('click', function(e) {
+            const card = e.target.closest('.game-card');
+            if (card && card.href) {
+                const gameId = card.href.split('/games/')[1]?.split('/')[0];
+                if (gameId) trackPlay(gameId);
+            }
+        });
+
+        renderRecent();
+    })();
+</script>
 
 <script>
     // Scroll to top button

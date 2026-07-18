@@ -1,0 +1,9 @@
+# Allow all crawlers full access
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hritihub.uk/sitemap.xml
+
+# No need to crawl 404 page
+Disallow: /404.html

@@ -1461,6 +1461,68 @@ body.night-mode .scroll-top-btn {
     max-width: 900px;
 }
 
+.landing-footer .footer-links {
+    margin-top: 6px;
+    font-size: 0.75rem;
+}
+.landing-footer .footer-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.landing-footer .footer-links a:hover {
+    color: rgba(255,255,255,0.8);
+}
+.landing-footer .footer-sep {
+    margin: 0 6px;
+    color: rgba(255,255,255,0.2);
+}
+.footer-game-count {
+    color: rgba(255,255,255,0.35);
+}
+
+/* ===== Recently Played ===== */
+.recent-section {
+    width: 100%;
+    max-width: 960px;
+    padding: 0 20px 10px;
+    margin: 0 auto;
+}
+.recent-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 10px;
+    padding: 0 4px;
+}
+.recent-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.recent-card {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.recent-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-1px);
+}
+.recent-icon { font-size: 1.1rem; }
+.recent-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+}
+
 /* ===== BUBBLE POP ===== */
 body.bubble-pop-page {
     background: linear-gradient(135deg, #0c3b5c 0%, #1a6b9a 50%, #2980b9 100%);
