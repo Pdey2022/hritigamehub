@@ -1,12 +1,114 @@
-# 🌟 Hrit's Game Hub
+# 🌟 Hriti's Game Hub
 
-A collection of fun, cozy games — made with 💕 for Hriti.
+A collection of fun, cozy games built for Hriti. Hosted at **[hritihub.uk](https://hritihub.uk)** via GitHub Pages + Cloudflare.
 
-**[Play Now →](games/penguin-paradise/index.html)**
+## 🎮 Current Games (8/13 playable)
 
----
+| # | Game | Status | Tags |
+|---|------|--------|------|
+| 1 | 🐧 **Penguin Paradise** | ✅ Live | 🐟 Fishing, 🐾 Pet Care, 🛒 Shop |
+| 2 | 🌊 **Bubble Pop** | ✅ Live | 💥 Arcade, 🎯 Reflex, 🫧 Bubbles |
+| 3 | 🧩 **Memory Match** | ✅ Live | 🧠 Puzzle, 🎴 Cards, 🃏 3D Flip |
+| 4 | 🎯 **Dart Dash** | ✅ Live | 🎯 Precision, ⚡ Speed, 🎈 Balloons |
+| 5 | 📖 **Word Wizard** | ✅ Live | 📚 Word, 🧠 Brain, 🔤 Unscramble |
+| 6 | 🥷 **Ninja Jump** | ✅ Live (parked) | 🎮 Platform, ⚡ Action |
+| 7 | 🗺️ **Puzzle Path** | ✅ Live | 🧩 Puzzle, 🗺️ Maze |
+| 8 | 🐾 **Pet Rescue** | ✅ Live | 🐾 Rescue, 💕 Care |
+| 9-13 | 🚀 Space Blaster, 🏎️ Race Rush, 🌾 Farm Friends, 🐙 Ocean Explorer | ⬜ Coming Soon | — |
 
 ## 📁 Project Structure
+
+```
+HritiGame/
+├── index.html              # Landing page (game hub with carousel + search)
+├── 404.html                # Custom 404 page
+├── README.md               # ← You are here
+├── CNAME                   # Custom domain: hritihub.uk
+├── assets/css/style.css    # Shared styles (base, landing, hud-btn, animations)
+└── games/
+    ├── penguin-paradise/   # Pet + fishing (3 JS files: main, minigame, sanctuary)
+    ├── bubble-pop/         # Arcade bubble popper
+    ├── memory-match/       # Card matching (3D flip)
+    ├── dart-dash/          # Target practice
+    ├── word-wizard/        # Word unscramble
+    ├── ninja-jump/         # Vertical platformer (PARKED)
+    ├── puzzle-path/        # Maze navigation
+    └── pet-rescue/         # Animal rescue clicker
+```
+
+Each game has: `index.html` + `css/game-name.css` (separate) + `js/game.js`
+
+## 🏗️ Architecture
+
+- **Vanilla JS (ES6)** — No frameworks. All games use Canvas 2D API.
+- **Web Audio API** — All sounds generated programmatically (no audio files).
+- **CSS3** — Animations, Flexbox, Grid, backdrop-filter (frosted glass), 3D transforms.
+- **Hosting** — GitHub Pages + Cloudflare (DNS, CDN, SSL).
+
+## ⚠️ CRITICAL: New Game Checklist
+
+### 1. Separate CSS file ❗
+Each game gets its own CSS at `games/game-name/css/game-name.css`.
+**DO NOT** add game styles to `assets/css/style.css` — cache conflicts!
+
+### 2. `body.loaded` script ❗❗
+The shared CSS has `body { opacity: 0 }` — every page starts invisible!
+**Every game MUST include** right before `</body>`:
+```html
+<script src="/games/game-name/js/game.js"></script>
+<script>document.body.classList.add('loaded')</script>  <!-- ← CRITICAL -->
+```
+
+### 3. Standard game template
+```html
+<head>...</head>
+<body class="game-name-page">
+    <header id="xx-hud">...</header>
+    <section id="xx-game-area">
+        <div class="xx-canvas-wrapper">
+            <canvas id="xx-canvas" width="500" height="550"></canvas>
+            <!-- Start overlay -->
+            <!-- Game over overlay -->
+            <!-- Level complete overlay -->
+            <!-- Won overlay -->
+        </div>
+        <div id="xx-bottom-hud">...</div>
+    </section>
+    <script src="/games/game-name/js/game.js"></script>
+    <script>document.body.classList.add('loaded')</script>
+</body>
+```
+
+### 4. Landing page update
+Replace "Coming Soon" card in `index.html` with an `<a href="/games/game-name/" class="game-card">`.
+
+### 5. localStorage keys
+Use `{game}_best` for high score and `{game}_muted` for mute state.
+
+## 🐛 Known Bugs (Avoid These)
+
+| Bug | Symptom | Fix |
+|-----|---------|-----|
+| Missing `body.loaded` | Page invisible (blank/gradient only) | Add inline script before `</body>` |
+| Game styles in shared CSS | Cache serves old CSS without new styles | Use separate CSS per game |
+| `state.stars` as array+counter | `stars.find is not a function` | `stars: []` (array) + `starCount: 0` (number) |
+| `gameLoop()` not restarted | Next level freezes | Call `gameLoop()` in `nextLevel()` |
+
+## 🚀 Quick Deploy
+
+```bash
+python -m http.server 8000      # Test locally → http://localhost:8000
+git add -A
+git commit -m "description"
+git push                         # Auto-deploys to GitHub Pages
+# Then: Purge Cloudflare cache → hard refresh browser
+```
+
+## 🌐 Domain
+
+- **Domain**: hritihub.uk (via Cloudflare)
+- **DNS**: CNAME @ and www → pdey2022.github.io
+- **CNAME file**: Contains `hritihub.uk`
 
 ```
 Hrit's Game Hub/
