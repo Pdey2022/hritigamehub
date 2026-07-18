@@ -1211,10 +1211,8 @@ function bindEvents() {
         state.shooting = false;
     });
 
-    // Touch support
-    wrapper.addEventListener('touchstart', (e) => {
-        // Don't block touches on overlays, buttons, links, or inputs — let them fire click events
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    // Touch support (on canvas — overlay buttons above canvas are unaffected)
+    canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
         const rect = canvas.getBoundingClientRect();
@@ -1228,8 +1226,7 @@ function bindEvents() {
         }
     }, { passive: false });
 
-    wrapper.addEventListener('touchmove', (e) => {
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    canvas.addEventListener('touchmove', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
         const rect = canvas.getBoundingClientRect();
@@ -1239,8 +1236,7 @@ function bindEvents() {
         state.mouseY = (touch.clientY - rect.top) * scaleY;
     }, { passive: false });
 
-    wrapper.addEventListener('touchend', (e) => {
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    canvas.addEventListener('touchend', (e) => {
         e.preventDefault();
         state.shooting = false;
     }, { passive: false });

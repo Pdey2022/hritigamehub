@@ -876,14 +876,11 @@ function bindEvents() {
         if (e.key === 'ArrowUp' || e.key === 'w') state.keys.up = false;
     });
 
-    // Touch controls
-    const wrapper = dom.wrapper;
+    // Touch controls (on canvas — overlay buttons above canvas are unaffected)
     let touchStartX = 0;
     let touchCurrentX = 0;
 
-    wrapper.addEventListener('touchstart', (e) => {
-        // Don't block touches on overlays, buttons, links, or inputs — let them fire click events
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    canvas.addEventListener('touchstart', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
         touchStartX = touch.clientX;
@@ -894,8 +891,7 @@ function bindEvents() {
         if (touchY < 0.4) state.keys.up = true;
     }, { passive: false });
 
-    wrapper.addEventListener('touchmove', (e) => {
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    canvas.addEventListener('touchmove', (e) => {
         e.preventDefault();
         const touch = e.touches[0];
         touchCurrentX = touch.clientX;
@@ -906,8 +902,7 @@ function bindEvents() {
         else { state.keys.left = false; state.keys.right = false; }
     }, { passive: false });
 
-    wrapper.addEventListener('touchend', (e) => {
-        if (e.target.closest('.sb-overlay, .rr-overlay, .pp-overlay, button, a, input, select, textarea')) return;
+    canvas.addEventListener('touchend', (e) => {
         e.preventDefault();
         state.keys.left = false;
         state.keys.right = false;

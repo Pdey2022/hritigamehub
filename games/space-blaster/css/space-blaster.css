@@ -84,9 +84,7 @@ body.space-blaster-page {
     height: 600px;
 }
 
-.sb-canvas-wrapper {
-    touch-action: manipulation;
-}
+
 
 /* Overlays */
 .sb-overlay {
