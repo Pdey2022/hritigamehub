@@ -1,0 +1,222 @@
+[
+  {
+    "id": "penguin-paradise",
+    "title": "Penguin Paradise",
+    "icon": "🐧",
+    "desc": "Raise a virtual penguin, catch fish, unlock magical sanctuaries, and collect accessories!",
+    "tags": ["🐟 Fishing", "🐾 Pet Care", "🛒 Shop"],
+    "stats": ["⭐ 3 Sanctuaries", "🎀 9 Accessories", "🏅 10 Achievements"],
+    "url": "/games/penguin-paradise/",
+    "status": "live",
+    "featured": true
+  },
+  {
+    "id": "bubble-pop",
+    "title": "Bubble Pop",
+    "icon": "🌊",
+    "desc": "Pop colorful bubbles, beat your high score, climb the levels, and collect power-ups!",
+    "tags": ["💥 Arcade", "🎯 Reflex", "🆙 10 Levels"],
+    "stats": ["🫧 7 Bubble Types", "❄️ Freeze Power", "🔥 Combo System"],
+    "url": "/games/bubble-pop/",
+    "status": "live"
+  },
+  {
+    "id": "memory-match",
+    "title": "Memory Match",
+    "icon": "🧩",
+    "desc": "Flip cards, find matching pairs, and climb through levels with increasing difficulty!",
+    "tags": ["🧠 Puzzle", "🎴 Cards", "🆙 8+ Levels"],
+    "stats": ["🃏 3D Card Flip", "🔥 Combo System", "🎨 3 Themes"],
+    "url": "/games/memory-match/",
+    "status": "live"
+  },
+  {
+    "id": "dart-dash",
+    "title": "Dart Dash",
+    "icon": "🎯",
+    "desc": "Test your aim! Hit moving targets, pop balloons, and climb the levels!",
+    "tags": ["🎯 Precision", "⚡ Speed", "🆙 10 Levels"],
+    "stats": ["🎯 Moving Targets", "🎈 Bonus Balloons", "🔥 Streak System"],
+    "url": "/games/dart-dash/",
+    "status": "live"
+  },
+  {
+    "id": "space-blaster",
+    "title": "Space Blaster",
+    "icon": "🚀",
+    "desc": "Blast through asteroid fields and alien ships in this cosmic shooter!",
+    "tags": ["👾 Arcade", "🚀 Space", "🆙 Endless Waves"],
+    "stats": ["👾 4 Enemy Types", "🔱 Power-ups", "👁️ Boss Fights"],
+    "url": "/games/space-blaster/",
+    "status": "live"
+  },
+  {
+    "id": "word-wizard",
+    "title": "Word Wizard",
+    "icon": "📖",
+    "desc": "Spell words, solve anagrams, and become a word wizard!",
+    "tags": ["📚 Word", "🧠 Brain", "🆙 10 Levels"],
+    "stats": ["🔤 Unscramble", "💡 Hint System", "🔥 Streak Bonus"],
+    "url": "/games/word-wizard/",
+    "status": "live"
+  },
+  {
+    "id": "race-rush",
+    "title": "Race Rush",
+    "icon": "🏎️",
+    "desc": "Race against the clock on twisting tracks with power-ups and shortcuts!",
+    "tags": ["🏁 Racing", "⚡ Speed", "🆙 Endless"],
+    "stats": ["🏎️ Top-Down Racer", "🪨 Dodge Traffic", "⚡ Power-ups"],
+    "url": "/games/race-rush/",
+    "status": "live"
+  },
+  {
+    "id": "farm-friends",
+    "title": "Farm Friends",
+    "icon": "🌾",
+    "desc": "Grow crops, raise animals, and build your dream farm!",
+    "tags": ["🌱 Farming", "🐄 Animals", "🆙 Relaxing"],
+    "stats": ["🥕 4 Crops", "🐔 3 Animals", "🌅 Day/Night"],
+    "url": "/games/farm-friends/",
+    "status": "live"
+  },
+  {
+    "id": "puzzle-path",
+    "title": "Puzzle Path",
+    "icon": "🗺️",
+    "desc": "Navigate mazes, solve puzzles, and find the hidden treasure!",
+    "tags": ["🧩 Puzzle", "🗺️ Maze", "🆙 10 Levels"],
+    "stats": ["🔀 Random Mazes", "⭐ Collect Stars", "💀 Dodge Obstacles"],
+    "url": "/games/puzzle-path/",
+    "status": "live"
+  },
+  {
+    "id": "pet-rescue",
+    "title": "Pet Rescue",
+    "icon": "🐾",
+    "desc": "Rescue adorable animals, heal them, and find them loving homes!",
+    "tags": ["🐾 Rescue", "💕 Care", "🆙 10 Levels"],
+    "stats": ["🐱 5 Animal Types", "🔥 Combo System", "⏱️ Timed Rounds"],
+    "url": "/games/pet-rescue/",
+    "status": "live"
+  },
+  {
+    "id": "ninja-jump",
+    "title": "Ninja Jump",
+    "icon": "🥷",
+    "desc": "Jump, dash, and flip through treacherous platforms as a ninja!",
+    "tags": ["🎮 Platform", "⚡ Action", "🆙 Endless"],
+    "stats": ["🥷 Vertical Climber", "⭐ Collect Stars", "🎨 3 Themes"],
+    "url": "/games/ninja-jump/",
+    "status": "live"
+  },
+  {
+    "id": "magic-canvas",
+    "title": "Magic Canvas",
+    "icon": "🎨",
+    "desc": "Paint over glowing orbs to collect them! Build combos, survive waves, and chase the high score in this glow chase game!",
+    "tags": ["✨ Arcade", "🎯 Reflex", "🆙 Wave Based"],
+    "stats": ["🌈 Glowing Orbs", "🔥 Combo System", "🏆 Leaderboard"],
+    "url": "/games/magic-canvas/",
+    "status": "live"
+  },
+  {
+    "id": "ocean-explorer",
+    "title": "Ocean Explorer",
+    "icon": "🐙",
+    "desc": "Dive into the deep sea, discover marine life, and build your aquarium!",
+    "tags": ["🌊 Ocean", "🐠 Discovery"],
+    "stats": ["🐟 Marine Life", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "chefs-kitchen",
+    "title": "Chef's Kitchen",
+    "icon": "👨‍🍳",
+    "desc": "Cook delicious meals, manage your restaurant, and become a master chef!",
+    "tags": ["🍳 Cooking", "💰 Management"],
+    "stats": ["🍝 Recipe Builder", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "dino-dig",
+    "title": "Dino Dig",
+    "icon": "🦕",
+    "desc": "Excavate fossils, assemble dinosaur skeletons, and build your museum!",
+    "tags": ["🦴 Digging", "🧩 Puzzle"],
+    "stats": ["🦴 Fossil Hunting", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "super-builder",
+    "title": "Super Builder",
+    "icon": "🏗️",
+    "desc": "Design and build houses, towers, and cities block by block!",
+    "tags": ["🔨 Building", "🎨 Creative"],
+    "stats": ["🔧 Block Builder", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "math-games",
+    "title": "Math Games",
+    "icon": "🔢",
+    "desc": "Solve fun math challenges, beat the clock, and become a math whiz!",
+    "tags": ["🧮 Math", "🧠 Brain"],
+    "stats": ["➕ Add & Subtract", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "tic-tac-toe",
+    "title": "Tic Tac Toe",
+    "icon": "❌",
+    "desc": "Play the classic game of X and O against friends or the AI!",
+    "tags": ["🎮 Classic", "🤖 VS AI"],
+    "stats": ["❌ X vs O", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "snake",
+    "title": "Snake",
+    "icon": "🐍",
+    "desc": "Guide the snake to eat food, grow longer, and avoid crashing into walls!",
+    "tags": ["🎮 Classic", "⚡ Arcade"],
+    "stats": ["🐍 Growing Snake", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "flappy-bird",
+    "title": "Flappy Bird",
+    "icon": "🐦",
+    "desc": "Tap to fly through pipes and beat your high score in this addictive jumper!",
+    "tags": ["🎮 Classic", "⚡ Arcade"],
+    "stats": ["🐦 Tap to Fly", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "rock-paper-scissors",
+    "title": "Rock Paper Scissors",
+    "icon": "✂️",
+    "desc": "Challenge the computer in the classic hand game of strategy and luck!",
+    "tags": ["🎮 Classic", "🤖 VS AI"],
+    "stats": ["✊🖐️✌️ Choices", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "hangman",
+    "title": "Hangman",
+    "icon": "💀",
+    "desc": "Guess the hidden word letter by letter before the stick figure is complete!",
+    "tags": ["📚 Word", "🧠 Puzzle"],
+    "stats": ["🔤 Letter Guessing", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "simon-says",
+    "title": "Simon Says",
+    "icon": "🟢",
+    "desc": "Watch the pattern, repeat the sequence, and test your memory!",
+    "tags": ["🧠 Memory", "🎵 Pattern"],
+    "stats": ["🟢🔴🔵🟡 Colors", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  }
+]
