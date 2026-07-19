@@ -428,8 +428,9 @@
     "icon": "🔢",
     "desc": "Catch numbers in the right order and complete the sequence!",
     "tags": ["🧮 Math", "👾 Arcade"],
-    "stats": ["🔢 Sequences", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🔢 Number Order", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/number-run/",
+    "status": "live"
   },
   {
     "id": "fraction-fun",

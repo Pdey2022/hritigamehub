@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🔢 Number Run — Free Number Sequence Game for Kids | Play Online</title>
+    <meta name="description" content="Play Number Run, a free number sequence game for kids! Tap numbers in order, complete rounds, and beat your high score. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#0a1a2e">
+    <meta property="og:title" content="🔢 Number Run — Free Online Game">
+    <meta property="og:description" content="Catch numbers in the right order and complete the sequence! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/number-run/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🔢 Number Run — Free Online Game">
+    <meta name="twitter:description" content="Free number sequencing game. Tap, order, score! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/number-run/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Number Run","description":"Catch numbers in the right order and complete the sequence in this fast-paced number game!","url":"https://hritihub.uk/games/number-run/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/number-run/css/number-run.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="numberrun-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="nr-hud">
+        <div class="nr-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Number Run</span>
+            </nav>
+            <span class="nr-title">🔢 Number Run</span>
+        </div>
+        <div class="nr-hud-right">
+            <span class="nr-next-display" id="nr-next">Next: 1</span>
+            <span class="nr-timer-display" id="nr-timer">45s</span>
+            <span class="nr-score-display">⭐ <span id="nr-score">0</span></span>
+            <button class="hud-btn mute-btn" id="nr-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn nr-reset-btn" id="nr-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="nr-game-area">
+        <div class="nr-canvas-wrapper" id="nr-canvas-wrapper">
+            <canvas id="nr-canvas" width="500" height="500"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="nr-overlay" id="nr-start-overlay">
+                <div class="nr-overlay-content">
+                    <div class="nr-overlay-icon">🔢</div>
+                    <div class="nr-overlay-title">Number Run!</div>
+                    <div class="nr-overlay-sub">Tap the numbers in order: 1, 2, 3...<br>Complete rounds before time runs out!</div>
+                    <button class="nr-btn" id="nr-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="nr-overlay hidden" id="nr-gameover-overlay">
+                <div class="nr-overlay-content">
+                    <div class="nr-overlay-icon">🏆</div>
+                    <div class="nr-overlay-title">Time's Up!</div>
+                    <div class="nr-overlay-sub" id="nr-gameover-stats">Score: 0</div>
+                    <button class="nr-btn" id="nr-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="nr-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="nr-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-nr-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/number-run/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>
