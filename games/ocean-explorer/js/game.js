@@ -96,7 +96,13 @@ const state = {
     spawnInterval: 120,
     animFrame: null,
     lastTime: 0,
-    timerTick: 0
+    timerTick: 0,
+    combo: 0,
+    comboTimer: 0,
+    maxFish: 6,
+    particles: [],
+    goldenFish: null,
+    timeBonus: 0
 };
 
 // ===== FISH ENTITY =====
@@ -105,11 +111,23 @@ function createFish() {
     return {
         ...type,
         x: W + 30,
-        y: 30 + Math.random() * (H - 80),
+        y: 30 + Math.random() * (H - 100),
         size: type.minSize + Math.random() * 8,
-        vy: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.4,
         bob: Math.random() * Math.PI * 2,
         caught: false
+    };
+}
+
+function spawnGoldenFish() {
+    state.goldenFish = {
+        x: W + 20,
+        y: 40 + Math.random() * (H - 100),
+        size: 26,
+        speed: 1.0 + Math.random() * 0.5,
+        bob: 0,
+        points: 100,
+        timer: 180 // frames before it disappears
     };
 }
 
@@ -135,12 +153,25 @@ function gameLoop(timestamp) {
 
     // Spawn fish
     state.spawnTimer += dt;
-    const spawnRate = Math.max(60, state.spawnInterval - state.score * 0.5);
-    if (state.fish.length < 10) {
+    const spawnRate = Math.max(80, state.spawnInterval - state.score * 0.3);
+    if (state.fish.length < state.maxFish) {
         while (state.spawnTimer >= spawnRate) {
             state.spawnTimer -= spawnRate;
             state.fish.push(createFish());
         }
+    }
+
+    // Combo timer
+    if (state.combo > 0) {
+        state.comboTimer -= dt;
+        if (state.comboTimer <= 0) {
+            state.combo = 0;
+        }
+    }
+
+    // Spawn golden fish randomly
+    if (!state.goldenFish && Math.random() < 0.003) {
+        spawnGoldenFish();
     }
 
     // Update fish
@@ -156,133 +187,173 @@ function gameLoop(timestamp) {
         }
     }
 
+    // Update golden fish
+    if (state.goldenFish) {
+        state.goldenFish.x -= state.goldenFish.speed * (dt / 16);
+        state.goldenFish.bob += 0.04;
+        state.goldenFish.y += Math.sin(state.goldenFish.bob) * 0.5;
+        state.goldenFish.timer--;
+        if (state.goldenFish.x < -40 || state.goldenFish.timer <= 0) {
+            state.goldenFish = null;
+        }
+    }
+
+    // Update particles
+    for (let i = state.particles.length - 1; i >= 0; i--) {
+        const p = state.particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.05;
+        p.life--;
+        if (p.life <= 0) state.particles.splice(i, 1);
+    }
+
     // Draw
     draw();
 
     state.animFrame = requestAnimationFrame(gameLoop);
 }
 
-// ===== DRAW =====
+// ===== DRAW (optimized) =====
+const bgGrad = (function() {
+    const g = ctx.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, '#00284a');
+    g.addColorStop(0.5, '#001a33');
+    g.addColorStop(1, '#000d1a');
+    return g;
+})();
+
+let decorTime = 0;
+
 function draw() {
     ctx.clearRect(0, 0, W, H);
+    decorTime = Date.now();
 
-    // Ocean background gradient
-    const grad = ctx.createLinearGradient(0, 0, 0, H);
-    grad.addColorStop(0, '#00284a');
-    grad.addColorStop(0.5, '#001a33');
-    grad.addColorStop(1, '#000d1a');
-    ctx.fillStyle = grad;
+    // Background
+    ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // Light rays
-    for (let i = 0; i < 5; i++) {
-        const lx = 60 + i * 100 + Math.sin(Date.now() / 3000 + i) * 20;
-        ctx.fillStyle = 'rgba(56, 189, 248, 0.03)';
+    // Light rays (precomputed)
+    const t = decorTime / 3000;
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.025)';
+    for (let i = 0; i < 4; i++) {
+        const lx = 80 + i * 110 + Math.sin(t + i) * 20;
         ctx.beginPath();
         ctx.moveTo(lx, 0);
-        ctx.lineTo(lx - 15, H);
-        ctx.lineTo(lx + 15, H);
+        ctx.lineTo(lx - 12, H);
+        ctx.lineTo(lx + 12, H);
         ctx.closePath();
         ctx.fill();
     }
 
     // Sea floor
     ctx.fillStyle = '#001a2e';
-    ctx.fillRect(0, H - 20, W, 20);
-    // Sand
-    ctx.fillStyle = '#1a3a2e';
-    ctx.beginPath();
-    for (let x = 0; x <= W; x += 20) {
-        const sy = H - 20 + Math.sin(x * 0.05) * 3;
-        x === 0 ? ctx.moveTo(x, sy) : ctx.lineTo(x, sy);
-    }
-    ctx.lineTo(W, H);
-    ctx.lineTo(0, H);
-    ctx.closePath();
-    ctx.fill();
+    ctx.fillRect(0, H - 18, W, 18);
 
-    // Bubbles (decorative)
-    for (let i = 0; i < 8; i++) {
-        const bx = 30 + i * 60 + Math.sin(Date.now() / 2000 + i * 2) * 10;
-        const by = H - 30 - i * 50 + Math.sin(Date.now() / 1500 + i) * 5;
-        ctx.fillStyle = 'rgba(56, 189, 248, 0.06)';
+    // Bubbles (simplified)
+    const bt = decorTime / 2000;
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.05)';
+    for (let i = 0; i < 5; i++) {
+        const bx = 40 + i * 90 + Math.sin(bt + i * 2) * 8;
+        const by = H - 25 - i * 55 + Math.sin(decorTime / 1500 + i) * 4;
         ctx.beginPath();
-        ctx.arc(bx, by, 3 + Math.sin(Date.now() / 1000 + i) * 1, 0, Math.PI * 2);
+        ctx.arc(bx, by, 2.5 + Math.sin(decorTime / 1000 + i) * 0.8, 0, Math.PI * 2);
         ctx.fill();
     }
 
-    // Draw fish
+    // Golden fish (drawn first so it's behind regular fish)
+    if (state.goldenFish) {
+        const g = state.goldenFish;
+        const pulse = 1 + Math.sin(decorTime / 200) * 0.1;
+        const r = g.size * pulse;
+        // Glow
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.15)';
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, r * 1.6, 0, Math.PI * 2);
+        ctx.fill();
+        // Body
+        ctx.fillStyle = '#fbbf24';
+        ctx.beginPath();
+        ctx.ellipse(g.x, g.y, r * 0.9, r * 0.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        // Tail
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.moveTo(g.x - r * 0.8, g.y);
+        ctx.lineTo(g.x - r * 1.3, g.y - r * 0.4);
+        ctx.lineTo(g.x - r * 1.3, g.y + r * 0.4);
+        ctx.closePath();
+        ctx.fill();
+        // Emoji
+        ctx.font = (r * 0.8) + 'px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('⭐', g.x, g.y);
+    }
+
+    // Draw fish (simplified — no save/restore per fish)
     for (const f of state.fish) {
         const fx = f.x;
         const fy = f.y;
+        const r = f.size;
 
-        // Body (oval)
-        ctx.save();
-        ctx.translate(fx, fy);
-
-        // Shadow
-        ctx.fillStyle = 'rgba(0,0,0,0.2)';
-        ctx.beginPath();
-        ctx.ellipse(2, 3, f.size * 0.9 + 2, f.size * 0.5 + 2, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Fish body
+        // Body
         ctx.fillStyle = f.color;
         ctx.beginPath();
-        ctx.ellipse(0, 0, f.size * 0.9, f.size * 0.5, 0, 0, Math.PI * 2);
+        ctx.ellipse(fx, fy, r * 0.9, r * 0.5, 0, 0, Math.PI * 2);
         ctx.fill();
 
         // Tail
-        ctx.fillStyle = f.color;
         ctx.beginPath();
-        ctx.moveTo(-f.size * 0.8, 0);
-        ctx.lineTo(-f.size * 1.3, -f.size * 0.4);
-        ctx.lineTo(-f.size * 1.3, f.size * 0.4);
+        ctx.moveTo(fx - r * 0.8, fy);
+        ctx.lineTo(fx - r * 1.2, fy - r * 0.35);
+        ctx.lineTo(fx - r * 1.2, fy + r * 0.35);
         ctx.closePath();
         ctx.fill();
 
-        // Dorsal fin
-        ctx.fillStyle = f.color;
-        ctx.globalAlpha = 0.7;
-        ctx.beginPath();
-        ctx.moveTo(-f.size * 0.2, -f.size * 0.4);
-        ctx.lineTo(f.size * 0.1, -f.size * 0.7);
-        ctx.lineTo(f.size * 0.4, -f.size * 0.4);
-        ctx.closePath();
-        ctx.fill();
-        ctx.globalAlpha = 1;
-
-        // Eye
-        ctx.fillStyle = 'white';
-        ctx.beginPath();
-        ctx.arc(f.size * 0.35, -f.size * 0.1, f.size * 0.15, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = '#111';
-        ctx.beginPath();
-        ctx.arc(f.size * 0.4, -f.size * 0.1, f.size * 0.07, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Emoji overlay
-        ctx.font = (f.size * 0.7) + 'px sans-serif';
+        // Emoji
+        ctx.font = (r * 0.8) + 'px sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(f.emoji, 0, 0);
-
-        ctx.restore();
+        ctx.fillText(f.emoji, fx, fy);
     }
 
-    // HUD on canvas - collected
-    ctx.fillStyle = 'rgba(0,0,0,0.4)';
-    ctx.roundRect(8, 6, 100, 22, 8);
-    ctx.fill();
-    ctx.fillStyle = '#ffd700';
-    ctx.font = 'bold 12px sans-serif';
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('⭐ ' + state.score, 14, 17);
+    // Particles
+    for (const p of state.particles) {
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.life / 20;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    // Combo display
+    if (state.combo > 1) {
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
+        ctx.fillRect(8, 30, 80, 22);
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('🔥 x' + state.combo, 14, 41);
+    }
 }
 
 // ===== HANDLE CLICK/TAP =====
+function spawnParticles(x, y, color, count) {
+    for (let i = 0; i < count; i++) {
+        state.particles.push({
+            x, y,
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4 - 1,
+            size: 2 + Math.random() * 3,
+            color,
+            life: 15 + Math.random() * 10
+        });
+    }
+}
+
 function handleClick(clientX, clientY) {
     if (!state.running) return;
 
@@ -291,6 +362,26 @@ function handleClick(clientX, clientY) {
     const scaleY = H / rect.height;
     const mx = (clientX - rect.left) * scaleX;
     const my = (clientY - rect.top) * scaleY;
+
+    // Check golden fish first
+    if (state.goldenFish) {
+        const g = state.goldenFish;
+        const r = g.size * 1.2;
+        if (mx >= g.x - r && mx <= g.x + r && my >= g.y - r && my <= g.y + r) {
+            state.score += g.points;
+            state.timeLeft = Math.min(state.timeLeft + 5, 45);
+            state.goldenFish = null;
+            spawnParticles(g.x, g.y, '#ffd700', 20);
+            playRare();
+            showFeed('⭐ Golden Fish! +100 & +5s!');
+            if (state.score > state.highScore) {
+                state.highScore = state.score;
+                localStorage.setItem('oe_high', state.highScore);
+            }
+            dom.score.textContent = state.score;
+            return;
+        }
+    }
 
     // Check fish (from topmost = last in array)
     for (let i = state.fish.length - 1; i >= 0; i--) {
@@ -301,7 +392,16 @@ function handleClick(clientX, clientY) {
             my >= f.y - halfH && my <= f.y + halfH) {
 
             f.caught = true;
-            state.score += f.points;
+
+            // Combo system
+            state.combo++;
+            state.comboTimer = 1500;
+            const comboMult = Math.min(state.combo, 5);
+            const bonus = Math.floor(f.points * (comboMult - 1) * 0.3);
+            const totalPoints = f.points + bonus;
+            state.score += totalPoints;
+
+            spawnParticles(f.x, f.y, f.color, 10);
 
             // Track discovered species
             if (!state.discovered.includes(f.id)) {
@@ -309,10 +409,11 @@ function handleClick(clientX, clientY) {
                 localStorage.setItem('oe_discovered', JSON.stringify(state.discovered));
                 renderCollection();
                 playRare();
-                showFeed(f.emoji + ' ' + f.name + ' discovered! +' + f.points);
+                showFeed(f.emoji + ' ' + f.name + ' discovered! +' + totalPoints);
             } else {
                 playCatch();
-                showFeed('+' + f.points);
+                const label = bonus > 0 ? '+' + totalPoints + ' 🔥x' + comboMult : '+' + totalPoints;
+                showFeed(label);
             }
 
             if (state.score > state.highScore) {
@@ -322,8 +423,6 @@ function handleClick(clientX, clientY) {
 
             dom.score.textContent = state.score;
             state.fish.splice(i, 1);
-
-            // Spawn interval gets faster as score grows
             break;
         }
     }
@@ -380,16 +479,14 @@ function resetGame() {
     state.gameOver = false;
     state.score = 0;
     state.fish = [];
+    state.particles = [];
+    state.goldenFish = null;
+    state.combo = 0;
+    state.comboTimer = 0;
     state.spawnTimer = 0;
     state.timeLeft = 45;
     state.timerTick = 0;
     state.lastTime = 0;
-    if (state.animFrame) cancelAnimationFrame(state.animFrame);
-    dom.score.textContent = '0';
-    dom.timer.textContent = '45s';
-    dom.gameoverOverlay.classList.add('hidden');
-    dom.startOverlay.classList.remove('hidden');
-    draw();
 }
 
 // ===== START =====
@@ -399,6 +496,10 @@ function startGame() {
     state.gameOver = false;
     state.score = 0;
     state.fish = [];
+    state.particles = [];
+    state.goldenFish = null;
+    state.combo = 0;
+    state.comboTimer = 0;
     state.spawnTimer = 0;
     state.timeLeft = 45;
     state.timerTick = 0;
