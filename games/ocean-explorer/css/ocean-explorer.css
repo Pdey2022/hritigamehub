@@ -188,8 +188,10 @@ body.ocean-page {
     border-color: rgba(56, 189, 248, 0.3);
 }
 .oe-collection-item.unseen {
-    filter: brightness(0);
-    opacity: 0.3;
+    background: rgba(56, 189, 248, 0.04);
+    border-color: rgba(56, 189, 248, 0.08);
+    color: rgba(255,255,255,0.3);
+    font-size: 1.2rem;
 }
 
 /* ===== SCORE FEED ===== */

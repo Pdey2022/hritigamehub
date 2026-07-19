@@ -99,7 +99,7 @@ const state = {
     timerTick: 0,
     combo: 0,
     comboTimer: 0,
-    maxFish: 8,
+    maxFish: 3,
     particles: [],
     goldenFish: null,
     timeBonus: 0
@@ -110,10 +110,10 @@ function createFish() {
     const type = pickFish();
     return {
         ...type,
-        x: W + 30,
-        y: 30 + Math.random() * (H - 100),
+        x: 30 + Math.random() * (W - 100),
+        y: 40 + Math.random() * (H - 110),
         size: type.minSize + Math.random() * 8,
-        vy: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.15,
         bob: Math.random() * Math.PI * 2,
         caught: false
     };
@@ -121,13 +121,12 @@ function createFish() {
 
 function spawnGoldenFish() {
     state.goldenFish = {
-        x: W + 20,
+        x: 30 + Math.random() * (W - 80),
         y: 40 + Math.random() * (H - 100),
-        size: 26,
-        speed: 1.0 + Math.random() * 0.5,
+        size: 28,
         bob: 0,
         points: 100,
-        timer: 180 // frames before it disappears
+        timer: 300 // frames before it disappears
     };
 }
 
@@ -174,26 +173,19 @@ function gameLoop(timestamp) {
         spawnGoldenFish();
     }
 
-    // Update fish
+    // Update fish (gentle bobbing only — no swimming)
     for (let i = state.fish.length - 1; i >= 0; i--) {
         const f = state.fish[i];
-        f.x -= f.speed * (dt / 16);
-        f.bob += 0.03;
-        f.y += Math.sin(f.bob) * 0.3 + f.vy;
-
-        // Remove if off-screen
-        if (f.x < -40) {
-            state.fish.splice(i, 1);
-        }
+        f.bob += 0.02;
+        f.y += Math.sin(f.bob) * 0.15 + f.vy;
     }
 
-    // Update golden fish
+    // Update golden fish (gentle bob only)
     if (state.goldenFish) {
-        state.goldenFish.x -= state.goldenFish.speed * (dt / 16);
-        state.goldenFish.bob += 0.04;
-        state.goldenFish.y += Math.sin(state.goldenFish.bob) * 0.5;
+        state.goldenFish.bob += 0.03;
+        state.goldenFish.y += Math.sin(state.goldenFish.bob) * 0.3;
         state.goldenFish.timer--;
-        if (state.goldenFish.x < -40 || state.goldenFish.timer <= 0) {
+        if (state.goldenFish.timer <= 0) {
             state.goldenFish = null;
         }
     }
@@ -458,7 +450,7 @@ function renderCollection() {
     if (!dom.collectionGrid) return;
     dom.collectionGrid.innerHTML = FISH_TYPES.map(f =>
         '<div class="oe-collection-item ' + (state.discovered.includes(f.id) ? 'discovered' : 'unseen') + '" title="' + f.name + '">' +
-        f.emoji + '</div>'
+        (state.discovered.includes(f.id) ? f.emoji : '❓') + '</div>'
     ).join('');
 }
 
