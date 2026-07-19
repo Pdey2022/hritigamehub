@@ -1,0 +1,255 @@
+/* ============================================
+   TIMES TABLE — Game Styles
+   ============================================ */
+
+body.times-page {
+    background: #0a1628;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#tt-hud {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.tt-hud-left { display: flex; align-items: center; gap: 8px; }
+.tt-hud-right { display: flex; align-items: center; gap: 6px; }
+
+.tt-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #60a5fa;
+    text-shadow: 0 0 20px rgba(96, 165, 250, 0.3);
+}
+
+.tt-score-display {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+.tt-timer-display {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(59, 130, 246, 0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+.tt-combo-display {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.12);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: none;
+}
+
+.tt-reset-btn { margin-left: 8px !important; }
+
+/* ===== GAME AREA ===== */
+#tt-game-area {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    margin-top: 16px;
+}
+
+.tt-card {
+    width: 100%;
+    background: rgba(15, 30, 60, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== PROBLEM ===== */
+.tt-problem {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: 3px;
+}
+.tt-problem .times-op { color: #60a5fa; }
+.tt-problem .times-eq { color: #fbbf24; }
+.tt-problem .times-ans {
+    display: inline-block;
+    min-width: 50px;
+    color: #fbbf24;
+    border-bottom: 3px dashed rgba(59, 130, 246, 0.3);
+}
+
+/* ===== TABLE HINT ===== */
+.tt-hint {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+}
+
+/* ===== OPTIONS ===== */
+.tt-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.tt-option {
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid rgba(59, 130, 246, 0.15);
+    background: rgba(59, 130, 246, 0.06);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+.tt-option:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+.tt-option:active { transform: translateY(0); }
+.tt-option.correct {
+    background: rgba(34, 197, 94, 0.25);
+    border-color: #22c55e;
+    animation: ttPop 0.3s ease;
+}
+.tt-option.wrong {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
+    animation: ttShake 0.3s ease;
+}
+
+@keyframes ttPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+@keyframes ttShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* ===== TIMER BAR ===== */
+.tt-timer-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 16px;
+}
+.tt-timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 2px;
+    transition: width 0.8s linear;
+    width: 100%;
+}
+
+/* ===== FEED ===== */
+.tt-feed {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    min-height: 1.5rem;
+    margin-top: 8px;
+}
+
+/* ===== OVERLAYS ===== */
+.tt-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+}
+.tt-overlay.hidden { display: none; }
+.tt-overlay-content {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 36px 48px;
+    border-radius: 24px;
+    backdrop-filter: blur(4px);
+    animation: modalPop 0.4s ease;
+}
+.tt-overlay-icon { font-size: 4rem; margin-bottom: 8px; animation: float 2s ease-in-out infinite; }
+.tt-overlay-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+.tt-overlay-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.tt-btn {
+    padding: 12px 36px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+}
+.tt-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(59, 130, 246, 0.5);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 540px) {
+    #tt-hud { padding: 8px 12px; flex-wrap: wrap; gap: 4px; }
+    .tt-title { font-size: 0.95rem; }
+    .tt-problem { font-size: 2.4rem; }
+    .tt-option { padding: 12px; font-size: 1.2rem; }
+    .tt-overlay-content { padding: 24px 20px; }
+    .tt-overlay-title { font-size: 1.4rem; }
+    .tt-overlay-icon { font-size: 3rem; }
+}

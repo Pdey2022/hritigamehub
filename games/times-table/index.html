@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>📊 Times Table — Free Multiplication Game for Kids | Play Online</title>
+    <meta name="description" content="Play Times Table, a free multiplication game for kids! Master times tables from 2 to 12 with fun timed challenges. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#0a1628">
+    <meta property="og:title" content="📊 Times Table — Free Online Game">
+    <meta property="og:description" content="Master multiplication tables with fun timed challenges! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/times-table/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="📊 Times Table — Free Online Game">
+    <meta name="twitter:description" content="Free multiplication game. Practice times tables! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/times-table/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Times Table","description":"Master multiplication tables from 2 to 12 with fun timed challenges and combo scoring!","url":"https://hritihub.uk/games/times-table/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/times-table/css/times-table.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="times-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="tt-hud">
+        <div class="tt-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Times Table</span>
+            </nav>
+            <span class="tt-title">📊 Times Table</span>
+        </div>
+        <div class="tt-hud-right">
+            <span class="tt-combo-display" id="tt-combo">🔥 x1</span>
+            <span class="tt-timer-display" id="tt-timer">45s</span>
+            <span class="tt-score-display">⭐ <span id="tt-score">0</span></span>
+            <button class="hud-btn mute-btn" id="tt-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn tt-reset-btn" id="tt-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="tt-game-area">
+        <div class="tt-card">
+            <div class="tt-problem" id="tt-problem">📊 Ready?</div>
+            <div class="tt-hint" id="tt-hint"></div>
+            <div class="tt-options" id="tt-options"></div>
+            <div class="tt-timer-bar">
+                <div class="tt-timer-fill" id="tt-timer-fill"></div>
+            </div>
+            <div class="tt-feed" id="tt-feed"></div>
+        </div>
+    </section>
+
+    <!-- ===== START OVERLAY ===== -->
+    <div class="tt-overlay" id="tt-start-overlay">
+        <div class="tt-overlay-content">
+            <div class="tt-overlay-icon">📊</div>
+            <div class="tt-overlay-title">Times Table!</div>
+            <div class="tt-overlay-sub">Master multiplication tables 2 to 12<br>Answer fast for combo bonuses!</div>
+            <button class="tt-btn" id="tt-start-btn">Play ▶</button>
+        </div>
+    </div>
+
+    <!-- ===== GAME OVER OVERLAY ===== -->
+    <div class="tt-overlay hidden" id="tt-gameover-overlay">
+        <div class="tt-overlay-content">
+            <div class="tt-overlay-icon">🏆</div>
+            <div class="tt-overlay-title">Time's Up!</div>
+            <div class="tt-overlay-sub" id="tt-gameover-stats">Score: 0</div>
+            <button class="tt-btn" id="tt-restart-btn">Play Again 🔄</button>
+        </div>
+    </div>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="tt-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="tt-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-tt-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/times-table/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

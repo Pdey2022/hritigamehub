@@ -418,8 +418,9 @@
     "icon": "📊",
     "desc": "Master multiplication tables with fun timed challenges!",
     "tags": ["🧮 Math", "🧠 Brain"],
-    "stats": ["📊 Multiplication", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["📊 Tables 2-12", "🔥 Combo System", "🏆 Leaderboard"],
+    "url": "/games/times-table/",
+    "status": "live"
   },
   {
     "id": "number-run",
