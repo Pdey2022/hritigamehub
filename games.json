@@ -471,8 +471,9 @@
     "icon": "🌴",
     "desc": "Swing through the jungle, avoid pitfalls, and reach the treetops!",
     "tags": ["🎮 Platform", "👾 Arcade"],
-    "stats": ["🌴 Jungle", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🌴 Platforms", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/jungle-jump/",
+    "status": "live"
   },
   {
     "id": "ice-climber",

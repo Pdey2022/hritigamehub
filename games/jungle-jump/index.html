@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🌴 Jungle Jump — Free Jungle Platformer for Kids | Play Online</title>
+    <meta name="description" content="Play Jungle Jump, a free jungle platformer for kids! Swing through the jungle, bounce on platforms, collect stars, and reach the treetops! No download needed.">
+    <meta name="theme-color" content="#0a2e0a">
+    <meta property="og:title" content="🌴 Jungle Jump — Free Online Game">
+    <meta property="og:description" content="Swing through the jungle, bounce on platforms, and reach the treetops! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/jungle-jump/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🌴 Jungle Jump — Free Online Game">
+    <meta name="twitter:description" content="Free jungle platformer. Bounce, climb, explore! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌴</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/jungle-jump/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Jungle Jump","description":"Swing through the jungle, bounce on platforms, avoid pitfalls, and reach the treetops in this platform adventure!","url":"https://hritihub.uk/games/jungle-jump/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/jungle-jump/css/jungle-jump.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="jungle-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="jj-hud">
+        <div class="jj-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Jungle Jump</span>
+            </nav>
+            <span class="jj-title">🌴 Jungle Jump</span>
+        </div>
+        <div class="jj-hud-right">
+            <span class="jj-high-display" id="jj-high">🏆 0</span>
+            <span class="jj-score-display">⭐ <span id="jj-score">0</span></span>
+            <button class="hud-btn mute-btn" id="jj-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn jj-reset-btn" id="jj-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="jj-game-area">
+        <div class="jj-canvas-wrapper" id="jj-canvas-wrapper">
+            <canvas id="jj-canvas" width="400" height="600"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="jj-overlay" id="jj-start-overlay">
+                <div class="jj-overlay-content">
+                    <div class="jj-overlay-icon">🌴</div>
+                    <div class="jj-overlay-title">Jungle Jump!</div>
+                    <div class="jj-overlay-sub">Bounce from platform to platform<br>⬅️ ➡️ arrow keys or swipe to move</div>
+                    <button class="jj-btn" id="jj-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="jj-overlay hidden" id="jj-gameover-overlay">
+                <div class="jj-overlay-content">
+                    <div class="jj-overlay-icon">🌊</div>
+                    <div class="jj-overlay-title">Splat!</div>
+                    <div class="jj-overlay-sub" id="jj-gameover-stats">Height: 0 🌴</div>
+                    <button class="jj-btn" id="jj-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="jj-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="jj-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-jj-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/jungle-jump/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>
