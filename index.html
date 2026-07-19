@@ -278,18 +278,18 @@
 
         // ----- Category filter mapping -----
         const CATEGORY_MAP = {
-            'All':       { icon: '🎮', match: () => true },
-            'Arcade':    { icon: '⚡', match: (g) => (g.tags||[]).some(t => /Arcade|Reflex|Action|Classic/.test(t)) },
-            'Puzzle':    { icon: '🧩', match: (g) => (g.tags||[]).some(t => /Puzzle|Brain|Memory|Pattern|Maze/.test(t)) },
-            'Racing':    { icon: '🏎️', match: (g) => (g.tags||[]).some(t => /Racing|Speed/.test(t)) },
-            'Space':     { icon: '🚀', match: (g) => (g.tags||[]).some(t => /Space/.test(t)) },
-            'Word':      { icon: '📖', match: (g) => (g.tags||[]).some(t => /Word/.test(t)) },
-            'Pet':       { icon: '🐾', match: (g) => (g.tags||[]).some(t => /Pet Care|Rescue|Care|Fishing|Shop/.test(t)) },
-            'Farming':   { icon: '🌾', match: (g) => (g.tags||[]).some(t => /Farming|Animals/.test(t)) },
-            'Ocean':     { icon: '🌊', match: (g) => (g.tags||[]).some(t => /Ocean|Discovery/.test(t)) },
-            'Math':      { icon: '🧮', match: (g) => (g.tags||[]).some(t => /Math/.test(t)) },
-            'Precision': { icon: '🎯', match: (g) => (g.tags||[]).some(t => /Precision/.test(t)) },
-            'Platform':  { icon: '🎮', match: (g) => (g.tags||[]).some(t => /Platform/.test(t)) },
+            'All':       { icon: '🎮', color: 'rgba(255,255,255,0.06)', match: () => true },
+            'Arcade':    { icon: '⚡', color: 'linear-gradient(135deg, #e74c3c22, #c0392b11)', match: (g) => (g.tags||[]).some(t => /Arcade|Reflex|Action|Classic/.test(t)) },
+            'Puzzle':    { icon: '🧩', color: 'linear-gradient(135deg, #9b59b622, #8e44ad11)', match: (g) => (g.tags||[]).some(t => /Puzzle|Brain|Memory|Pattern|Maze/.test(t)) },
+            'Racing':    { icon: '🏎️', color: 'linear-gradient(135deg, #e67e2222, #d3540011)', match: (g) => (g.tags||[]).some(t => /Racing|Speed/.test(t)) },
+            'Space':     { icon: '🚀', color: 'linear-gradient(135deg, #3498db22, #2980b911)', match: (g) => (g.tags||[]).some(t => /Space/.test(t)) },
+            'Word':      { icon: '📖', color: 'linear-gradient(135deg, #1abc9c22, #16a08511)', match: (g) => (g.tags||[]).some(t => /Word/.test(t)) },
+            'Pet':       { icon: '🐾', color: 'linear-gradient(135deg, #e91e6322, #c2185b11)', match: (g) => (g.tags||[]).some(t => /Pet Care|Rescue|Care|Fishing|Shop/.test(t)) },
+            'Farming':   { icon: '🌾', color: 'linear-gradient(135deg, #4caf5022, #388e3c11)', match: (g) => (g.tags||[]).some(t => /Farming|Animals/.test(t)) },
+            'Ocean':     { icon: '🌊', color: 'linear-gradient(135deg, #00bcd422, #0097a711)', match: (g) => (g.tags||[]).some(t => /Ocean|Discovery/.test(t)) },
+            'Math':      { icon: '🧮', color: 'linear-gradient(135deg, #ff980022, #f57c0011)', match: (g) => (g.tags||[]).some(t => /Math/.test(t)) },
+            'Precision': { icon: '🎯', color: 'linear-gradient(135deg, #f4433622, #d32f2f11)', match: (g) => (g.tags||[]).some(t => /Precision/.test(t)) },
+            'Platform':  { icon: '🎮', color: 'linear-gradient(135deg, #673ab722, #512da811)', match: (g) => (g.tags||[]).some(t => /Platform/.test(t)) },
         };
 
         let activeCategory = 'All';
@@ -302,7 +302,7 @@
                 const count = games.filter(cat.match).length;
                 if (count === 0) return '';
                 const active = name === activeCategory ? ' category-card-active' : '';
-                return '<button class="category-card' + active + '" data-category="' + name + '" aria-label="' + name + ' games">' +
+                return '<button class="category-card' + active + '" data-category="' + name + '" aria-label="' + name + ' games" style="background:' + cat.color + '">' +
                     '<span class="category-icon">' + cat.icon + '</span>' +
                     '<span class="category-name">' + name + '</span>' +
                     '<span class="category-count">' + count + '</span>' +
