@@ -48,37 +48,39 @@
 
     <!-- ===== GAME AREA ===== -->
     <section id="cw-game-area">
-        <div class="cw-card">
-            <div class="cw-clue-label">📝 Clue</div>
-            <div class="cw-clue-text" id="cw-clue-text">Press Play to start!</div>
-            <div class="cw-category" id="cw-category"></div>
+        <div class="cw-card-wrapper">
+            <div class="cw-card">
+                <div class="cw-clue-label">📝 Clue</div>
+                <div class="cw-clue-text" id="cw-clue-text">Press Play to start!</div>
+                <div class="cw-category" id="cw-category"></div>
 
-            <div class="cw-slots" id="cw-slots"></div>
-            <div class="cw-letters" id="cw-letters"></div>
-            <div class="cw-feed" id="cw-feed"></div>
-            <div class="cw-progress" id="cw-progress"></div>
+                <div class="cw-slots" id="cw-slots"></div>
+                <div class="cw-letters" id="cw-letters"></div>
+                <div class="cw-feed" id="cw-feed"></div>
+                <div class="cw-progress" id="cw-progress"></div>
+            </div>
+
+            <!-- Start Overlay -->
+            <div class="cw-overlay" id="cw-start-overlay">
+                <div class="cw-overlay-content">
+                    <div class="cw-overlay-icon">🧩</div>
+                    <div class="cw-overlay-title">Crossword Kids!</div>
+                    <div class="cw-overlay-sub">Read the clue, pick the right letters, spell the word!</div>
+                    <button class="cw-btn" id="cw-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="cw-overlay hidden" id="cw-gameover-overlay">
+                <div class="cw-overlay-content">
+                    <div class="cw-overlay-icon">🏆</div>
+                    <div class="cw-overlay-title">Well Done!</div>
+                    <div class="cw-overlay-sub" id="cw-gameover-stats">Score: 0</div>
+                    <button class="cw-btn" id="cw-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ===== START OVERLAY ===== -->
-    <div class="cw-overlay" id="cw-start-overlay">
-        <div class="cw-overlay-content">
-            <div class="cw-overlay-icon">🧩</div>
-            <div class="cw-overlay-title">Crossword Kids!</div>
-            <div class="cw-overlay-sub">Read the clue, pick the right letters, spell the word!</div>
-            <button class="cw-btn" id="cw-start-btn">Play ▶</button>
-        </div>
-    </div>
-
-    <!-- ===== GAME OVER OVERLAY ===== -->
-    <div class="cw-overlay hidden" id="cw-gameover-overlay">
-        <div class="cw-overlay-content">
-            <div class="cw-overlay-icon">🏆</div>
-            <div class="cw-overlay-title">Well Done!</div>
-            <div class="cw-overlay-sub" id="cw-gameover-stats">Score: 0</div>
-            <button class="cw-btn" id="cw-restart-btn">Play Again 🔄</button>
-        </div>
-    </div>
 
     <!-- ===== ADSENSE BANNER (hidden) ===== -->
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>

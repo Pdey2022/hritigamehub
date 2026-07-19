@@ -49,36 +49,38 @@
 
     <!-- ===== GAME AREA ===== -->
     <section id="tt-game-area">
-        <div class="tt-card">
-            <div class="tt-problem" id="tt-problem">📊 Ready?</div>
-            <div class="tt-hint" id="tt-hint"></div>
-            <div class="tt-options" id="tt-options"></div>
-            <div class="tt-timer-bar">
-                <div class="tt-timer-fill" id="tt-timer-fill"></div>
+        <div class="tt-card-wrapper">
+            <div class="tt-card">
+                <div class="tt-problem" id="tt-problem">📊 Ready?</div>
+                <div class="tt-hint" id="tt-hint"></div>
+                <div class="tt-options" id="tt-options"></div>
+                <div class="tt-timer-bar">
+                    <div class="tt-timer-fill" id="tt-timer-fill"></div>
+                </div>
+                <div class="tt-feed" id="tt-feed"></div>
             </div>
-            <div class="tt-feed" id="tt-feed"></div>
+
+            <!-- Start Overlay -->
+            <div class="tt-overlay" id="tt-start-overlay">
+                <div class="tt-overlay-content">
+                    <div class="tt-overlay-icon">📊</div>
+                    <div class="tt-overlay-title">Times Table!</div>
+                    <div class="tt-overlay-sub">Master multiplication tables 2 to 12<br>Answer fast for combo bonuses!</div>
+                    <button class="tt-btn" id="tt-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="tt-overlay hidden" id="tt-gameover-overlay">
+                <div class="tt-overlay-content">
+                    <div class="tt-overlay-icon">🏆</div>
+                    <div class="tt-overlay-title">Time's Up!</div>
+                    <div class="tt-overlay-sub" id="tt-gameover-stats">Score: 0</div>
+                    <button class="tt-btn" id="tt-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ===== START OVERLAY ===== -->
-    <div class="tt-overlay" id="tt-start-overlay">
-        <div class="tt-overlay-content">
-            <div class="tt-overlay-icon">📊</div>
-            <div class="tt-overlay-title">Times Table!</div>
-            <div class="tt-overlay-sub">Master multiplication tables 2 to 12<br>Answer fast for combo bonuses!</div>
-            <button class="tt-btn" id="tt-start-btn">Play ▶</button>
-        </div>
-    </div>
-
-    <!-- ===== GAME OVER OVERLAY ===== -->
-    <div class="tt-overlay hidden" id="tt-gameover-overlay">
-        <div class="tt-overlay-content">
-            <div class="tt-overlay-icon">🏆</div>
-            <div class="tt-overlay-title">Time's Up!</div>
-            <div class="tt-overlay-sub" id="tt-gameover-stats">Score: 0</div>
-            <button class="tt-btn" id="tt-restart-btn">Play Again 🔄</button>
-        </div>
-    </div>
 
     <!-- ===== ADSENSE BANNER (hidden) ===== -->
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
