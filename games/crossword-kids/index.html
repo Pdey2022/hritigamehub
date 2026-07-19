@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🧩 Crossword Kids — Free Word Puzzle for Kids | Play Online</title>
+    <meta name="description" content="Play Crossword Kids, a free word puzzle for kids! Solve clues, fill in letters, and build your vocabulary. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#1a0a3e">
+    <meta property="og:title" content="🧩 Crossword Kids — Free Online Game">
+    <meta property="og:description" content="Solve fun crossword puzzles, learn new words, and beat your high score! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/crossword-kids/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🧩 Crossword Kids — Free Online Game">
+    <meta name="twitter:description" content="Free word puzzle game. Solve clues, learn words! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/crossword-kids/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Crossword Kids","description":"Fill in the crossword grid with fun, kid-friendly words and clues!","url":"https://hritihub.uk/games/crossword-kids/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/crossword-kids/css/crossword-kids.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="crossword-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="cw-hud">
+        <div class="cw-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Crossword Kids</span>
+            </nav>
+            <span class="cw-title">🧩 Crossword</span>
+        </div>
+        <div class="cw-hud-right">
+            <span class="cw-round-display" id="cw-round">Word 0/10</span>
+            <span class="cw-score-display">⭐ <span id="cw-score">0</span></span>
+            <button class="hud-btn mute-btn" id="cw-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn cw-reset-btn" id="cw-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="cw-game-area">
+        <div class="cw-card">
+            <div class="cw-clue-label">📝 Clue</div>
+            <div class="cw-clue-text" id="cw-clue-text">Press Play to start!</div>
+            <div class="cw-category" id="cw-category"></div>
+
+            <div class="cw-slots" id="cw-slots"></div>
+            <div class="cw-letters" id="cw-letters"></div>
+            <div class="cw-feed" id="cw-feed"></div>
+            <div class="cw-progress" id="cw-progress"></div>
+        </div>
+    </section>
+
+    <!-- ===== START OVERLAY ===== -->
+    <div class="cw-overlay" id="cw-start-overlay">
+        <div class="cw-overlay-content">
+            <div class="cw-overlay-icon">🧩</div>
+            <div class="cw-overlay-title">Crossword Kids!</div>
+            <div class="cw-overlay-sub">Read the clue, pick the right letters, spell the word!</div>
+            <button class="cw-btn" id="cw-start-btn">Play ▶</button>
+        </div>
+    </div>
+
+    <!-- ===== GAME OVER OVERLAY ===== -->
+    <div class="cw-overlay hidden" id="cw-gameover-overlay">
+        <div class="cw-overlay-content">
+            <div class="cw-overlay-icon">🏆</div>
+            <div class="cw-overlay-title">Well Done!</div>
+            <div class="cw-overlay-sub" id="cw-gameover-stats">Score: 0</div>
+            <button class="cw-btn" id="cw-restart-btn">Play Again 🔄</button>
+        </div>
+    </div>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="cw-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="cw-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-cw-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/crossword-kids/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

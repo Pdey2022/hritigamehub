@@ -1,0 +1,282 @@
+/* ============================================
+   CROSSWORD KIDS — Game Styles
+   ============================================ */
+
+body.crossword-page {
+    background: #1a0a3e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#cw-hud {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.cw-hud-left { display: flex; align-items: center; gap: 8px; }
+.cw-hud-right { display: flex; align-items: center; gap: 6px; }
+
+.cw-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #a855f7;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.cw-score-display {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+.cw-round-display {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(168, 85, 247, 0.15);
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+.cw-reset-btn { margin-left: 8px !important; }
+
+/* ===== GAME AREA ===== */
+#cw-game-area {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0 12px;
+    margin-top: 16px;
+}
+
+.cw-card {
+    width: 100%;
+    background: rgba(30, 10, 50, 0.5);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 20px;
+    padding: 24px 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== CLUE ===== */
+.cw-clue-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+.cw-clue-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+.cw-category {
+    font-size: 0.8rem;
+    color: rgba(168, 85, 247, 0.6);
+    margin-bottom: 20px;
+}
+
+/* ===== LETTER SLOTS ===== */
+.cw-slots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.cw-slot {
+    width: 36px;
+    height: 42px;
+    border-radius: 8px;
+    border: 2px solid rgba(168, 85, 247, 0.2);
+    background: rgba(168, 85, 247, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+.cw-slot.filled {
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.12);
+    animation: cwPop 0.3s ease;
+}
+.cw-slot.wrong {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.12);
+    animation: cwShake 0.3s ease;
+}
+.cw-slot.active {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 16px rgba(168, 85, 247, 0.2);
+}
+
+@keyframes cwPop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+@keyframes cwShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ===== LETTER OPTIONS ===== */
+.cw-letters {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 320px;
+    margin: 0 auto;
+}
+.cw-letter-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 2px solid rgba(168, 85, 247, 0.15);
+    background: rgba(168, 85, 247, 0.1);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+.cw-letter-btn:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: rgba(168, 85, 247, 0.35);
+    transform: translateY(-2px);
+}
+.cw-letter-btn:active { transform: translateY(0); }
+.cw-letter-btn.used {
+    opacity: 0.2;
+    pointer-events: none;
+    transform: scale(0.85);
+}
+
+/* ===== FEED ===== */
+.cw-feed {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    min-height: 1.5rem;
+    margin-top: 12px;
+    animation: cwFeedUp 0.6s ease forwards;
+}
+@keyframes cwFeedUp {
+    0%   { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* ===== OVERLAYS ===== */
+.cw-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+}
+.cw-overlay.hidden { display: none; }
+.cw-overlay-content {
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    padding: 36px 48px;
+    border-radius: 24px;
+    backdrop-filter: blur(4px);
+    animation: modalPop 0.4s ease;
+}
+.cw-overlay-icon { font-size: 4rem; margin-bottom: 8px; animation: float 2s ease-in-out infinite; }
+.cw-overlay-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+.cw-overlay-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.cw-btn {
+    padding: 12px 36px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    box-shadow: 0 4px 16px rgba(168, 85, 247, 0.3);
+}
+.cw-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(168, 85, 247, 0.5);
+}
+
+/* ===== PROGRESS ===== */
+.cw-progress {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    margin-top: 12px;
+}
+.cw-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(168, 85, 247, 0.15);
+}
+.cw-dot.done { background: rgba(34, 197, 94, 0.5); }
+.cw-dot.current { background: rgba(168, 85, 247, 0.5); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 540px) {
+    #cw-hud { padding: 8px 12px; flex-wrap: wrap; gap: 4px; }
+    .cw-title { font-size: 0.95rem; }
+    .cw-clue-text { font-size: 0.95rem; }
+    .cw-slot { width: 30px; height: 36px; font-size: 1.1rem; }
+    .cw-letter-btn { width: 36px; height: 36px; font-size: 1rem; }
+    .cw-overlay-content { padding: 24px 20px; }
+    .cw-overlay-title { font-size: 1.4rem; }
+    .cw-overlay-icon { font-size: 3rem; }
+}

@@ -291,8 +291,9 @@
     "icon": "🧩",
     "desc": "Fill in the crossword grid with fun, kid-friendly words and clues!",
     "tags": ["📚 Word", "🧠 Puzzle"],
-    "stats": ["🧩 Crossword", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🧩 100+ Words", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/crossword-kids/",
+    "status": "live"
   },
   {
     "id": "bingo-blast",
