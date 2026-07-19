@@ -201,51 +201,10 @@
     <!-- ===== ADSENSE BANNER (hidden) ===== -->
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
 
-    <!-- ===== GAME CATEGORIES ===== -->
-    <section class="categories-section">
+    <!-- ===== CATEGORY FILTERS (dynamic) ===== -->
+    <section class="categories-section" id="categories-section">
         <h2 class="recent-title">🎮 Browse by Category</h2>
-        <div class="categories-grid">
-            <a href="/games/space-blaster/" class="category-card">
-                <span class="category-icon">🚀</span>
-                <span class="category-name">Space Games</span>
-                <span class="category-desc">Blast aliens & asteroids</span>
-            </a>
-            <a href="/games/farm-friends/" class="category-card">
-                <span class="category-icon">🌾</span>
-                <span class="category-name">Farming Games</span>
-                <span class="category-desc">Grow crops & raise animals</span>
-            </a>
-            <a href="/games/race-rush/" class="category-card">
-                <span class="category-icon">🏎️</span>
-                <span class="category-name">Racing Games</span>
-                <span class="category-desc">Speed & dodge traffic</span>
-            </a>
-            <a href="/games/bubble-pop/" class="category-card">
-                <span class="category-icon">🌊</span>
-                <span class="category-name">Arcade Games</span>
-                <span class="category-desc">Fast reflex challenges</span>
-            </a>
-            <a href="/games/puzzle-path/" class="category-card">
-                <span class="category-icon">🧩</span>
-                <span class="category-name">Puzzle Games</span>
-                <span class="category-desc">Solve mazes & brain teasers</span>
-            </a>
-            <a href="/games/penguin-paradise/" class="category-card">
-                <span class="category-icon">🐧</span>
-                <span class="category-name">Pet Care Games</span>
-                <span class="category-desc">Raise & love your pets</span>
-            </a>
-            <a href="/games/word-wizard/" class="category-card">
-                <span class="category-icon">📖</span>
-                <span class="category-name">Word Games</span>
-                <span class="category-desc">Spelling & vocabulary</span>
-            </a>
-            <a href="/games/memory-match/" class="category-card">
-                <span class="category-icon">🃏</span>
-                <span class="category-name">Memory Games</span>
-                <span class="category-desc">Flip cards & match pairs</span>
-            </a>
-        </div>
+        <div class="categories-grid" id="category-filters"></div>
     </section>
 
     <!-- ===== FAVORITES ===== -->
@@ -317,6 +276,58 @@
             }).join('');
         }
 
+        // ----- Category filter mapping -----
+        const CATEGORY_MAP = {
+            'All':       { icon: '🎮', match: () => true },
+            'Arcade':    { icon: '⚡', match: (g) => (g.tags||[]).some(t => /Arcade|Reflex|Action|Classic/.test(t)) },
+            'Puzzle':    { icon: '🧩', match: (g) => (g.tags||[]).some(t => /Puzzle|Brain|Memory|Pattern|Maze/.test(t)) },
+            'Racing':    { icon: '🏎️', match: (g) => (g.tags||[]).some(t => /Racing|Speed/.test(t)) },
+            'Space':     { icon: '🚀', match: (g) => (g.tags||[]).some(t => /Space/.test(t)) },
+            'Word':      { icon: '📖', match: (g) => (g.tags||[]).some(t => /Word/.test(t)) },
+            'Pet':       { icon: '🐾', match: (g) => (g.tags||[]).some(t => /Pet Care|Rescue|Care|Fishing|Shop/.test(t)) },
+            'Farming':   { icon: '🌾', match: (g) => (g.tags||[]).some(t => /Farming|Animals/.test(t)) },
+            'Ocean':     { icon: '🌊', match: (g) => (g.tags||[]).some(t => /Ocean|Discovery/.test(t)) },
+            'Math':      { icon: '🧮', match: (g) => (g.tags||[]).some(t => /Math/.test(t)) },
+            'Precision': { icon: '🎯', match: (g) => (g.tags||[]).some(t => /Precision/.test(t)) },
+            'Platform':  { icon: '🎮', match: (g) => (g.tags||[]).some(t => /Platform/.test(t)) },
+        };
+
+        let activeCategory = 'All';
+
+        function renderCategories(games) {
+            const container = document.getElementById('category-filters');
+            if (!container) return;
+
+            container.innerHTML = Object.entries(CATEGORY_MAP).map(([name, cat]) => {
+                const count = games.filter(cat.match).length;
+                if (count === 0) return '';
+                const active = name === activeCategory ? ' category-card-active' : '';
+                return '<button class="category-card' + active + '" data-category="' + name + '" aria-label="' + name + ' games">' +
+                    '<span class="category-icon">' + cat.icon + '</span>' +
+                    '<span class="category-name">' + name + '</span>' +
+                    '<span class="category-count">' + count + '</span>' +
+                    '</button>';
+            }).join('');
+
+            container.querySelectorAll('.category-card').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const cat = btn.dataset.category;
+                    activeCategory = cat;
+                    // Update active state
+                    container.querySelectorAll('.category-card').forEach(b => b.classList.remove('category-card-active'));
+                    btn.classList.add('category-card-active');
+                    // Filter grid
+                    const games = window.GAMES_DATA || [];
+                    const filtered = cat === 'All' ? games : games.filter(CATEGORY_MAP[cat].match);
+                    renderGameGrid(filtered);
+                    // Re-init fav buttons
+                    if (typeof addFavButtons === 'function') addFavButtons();
+                    // Scroll to grid
+                    document.getElementById('game-grid')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        }
+
         // ----- Load data and initialize -----
         fetch('/games.json')
             .then(r => r.json())
@@ -329,6 +340,9 @@
 
                 // Render the grid
                 renderGameGrid(games);
+
+                // Render category filters
+                renderCategories(games);
 
                 // Init tracking
                 initTracking();
