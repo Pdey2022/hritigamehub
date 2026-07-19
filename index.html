@@ -171,7 +171,7 @@
         <div class="stat-item">
             <span class="stat-icon">🚫</span>
             <span class="stat-number">Zero</span>
-            <span class="stat-label">Ads (Coming Soon)</span>
+            <span class="stat-label">Ads</span>
         </div>
     </div>
 
@@ -326,10 +326,6 @@
 
                 // Render the grid
                 renderGameGrid(games);
-
-                // Update game count in footer
-                const countEl = document.getElementById('game-count');
-                if (countEl) countEl.textContent = games.filter(g => g.status === 'live').length;
 
                 // Init tracking
                 initTracking();
