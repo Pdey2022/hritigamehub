@@ -31,14 +31,14 @@ const dom = {
 
 // ===== FISH TYPES =====
 const FISH_TYPES = [
-    { id: 'clownfish',  name: 'Clownfish',   emoji: '🐠', color: '#f97316', points: 10, speed: 1.2, weight: 30, minSize: 20 },
-    { id: 'tang',       name: 'Blue Tang',   emoji: '🐟', color: '#0ea5e9', points: 10, speed: 1.0, weight: 30, minSize: 22 },
-    { id: 'puffer',     name: 'Pufferfish',  emoji: '🐡', color: '#eab308', points: 15, speed: 0.7, weight: 15, minSize: 24 },
-    { id: 'jellyfish',  name: 'Jellyfish',   emoji: '🪼',  color: '#d946ef', points: 20, speed: 0.9, weight: 12, minSize: 26 },
-    { id: 'seahorse',   name: 'Seahorse',    emoji: '🐴', color: '#f472b6', points: 25, speed: 0.6, weight: 8,  minSize: 18 },
-    { id: 'turtle',     name: 'Sea Turtle',  emoji: '🐢', color: '#22c55e', points: 30, speed: 0.5, weight: 4,  minSize: 30 },
-    { id: 'dolphin',    name: 'Dolphin',     emoji: '🐬', color: '#06b6d4', points: 50, speed: 1.8, weight: 1,  minSize: 28 },
-    { id: 'whale',      name: 'Whale',       emoji: '🐋', color: '#3b82f6', points: 80, speed: 0.4, weight: 1,  minSize: 36 }
+    { id: 'clownfish',  name: 'Clownfish',   emoji: '🐠', color: '#f97316', points: 10, speed: 1.2, weight: 30, minSize: 26 },
+    { id: 'tang',       name: 'Blue Tang',   emoji: '🐟', color: '#0ea5e9', points: 10, speed: 1.0, weight: 30, minSize: 28 },
+    { id: 'puffer',     name: 'Pufferfish',  emoji: '🐡', color: '#eab308', points: 15, speed: 0.7, weight: 15, minSize: 30 },
+    { id: 'jellyfish',  name: 'Jellyfish',   emoji: '🪼',  color: '#d946ef', points: 20, speed: 0.9, weight: 12, minSize: 32 },
+    { id: 'seahorse',   name: 'Seahorse',    emoji: '🐴', color: '#f472b6', points: 25, speed: 0.6, weight: 8,  minSize: 26 },
+    { id: 'turtle',     name: 'Sea Turtle',  emoji: '🐢', color: '#22c55e', points: 30, speed: 0.5, weight: 4,  minSize: 36 },
+    { id: 'dolphin',    name: 'Dolphin',     emoji: '🐬', color: '#06b6d4', points: 50, speed: 1.8, weight: 1,  minSize: 34 },
+    { id: 'whale',      name: 'Whale',       emoji: '🐋', color: '#3b82f6', points: 80, speed: 0.4, weight: 1,  minSize: 42 }
 ];
 
 // ===== AUDIO =====
@@ -99,7 +99,7 @@ const state = {
     timerTick: 0,
     combo: 0,
     comboTimer: 0,
-    maxFish: 6,
+    maxFish: 8,
     particles: [],
     goldenFish: null,
     timeBonus: 0
@@ -217,9 +217,9 @@ function gameLoop(timestamp) {
 // ===== DRAW (optimized) =====
 const bgGrad = (function() {
     const g = ctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, '#00284a');
-    g.addColorStop(0.5, '#001a33');
-    g.addColorStop(1, '#000d1a');
+    g.addColorStop(0, '#003366');
+    g.addColorStop(0.5, '#002244');
+    g.addColorStop(1, '#001128');
     return g;
 })();
 
@@ -247,7 +247,7 @@ function draw() {
     }
 
     // Sea floor
-    ctx.fillStyle = '#001a2e';
+    ctx.fillStyle = '#002a3e';
     ctx.fillRect(0, H - 18, W, 18);
 
     // Bubbles (simplified)
@@ -297,6 +297,12 @@ function draw() {
         const fy = f.y;
         const r = f.size;
 
+        // Glow behind fish
+        ctx.fillStyle = 'rgba(255,255,255,0.08)';
+        ctx.beginPath();
+        ctx.arc(fx, fy, r * 1.2, 0, Math.PI * 2);
+        ctx.fill();
+
         // Body
         ctx.fillStyle = f.color;
         ctx.beginPath();
@@ -311,8 +317,14 @@ function draw() {
         ctx.closePath();
         ctx.fill();
 
+        // White border ring behind emoji to make it pop
+        ctx.fillStyle = 'rgba(0,0,0,0.3)';
+        ctx.beginPath();
+        ctx.arc(fx, fy, r * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+
         // Emoji
-        ctx.font = (r * 0.8) + 'px sans-serif';
+        ctx.font = (r * 0.9) + 'px sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(f.emoji, fx, fy);
