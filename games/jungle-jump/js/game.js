@@ -80,49 +80,15 @@ const PLAT_W = 70, PLAT_H = 10;
 function spawnInitialPlatforms() {
     state.platforms = [];
     state.coins = [];
-    // Ground
     state.platforms.push({ x: 0, y: H - 20, w: W, h: 20, type: 'ground' });
-    // Start platform - player sits right on this
     state.platforms.push({ x: 165, y: H - 60, w: PLAT_W, h: PLAT_H, type: 'normal' });
-    // Zigzag upward staircase - GUARANTEED reachable
-    let dir = 1; // start going right
-    let prevX = 165;
-    for (let i = 0; i < 20; i++) {
-        const y = H - 60 - (i + 1) * 80; // exactly 80px apart each time
-        // Alternate left-right for guaranteed reachable zigzag
-        if (i % 2 === 0) {
-            // Go right
-            prevX = Math.min(W - PLAT_W - 10, prevX + 50 + Math.random() * 30);
-        } else {
-            // Go left
-            prevX = Math.max(10, prevX - 50 - Math.random() * 30);
-        }
+    for (let i = 0; i < 200; i++) {
+        const y = H - 60 - (i + 1) * 80;
+        const offset = (i % 2 === 0 ? 1 : -1) * (20 + Math.random() * 20);
+        const px = Math.max(10, Math.min(W - PLAT_W - 10, 165 + offset));
         const type = Math.random() < 0.12 ? 'coin' : 'normal';
-        state.platforms.push({ x: prevX, y, w: PLAT_W, h: PLAT_H, type });
-        if (type === 'coin') state.coins.push({ x: prevX + PLAT_W / 2 - 6, y: y - 20, w: 12, h: 12, collected: false });
-    }
-}
-
-function addPlatformRow(y) {
-    const below = state.platforms.filter(p => p.y < y + 10 && p.y > y - 120).sort((a, b) => b.y - a.y);
-    const refX = below.length > 0 ? below[0].x + PLAT_W / 2 : 200;
-    // Go opposite direction from the platform below for zigzag
-    const goingRight = refX < W / 2;
-    let newX;
-    if (goingRight) {
-        newX = Math.min(W - PLAT_W - 10, refX + 40 + Math.random() * 30);
-    } else {
-        newX = Math.max(10, refX - 40 - Math.random() * 30);
-    }
-    // Ensure it's not overlapping
-    if (!state.platforms.some(p => Math.abs(p.y - y) < 18 && Math.abs(p.x - newX) < PLAT_W - 5)) {
-        const type = Math.random() < 0.12 ? 'coin' : 'normal';
-        state.platforms.push({ x: newX, y, w: PLAT_W, h: PLAT_H, type });
-        if (type === 'coin') state.coins.push({ x: newX + PLAT_W / 2 - 6, y: y - 20, w: 12, h: 12, collected: false });
-    } else {
-        // Fallback: place directly below
-        const fbX = Math.max(10, Math.min(W - PLAT_W - 10, refX - 20));
-        state.platforms.push({ x: fbX, y, w: PLAT_W, h: PLAT_H, type: 'normal' });
+        state.platforms.push({ x: px, y, w: PLAT_W, h: PLAT_H, type });
+        if (type === 'coin') state.coins.push({ x: px + PLAT_W / 2 - 6, y: y - 20, w: 12, h: 12, collected: false });
     }
 }
 
@@ -192,9 +158,11 @@ function gameLoop(timestamp) {
         }
     }
 
-    // Camera smoothly follows player (no player position modification)
-    const targetScroll = H * 0.35 - p.y;
-    state.scrollY += (targetScroll - state.scrollY) * 0.08;
+    // Camera smoothly follows player
+    if (p.y < H * 0.35) {
+        const targetScroll = H * 0.35 - p.y;
+        state.scrollY += (targetScroll - state.scrollY) * 0.12;
+    }
 
     // Fall off screen
     if (p.y > H + 60) {
@@ -202,14 +170,8 @@ function gameLoop(timestamp) {
         return;
     }
 
-    // Manage platforms
-    const highestY = state.platforms.length > 0 ? Math.min(...state.platforms.map(p => p.y)) : 0;
-    if (highestY + state.scrollY > -100) {
-        const newY = highestY - 85 - Math.random() * 20;
-        addPlatformRow(newY);
-    }
-    // Clean offscreen platforms
-    state.platforms = state.platforms.filter(p => p.y + state.scrollY > -300);
+    // Clean platforms far offscreen only
+    state.platforms = state.platforms.filter(p => p.y + state.scrollY > -500);
     state.coins = state.coins.filter(c => !c.collected && c.y + state.scrollY > -200);
     // Cap
     if (state.platforms.length > 40) state.platforms = state.platforms.slice(-40);
