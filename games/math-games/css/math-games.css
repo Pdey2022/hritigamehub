@@ -80,6 +80,11 @@ body.math-page {
     margin-top: 16px;
 }
 
+.mh-card-wrapper {
+    position: relative;
+    width: 100%;
+}
+
 .mh-card {
     width: 100%;
     background: rgba(30, 10, 50, 0.5);
@@ -165,14 +170,15 @@ body.math-page {
 
 /* ===== OVERLAYS ===== */
 .mh-overlay {
-    position: fixed;
+    position: absolute;
     inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(4px);
-    z-index: 100;
+    z-index: 10;
+    border-radius: 20px;
 }
 .mh-overlay.hidden { display: none; }
 

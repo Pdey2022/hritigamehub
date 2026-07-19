@@ -49,36 +49,38 @@
 
     <!-- ===== GAME AREA ===== -->
     <section id="mh-game-area">
-        <div class="mh-card">
-            <div class="mh-question-number" id="mh-question-num">Question 1</div>
-            <div class="mh-problem" id="mh-problem">🧮 Ready?</div>
-            <div class="mh-options" id="mh-options"></div>
-            <div class="mh-timer-bar">
-                <div class="mh-timer-fill" id="mh-timer-fill"></div>
+        <div class="mh-card-wrapper">
+            <div class="mh-card">
+                <div class="mh-question-number" id="mh-question-num">Question 1</div>
+                <div class="mh-problem" id="mh-problem">🧮 Ready?</div>
+                <div class="mh-options" id="mh-options"></div>
+                <div class="mh-timer-bar">
+                    <div class="mh-timer-fill" id="mh-timer-fill"></div>
+                </div>
+                <div class="mh-feed" id="mh-feed"></div>
             </div>
-            <div class="mh-feed" id="mh-feed"></div>
+
+            <!-- Start Overlay -->
+            <div class="mh-overlay" id="mh-start-overlay">
+                <div class="mh-overlay-content">
+                    <div class="mh-overlay-icon">🧮</div>
+                    <div class="mh-overlay-title">Math Games!</div>
+                    <div class="mh-overlay-sub">Solve math problems, build combos, beat your score!</div>
+                    <button class="mh-btn" id="mh-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="mh-overlay hidden" id="mh-gameover-overlay">
+                <div class="mh-overlay-content">
+                    <div class="mh-overlay-icon">🏆</div>
+                    <div class="mh-overlay-title">Time's Up!</div>
+                    <div class="mh-overlay-sub" id="mh-gameover-stats">Score: 0</div>
+                    <button class="mh-btn" id="mh-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ===== START OVERLAY ===== -->
-    <div class="mh-overlay" id="mh-start-overlay">
-        <div class="mh-overlay-content">
-            <div class="mh-overlay-icon">🧮</div>
-            <div class="mh-overlay-title">Math Games!</div>
-            <div class="mh-overlay-sub">Solve math problems, build combos, beat your score!</div>
-            <button class="mh-btn" id="mh-start-btn">Start ▶</button>
-        </div>
-    </div>
-
-    <!-- ===== GAME OVER OVERLAY ===== -->
-    <div class="mh-overlay hidden" id="mh-gameover-overlay">
-        <div class="mh-overlay-content">
-            <div class="mh-overlay-icon">🏆</div>
-            <div class="mh-overlay-title">Time's Up!</div>
-            <div class="mh-overlay-sub" id="mh-gameover-stats">Score: 0</div>
-            <button class="mh-btn" id="mh-restart-btn">Play Again 🔄</button>
-        </div>
-    </div>
 
     <!-- ===== ADSENSE BANNER (hidden) ===== -->
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
