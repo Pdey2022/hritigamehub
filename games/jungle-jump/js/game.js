@@ -75,43 +75,50 @@ const state = {
 };
 
 // ===== PLATFORMS =====
-const PLAT_W = 60, PLAT_H = 10;
+const PLAT_W = 65, PLAT_H = 10;
 
 function spawnInitialPlatforms() {
     state.platforms = [];
     // Ground
     state.platforms.push({ x: 0, y: H - 20, w: W, h: 20, type: 'ground' });
-    // Starting platform
+    // Starting platform (centered)
     state.platforms.push({ x: 160, y: H - 80, w: PLAT_W, h: PLAT_H, type: 'normal' });
-    // Generate upward
-    let y = H - 160;
+    // Generate upward - ensure every platform is reachable from below
+    let prevX = 160, y = H - 150;
     while (y > -200) {
-        addPlatformRow(y);
-        y -= 60 + Math.random() * 40;
+        y -= 55 + Math.random() * 20; // 55-75px vertical gap (always jumpable)
+        // Pick an X within horizontal jumping reach of the previous platform
+        const maxHorizDist = 100;
+        const minX = Math.max(10, prevX - maxHorizDist);
+        const maxX = Math.min(W - PLAT_W - 10, prevX + maxHorizDist);
+        const x = minX + Math.random() * (maxX - minX);
+        const type = Math.random() < 0.12 ? 'coin' : 'normal';
+        state.platforms.push({ x, y, w: PLAT_W, h: PLAT_H, type });
+        prevX = x;
     }
 }
 
 function addPlatformRow(y) {
-    const count = 1 + Math.floor(Math.random() * 2);
+    // Always place one platform, sometimes two
+    const count = Math.random() < 0.35 ? 2 : 1;
+    // Reference the platform below (closest below this y)
+    const below = state.platforms
+        .filter(p => p.y < y + 20 && p.y > y - 100)
+        .sort((a, b) => b.y - a.y);
+    const refX = below.length > 0 ? below[0].x + PLAT_W / 2 : 200;
+
+    const maxHorizDist = 100;
     for (let i = 0; i < count; i++) {
-        const x = 20 + Math.random() * (W - PLAT_W - 40) + i * 70;
-        if (x + PLAT_W > W) continue;
-        // Check overlap with existing platforms at this y level
-        const overlap = state.platforms.some(p => Math.abs(p.y - y) < 20 && Math.abs(p.x - x) < PLAT_W + 10);
+        const minX = Math.max(10, refX - maxHorizDist + i * 50);
+        const maxX = Math.min(W - PLAT_W - 10, refX + maxHorizDist - (count - 1 - i) * 50);
+        if (minX >= maxX) continue;
+        const x = minX + Math.random() * (maxX - minX);
+        const overlap = state.platforms.some(p => Math.abs(p.y - y) < 20 && Math.abs(p.x - x) < PLAT_W + 5);
         if (!overlap) {
-            const type = Math.random() < 0.15 ? 'coin' : 'normal';
+            const type = Math.random() < 0.12 ? 'coin' : 'normal';
             state.platforms.push({ x, y, w: PLAT_W, h: PLAT_H, type });
         }
     }
-}
-
-function spawnCoins() {
-    state.coins = [];
-    state.platforms.forEach(p => {
-        if (p.type === 'coin') {
-            state.coins.push({ x: p.x + PLAT_W / 2 - 6, y: p.y - 18, w: 12, h: 12, collected: false });
-        }
-    });
 }
 
 // ===== GAME LOOP =====
@@ -392,7 +399,9 @@ function resetGame() {
     dom.gameoverOverlay.classList.add('hidden');
     dom.startOverlay.classList.remove('hidden');
     spawnInitialPlatforms();
-    spawnCoins();
+    dom.score.textContent = '0';
+    dom.gameoverOverlay.classList.add('hidden');
+    dom.startOverlay.classList.remove('hidden');
     draw();
 }
 
@@ -412,7 +421,6 @@ function startGame() {
     dom.startOverlay.classList.add('hidden');
     dom.gameoverOverlay.classList.add('hidden');
     spawnInitialPlatforms();
-    spawnCoins();
     if (state.animFrame) cancelAnimationFrame(state.animFrame);
     state.animFrame = requestAnimationFrame(gameLoop);
     draw();
@@ -475,7 +483,6 @@ handleResize();
 
 // ===== INIT =====
 spawnInitialPlatforms();
-spawnCoins();
 draw();
 dom.highScore.textContent = '🏆 ' + state.highScore;
 
