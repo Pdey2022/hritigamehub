@@ -3264,6 +3264,36 @@ body.night-mode .sanctuary-btn.active {
 }
 
 /* ===== Leaderboard Styles ===== */
+.auth-pill {
+  position: fixed; bottom: 16px; right: 16px; z-index: 999;
+  display: flex; align-items: center; gap: 6px;
+}
+.auth-bar {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 100px; padding: 6px 12px 6px 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.auth-avatar { font-size: 1.2rem; }
+.auth-pic { width: 28px; height: 28px; border-radius: 50%; vertical-align: middle; }
+.auth-btn {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 100px; padding: 6px 14px; color: #fff;
+  font-size: 0.78rem; font-weight: 600; font-family: 'Fredoka', sans-serif;
+  cursor: pointer; white-space: nowrap; transition: background 0.15s;
+}
+.auth-btn:hover { background: rgba(255,255,255,0.2); }
+.auth-btn.auth-google { background: #4285f4; border-color: #4285f4; }
+.auth-btn.auth-google:hover { background: #5294ff; }
+.auth-google-icon {
+  display: inline-block; width: 16px; height: 16px; line-height: 16px;
+  text-align: center; background: #fff; color: #4285f4; border-radius: 50%;
+  font-weight: 700; font-size: 0.65rem; margin-right: 4px;
+}
+.auth-btn.auth-logout { background: rgba(255,255,255,0.08); font-size: 0.7rem; }
+
 .lb-section {
     max-width: 500px;
     width: 100%;
@@ -3309,6 +3339,9 @@ body.night-mode .sanctuary-btn.active {
     transition: background 0.2s;
 }
 .lb-row:hover { background: rgba(255,255,255,0.08); }
+.lb-me { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); }
+.lb-me:hover { background: rgba(255,215,0,0.16); }
+.lb-pic { width: 24px; height: 24px; border-radius: 50%; vertical-align: middle; }
 .lb-gold { background: rgba(255,215,0,0.08); }
 .lb-rank { font-size: 0.9rem; min-width: 28px; text-align: center; }
 .lb-avatar {

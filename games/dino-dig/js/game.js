@@ -455,6 +455,13 @@
 
     gameoverStats.innerHTML = "⭐ Score: " + state.score + "<br><small>Best: " + state.highScore + " | Max Combo: " + state.maxCombo + "</small>";
     gameoverOverlay.classList.remove("hidden");
+
+    // Leaderboard
+    if (state.score > 0) {
+      if (typeof saveScore === 'function') saveScore('dino-dig', state.score);
+      if (typeof renderLeaderboard === 'function') renderLeaderboard('dino-dig', 'lb-dn-content', 'Dino Dig');
+    }
+
     draw();
   }
 

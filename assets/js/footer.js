@@ -1,5 +1,12 @@
-// Shared site footer — injected on every game page
+// Shared site footer + auth pill — injected on every game page
 (function() {
+  // Floating auth pill
+  const authPill = document.createElement('div');
+  authPill.id = 'auth-container';
+  authPill.className = 'auth-pill';
+  document.body.appendChild(authPill);
+
+  // Footer
   const footer = document.createElement('footer');
   footer.className = 'landing-footer';
   footer.innerHTML =

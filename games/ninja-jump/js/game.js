@@ -401,6 +401,12 @@ function gameOver() {
     }
     dom.gameoverStats.textContent = `Height: ${state.height}m | Score: ${state.score} | Best: ${state.highHeight}m`;
     dom.gameoverOverlay.classList.remove('hidden');
+
+    // Leaderboard
+    if (state.score > 0) {
+        if (typeof saveScore === 'function') saveScore('ninja-jump', state.score);
+        if (typeof renderLeaderboard === 'function') renderLeaderboard('ninja-jump', 'lb-nj-content', 'Ninja Jump');
+    }
 }
 
 // ===== GAME LOOP =====
