@@ -75,9 +75,9 @@ body.math-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
     padding: 0 12px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .mh-card-wrapper {
@@ -175,10 +175,10 @@ body.math-page {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.75);
     backdrop-filter: blur(4px);
     z-index: 10;
-    border-radius: 20px;
+    border-radius: 14px;
 }
 .mh-overlay.hidden { display: none; }
 
@@ -199,6 +199,7 @@ body.math-page {
     font-weight: 800;
     color: white;
     margin-bottom: 6px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
 }
 .mh-overlay-sub {
     font-size: 0.9rem;
@@ -247,12 +248,12 @@ body.math-page {
     font-size: 1.1rem;
     font-weight: 700;
     color: #ffd700;
-    animation: mhFeedUp 0.6s ease forwards;
+    animation: mhFeedUp 0.8s ease forwards;
     pointer-events: none;
 }
 @keyframes mhFeedUp {
     0%   { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 0; transform: translateY(-40px); }
 }
 
 /* ===== RESPONSIVE ===== */
