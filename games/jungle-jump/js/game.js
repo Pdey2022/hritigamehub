@@ -192,11 +192,13 @@ function gameLoop(timestamp) {
         }
     }
 
-    // Scroll up when player reaches upper half
-    if (p.y < H * 0.35) {
-        const diff = H * 0.35 - p.y;
-        p.y = H * 0.35;
-        state.scrollY += diff;
+    // Smooth scroll when player goes too high
+    const scrollZone = H * 0.35;
+    if (p.y < scrollZone) {
+        const diff = scrollZone - p.y;
+        const follow = Math.max(diff * 0.12, 0.5); // 12% per frame = smooth chase
+        state.scrollY += follow;
+        p.y += follow;
     }
 
     // Fall off screen
