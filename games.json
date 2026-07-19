@@ -180,8 +180,9 @@
     "icon": "🐍",
     "desc": "Guide the snake to eat food, grow longer, and avoid crashing into walls!",
     "tags": ["🎮 Classic", "⚡ Arcade"],
-    "stats": ["🐍 Growing Snake", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🐍 Growing Snake", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/snake/",
+    "status": "live"
   },
   {
     "id": "flappy-bird",
