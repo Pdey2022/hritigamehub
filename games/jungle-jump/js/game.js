@@ -182,18 +182,6 @@ function gameLoop(timestamp) {
         const diff = H * 0.4 - p.y;
         p.y = H * 0.4;
         state.scrollY += diff;
-        // Remove off-screen platforms, add new ones above
-        state.platforms = state.platforms.filter(pl => pl.y + pl.h + state.scrollY > -100);
-        const highestY = Math.min(...state.platforms.map(pl => pl.y));
-        while (highestY + state.scrollY < 200) {
-            state.scrollY -= 80;
-            // Actually let's just check the highest
-        }
-        // Add platforms above
-        const topMost = Math.min(...state.platforms.map(p => p.y));
-        while (topMost > -state.scrollY - 200) {
-            // platforms below viewport are removed, add above
-        }
     }
 
     // Fall off screen
@@ -202,16 +190,29 @@ function gameLoop(timestamp) {
         return;
     }
 
-    // Ensure platforms ahead exist
-    const minPlatY = Math.min(...state.platforms.map(p => p.y));
-    while (minPlatY > state.scrollY - H) {
-        const newY = minPlatY - 60 - Math.random() * 40;
-        addPlatformRow(newY);
+    // Manage platforms: remove those far below, add new ones above
+    state.platforms = state.platforms.filter(pl => pl.y + state.scrollY > -150);
+    const lowestY = Math.max(...state.platforms.map(p => p.y));
+    const highestY = Math.min(...state.platforms.map(p => p.y));
+    // Ensure there are platforms above the screen
+    if (highestY + state.scrollY > -50) {
+        for (let i = 0; i < 3; i++) {
+            const newY = highestY - 60 - Math.random() * 40;
+            addPlatformRow(newY);
+        }
+    }
+    // Keep max platforms to prevent lag
+    if (state.platforms.length > 30) {
+        state.platforms = state.platforms.slice(-30);
     }
 
-    // Clean up platforms far below
-    state.platforms = state.platforms.filter(pl => pl.y < state.scrollY + H + 100);
-    state.coins = state.coins.filter(c => !c.collected);
+    // Refresh coin list from platforms
+    state.coins = [];
+    state.platforms.forEach(pl => {
+        if (pl.type === 'coin') {
+            state.coins.push({ x: pl.x + PLAT_W / 2 - 6, y: pl.y - 18, w: 12, h: 12, collected: false });
+        }
+    });
 
     draw();
     state.animFrame = requestAnimationFrame(gameLoop);
