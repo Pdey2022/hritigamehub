@@ -69,8 +69,8 @@ const state = {
     score: 0,
     highScore: parseInt(localStorage.getItem('sk_high')) || 0,
     gameOver: false,
-    speed: 300,           // ms per tick
-    minSpeed: 100,
+    speed: 400,           // ms per tick
+    minSpeed: 120,
     tickId: null,
     dir: { dx: 1, dy: 0 },
     nextDir: { dx: 1, dy: 0 },
@@ -121,7 +121,7 @@ function spawnSpecialFood() {
 }
 
 function adjustSpeed() {
-    const newSpeed = Math.max(state.minSpeed, 300 - Math.floor(state.score / 8) * 5);
+    const newSpeed = Math.max(state.minSpeed, 400 - Math.floor(state.score / 10) * 5);
     if (newSpeed !== state.speed) {
         state.speed = newSpeed;
         clearInterval(state.tickId);
@@ -356,7 +356,7 @@ function resetGame() {
     state.gameOver = false;
     state.score = 0;
     state.growing = 0;
-    state.speed = 300;
+    state.speed = 400;
     state.specialFood = null;
     state.specialTimer = 0;
     if (state.tickId) clearInterval(state.tickId);
@@ -382,7 +382,7 @@ function startGame() {
     dom.gameoverOverlay.classList.add('hidden');
     initSnake();
     spawnFood();
-    state.speed = 300;
+    state.speed = 400;
     if (state.tickId) clearInterval(state.tickId);
     state.tickId = setInterval(tick, state.speed);
     draw();
