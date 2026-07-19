@@ -221,5 +221,284 @@
     "tags": ["🧠 Memory", "🎵 Pattern"],
     "stats": ["🟢🔴🔵🟡 Colors", "🏗️ Under Construction"],
     "status": "coming-soon"
+  },
+  {
+    "id": "moto-rush",
+    "title": "Moto Rush",
+    "icon": "🏍️",
+    "desc": "Race your motorcycle at top speed, dodge traffic, and beat the clock!",
+    "tags": ["🏁 Racing", "⚡ Speed"],
+    "stats": ["🏍️ Motorcycle", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "snowboard-slalom",
+    "title": "Snowboard Slalom",
+    "icon": "🏂",
+    "desc": "Carve down the mountain, weave through gates, and catch big air!",
+    "tags": ["🏁 Racing", "⚡ Speed"],
+    "stats": ["🏂 Downhill", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "boat-race",
+    "title": "Boat Race",
+    "icon": "⛵",
+    "desc": "Speed across the water, avoid obstacles, and cross the finish line first!",
+    "tags": ["🏁 Racing", "⚡ Speed"],
+    "stats": ["⛵ Speedboat", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "asteroid-miner",
+    "title": "Asteroid Miner",
+    "icon": "⛏️",
+    "desc": "Mine precious minerals from asteroids while avoiding space hazards!",
+    "tags": ["🚀 Space", "👾 Arcade"],
+    "stats": ["⛏️ Mining", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "mars-rover",
+    "title": "Mars Rover",
+    "icon": "🚗",
+    "desc": "Drive a rover across the red planet, collect samples, and explore!",
+    "tags": ["🚀 Space", "🧩 Puzzle"],
+    "stats": ["🚗 Rover", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "star-explorer",
+    "title": "Star Explorer",
+    "icon": "⭐",
+    "desc": "Navigate through constellations and discover new star systems!",
+    "tags": ["🚀 Space", "🧠 Brain"],
+    "stats": ["⭐ Constellations", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "alien-defender",
+    "title": "Alien Defender",
+    "icon": "👽",
+    "desc": "Defend Earth from alien invaders with your laser cannon!",
+    "tags": ["🚀 Space", "👾 Arcade"],
+    "stats": ["👽 Aliens", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "crossword-kids",
+    "title": "Crossword Kids",
+    "icon": "🧩",
+    "desc": "Fill in the crossword grid with fun, kid-friendly words and clues!",
+    "tags": ["📚 Word", "🧠 Puzzle"],
+    "stats": ["🧩 Crossword", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "bingo-blast",
+    "title": "Bingo Blast",
+    "icon": "🎱",
+    "desc": "Match words and pictures in this fun Bingo game for kids!",
+    "tags": ["📚 Word", "🧠 Memory"],
+    "stats": ["🎱 Word Bingo", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "rhyme-time",
+    "title": "Rhyme Time",
+    "icon": "🎵",
+    "desc": "Find the rhyming words and build your vocabulary!",
+    "tags": ["📚 Word", "🧠 Brain"],
+    "stats": ["🎵 Rhymes", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "kitty-care",
+    "title": "Kitty Care",
+    "icon": "🐱",
+    "desc": "Adopt a kitten, feed it, play with it, and keep it happy!",
+    "tags": ["🐾 Pet Care", "💕 Care"],
+    "stats": ["🐱 Kittens", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "puppy-love",
+    "title": "Puppy Love",
+    "icon": "🐶",
+    "desc": "Raise a puppy, teach it tricks, and go on adventures together!",
+    "tags": ["🐾 Pet Care", "💕 Care"],
+    "stats": ["🐶 Puppies", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "hamster-house",
+    "title": "Hamster House",
+    "icon": "🐹",
+    "desc": "Build a cozy home for your hamster with tunnels and toys!",
+    "tags": ["🐾 Pet Care", "🔨 Building"],
+    "stats": ["🐹 Hamster", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "veggie-garden",
+    "title": "Veggie Garden",
+    "icon": "🥕",
+    "desc": "Plant seeds, water your garden, and grow delicious vegetables!",
+    "tags": ["🌱 Farming", "🌾 Animals"],
+    "stats": ["🥕 Vegetables", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "orchard-harvest",
+    "title": "Orchard Harvest",
+    "icon": "🍎",
+    "desc": "Pick fruits from your orchard and sell them at the market!",
+    "tags": ["🌱 Farming", "🛒 Shop"],
+    "stats": ["🍎 Fruits", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "barn-buddies",
+    "title": "Barn Buddies",
+    "icon": "🐑",
+    "desc": "Feed the animals, clean the barn, and take care of your farm friends!",
+    "tags": ["🌱 Farming", "🐄 Animals"],
+    "stats": ["🐑 Barn Animals", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "flower-farm",
+    "title": "Flower Farm",
+    "icon": "🌻",
+    "desc": "Grow beautiful flowers, arrange bouquets, and decorate your garden!",
+    "tags": ["🌱 Farming", "🎨 Creative"],
+    "stats": ["🌻 Flowers", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "coral-reef",
+    "title": "Coral Reef",
+    "icon": "🪸",
+    "desc": "Build a colorful coral reef and attract tropical fish!",
+    "tags": ["🌊 Ocean", "🎨 Creative"],
+    "stats": ["🪸 Coral", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "shark-dive",
+    "title": "Shark Dive",
+    "icon": "🦈",
+    "desc": "Dive with sharks, identify species, and learn about ocean predators!",
+    "tags": ["🌊 Ocean", "🐠 Discovery"],
+    "stats": ["🦈 Sharks", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "pearl-diver",
+    "title": "Pearl Diver",
+    "icon": "🤿",
+    "desc": "Dive deep to collect pearls, treasure, and rare shells!",
+    "tags": ["🌊 Ocean", "👾 Arcade"],
+    "stats": ["🤿 Diving", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "arctic-waters",
+    "title": "Arctic Waters",
+    "icon": "❄️",
+    "desc": "Explore the frozen ocean and discover polar marine life!",
+    "tags": ["🌊 Ocean", "🐠 Discovery"],
+    "stats": ["❄️ Arctic", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "times-table",
+    "title": "Times Table",
+    "icon": "📊",
+    "desc": "Master multiplication tables with fun timed challenges!",
+    "tags": ["🧮 Math", "🧠 Brain"],
+    "stats": ["📊 Multiplication", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "number-run",
+    "title": "Number Run",
+    "icon": "🔢",
+    "desc": "Catch numbers in the right order and complete the sequence!",
+    "tags": ["🧮 Math", "👾 Arcade"],
+    "stats": ["🔢 Sequences", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "fraction-fun",
+    "title": "Fraction Fun",
+    "icon": "🍕",
+    "desc": "Learn fractions by slicing pizzas, cakes, and more!",
+    "tags": ["🧮 Math", "🧠 Puzzle"],
+    "stats": ["🍕 Fractions", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "shape-sorter",
+    "title": "Shape Sorter",
+    "icon": "⬛",
+    "desc": "Sort shapes by size, color, and type in this geometry game!",
+    "tags": ["🧮 Math", "🧩 Puzzle"],
+    "stats": ["⬛ Geometry", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "archery-ace",
+    "title": "Archery Ace",
+    "icon": "🏹",
+    "desc": "Aim your bow, adjust for wind, and hit the bullseye!",
+    "tags": ["🎯 Precision", "🎮 Classic"],
+    "stats": ["🏹 Archery", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "basket-shot",
+    "title": "Basket Shot",
+    "icon": "🏀",
+    "desc": "Shoot hoops from different angles and beat your high score!",
+    "tags": ["🎯 Precision", "👾 Arcade"],
+    "stats": ["🏀 Basketball", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "jungle-jump",
+    "title": "Jungle Jump",
+    "icon": "🌴",
+    "desc": "Swing through the jungle, avoid pitfalls, and reach the treetops!",
+    "tags": ["🎮 Platform", "👾 Arcade"],
+    "stats": ["🌴 Jungle", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "ice-climber",
+    "title": "Ice Climber",
+    "icon": "🧊",
+    "desc": "Climb icy mountains, avoid falling icicles, and reach the summit!",
+    "tags": ["🎮 Platform", "⚡ Action"],
+    "stats": ["🧊 Ice", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "lava-leap",
+    "title": "Lava Leap",
+    "icon": "🌋",
+    "desc": "Jump across platforms above flowing lava in this hot adventure!",
+    "tags": ["🎮 Platform", "⚡ Action"],
+    "stats": ["🌋 Volcano", "🏗️ Under Construction"],
+    "status": "coming-soon"
+  },
+  {
+    "id": "cloud-hop",
+    "title": "Cloud Hop",
+    "icon": "☁️",
+    "desc": "Bounce from cloud to cloud, collect stars, and explore the sky!",
+    "tags": ["🎮 Platform", "👾 Arcade"],
+    "stats": ["☁️ Clouds", "🏗️ Under Construction"],
+    "status": "coming-soon"
   }
 ]
