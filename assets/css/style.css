@@ -2611,13 +2611,15 @@ body.dart-dash-page {
 .dd-reset-btn:hover { transform: rotate(-30deg) !important; }
 
 #dd-game-area {
-    width: 100%; max-width: 900px; margin-top: 16px;
+    width: 100%; max-width: 900px; margin-top: 8px;
     display: flex; flex-direction: column; align-items: center;
 }
 
 .dd-canvas-wrapper {
     position: relative;
     border-radius: 16px; overflow: hidden;
+    border: 2px solid rgba(230,126,34,0.2);
+    background: #2c1810;
     box-shadow: 0 4px 30px rgba(0,0,0,0.35);
 }
 
