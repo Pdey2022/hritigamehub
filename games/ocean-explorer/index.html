@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🐙 Ocean Explorer — Free Ocean Game for Kids | Discover Marine Life</title>
+    <meta name="description" content="Play Ocean Explorer, a free ocean game for kids! Dive deep, discover marine life, catch fish, and build your collection. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#001a2e">
+    <meta property="og:title" content="🐙 Ocean Explorer — Free Online Game">
+    <meta property="og:description" content="Dive into the deep sea, discover marine life, and catch colorful fish! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/ocean-explorer/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🐙 Ocean Explorer — Free Online Game">
+    <meta name="twitter:description" content="Free ocean exploration game. Discover fish, build your collection! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/ocean-explorer/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Ocean Explorer","description":"Dive into the deep sea, discover marine life, and catch colorful fish to build your collection!","url":"https://hritihub.uk/games/ocean-explorer/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/ocean-explorer/css/ocean-explorer.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="ocean-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="oe-hud">
+        <div class="oe-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Ocean Explorer</span>
+            </nav>
+            <span class="oe-title">🐙 Ocean Explorer</span>
+        </div>
+        <div class="oe-hud-right">
+            <span class="oe-timer-display" id="oe-timer">45s</span>
+            <span class="oe-score-display">⭐ <span id="oe-score">0</span></span>
+            <button class="hud-btn mute-btn" id="oe-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn oe-reset-btn" id="oe-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="oe-game-area">
+        <div class="oe-canvas-wrapper" id="oe-canvas-wrapper">
+            <canvas id="oe-canvas" width="500" height="500"></canvas>
+
+            <!-- Start Overlay -->
+            <div class="oe-overlay" id="oe-start-overlay">
+                <div class="oe-overlay-content">
+                    <div class="oe-overlay-icon">🐙</div>
+                    <div class="oe-overlay-title">Ocean Explorer!</div>
+                    <div class="oe-overlay-sub">Click fish to catch them — discover all species!</div>
+                    <div class="oe-controls-hint">
+                        <span>🖱️ Click or tap on fish to catch them</span>
+                        <span>🐠 Discover all 8 marine species</span>
+                    </div>
+                    <button class="oe-btn" id="oe-start-btn">Dive In ▶</button>
+                </div>
+            </div>
+
+            <!-- Game Over Overlay -->
+            <div class="oe-overlay hidden" id="oe-gameover-overlay">
+                <div class="oe-overlay-content">
+                    <div class="oe-overlay-icon">🌊</div>
+                    <div class="oe-overlay-title">Dive Complete!</div>
+                    <div class="oe-overlay-sub" id="oe-gameover-stats">Score: 0</div>
+                    <button class="oe-btn" id="oe-restart-btn">Dive Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection -->
+        <div class="oe-collection">
+            <div class="oe-collection-title">🐠 Collection</div>
+            <div class="oe-collection-grid" id="oe-collection-grid"></div>
+        </div>
+    </section>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="oe-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="oe-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-oe-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/ocean-explorer/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

@@ -126,8 +126,9 @@
     "icon": "🐙",
     "desc": "Dive into the deep sea, discover marine life, and build your aquarium!",
     "tags": ["🌊 Ocean", "🐠 Discovery"],
-    "stats": ["🐟 Marine Life", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["� 8 Species", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/ocean-explorer/",
+    "status": "live"
   },
   {
     "id": "chefs-kitchen",
