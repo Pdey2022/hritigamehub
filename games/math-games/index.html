@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🧮 Math Games — Free Math Quiz for Kids | Play Online</title>
+    <meta name="description" content="Play Math Games, a free math quiz for kids! Solve addition and subtraction problems, build combos, and beat your high score. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#1a0a2e">
+    <meta property="og:title" content="🧮 Math Games — Free Online Game">
+    <meta property="og:description" content="Solve fun math challenges, build combos, and beat your high score! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/math-games/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🧮 Math Games — Free Online Game">
+    <meta name="twitter:description" content="Free math quiz game. Solve, score, learn! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/math-games/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Math Games","description":"Solve fun math challenges, beat the clock, and become a math whiz! Addition and subtraction problems with increasing difficulty.","url":"https://hritihub.uk/games/math-games/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/math-games/css/math-games.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="math-page">
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== HUD ===== -->
+    <header id="mh-hud">
+        <div class="mh-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Math Games</span>
+            </nav>
+            <span class="mh-title">🧮 Math</span>
+        </div>
+        <div class="mh-hud-right">
+            <span class="mh-combo-display" id="mh-combo">🔥 x1</span>
+            <span class="mh-timer-display" id="mh-timer">45s</span>
+            <span class="mh-score-display">⭐ <span id="mh-score">0</span></span>
+            <button class="hud-btn mute-btn" id="mh-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn mh-reset-btn" id="mh-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="mh-game-area">
+        <div class="mh-card">
+            <div class="mh-question-number" id="mh-question-num">Question 1</div>
+            <div class="mh-problem" id="mh-problem">🧮 Ready?</div>
+            <div class="mh-options" id="mh-options"></div>
+            <div class="mh-timer-bar">
+                <div class="mh-timer-fill" id="mh-timer-fill"></div>
+            </div>
+            <div class="mh-feed" id="mh-feed"></div>
+        </div>
+    </section>
+
+    <!-- ===== START OVERLAY ===== -->
+    <div class="mh-overlay" id="mh-start-overlay">
+        <div class="mh-overlay-content">
+            <div class="mh-overlay-icon">🧮</div>
+            <div class="mh-overlay-title">Math Games!</div>
+            <div class="mh-overlay-sub">Solve math problems, build combos, beat your score!</div>
+            <button class="mh-btn" id="mh-start-btn">Start ▶</button>
+        </div>
+    </div>
+
+    <!-- ===== GAME OVER OVERLAY ===== -->
+    <div class="mh-overlay hidden" id="mh-gameover-overlay">
+        <div class="mh-overlay-content">
+            <div class="mh-overlay-icon">🏆</div>
+            <div class="mh-overlay-title">Time's Up!</div>
+            <div class="mh-overlay-sub" id="mh-gameover-stats">Score: 0</div>
+            <button class="mh-btn" id="mh-restart-btn">Play Again 🔄</button>
+        </div>
+    </div>
+
+    <!-- ===== ADSENSE BANNER (hidden) ===== -->
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="mh-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="mh-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-mh-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/math-games/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

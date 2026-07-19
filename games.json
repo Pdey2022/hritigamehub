@@ -163,8 +163,9 @@
     "icon": "🔢",
     "desc": "Solve fun math challenges, beat the clock, and become a math whiz!",
     "tags": ["🧮 Math", "🧠 Brain"],
-    "stats": ["➕ Add & Subtract", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["➕ Add & Subtract", "🔥 Combo System", "🏆 Leaderboard"],
+    "url": "/games/math-games/",
+    "status": "live"
   },
   {
     "id": "tic-tac-toe",

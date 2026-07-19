@@ -1,0 +1,264 @@
+/* ============================================
+   MATH GAMES — Game Styles
+   ============================================ */
+
+body.math-page {
+    background: #1a0a2e;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#mh-hud {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    margin-top: 8px;
+    background: rgba(30, 10, 50, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 2px 30px rgba(100, 0, 200, 0.2);
+}
+
+.mh-hud-left { display: flex; align-items: center; gap: 8px; }
+.mh-hud-right { display: flex; align-items: center; gap: 6px; }
+
+.mh-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #a855f7;
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.mh-score-display {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.12);
+    padding: 4px 16px;
+    border-radius: 20px;
+}
+
+.mh-timer-display {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+    background: rgba(168, 85, 247, 0.15);
+    padding: 4px 14px;
+    border-radius: 20px;
+}
+
+.mh-combo-display {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.12);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: none;
+}
+
+.mh-reset-btn { margin-left: 8px !important; }
+
+/* ===== GAME AREA ===== */
+#mh-game-area {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 0 12px;
+    margin-top: 16px;
+}
+
+.mh-card {
+    width: 100%;
+    background: rgba(30, 10, 50, 0.5);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== QUESTION ===== */
+.mh-question-number {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+}
+.mh-problem {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 20px rgba(168, 85, 247, 0.2);
+}
+.mh-problem .operator { color: #a855f7; }
+.mh-problem .equals { color: #fbbf24; }
+.mh-problem .answer-spot {
+    display: inline-block;
+    min-width: 60px;
+    border-bottom: 3px dashed rgba(168, 85, 247, 0.3);
+    color: #fbbf24;
+}
+
+/* ===== OPTIONS ===== */
+.mh-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.mh-option {
+    padding: 16px;
+    border-radius: 16px;
+    border: 2px solid rgba(168, 85, 247, 0.15);
+    background: rgba(168, 85, 247, 0.06);
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+.mh-option:hover {
+    background: rgba(168, 85, 247, 0.15);
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-2px);
+}
+.mh-option:active {
+    transform: translateY(0);
+}
+.mh-option.correct {
+    background: rgba(34, 197, 94, 0.25);
+    border-color: #22c55e;
+    animation: mhPop 0.3s ease;
+}
+.mh-option.wrong {
+    background: rgba(239, 68, 68, 0.25);
+    border-color: #ef4444;
+    animation: mhShake 0.3s ease;
+}
+
+@keyframes mhPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+@keyframes mhShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+/* ===== OVERLAYS ===== */
+.mh-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+}
+.mh-overlay.hidden { display: none; }
+
+.mh-overlay-content {
+    text-align: center;
+    padding: 30px;
+    animation: mhFadeIn 0.3s ease;
+}
+
+@keyframes mhFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.mh-overlay-icon { font-size: 3.5rem; margin-bottom: 8px; }
+.mh-overlay-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+}
+.mh-overlay-sub {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+}
+
+.mh-btn {
+    padding: 12px 40px;
+    border-radius: 100px;
+    border: none;
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
+}
+.mh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(168, 85, 247, 0.5);
+}
+.mh-btn:active { transform: translateY(0); }
+
+/* ===== TIMER BAR ===== */
+.mh-timer-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(168, 85, 247, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+.mh-timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #a855f7, #7c3aed);
+    border-radius: 2px;
+    transition: width 1s linear;
+    width: 100%;
+}
+
+/* ===== FEED ===== */
+.mh-feed {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffd700;
+    animation: mhFeedUp 0.6s ease forwards;
+    pointer-events: none;
+}
+@keyframes mhFeedUp {
+    0%   { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-30px); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 540px) {
+    #mh-hud {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    .mh-title { font-size: 0.95rem; }
+    .mh-problem { font-size: 2.2rem; }
+    .mh-option { padding: 12px; font-size: 1.2rem; }
+    .mh-overlay-title { font-size: 1.4rem; }
+    .mh-btn { padding: 10px 30px; font-size: 0.9rem; }
+}
