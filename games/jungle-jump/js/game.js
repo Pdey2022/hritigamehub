@@ -279,9 +279,7 @@ function draw() {
         } else {
             // Wooden platform
             ctx.fillStyle = '#8B5E3C';
-            ctx.beginPath();
-            ctx.roundRect(pl.x, drawY, pl.w, pl.h, 3);
-            ctx.fill();
+            ctx.fillRect(pl.x, drawY, pl.w, pl.h);
             // Wood grain
             ctx.strokeStyle = 'rgba(0,0,0,0.1)';
             ctx.lineWidth = 1;
@@ -325,9 +323,7 @@ function draw() {
     const py = state.player.y + state.scrollY;
     // Body
     ctx.fillStyle = '#8B4513';
-    ctx.beginPath();
-    ctx.roundRect(px + 2, py + 6, 14, 10, 4);
-    ctx.fill();
+    ctx.fillRect(px + 2, py + 6, 14, 10);
     // Head
     ctx.fillStyle = '#D2A679';
     ctx.beginPath();
