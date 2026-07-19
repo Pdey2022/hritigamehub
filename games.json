@@ -143,10 +143,11 @@
     "id": "dino-dig",
     "title": "Dino Dig",
     "icon": "🦕",
-    "desc": "Excavate fossils, assemble dinosaur skeletons, and build your museum!",
+    "desc": "Excavate fossils, uncover dinosaur skeletons, and identify the species!",
     "tags": ["🦴 Digging", "🧩 Puzzle"],
-    "stats": ["🦴 Fossil Hunting", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🦕 6 Dinosaurs", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/dino-dig/",
+    "status": "live"
   },
   {
     "id": "super-builder",

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🦕 Dino Dig — Free Dinosaur Game for Kids | Play Online</title>
+    <meta name="description" content="Play Dino Dig, a free dinosaur digging game for kids! Excavate fossils, uncover dinosaur skeletons, and identify species. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#2d1b0e">
+    <meta property="og:title" content="🦕 Dino Dig — Free Online Game">
+    <meta property="og:description" content="Excavate fossils, uncover dinosaur skeletons, and identify species! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/dino-dig/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🦕 Dino Dig — Free Online Game">
+    <meta name="twitter:description" content="Free dinosaur fossil digging game. Excavate, discover, learn! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦕</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/dino-dig/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Dino Dig","description":"Excavate fossils, uncover dinosaur skeletons, and identify species in this paleontology discovery game!","url":"https://hritihub.uk/games/dino-dig/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/dino-dig/css/dino-dig.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dino-page">
+
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <header id="dn-hud">
+        <div class="dn-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span class="bc-sep">›</span><span>Dino Dig</span>
+            </nav>
+            <span class="dn-title">🦕 Dino Dig</span>
+            <span class="dn-round-display" id="dn-round">Round 1/5</span>
+        </div>
+        <div class="dn-hud-right">
+            <span class="dn-timer-display" id="dn-timer">30s</span>
+            <span class="dn-score-display">⭐ <span id="dn-score">0</span></span>
+            <button class="hud-btn mute-btn" id="dn-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn dn-reset-btn" id="dn-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <section id="dn-game-area">
+        <div class="dn-canvas-wrapper" id="dn-canvas-wrapper">
+            <canvas id="dn-canvas" width="500" height="500"></canvas>
+            <div class="dn-overlay" id="dn-start-overlay">
+                <div class="dn-overlay-content">
+                    <div class="dn-overlay-icon">🦕</div>
+                    <div class="dn-overlay-title">Dino Dig!</div>
+                    <div class="dn-overlay-sub">Tap to dig away dirt and uncover<br>dinosaur skeletons! 🦴<br><small>6 dinosaurs • 5 rounds • 30s each</small></div>
+                    <button class="dn-btn" id="dn-start-btn">Dig In! ⛏️</button>
+                </div>
+            </div>
+            <div class="dn-overlay hidden" id="dn-gameover-overlay">
+                <div class="dn-overlay-content">
+                    <div class="dn-overlay-icon">🏆</div>
+                    <div class="dn-overlay-title">Expedition Complete!</div>
+                    <div class="dn-overlay-sub" id="dn-gameover-stats">Score: 0</div>
+                    <button class="dn-btn" id="dn-restart-btn">Dig Again 🔄</button>
+                </div>
+            </div>
+        </div>
+        <div class="dn-guess-bar" id="dn-guess-bar">
+            <span class="dn-guess-label">🔍 Who is this? </span>
+            <div class="dn-choices" id="dn-choices-container"></div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="dn-leaderboard">
+        <div class="lb-header"><span class="lb-title">🏆 Leaderboard</span><button class="share-btn" id="dn-share-btn">📤 Share</button></div>
+        <div id="lb-dn-content"><div class="lb-empty"><div class="lb-empty-icon">🏆</div><div class="lb-empty-text">Sign in and play to top the leaderboard!</div></div></div>
+    </section>
+
+    <script src="/games/dino-dig/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

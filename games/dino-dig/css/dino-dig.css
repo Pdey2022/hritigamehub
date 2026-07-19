@@ -1,0 +1,111 @@
+/* Dino Dig — Styles */
+.dino-page { background: #2d1b0e; min-height: 100vh; font-family: 'Fredoka', sans-serif; overflow-x: hidden; }
+
+/* HUD */
+#dn-hud {
+  max-width: 900px; margin: 0 auto; padding: 10px 16px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  background: rgba(0,0,0,0.35); border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+.dn-hud-left, .dn-hud-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dn-title { font-size: 1.2rem; font-weight: 700; color: #f4a460; white-space: nowrap; }
+.dn-timer-display { color: #ffd700; font-weight: 700; font-size: 1.1rem; min-width: 42px; text-align: center; }
+.dn-score-display { color: #ffd700; font-weight: 600; font-size: 1rem; }
+.dn-round-display { color: #deb887; font-weight: 600; font-size: 0.9rem; }
+
+/* Game area */
+#dn-game-area {
+  max-width: 900px; margin: 16px auto; display: flex; flex-direction: column; align-items: center;
+}
+.dn-canvas-wrapper {
+  position: relative; display: inline-block; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  border: 4px solid #5c3a1e;
+}
+#dn-canvas { display: block; cursor: pointer; background: #3e2410; }
+
+/* Guess bar */
+.dn-guess-bar {
+  max-width: 500px; width: 100%; margin-top: 10px;
+  background: rgba(0,0,0,0.45); border-radius: 12px; padding: 10px 14px;
+  display: none; align-items: center; flex-wrap: wrap; gap: 8px;
+  border: 2px solid rgba(244,164,96,0.3);
+}
+.dn-guess-bar.show { display: flex; }
+.dn-guess-label { color: #ffd700; font-weight: 600; font-size: 0.95rem; white-space: nowrap; }
+.dn-choices { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.dn-choice-btn {
+  padding: 6px 14px; font-size: 0.85rem; font-weight: 600; font-family: 'Fredoka', sans-serif;
+  border: 2px solid rgba(255,255,255,0.25); border-radius: 10px; cursor: pointer;
+  background: rgba(255,255,255,0.1); color: #fff; transition: all 0.15s; white-space: nowrap;
+}
+.dn-choice-btn:hover { background: rgba(244,164,96,0.35); border-color: #f4a460; transform: scale(1.04); }
+.dn-choice-btn.correct { background: #4caf50; border-color: #4caf50; animation: pulse 0.5s; }
+.dn-choice-btn.wrong { background: #e53935; border-color: #e53935; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+/* Overlay */
+.dn-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); border-radius: 16px;
+  display: flex; align-items: center; justify-content: center; z-index: 10;
+  transition: opacity 0.3s;
+}
+.dn-overlay.hidden { opacity: 0; pointer-events: none; }
+.dn-overlay-content {
+  text-align: center; background: rgba(255,255,255,0.08); padding: 36px 48px;
+  border-radius: 24px; animation: modalPop 0.3s ease-out;
+}
+@keyframes modalPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.dn-overlay-icon { font-size: 4rem; margin-bottom: 8px; }
+.dn-overlay-title { font-size: 2rem; font-weight: 700; color: #ffd700; margin-bottom: 8px; }
+.dn-overlay-sub { color: #ddd; font-size: 1rem; line-height: 1.6; }
+.dn-overlay-sub small { color: #aaa; font-size: 0.85rem; }
+.dn-btn {
+  margin-top: 18px; padding: 12px 36px; font-size: 1.15rem; font-weight: 700; font-family: 'Fredoka', sans-serif;
+  border: none; border-radius: 14px; cursor: pointer; background: #f4a460; color: #2d1b0e;
+  transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(244,164,96,0.3);
+}
+.dn-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(244,164,96,0.5); }
+.dn-btn:active { transform: scale(0.95); }
+
+/* Leaderboard */
+.lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+.lb-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.lb-title { font-size: 1.2rem; font-weight: 700; color: #ffd700; }
+.share-btn {
+  padding: 6px 14px; font-size: 0.85rem; font-family: 'Fredoka',sans-serif; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer;
+  background: rgba(255,255,255,0.1); color: #ddd;
+}
+.lb-empty { text-align: center; padding: 24px; }
+.lb-empty-icon { font-size: 2rem; }
+.lb-empty-text { color: #aaa; font-size: 0.9rem; margin-top: 6px; }
+
+/* HUD buttons */
+.hud-btn {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px; color: #ddd; cursor: pointer; font-size: 0.95rem;
+  padding: 6px 10px; transition: background 0.15s; font-family: 'Fredoka', sans-serif;
+}
+.hud-btn:hover { background: rgba(255,255,255,0.2); }
+.back-btn { font-size: 1.1rem; padding: 4px 8px; text-decoration: none; }
+.breadcrumb { color: #aaa; font-size: 0.8rem; display: flex; gap: 4px; align-items: center; }
+.breadcrumb a { color: #f4a460; text-decoration: none; }
+.bc-sep { color: #666; }
+
+/* Footer fix */
+.site-footer { margin-top: 20px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dn-overlay-content { padding: 24px 20px; }
+  .dn-overlay-title { font-size: 1.5rem; }
+  .dn-choices { gap: 6px; }
+  .dn-choice-btn { padding: 6px 12px; font-size: 0.8rem; }
+  .dn-hud-left { gap: 6px; }
+  .dn-title { font-size: 1rem; }
+}
