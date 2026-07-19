@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🦈 Shark Dive — Free Ocean Game for Kids | Play Online</title>
+    <meta name="description" content="Play Shark Dive, a free ocean game for kids! Dive with sharks, identify species, and learn about predators. No download needed — play online in your browser!">
+    <meta name="theme-color" content="#001a33">
+    <meta property="og:title" content="🦈 Shark Dive — Free Online Game">
+    <meta property="og:description" content="Dive with sharks, identify species, and learn about ocean predators! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/shark-dive/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🦈 Shark Dive — Free Online Game">
+    <meta name="twitter:description" content="Free shark identification game. Dive, discover, learn! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦈</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/shark-dive/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=8">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Shark Dive","description":"Dive with sharks, identify species, and learn about ocean predators in this underwater discovery game!","url":"https://hritihub.uk/games/shark-dive/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/shark-dive/css/shark-dive.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="shark-page">
+
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <header id="sd-hud">
+        <div class="sd-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span class="bc-sep">›</span><span>Shark Dive</span>
+            </nav>
+            <span class="sd-title">🦈 Shark Dive</span>
+        </div>
+        <div class="sd-hud-right">
+            <span class="sd-timer-display" id="sd-timer">45s</span>
+            <span class="sd-score-display">⭐ <span id="sd-score">0</span></span>
+            <button class="hud-btn mute-btn" id="sd-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn sd-reset-btn" id="sd-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <section id="sd-game-area">
+        <div class="sd-canvas-wrapper" id="sd-canvas-wrapper">
+            <canvas id="sd-canvas" width="500" height="500"></canvas>
+            <div class="sd-overlay" id="sd-start-overlay">
+                <div class="sd-overlay-content">
+                    <div class="sd-overlay-icon">🦈</div>
+                    <div class="sd-overlay-title">Shark Dive!</div>
+                    <div class="sd-overlay-sub">Tap the sharks to identify them!<br>Discover all 8 shark species 🦈</div>
+                    <button class="sd-btn" id="sd-start-btn">Play ▶</button>
+                </div>
+            </div>
+            <div class="sd-overlay hidden" id="sd-gameover-overlay">
+                <div class="sd-overlay-content">
+                    <div class="sd-overlay-icon">🌊</div>
+                    <div class="sd-overlay-title">Dive Complete!</div>
+                    <div class="sd-overlay-sub" id="sd-gameover-stats">Score: 0</div>
+                    <button class="sd-btn" id="sd-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="sd-leaderboard">
+        <div class="lb-header"><span class="lb-title">🏆 Leaderboard</span><button class="share-btn" id="sd-share-btn">📤 Share</button></div>
+        <div id="lb-sd-content"><div class="lb-empty"><div class="lb-empty-icon">🏆</div><div class="lb-empty-text">Sign in and play to top the leaderboard!</div></div></div>
+    </section>
+
+    <script src="/games/shark-dive/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>

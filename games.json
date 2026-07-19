@@ -391,8 +391,9 @@
     "icon": "🦈",
     "desc": "Dive with sharks, identify species, and learn about ocean predators!",
     "tags": ["🌊 Ocean", "🐠 Discovery"],
-    "stats": ["🦈 Sharks", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🦈 8 Species", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/shark-dive/",
+    "status": "live"
   },
   {
     "id": "pearl-diver",
