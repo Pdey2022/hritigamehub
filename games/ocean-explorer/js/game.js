@@ -93,7 +93,7 @@ const state = {
     fish: [],
     discovered: JSON.parse(localStorage.getItem('oe_discovered') || '[]'),
     spawnTimer: 0,
-    spawnInterval: 60,
+    spawnInterval: 120,
     animFrame: null,
     lastTime: 0,
     timerTick: 0
@@ -135,10 +135,12 @@ function gameLoop(timestamp) {
 
     // Spawn fish
     state.spawnTimer += dt;
-    const spawnRate = Math.max(20, state.spawnInterval - state.score * 0.3);
-    while (state.spawnTimer >= spawnRate) {
-        state.spawnTimer -= spawnRate;
-        state.fish.push(createFish());
+    const spawnRate = Math.max(60, state.spawnInterval - state.score * 0.5);
+    if (state.fish.length < 10) {
+        while (state.spawnTimer >= spawnRate) {
+            state.spawnTimer -= spawnRate;
+            state.fish.push(createFish());
+        }
     }
 
     // Update fish
