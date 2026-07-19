@@ -63,11 +63,11 @@ const state = {
     score: 0,
     highScore: parseInt(localStorage.getItem('jj_high')) || 0,
     gameOver: false,
-    player: { x: 200, y: 300, vy: 0, w: 18, h: 18 },
+    player: { x: 170, y: H - 80, vy: 0, w: 20, h: 20 },
     platforms: [],
     scrollY: 0,
-    baseY: 0,
     coins: [],
+    particles: [],
     animFrame: null,
     lastTime: 0,
     left: false,
@@ -75,49 +75,54 @@ const state = {
 };
 
 // ===== PLATFORMS =====
-const PLAT_W = 65, PLAT_H = 10;
+const PLAT_W = 70, PLAT_H = 10;
 
 function spawnInitialPlatforms() {
     state.platforms = [];
+    state.coins = [];
     // Ground
     state.platforms.push({ x: 0, y: H - 20, w: W, h: 20, type: 'ground' });
-    // Starting platform (centered)
-    state.platforms.push({ x: 160, y: H - 80, w: PLAT_W, h: PLAT_H, type: 'normal' });
-    // Generate upward - ensure every platform is reachable from below
-    let prevX = 160, y = H - 150;
-    while (y > -200) {
-        y -= 55 + Math.random() * 20; // 55-75px vertical gap (always jumpable)
-        // Pick an X within horizontal jumping reach of the previous platform
-        const maxHorizDist = 100;
-        const minX = Math.max(10, prevX - maxHorizDist);
-        const maxX = Math.min(W - PLAT_W - 10, prevX + maxHorizDist);
-        const x = minX + Math.random() * (maxX - minX);
+    // Start platform - player sits right on this
+    state.platforms.push({ x: 165, y: H - 60, w: PLAT_W, h: PLAT_H, type: 'normal' });
+    // Zigzag upward staircase - GUARANTEED reachable
+    let dir = 1; // start going right
+    let prevX = 165;
+    for (let i = 0; i < 20; i++) {
+        const y = H - 60 - (i + 1) * 80; // exactly 80px apart each time
+        // Alternate left-right for guaranteed reachable zigzag
+        if (i % 2 === 0) {
+            // Go right
+            prevX = Math.min(W - PLAT_W - 10, prevX + 50 + Math.random() * 30);
+        } else {
+            // Go left
+            prevX = Math.max(10, prevX - 50 - Math.random() * 30);
+        }
         const type = Math.random() < 0.12 ? 'coin' : 'normal';
-        state.platforms.push({ x, y, w: PLAT_W, h: PLAT_H, type });
-        prevX = x;
+        state.platforms.push({ x: prevX, y, w: PLAT_W, h: PLAT_H, type });
+        if (type === 'coin') state.coins.push({ x: prevX + PLAT_W / 2 - 6, y: y - 20, w: 12, h: 12, collected: false });
     }
 }
 
 function addPlatformRow(y) {
-    // Always place one platform, sometimes two
-    const count = Math.random() < 0.35 ? 2 : 1;
-    // Reference the platform below (closest below this y)
-    const below = state.platforms
-        .filter(p => p.y < y + 20 && p.y > y - 100)
-        .sort((a, b) => b.y - a.y);
+    const below = state.platforms.filter(p => p.y < y + 10 && p.y > y - 120).sort((a, b) => b.y - a.y);
     const refX = below.length > 0 ? below[0].x + PLAT_W / 2 : 200;
-
-    const maxHorizDist = 100;
-    for (let i = 0; i < count; i++) {
-        const minX = Math.max(10, refX - maxHorizDist + i * 50);
-        const maxX = Math.min(W - PLAT_W - 10, refX + maxHorizDist - (count - 1 - i) * 50);
-        if (minX >= maxX) continue;
-        const x = minX + Math.random() * (maxX - minX);
-        const overlap = state.platforms.some(p => Math.abs(p.y - y) < 20 && Math.abs(p.x - x) < PLAT_W + 5);
-        if (!overlap) {
-            const type = Math.random() < 0.12 ? 'coin' : 'normal';
-            state.platforms.push({ x, y, w: PLAT_W, h: PLAT_H, type });
-        }
+    // Go opposite direction from the platform below for zigzag
+    const goingRight = refX < W / 2;
+    let newX;
+    if (goingRight) {
+        newX = Math.min(W - PLAT_W - 10, refX + 40 + Math.random() * 30);
+    } else {
+        newX = Math.max(10, refX - 40 - Math.random() * 30);
+    }
+    // Ensure it's not overlapping
+    if (!state.platforms.some(p => Math.abs(p.y - y) < 18 && Math.abs(p.x - newX) < PLAT_W - 5)) {
+        const type = Math.random() < 0.12 ? 'coin' : 'normal';
+        state.platforms.push({ x: newX, y, w: PLAT_W, h: PLAT_H, type });
+        if (type === 'coin') state.coins.push({ x: newX + PLAT_W / 2 - 6, y: y - 20, w: 12, h: 12, collected: false });
+    } else {
+        // Fallback: place directly below
+        const fbX = Math.max(10, Math.min(W - PLAT_W - 10, refX - 20));
+        state.platforms.push({ x: fbX, y, w: PLAT_W, h: PLAT_H, type: 'normal' });
     }
 }
 
@@ -131,12 +136,13 @@ function gameLoop(timestamp) {
     const p = state.player;
 
     // Gravity
-    p.vy += 0.5 * (dt / 16);
-    if (p.vy > 12) p.vy = 12;
+    p.vy += 0.45 * (dt / 16);
+    if (p.vy > 14) p.vy = 14;
 
     // Horizontal movement
-    if (state.left) p.x -= 4 * (dt / 16);
-    if (state.right) p.x += 4 * (dt / 16);
+    const speed = 4.5 * (dt / 16);
+    if (state.left) p.x -= speed;
+    if (state.right) p.x += speed;
     if (p.x < 0) p.x = W - p.w;
     if (p.x > W - p.w) p.x = 0;
 
@@ -144,14 +150,15 @@ function gameLoop(timestamp) {
     p.y += p.vy * (dt / 16);
 
     // Platform collision
+    let landed = false;
     if (p.vy > 0) {
         for (const pl of state.platforms) {
-            if (p.y + p.h > pl.y && p.y + p.h < pl.y + pl.h + p.vy &&
-                p.x + p.w > pl.x && p.x < pl.x + pl.w) {
+            if (p.y + p.h > pl.y && p.y + p.h < pl.y + pl.h + p.vy + 4 &&
+                p.x + p.w > pl.x + 2 && p.x < pl.x + pl.w - 2) {
                 if (pl.type !== 'ground') {
                     p.y = pl.y - p.h;
-                    p.vy = -9;
-                    playJump();
+                    p.vy = -10.5;
+                    landed = true;
                     state.score++;
                     dom.score.textContent = state.score;
                     if (state.score > state.highScore) {
@@ -159,11 +166,12 @@ function gameLoop(timestamp) {
                         localStorage.setItem('jj_high', state.highScore);
                         dom.highScore.textContent = '🏆 ' + state.highScore;
                     }
+                    playJump();
                 } else {
-                    // Hit ground = game over
                     gameOver();
                     return;
                 }
+                break;
             }
         }
     }
@@ -173,7 +181,7 @@ function gameLoop(timestamp) {
         if (!c.collected && p.x + p.w > c.x && p.x < c.x + c.w &&
             p.y + p.h > c.y && p.y < c.y + c.h) {
             c.collected = true;
-            state.score += 3;
+            state.score += 5;
             playCoin();
             dom.score.textContent = state.score;
             if (state.score > state.highScore) {
@@ -185,41 +193,29 @@ function gameLoop(timestamp) {
     }
 
     // Scroll up when player reaches upper half
-    if (p.y < H * 0.4) {
-        const diff = H * 0.4 - p.y;
-        p.y = H * 0.4;
+    if (p.y < H * 0.35) {
+        const diff = H * 0.35 - p.y;
+        p.y = H * 0.35;
         state.scrollY += diff;
     }
 
     // Fall off screen
-    if (p.y > H + 50) {
+    if (p.y > H + 60) {
         gameOver();
         return;
     }
 
-    // Manage platforms: remove those far below, add new ones above
-    state.platforms = state.platforms.filter(pl => pl.y + state.scrollY > -150);
-    const lowestY = Math.max(...state.platforms.map(p => p.y));
-    const highestY = Math.min(...state.platforms.map(p => p.y));
-    // Ensure there are platforms above the screen
-    if (highestY + state.scrollY > -50) {
-        for (let i = 0; i < 3; i++) {
-            const newY = highestY - 60 - Math.random() * 40;
-            addPlatformRow(newY);
-        }
+    // Manage platforms
+    const highestY = state.platforms.length > 0 ? Math.min(...state.platforms.map(p => p.y)) : 0;
+    if (highestY + state.scrollY > -100) {
+        const newY = highestY - 85 - Math.random() * 20;
+        addPlatformRow(newY);
     }
-    // Keep max platforms to prevent lag
-    if (state.platforms.length > 30) {
-        state.platforms = state.platforms.slice(-30);
-    }
-
-    // Refresh coin list from platforms
-    state.coins = [];
-    state.platforms.forEach(pl => {
-        if (pl.type === 'coin') {
-            state.coins.push({ x: pl.x + PLAT_W / 2 - 6, y: pl.y - 18, w: 12, h: 12, collected: false });
-        }
-    });
+    // Clean offscreen platforms
+    state.platforms = state.platforms.filter(p => p.y + state.scrollY > -300);
+    state.coins = state.coins.filter(c => !c.collected && c.y + state.scrollY > -200);
+    // Cap
+    if (state.platforms.length > 40) state.platforms = state.platforms.slice(-40);
 
     draw();
     state.animFrame = requestAnimationFrame(gameLoop);
@@ -412,8 +408,9 @@ function startGame() {
     state.gameOver = false;
     state.score = 0;
     state.scrollY = 0;
-    state.player = { x: 200, y: 300, vy: 0, w: 18, h: 18 };
+    state.player = { x: 170, y: H - 80, vy: 0, w: 20, h: 20 };
     state.coins = [];
+    state.particles = [];
     state.lastTime = 0;
     state.left = false;
     state.right = false;
