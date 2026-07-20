@@ -19,7 +19,7 @@
   border: 2px solid #e94560;
   background: #16213e;
 }
-#ttt-canvas { display: block; cursor: pointer; background: #16213e; }
+#ttt-canvas { display: block; cursor: pointer; background: #16213e; width: 500px; height: 500px; }
 
 /* Turn indicator below canvas */
 .ttt-turn-bar {
@@ -35,3 +35,6 @@
 .lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
 
 /* Responsive — shared .dd-overlay responsive handled in style.css */
+@media (max-width: 600px) {
+  #ttt-canvas { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+}
