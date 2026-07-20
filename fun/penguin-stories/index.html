@@ -51,6 +51,25 @@
         .ps-search input:focus { border-color: rgba(255,215,0,0.4); box-shadow: 0 0 20px rgba(255,215,0,0.08); }
         .ps-search input::placeholder { color: rgba(255,255,255,0.3); }
 
+        /* Category filters — matches landing page */
+        .ps-categories { max-width: 960px; margin: 12px auto 0; padding: 0 20px; }
+        .ps-categories .categories-grid {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+        }
+        .ps-categories .category-card {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+            padding: 10px 14px 8px; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; cursor: pointer; font-family: inherit; color: #fff;
+            transition: all 0.25s ease; text-align: center; position: relative; overflow: hidden;
+            background: rgba(255,255,255,0.04); min-width: 60px;
+        }
+        .ps-categories .category-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.25); }
+        .ps-categories .category-card-active { border-color: rgba(255,215,0,0.5) !important; box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important; background: rgba(255,215,0,0.08); }
+        .ps-categories .category-icon { font-size: 1.4rem; transition: transform 0.3s ease; }
+        .ps-categories .category-card:hover .category-icon { transform: scale(1.15) rotate(-5deg); }
+        .ps-categories .category-name { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.7); }
+        .ps-categories .category-count { font-size: 0.6rem; color: rgba(255,255,255,0.3); }
+
         /* Carousel */
         .ps-carousel { max-width: 960px; margin: 16px auto 40px; padding: 0 20px; position: relative; }
         .ps-list {
@@ -155,6 +174,9 @@
             .ps-story-icon { font-size: 2.5rem; }
             .ps-story-title { font-size: 1.3rem; }
             .ps-arrow { width: 28px; height: 28px; font-size: 1rem; }
+            .ps-categories .category-card { padding: 8px 10px 6px; min-width: 50px; }
+            .ps-categories .category-icon { font-size: 1.1rem; }
+            .ps-categories .category-name { font-size: 0.6rem; }
         }
     </style>
 </head>
@@ -191,6 +213,9 @@
         </div>
         <div class="ps-search">
             <input type="text" id="ps-search-input" placeholder="🔍 Search stories..." autocomplete="off">
+        </div>
+        <div class="ps-categories">
+            <div class="categories-grid" id="ps-categories"></div>
         </div>
         <div class="ps-carousel">
             <button class="ps-arrow ps-arrow-prev" id="ps-prev">‹</button>
@@ -279,18 +304,68 @@
             const backBtn = document.getElementById('ps-back-btn');
 
             let stories = [];
+            var activeCategory = 'All';
+
+            const CATEGORIES = {
+                'All':  { icon: '\uD83D\uDCD6', color: 'rgba(255,255,255,0.04)' },
+                'Penguin':  { icon: '\uD83D\uDC27', color: 'linear-gradient(135deg, #00bcd422, #0097a711)' },
+                'Dinosaur':   { icon: '\uD83E\uDD95', color: 'linear-gradient(135deg, #4caf5022, #388e3c11)' },
+                'Space':    { icon: '\uD83D\uDE80', color: 'linear-gradient(135deg, #9b59b622, #8e44ad11)' },
+                'Ocean':    { icon: '\uD83C\uDF0A', color: 'linear-gradient(135deg, #3498db22, #2980b911)' },
+                'Magic':    { icon: '\u2728', color: 'linear-gradient(135deg, #e91e6322, #c2185b11)' },
+                'Farm':     { icon: '\uD83C\uDF3E', color: 'linear-gradient(135deg, #ff980022, #f57c0011)' },
+                'Animals':  { icon: '\uD83D\uDC3E', color: 'linear-gradient(135deg, #e67e2222, #d3540011)' },
+                'Insects':  { icon: '\uD83D\uDC1B', color: 'linear-gradient(135deg, #1abc9c22, #16a08511)' },
+                'Birds':    { icon: '\uD83D\uDC26', color: 'linear-gradient(135deg, #e74c3c22, #c0392b11)' }
+            };
+
+            function getCategory(story) {
+                for (var key in CATEGORIES) {
+                    if (key === 'All') continue;
+                    if (story.tags.indexOf(key) !== -1) return key;
+                }
+                return 'Animals';
+            }
 
             fetch('/fun/penguin-stories/stories.json')
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     stories = data;
                     document.getElementById('ps-total').textContent = data.length;
+                    renderCategories();
                     renderList();
                 });
+
+            function renderCategories() {
+                var container = document.getElementById('ps-categories');
+                var html = '';
+                for (var key in CATEGORIES) {
+                    var count = key === 'All' ? stories.length : stories.filter(function(s) { return getCategory(s) === key; }).length;
+                    if (count === 0) continue;
+                    var active = key === activeCategory ? ' category-card-active' : '';
+                    html += '<div class="category-card' + active + '" data-cat="' + key + '" style="background:' + CATEGORIES[key].color + '">' +
+                        '<span class="category-icon">' + CATEGORIES[key].icon + '</span>' +
+                        '<span class="category-name">' + key + '</span>' +
+                        '<span class="category-count">' + count + '</span></div>';
+                }
+                container.innerHTML = html;
+                container.querySelectorAll('.category-card').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        var cat = btn.dataset.cat;
+                        activeCategory = cat;
+                        container.querySelectorAll('.category-card').forEach(function(b) { b.classList.remove('category-card-active'); });
+                        btn.classList.add('category-card-active');
+                        var searchVal = document.getElementById('ps-search-input').value;
+                        renderList(searchVal);
+                    });
+                });
+            }
 
             function renderList(filter) {
                 var q = (filter || '').toLowerCase().trim();
                 var filtered = stories.filter(function(s) {
+                    var matchesCat = activeCategory === 'All' || getCategory(s) === activeCategory;
+                    if (!matchesCat) return false;
                     if (!q) return true;
                     return s.title.toLowerCase().includes(q) ||
                            s.tags.some(function(t) { return t.toLowerCase().includes(q); }) ||
