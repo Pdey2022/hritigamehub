@@ -18,6 +18,7 @@
       '<div class="footer-links-col">' +
         '<a href="/" class="footer-link">🏠 Home</a>' +
         '<a href="/about/" class="footer-link">📖 About</a>' +
+        '<a href="/fun/" class="footer-link">🎮 More Fun</a>' +
         '<a href="/sitemap.xml" class="footer-link">🗺️ Sitemap</a>' +
         '<a href="/#game-grid" class="footer-link">🎮 All Games</a>' +
       '</div>' +
