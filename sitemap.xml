@@ -121,6 +121,21 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://hritihub.uk/fun/</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://hritihub.uk/fun/penguin-stories/</loc>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://hritihub.uk/about/</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://hritihub.uk/404.html</loc>
     <priority>0.1</priority>
     <changefreq>never</changefreq>
