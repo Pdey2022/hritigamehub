@@ -43,7 +43,7 @@
 
         /* Story cards */
         /* Search bar */
-        .ps-search { max-width: 700px; margin: 12px auto 0; padding: 0 20px; }
+        .ps-search { max-width: 960px; margin: 12px auto 0; padding: 0 20px; }
         .ps-search input {
             width: 100%; padding: 10px 18px; border: 1.5px solid rgba(255,255,255,0.12);
             border-radius: 100px; background: rgba(255,255,255,0.06);
@@ -54,14 +54,20 @@
         .ps-search input:focus { border-color: rgba(255,215,0,0.4); box-shadow: 0 0 20px rgba(255,215,0,0.08); }
         .ps-search input::placeholder { color: rgba(255,255,255,0.3); }
 
-        /* Story grid — 2 columns */
-        .ps-grid {
-            max-width: 700px; margin: 16px auto 40px; padding: 0 20px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        /* Carousel container */
+        .ps-carousel {
+            max-width: 960px; margin: 16px auto 40px; padding: 0 20px; position: relative;
         }
+        .ps-list {
+            display: flex; flex-flow: column wrap; height: 270px;
+            overflow-x: auto; scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 8px 4px 12px; gap: 12px;
+        }
+        .ps-list::-webkit-scrollbar { display: none; }
         .ps-card {
+            flex: 0 0 auto; width: 240px; scroll-snap-align: start;
             background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
-            padding: 18px 20px; backdrop-filter: blur(10px); cursor: pointer;
+            padding: 16px 18px; backdrop-filter: blur(10px); cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .ps-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
@@ -72,6 +78,17 @@
         .ps-card-meta { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
         .ps-card-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
         .ps-card-tag { padding: 2px 8px; border-radius: 100px; background: rgba(255,255,255,0.08); font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+
+        /* Arrows */
+        .ps-arrow {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+            width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); cursor: pointer;
+            font-size: 1.2rem; color: #fff; display: flex; align-items: center; justify-content: center;
+        }
+        .ps-arrow:hover { background: rgba(255,255,255,0.15); }
+        .ps-arrow-prev { left: 0; }
+        .ps-arrow-next { right: 0; }
 
         /* Story reader */
         .ps-reader { display: none; }
@@ -118,7 +135,8 @@
         .ps-back-btn:hover { background: rgba(255,255,255,0.14); }
 
         @media (max-width: 600px) {
-            .ps-grid { grid-template-columns: 1fr; }
+            .ps-list { height: 220px; }
+            .ps-card { width: 180px; padding: 12px 14px; }
             .ps-story-body { padding: 20px 18px; font-size: 0.95rem; }
             .ps-hero h1 { font-size: 2rem; }
         }
@@ -158,7 +176,11 @@
         <div class="ps-search">
             <input type="text" id="ps-search-input" placeholder="🔍 Search stories..." autocomplete="off">
         </div>
-        <div class="ps-grid" id="ps-list"></div>
+        <div class="ps-carousel">
+            <button class="ps-arrow ps-arrow-prev" id="ps-prev">‹</button>
+            <div class="ps-list" id="ps-list"></div>
+            <button class="ps-arrow ps-arrow-next" id="ps-next">›</button>
+        </div>
     </div>
 
     <!-- Story reader view -->
@@ -248,6 +270,14 @@
                     renderList(this.value);
                 });
             }
+
+            // Carousel arrows
+            document.getElementById('ps-prev').addEventListener('click', function() {
+                document.getElementById('ps-list').scrollBy({ left: -280, behavior: 'smooth' });
+            });
+            document.getElementById('ps-next').addEventListener('click', function() {
+                document.getElementById('ps-list').scrollBy({ left: 280, behavior: 'smooth' });
+            });
 
             function openStory(story) {
                 storyIcon.textContent = story.icon;
