@@ -1,4 +1,4 @@
-/* Table Tennis — Styles */
+/* Table Tennis — Styles, Dart Dash standard */
 .tt-page { background: #1a2332; min-height: 100vh; font-family: 'Fredoka', sans-serif; overflow-x: hidden; }
 
 /* HUD — Dart Dash standard */
@@ -9,20 +9,23 @@
 }
 /* HUD children use shared .dd-hud-left, .dd-hud-right, .dd-title, .dd-score-display from style.css */
 
-/* Game area */
+/* Game area — Dart Dash standard */
 #tt-game-area {
-  max-width: 900px; margin: 8px auto 0; display: flex; justify-content: center;
+  width: 100%; max-width: 900px; margin-top: 8px;
+  display: flex; flex-direction: column; align-items: center;
 }
+
+/* Canvas wrapper — Dart Dash standard */
 .tt-canvas-wrapper {
-  position: relative; display: inline-block; border-radius: 16px; overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  border: 2px solid #2a3a4a;
+  position: relative;
+  border-radius: 16px;
+  border: 2px solid rgba(100,160,220,0.2);
+  background: #0d1b2a;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.35);
 }
-#tt-canvas { display: block; background: #0d1b2a; cursor: none; }
 
-/* Overlay — uses shared .dd-overlay from style.css */
-
-/* Button — shared .dd-btn from style.css */
+/* Canvas — explicit sizing */
+#tt-canvas { display: block; cursor: none; width: 500px; height: 550px; }
 
 /* Leaderboard */
 .lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
@@ -30,5 +33,6 @@
 /* Responsive */
 @media (max-width: 600px) {
   #tt-hud { padding: 8px 12px; }
-  .tt-title { font-size: 1rem; }
+  #tt-canvas { width: 100%; height: auto; aspect-ratio: 500 / 550; }
+  .tt-canvas-wrapper { width: 100%; }
 }
