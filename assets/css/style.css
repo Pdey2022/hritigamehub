@@ -1384,7 +1384,7 @@ body.landing-page {
 .landing-header {
     position: relative;
     text-align: center;
-    padding: 80px 20px 4px;
+    padding: 56px 20px 4px;
     width: 100%;
     max-width: 900px;
     z-index: 1;
@@ -1400,7 +1400,7 @@ body.landing-page {
     color: rgba(255,255,255,0.9);
     font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     animation: fadeInUp 0.8s ease forwards;
 }
 
@@ -1408,7 +1408,7 @@ body.landing-page {
     font-size: 3.5rem;
     font-weight: 800;
     color: white;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     line-height: 1.15;
     animation: fadeInUp 0.8s 0.1s ease forwards;
     opacity: 0;
@@ -1441,7 +1441,7 @@ body.landing-page {
     font-size: 1.25rem;
     color: rgba(255,255,255,0.7);
     font-weight: 500;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     animation: fadeInUp 0.8s 0.2s ease forwards;
     opacity: 0;
 }
