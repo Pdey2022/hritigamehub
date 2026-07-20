@@ -5,7 +5,7 @@
 #tt-hud {
   max-width: 900px; margin: 0 auto; padding: 10px 16px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-  background: rgba(0,0,0,0.35); border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
 }
 .tt-hud-left, .tt-hud-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .tt-title { font-size: 1.2rem; font-weight: 700; color: #66bbff; white-space: nowrap; }
@@ -14,27 +14,18 @@
 
 /* Game area */
 #tt-game-area {
-  max-width: 900px; margin: 16px auto; display: flex; justify-content: center;
+  max-width: 900px; margin: 8px auto 0; display: flex; justify-content: center;
 }
 .tt-canvas-wrapper {
   position: relative; display: inline-block; border-radius: 16px; overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  border: 4px solid #2a3a4a;
+  border: 2px solid #2a3a4a;
 }
 #tt-canvas { display: block; background: #0d1b2a; cursor: none; }
 
-/* Overlay — uses shared .dd-overlay from style.css, theme overrides here */
-.tt-overlay-content { padding: 36px 48px; }
-.tt-overlay-title { color: #66bbff !important; font-size: 2rem !important; }
+/* Overlay — uses shared .dd-overlay from style.css */
 
-/* Button — match table tennis theme */
-.tt-btn {
-  margin-top: 18px; padding: 12px 36px; font-size: 1.15rem; font-weight: 700; font-family: 'Fredoka', sans-serif;
-  border: none; border-radius: 14px; cursor: pointer; background: #66bbff; color: #1a2332;
-  transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(102,187,255,0.3);
-}
-.tt-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(102,187,255,0.5); }
-.tt-btn:active { transform: scale(0.95); }
+/* Button — shared .dd-btn from style.css */
 
 /* Leaderboard */
 .lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
