@@ -1,26 +1,21 @@
 /* Dino Dig — Styles */
 .dino-page { background: #2d1b0e; min-height: 100vh; font-family: 'Fredoka', sans-serif; overflow-x: hidden; }
 
-/* HUD */
+/* HUD — base uses shared #dd-hud pattern + shared .dd-hud-left, .dd-hud-right, .dd-title, .dd-score-display, .dd-level-display */
 #dn-hud {
   max-width: 900px; margin: 0 auto; padding: 10px 16px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
-  background: rgba(0,0,0,0.35); border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
 }
-.dn-hud-left, .dn-hud-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.dn-title { font-size: 1.2rem; font-weight: 700; color: #f4a460; white-space: nowrap; }
-.dn-timer-display { color: #ffd700; font-weight: 700; font-size: 1.1rem; min-width: 42px; text-align: center; }
-.dn-score-display { color: #ffd700; font-weight: 600; font-size: 1rem; }
-.dn-round-display { color: #deb887; font-weight: 600; font-size: 0.9rem; }
 
 /* Game area */
 #dn-game-area {
-  max-width: 900px; margin: 16px auto; display: flex; flex-direction: column; align-items: center;
+  max-width: 900px; margin: 8px auto 0; display: flex; flex-direction: column; align-items: center;
 }
 .dn-canvas-wrapper {
   position: relative; display: inline-block; border-radius: 16px; overflow: hidden;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  border: 4px solid #5c3a1e;
+  border: 2px solid #5c3a1e;
 }
 #dn-canvas { display: block; cursor: pointer; background: #3e2410; }
 
