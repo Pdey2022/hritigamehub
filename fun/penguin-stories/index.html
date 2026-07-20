@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐧 Penguin Stories — Read Fun Kid's Stories | Hriti's Game Hub</title>
+    <meta name="description" content="Read delightful penguin stories for kids! Follow Pip the Penguin on icy adventures, fun discoveries, and heartwarming tales — free to read online!">
+    <meta name="theme-color" content="#1a1a3e">
+    <meta property="og:title" content="🐧 Penguin Stories — Read Fun Kid's Stories">
+    <meta property="og:description" content="Follow Pip the Penguin on fun, heartwarming Arctic adventures! Free stories for kids.">
+    <meta property="og:url" content="https://hritihub.uk/fun/penguin-stories/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🐧 Penguin Stories">
+    <meta name="twitter:description" content="Free penguin stories for kids! Read online.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/fun/penguin-stories/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .ps-page { background: #1a1a3e; min-height: 100vh; font-family: 'Fredoka', sans-serif; }
+        .ps-hero { position: relative; text-align: center; padding: 80px 20px 10px; max-width: 900px; margin: 0 auto; z-index: 1; }
+        .ps-hero h1 { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+        .ps-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+        .ps-hero .back-link {
+            display: inline-block; margin-top: 10px;
+            color: #ffd700; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            padding: 8px 20px; border-radius: 100px;
+            background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.25);
+            animation: backLinkPulse 2s ease-in-out infinite;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ps-hero .back-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255,215,0,0.2);
+        }
+        @keyframes backLinkPulse {
+            0%, 100% { box-shadow: 0 0 6px rgba(255,215,0,0.1); }
+            50% { box-shadow: 0 0 18px rgba(255,215,0,0.25); }
+        }
+
+        /* Story cards */
+        /* Search bar */
+        .ps-search { max-width: 700px; margin: 12px auto 0; padding: 0 20px; }
+        .ps-search input {
+            width: 100%; padding: 10px 18px; border: 1.5px solid rgba(255,255,255,0.12);
+            border-radius: 100px; background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px); color: #fff; font-size: 0.9rem;
+            font-family: 'Fredoka', sans-serif; outline: none; box-sizing: border-box;
+            transition: all 0.3s;
+        }
+        .ps-search input:focus { border-color: rgba(255,215,0,0.4); box-shadow: 0 0 20px rgba(255,215,0,0.08); }
+        .ps-search input::placeholder { color: rgba(255,255,255,0.3); }
+
+        /* Story grid — 2 columns */
+        .ps-grid {
+            max-width: 700px; margin: 16px auto 40px; padding: 0 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+        .ps-card {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
+            padding: 18px 20px; backdrop-filter: blur(10px); cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ps-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+        .ps-card-top { display: flex; align-items: center; gap: 12px; }
+        .ps-card-icon { font-size: 1.8rem; }
+        .ps-card-info { flex: 1; min-width: 0; }
+        .ps-card-title { font-size: 1rem; font-weight: 700; color: #fff; }
+        .ps-card-meta { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+        .ps-card-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+        .ps-card-tag { padding: 2px 8px; border-radius: 100px; background: rgba(255,255,255,0.08); font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+
+        /* Story reader */
+        .ps-reader { display: none; }
+        .ps-reader.open { display: block; }
+        .ps-reader-inner { max-width: 700px; margin: 0 auto 40px; padding: 0 20px; }
+        .ps-story-header { text-align: center; margin-bottom: 20px; }
+        .ps-story-icon { font-size: 3rem; margin-bottom: 6px; }
+        .ps-story-title { font-size: 1.6rem; font-weight: 700; color: #ffd700; }
+        .ps-story-meta { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+        .ps-story-body {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+            padding: 28px 32px; line-height: 1.9; font-size: 1.05rem; color: rgba(255,255,255,0.85);
+        }
+        .ps-story-body p { margin: 0 0 16px; transition: background 0.3s; border-radius: 8px; padding: 2px 6px; }
+        .ps-story-body p:last-child { margin-bottom: 0; }
+        .ps-story-body p.speaking { background: rgba(255,215,0,0.1); }
+
+        /* Read Aloud controls */
+        .ps-audio-bar {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin: 16px 0 4px; flex-wrap: wrap;
+        }
+        .ps-audio-btn {
+            padding: 8px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); cursor: pointer;
+            font-family: 'Fredoka', sans-serif; font-size: 0.85rem; font-weight: 600;
+            transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+        }
+        .ps-audio-btn:hover { background: rgba(255,255,255,0.15); }
+        .ps-audio-btn.active { background: rgba(76,175,80,0.2); border-color: rgba(76,175,80,0.4); color: #4caf50; }
+        .ps-audio-btn.speaking-active { animation: psPulse 1.2s ease-in-out infinite; }
+        @keyframes psPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.3); } 50% { box-shadow: 0 0 16px 4px rgba(76,175,80,0.15); } }
+        .ps-speed-btn { font-size: 0.75rem; padding: 4px 12px; min-width: 48px; }
+        .ps-audio-status {
+            font-size: 0.8rem; color: rgba(255,255,255,0.3); text-align: center;
+            transition: opacity 0.3s; min-height: 1.2em;
+        }
+        .ps-back-btn {
+            display: inline-block; margin-top: 16px; padding: 10px 24px; border-radius: 12px;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.6); font-size: 0.9rem; cursor: pointer; font-family: 'Fredoka', sans-serif;
+            transition: background 0.2s;
+        }
+        .ps-back-btn:hover { background: rgba(255,255,255,0.14); }
+
+        @media (max-width: 600px) {
+            .ps-grid { grid-template-columns: 1fr; }
+            .ps-story-body { padding: 20px 18px; font-size: 0.95rem; }
+            .ps-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body class="landing-page ps-page">
+
+    <div class="bg-animation">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="bg-shape bg-shape-4"></div>
+        <div class="bg-shape bg-shape-5"></div>
+        <div class="bg-shape bg-shape-6"></div>
+        <div class="bg-particles" id="bg-particles"></div>
+        <div class="bg-bubbles" id="bg-bubbles"></div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="/" class="top-nav-logo">🌟 Hriti's HUB</a>
+            <div class="top-nav-right">
+                <a href="/about/" class="top-nav-link">About Me</a>
+                <div class="auth-container" id="auth-container"></div>
+                <div class="sync-status" id="sync-status"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Story list view -->
+    <div id="ps-list-view">
+        <div class="ps-hero">
+            <h1>🐧 Penguin Stories</h1>
+            <p>Read, listen, and explore fun stories for kids!</p>
+            <a href="/fun/" class="back-link">← Back to More Fun</a>
+        </div>
+        <div class="ps-search">
+            <input type="text" id="ps-search-input" placeholder="🔍 Search stories..." autocomplete="off">
+        </div>
+        <div class="ps-grid" id="ps-list"></div>
+    </div>
+
+    <!-- Story reader view -->
+    <div class="ps-reader" id="ps-reader">
+        <div class="ps-reader-inner">
+            <div class="ps-story-header">
+                <div class="ps-story-icon" id="ps-story-icon">🐧</div>
+                <div class="ps-story-title" id="ps-story-title">Story Title</div>
+                <div class="ps-story-meta" id="ps-story-meta"></div>
+                <!-- Read Aloud controls -->
+                <div class="ps-audio-bar">
+                    <button class="ps-audio-btn" id="ps-play-btn">🔊 Read Aloud</button>
+                    <button class="ps-audio-btn" id="ps-pause-btn" style="display:none">⏸ Pause</button>
+                    <button class="ps-audio-btn" id="ps-stop-btn" style="display:none">⏹ Stop</button>
+                    <button class="ps-audio-btn ps-speed-btn" id="ps-speed-btn">1.0×</button>
+                </div>
+                <div class="ps-audio-status" id="ps-audio-status"></div>
+            </div>
+            <div class="ps-story-body" id="ps-story-body"></div>
+            <div style="text-align:center">
+                <button class="ps-back-btn" id="ps-back-btn">← Back to Stories</button>
+            </div>
+        </div>
+    </div>
+
+    <script>document.body.classList.add('loaded')</script>
+    <script>
+        (function() {
+            const listView = document.getElementById('ps-list-view');
+            const readerView = document.getElementById('ps-reader');
+            const listEl = document.getElementById('ps-list');
+            const storyIcon = document.getElementById('ps-story-icon');
+            const storyTitle = document.getElementById('ps-story-title');
+            const storyMeta = document.getElementById('ps-story-meta');
+            const storyBody = document.getElementById('ps-story-body');
+            const backBtn = document.getElementById('ps-back-btn');
+
+            let stories = [];
+
+            fetch('/fun/penguin-stories/stories.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    stories = data;
+                    renderList();
+                });
+
+            function renderList(filter) {
+                var q = (filter || '').toLowerCase().trim();
+                var filtered = stories.filter(function(s) {
+                    if (!q) return true;
+                    return s.title.toLowerCase().includes(q) ||
+                           s.tags.some(function(t) { return t.toLowerCase().includes(q); }) ||
+                           s.content.some(function(c) { return c.toLowerCase().includes(q); });
+                });
+                listEl.innerHTML = filtered.map(function(s) {
+                    return '<div class="ps-card" data-id="' + s.id + '">' +
+                        '<div class="ps-card-top">' +
+                            '<div class="ps-card-icon">' + s.icon + '</div>' +
+                            '<div class="ps-card-info">' +
+                                '<div class="ps-card-title">' + s.title + '</div>' +
+                                '<div class="ps-card-meta">' + s.readTime + ' · Ages ' + s.ageRange + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="ps-card-tags">' +
+                            s.tags.map(function(t) { return '<span class="ps-card-tag">' + t + '</span>'; }).join('') +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+
+                if (filtered.length === 0) {
+                    listEl.innerHTML = '<div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.3);font-size:0.9rem">🔍 No stories found. Try a different search!</div>';
+                }
+
+                listEl.querySelectorAll('.ps-card').forEach(function(card) {
+                    card.addEventListener('click', function() {
+                        var id = card.dataset.id;
+                        var story = stories.find(function(s) { return s.id === id; });
+                        if (story) openStory(story);
+                    });
+                });
+            }
+
+            // Search
+            var searchInput = document.getElementById('ps-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    renderList(this.value);
+                });
+            }
+
+            function openStory(story) {
+                storyIcon.textContent = story.icon;
+                storyTitle.textContent = story.title;
+                storyMeta.textContent = story.readTime + ' · Ages ' + story.ageRange;
+                storyBody.innerHTML = story.content.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+                listView.style.display = 'none';
+                readerView.classList.add('open');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            backBtn.addEventListener('click', function() {
+                stopSpeech();
+                readerView.classList.remove('open');
+                listView.style.display = '';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ===== READ ALOUD (SpeechSynthesis) =====
+            var synth = window.speechSynthesis;
+            var currentUtterance = null;
+            var isPaused = false;
+            var speechRate = 1.0;
+            var currentParagraphs = [];
+            var currentIdx = 0;
+
+            var playBtn = document.getElementById('ps-play-btn');
+            var pauseBtn = document.getElementById('ps-pause-btn');
+            var stopBtn = document.getElementById('ps-stop-btn');
+            var speedBtn = document.getElementById('ps-speed-btn');
+            var audioStatus = document.getElementById('ps-audio-status');
+
+            function speakParagraph(index) {
+                if (!synth || index >= currentParagraphs.length) {
+                    stopSpeech();
+                    return;
+                }
+
+                // Highlight the current paragraph
+                currentParagraphs.forEach(function(p, i) {
+                    p.classList.toggle('speaking', i === index);
+                });
+
+                var text = currentParagraphs[index].textContent;
+                currentIdx = index;
+
+                currentUtterance = new SpeechSynthesisUtterance(text);
+                currentUtterance.rate = speechRate;
+                currentUtterance.pitch = 0.9;
+                currentUtterance.lang = 'en-US';
+
+                // Pick a nice voice if available
+                var voices = synth.getVoices();
+                var kidVoice = voices.find(function(v) { return /google.*uk|female|children/i.test(v.name); }) ||
+                               voices.find(function(v) { return /english/i.test(v.name); });
+                if (kidVoice) currentUtterance.voice = kidVoice;
+
+                currentUtterance.onend = function() {
+                    if (index + 1 < currentParagraphs.length) {
+                        speakParagraph(index + 1);
+                    } else {
+                        stopSpeech();
+                        audioStatus.textContent = '🔊 Finished!';
+                        setTimeout(function() { audioStatus.textContent = ''; }, 2000);
+                    }
+                };
+
+                currentUtterance.onerror = function() {
+                    stopSpeech();
+                };
+
+                synth.speak(currentUtterance);
+                audioStatus.textContent = '🔊 Reading... (' + (index + 1) + '/' + currentParagraphs.length + ')';
+            }
+
+            function startSpeech() {
+                if (!synth) { alert('Read Aloud is not supported in this browser.'); return; }
+                stopSpeech();
+                isPaused = false;
+                currentParagraphs = storyBody.querySelectorAll('p');
+                if (currentParagraphs.length === 0) return;
+                currentIdx = 0;
+                playBtn.style.display = 'none';
+                pauseBtn.style.display = '';
+                pauseBtn.textContent = '⏸ Pause';
+                stopBtn.style.display = '';
+                playBtn.classList.remove('speaking-active');
+                speakParagraph(0);
+            }
+
+            function togglePause() {
+                if (!synth) return;
+                if (isPaused) {
+                    synth.resume();
+                    isPaused = false;
+                    pauseBtn.textContent = '⏸ Pause';
+                    audioStatus.textContent = '🔊 Reading... (' + (currentIdx + 1) + '/' + currentParagraphs.length + ')';
+                } else {
+                    synth.pause();
+                    isPaused = true;
+                    pauseBtn.textContent = '▶ Resume';
+                    audioStatus.textContent = '⏸ Paused';
+                }
+            }
+
+            function stopSpeech() {
+                if (synth) {
+                    synth.cancel();
+                    isPaused = false;
+                }
+                currentParagraphs.forEach(function(p) { p.classList.remove('speaking'); });
+                playBtn.style.display = '';
+                pauseBtn.style.display = 'none';
+                stopBtn.style.display = 'none';
+                playBtn.classList.remove('speaking-active');
+                audioStatus.textContent = '';
+            }
+
+            playBtn.addEventListener('click', startSpeech);
+            pauseBtn.addEventListener('click', togglePause);
+            stopBtn.addEventListener('click', stopSpeech);
+
+            // Speed toggle
+            speedBtn.addEventListener('click', function() {
+                var speeds = [0.75, 1.0, 1.25, 1.5];
+                var idx = speeds.indexOf(speechRate);
+                speechRate = speeds[(idx + 1) % speeds.length];
+                speedBtn.textContent = speechRate.toFixed(2).replace(/\.?0+$/, '') + '×';
+                // If currently speaking, update rate for next paragraph
+            });
+
+            // Load voices (they load async)
+            if (synth) {
+                synth.getVoices(); // Trigger initial load
+                synth.onvoiceschanged = function() { synth.getVoices(); };
+            }
+        })();
+    </script>
+    <script src="/assets/js/firebase-loader.js"></script>
+    <script src="/assets/js/footer.js"></script>
+</body>
+</html>
