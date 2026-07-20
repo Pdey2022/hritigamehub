@@ -116,6 +116,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://hritihub.uk/games/tic-tac-toe/</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://hritihub.uk/404.html</loc>
     <priority>0.1</priority>
     <changefreq>never</changefreq>

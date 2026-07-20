@@ -1,0 +1,37 @@
+/* Tic Tac Toe — Styles */
+.ttt-page { background: #1a1a2e; min-height: 100vh; font-family: 'Fredoka', sans-serif; overflow-x: hidden; }
+
+/* HUD — uses shared .dd-hud-* classes from style.css */
+#ttt-hud {
+  max-width: 900px; margin: 0 auto; padding: 10px 16px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  background: rgba(0,0,0,0.35); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px; box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+/* Game area */
+#ttt-game-area {
+  max-width: 900px; margin: 8px auto 0; display: flex; justify-content: center;
+}
+.ttt-canvas-wrapper {
+  position: relative; display: inline-block; border-radius: 16px; overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  border: 2px solid #e94560;
+  background: #16213e;
+}
+#ttt-canvas { display: block; cursor: pointer; background: #16213e; }
+
+/* Turn indicator below canvas */
+.ttt-turn-bar {
+  max-width: 500px; width: 100%; margin-top: 10px; text-align: center;
+  background: rgba(0,0,0,0.45); border-radius: 12px; padding: 10px 16px;
+  border: 2px solid rgba(233,69,96,0.2);
+}
+.ttt-turn-text { color: #ffd700; font-weight: 600; font-size: 1rem; }
+.ttt-turn-text span { color: #fff; }
+.ttt-score-text { color: rgba(255,255,255,0.6); font-weight: 500; font-size: 0.85rem; margin-top: 4px; }
+
+/* Leaderboard */
+.lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
+
+/* Responsive — shared .dd-overlay responsive handled in style.css */

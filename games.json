@@ -182,10 +182,11 @@
     "id": "tic-tac-toe",
     "title": "Tic Tac Toe",
     "icon": "❌",
-    "desc": "Play the classic game of X and O against friends or the AI!",
+    "desc": "Classic X and O — challenge the AI in a timeless battle of wits!",
     "tags": ["🎮 Classic", "🤖 VS AI"],
-    "stats": ["❌ X vs O", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🤖 Minimax AI", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/tic-tac-toe/",
+    "status": "live"
   },
   {
     "id": "snake",
