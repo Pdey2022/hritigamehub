@@ -150,6 +150,16 @@
     "status": "live"
   },
   {
+    "id": "table-tennis",
+    "title": "Table Tennis",
+    "icon": "🏓",
+    "desc": "Compete against the AI in fast-paced table tennis — first to 5 wins!",
+    "tags": ["🏓 Sports", "🎯 Aim"],
+    "stats": ["🎯 Beat the AI", "⭐ High Score", "🏆 Leaderboard"],
+    "url": "/games/table-tennis/",
+    "status": "live"
+  },
+  {
     "id": "super-builder",
     "title": "Super Builder",
     "icon": "🏗️",

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🏓 Table Tennis — Free Pong Game for Kids | Play Online</title>
+    <meta name="description" content="Play Table Tennis, a free Pong-style game for kids! Compete against the AI in fast-paced table tennis. No download needed — play online!">
+    <meta name="theme-color" content="#1a2332">
+    <meta property="og:title" content="🏓 Table Tennis — Free Online Game">
+    <meta property="og:description" content="Compete against the AI in fast-paced table tennis! Play in your browser — no download needed!">
+    <meta property="og:url" content="https://hritihub.uk/games/table-tennis/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🏓 Table Tennis — Free Online Game">
+    <meta name="twitter:description" content="Free Pong-style table tennis game. Beat the AI! Play now.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏓</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/table-tennis/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=9">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Table Tennis","description":"Compete against the AI in fast-paced table tennis!","url":"https://hritihub.uk/games/table-tennis/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link rel="stylesheet" href="/games/table-tennis/css/table-tennis.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="tt-page">
+
+    <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
+
+    <header id="tt-hud">
+        <div class="tt-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a><span class="bc-sep">›</span><span>Table Tennis</span>
+            </nav>
+            <span class="tt-title">🏓 Table Tennis</span>
+        </div>
+        <div class="tt-hud-right">
+            <span class="tt-score-display">⭐ <span id="tt-score">0 | Round 1 (0–0)</span></span>
+            <button class="hud-btn mute-btn" id="tt-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn tt-reset-btn" id="tt-reset-btn" title="Reset progress">🔄</button>
+        </div>
+    </header>
+
+    <section id="tt-game-area">
+        <div class="tt-canvas-wrapper" id="tt-canvas-wrapper">
+            <canvas id="tt-canvas" width="500" height="550"></canvas>
+
+            <div class="dd-overlay" id="tt-start-overlay">
+                <div class="dd-overlay-content tt-overlay-content">
+                    <div class="dd-overlay-icon">🏓</div>
+                    <div class="dd-overlay-title tt-overlay-title">Table Tennis!</div>
+                    <div class="dd-overlay-sub">Move your mouse or finger to control your paddle.<br>First to 5 wins the round — best of 3!</div>
+                    <button class="tt-btn" id="tt-start-btn">Play ▶</button>
+                </div>
+            </div>
+
+            <div class="dd-overlay hidden" id="tt-gameover-overlay">
+                <div class="dd-overlay-content tt-overlay-content">
+                    <div class="dd-overlay-icon">🏆</div>
+                    <div class="dd-overlay-title tt-overlay-title">Game Over!</div>
+                    <div class="dd-overlay-sub" id="tt-gameover-stats">Score: 0</div>
+                    <button class="tt-btn" id="tt-restart-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <!-- ===== LEADERBOARD ===== -->
+    <section class="lb-section" id="tt-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="tt-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-tt-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/table-tennis/js/game.js?v=1"></script>
+<script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/firebase-loader.js"></script>
+<script src="/assets/js/footer.js"></script>
+</body>
+</html>
