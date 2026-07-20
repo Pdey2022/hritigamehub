@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/games/dino-dig/css/dino-dig.css?v=1">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="dino-page">
+<body class="dino-dig-page">
 
     <div class="ad-banner ad-banner-top hidden-ad" aria-hidden="true"></div>
 
@@ -30,9 +30,13 @@
         <div class="dn-hud-left">
             <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
             <nav class="breadcrumb" aria-label="Breadcrumb">
-                <a href="/">Home</a><span class="bc-sep">›</span><span>Dino Dig</span>
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Dino Dig</span>
             </nav>
             <span class="dn-title">🦕 Dino Dig</span>
+        </div>
+        <div class="dn-hud-center">
             <span class="dn-round-display" id="dn-round">Round 1/5</span>
         </div>
         <div class="dn-hud-right">
@@ -71,9 +75,18 @@
 
     <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
 
+    <!-- ===== LEADERBOARD ===== -->
     <section class="lb-section" id="dn-leaderboard">
-        <div class="lb-header"><span class="lb-title">🏆 Leaderboard</span><button class="share-btn" id="dn-share-btn">📤 Share</button></div>
-        <div id="lb-dn-content"><div class="lb-empty"><div class="lb-empty-icon">🏆</div><div class="lb-empty-text">Sign in and play to top the leaderboard!</div></div></div>
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="dn-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-dn-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
     </section>
 
     <script src="/games/dino-dig/js/game.js?v=1"></script>
