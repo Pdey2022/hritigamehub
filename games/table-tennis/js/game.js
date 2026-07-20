@@ -37,7 +37,7 @@
     w: 14, h: 70,
     x: W - 30,
     y: H / 2 - 35,
-    speed: 6,
+    speed: 10,
     targetY: H / 2,
     score: 0
   };
@@ -168,20 +168,28 @@
     dom.score.textContent = state.score + ' | Round ' + state.round + ' (' + state.playerWins + '–' + state.aiWins + ')';
   }
 
-  // Mouse/touch control
-  canvas.addEventListener('mousemove', function (e) {
-    if (!state.running) return;
+  // Mouse/touch control — center paddle on cursor/finger
+  function setPaddleTarget(clientY) {
     const rect = canvas.getBoundingClientRect();
     const scaleY = H / rect.height;
-    paddle.targetY = (e.clientY - rect.top) * scaleY;
+    paddle.targetY = (clientY - rect.top) * scaleY - paddle.h / 2;
+  }
+
+  canvas.addEventListener('mousemove', function (e) {
+    if (!state.running) return;
+    setPaddleTarget(e.clientY);
   });
+
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    if (!state.running) return;
+    setPaddleTarget(e.touches[0].clientY);
+  }, { passive: false });
 
   canvas.addEventListener('touchmove', function (e) {
     e.preventDefault();
     if (!state.running) return;
-    const rect = canvas.getBoundingClientRect();
-    const scaleY = H / rect.height;
-    paddle.targetY = (e.touches[0].clientY - rect.top) * scaleY;
+    setPaddleTarget(e.touches[0].clientY);
   }, { passive: false });
 
   // AI logic
