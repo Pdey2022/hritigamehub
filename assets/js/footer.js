@@ -25,6 +25,7 @@
     '<div class="footer-bottom">' +
       '<p>Made with 💕 for Hriti &nbsp;|&nbsp; 🌟 v2.0</p>' +
       '<p>🎮 Free online games for kids — no download, just play!</p>' +
+      '<p class="footer-copyright">© deylabs.co.uk 2026</p>' +
     '</div>';
   document.body.appendChild(footer);
 })();
