@@ -44,33 +44,18 @@
 .dn-choice-btn.wrong { background: #e53935; border-color: #e53935; }
 @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 
-/* Overlay */
-.dn-overlay {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.55); backdrop-filter: blur(8px); border-radius: 16px;
-  display: flex; align-items: center; justify-content: center; z-index: 10;
-  transition: opacity 0.3s;
-}
-.dn-overlay.hidden { opacity: 0; pointer-events: none; }
-.dn-overlay-content {
-  text-align: center; background: rgba(255,255,255,0.08); padding: 36px 48px;
-  border-radius: 24px; animation: modalPop 0.3s ease-out;
-}
-@keyframes modalPop {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-.dn-overlay-icon { font-size: 4rem; margin-bottom: 8px; }
-.dn-overlay-title { font-size: 2rem; font-weight: 700; color: #ffd700; margin-bottom: 8px; }
-.dn-overlay-sub { color: #ddd; font-size: 1rem; line-height: 1.6; }
-.dn-overlay-sub small { color: #aaa; font-size: 0.85rem; }
-.dn-btn {
+/* Overlay — using shared .dd-overlay from style.css */
+.dd-overlay-content { padding: 36px 48px; }
+.dd-overlay-title { color: #ffd700; }
+.dd-overlay-sub { line-height: 1.6; }
+.dd-overlay-sub small { color: #aaa; font-size: 0.85rem; }
+.dd-btn {
   margin-top: 18px; padding: 12px 36px; font-size: 1.15rem; font-weight: 700; font-family: 'Fredoka', sans-serif;
   border: none; border-radius: 14px; cursor: pointer; background: #f4a460; color: #2d1b0e;
   transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 4px 12px rgba(244,164,96,0.3);
 }
-.dn-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(244,164,96,0.5); }
-.dn-btn:active { transform: scale(0.95); }
+.dd-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(244,164,96,0.5); }
+.dd-btn:active { transform: scale(0.95); }
 
 /* Leaderboard */
 .lb-section { max-width: 900px; margin: 20px auto; padding: 0 16px; }
