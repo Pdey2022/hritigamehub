@@ -41,8 +41,18 @@
             background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.25);
             color: #ffd700; font-size: 0.7rem; font-weight: 600;
         }
-        .back-link { display: inline-block; margin-top: 20px; color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .back-link:hover { color: rgba(255,255,255,0.8); }
+        .back-link {
+            display: inline-block; margin-top: 20px; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            padding: 8px 20px; border-radius: 100px;
+            color: #ffd700; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.25);
+            animation: backLinkPulse 2s ease-in-out infinite;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .back-link:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        @keyframes backLinkPulse {
+            0%, 100% { box-shadow: 0 0 6px rgba(255,215,0,0.1); }
+            50% { box-shadow: 0 0 18px rgba(255,215,0,0.25); }
+        }
 
         @media (max-width: 600px) {
             .fun-hero { padding: 70px 16px 16px; }
@@ -136,6 +146,50 @@
     <div style="text-align:center;padding-bottom:40px">
         <a href="/" class="back-link">← Back to Games</a>
     </div>
+
+    <script>
+        (function() {
+            const container = document.getElementById('bg-particles');
+            if (!container) return;
+            const count = 30;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'bg-particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 15) + 's';
+                p.style.opacity = Math.random() * 0.5 + 0.1;
+                fragment.appendChild(p);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+    <script>
+        (function() {
+            const container = document.getElementById('bg-bubbles');
+            if (!container) return;
+            const count = 12;
+            const sizes = [18, 24, 30, 36, 42, 50];
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'bg-bubble';
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.animationDuration = (Math.random() * 18 + 14) + 's';
+                b.style.animationDelay = (Math.random() * 20) + 's';
+                b.style.opacity = Math.random() * 0.3 + 0.1;
+                fragment.appendChild(b);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
 
     <script>document.body.classList.add('loaded')</script>
     <script src="/assets/js/firebase-loader.js"></script>

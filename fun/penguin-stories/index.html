@@ -22,8 +22,9 @@
     <style>
         .ps-page { background: #1a1a3e; min-height: 100vh; font-family: 'Fredoka', sans-serif; }
         .ps-hero { position: relative; text-align: center; padding: 80px 20px 10px; max-width: 900px; margin: 0 auto; z-index: 1; }
-        .ps-hero h1 { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
-        .ps-hero p { font-size: 1rem; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+        .ps-hero h1 { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+        .ps-hero p { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .ps-hero .ps-count { display: inline-block; font-size: 0.75rem; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); padding: 3px 12px; border-radius: 100px; }
         .ps-hero .back-link {
             display: inline-block; margin-top: 10px;
             color: #ffd700; text-decoration: none; font-size: 0.9rem; font-weight: 600;
@@ -32,16 +33,12 @@
             animation: backLinkPulse 2s ease-in-out infinite;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        .ps-hero .back-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255,215,0,0.2);
-        }
+        .ps-hero .back-link:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,215,0,0.2); }
         @keyframes backLinkPulse {
             0%, 100% { box-shadow: 0 0 6px rgba(255,215,0,0.1); }
             50% { box-shadow: 0 0 18px rgba(255,215,0,0.25); }
         }
 
-        /* Story cards */
         /* Search bar */
         .ps-search { max-width: 960px; margin: 12px auto 0; padding: 0 20px; }
         .ps-search input {
@@ -54,30 +51,39 @@
         .ps-search input:focus { border-color: rgba(255,215,0,0.4); box-shadow: 0 0 20px rgba(255,215,0,0.08); }
         .ps-search input::placeholder { color: rgba(255,255,255,0.3); }
 
-        /* Carousel container */
-        .ps-carousel {
-            max-width: 960px; margin: 16px auto 40px; padding: 0 20px; position: relative;
-        }
+        /* Carousel */
+        .ps-carousel { max-width: 960px; margin: 16px auto 40px; padding: 0 20px; position: relative; }
         .ps-list {
-            display: flex; flex-flow: column wrap; height: 270px;
+            display: flex; flex-flow: column wrap; height: 280px;
             overflow-x: auto; scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 8px 4px 12px; gap: 12px;
+            -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 8px 4px 16px; gap: 12px;
         }
         .ps-list::-webkit-scrollbar { display: none; }
         .ps-card {
             flex: 0 0 auto; width: 240px; scroll-snap-align: start;
-            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
-            padding: 16px 18px; backdrop-filter: blur(10px); cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 18px;
+            padding: 18px 18px 16px; backdrop-filter: blur(12px); cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+            position: relative; overflow: hidden;
         }
-        .ps-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
+        .ps-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, rgba(255,215,0,0.4), rgba(255,107,107,0.4), rgba(83,144,217,0.4));
+            border-radius: 0 0 4px 4px; opacity: 0; transition: opacity 0.25s;
+        }
+        .ps-card:hover::before { opacity: 1; }
+        .ps-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); border-color: rgba(255,215,0,0.2); }
+        .ps-card:active { transform: scale(0.97); }
         .ps-card-top { display: flex; align-items: center; gap: 12px; }
-        .ps-card-icon { font-size: 1.8rem; }
+        .ps-card-icon {
+            font-size: 1.8rem; width: 40px; height: 40px; border-radius: 12px;
+            background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
         .ps-card-info { flex: 1; min-width: 0; }
-        .ps-card-title { font-size: 1rem; font-weight: 700; color: #fff; }
-        .ps-card-meta { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
-        .ps-card-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
-        .ps-card-tag { padding: 2px 8px; border-radius: 100px; background: rgba(255,255,255,0.08); font-size: 0.65rem; color: rgba(255,255,255,0.5); }
+        .ps-card-title { font-size: 0.95rem; font-weight: 700; color: #fff; }
+        .ps-card-meta { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 2px; }
+        .ps-card-tags { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+        .ps-card-tag { padding: 2px 8px; border-radius: 100px; background: rgba(255,255,255,0.06); font-size: 0.62rem; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.06); }
 
         /* Arrows */
         .ps-arrow {
@@ -85,26 +91,29 @@
             width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
             background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); cursor: pointer;
             font-size: 1.2rem; color: #fff; display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, transform 0.2s;
         }
-        .ps-arrow:hover { background: rgba(255,255,255,0.15); }
+        .ps-arrow:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.1); }
         .ps-arrow-prev { left: 0; }
         .ps-arrow-next { right: 0; }
 
         /* Story reader */
         .ps-reader { display: none; }
-        .ps-reader.open { display: block; }
+        .ps-reader.open { display: block; animation: psFadeIn 0.35s ease; }
+        @keyframes psFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .ps-reader-inner { max-width: 700px; margin: 0 auto 40px; padding: 0 20px; }
         .ps-story-header { text-align: center; margin-bottom: 20px; }
-        .ps-story-icon { font-size: 3rem; margin-bottom: 6px; }
-        .ps-story-title { font-size: 1.6rem; font-weight: 700; color: #ffd700; }
-        .ps-story-meta { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+        .ps-story-icon { font-size: 3.5rem; margin-bottom: 8px; }
+        .ps-story-title { font-size: 1.7rem; font-weight: 800; color: #ffd700; margin-bottom: 4px; }
+        .ps-story-meta { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
         .ps-story-body {
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
-            padding: 28px 32px; line-height: 1.9; font-size: 1.05rem; color: rgba(255,255,255,0.85);
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px;
+            padding: 32px 36px; line-height: 2; font-size: 1.08rem; color: rgba(255,255,255,0.82);
         }
-        .ps-story-body p { margin: 0 0 16px; transition: background 0.3s; border-radius: 8px; padding: 2px 6px; }
-        .ps-story-body p:last-child { margin-bottom: 0; }
-        .ps-story-body p.speaking { background: rgba(255,215,0,0.1); }
+        .ps-story-body p { margin: 0 0 18px; transition: background 0.3s; border-radius: 8px; padding: 3px 8px; }
+        .ps-story-body p:first-child::first-letter { font-size: 2.5rem; font-weight: 700; color: #ffd700; float: left; line-height: 1; margin-right: 6px; }
+        .ps-story-body p:last-child { margin-bottom: 0; text-align: center; font-weight: 600; color: #ffd700; font-size: 1.1rem; }
+        .ps-story-body p.speaking { background: rgba(255,215,0,0.12); }
 
         /* Read Aloud controls */
         .ps-audio-bar {
@@ -135,10 +144,17 @@
         .ps-back-btn:hover { background: rgba(255,255,255,0.14); }
 
         @media (max-width: 600px) {
-            .ps-list { height: 220px; }
-            .ps-card { width: 180px; padding: 12px 14px; }
-            .ps-story-body { padding: 20px 18px; font-size: 0.95rem; }
             .ps-hero h1 { font-size: 2rem; }
+            .ps-hero p { font-size: 0.9rem; }
+            .ps-list { height: 240px; }
+            .ps-card { width: 180px; padding: 14px; }
+            .ps-card-icon { width: 34px; height: 34px; font-size: 1.4rem; }
+            .ps-card-title { font-size: 0.85rem; }
+            .ps-story-body { padding: 20px 18px; font-size: 0.95rem; line-height: 1.8; }
+            .ps-story-body p:first-child::first-letter { font-size: 1.8rem; }
+            .ps-story-icon { font-size: 2.5rem; }
+            .ps-story-title { font-size: 1.3rem; }
+            .ps-arrow { width: 28px; height: 28px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -170,7 +186,7 @@
     <div id="ps-list-view">
         <div class="ps-hero">
             <h1>🐧 Penguin Stories</h1>
-            <p>Read, listen, and explore fun stories for kids!</p>
+            <p>Read, listen, and explore <span id="ps-total">0</span> fun stories for kids!</p>
             <a href="/fun/" class="back-link">← Back to More Fun</a>
         </div>
         <div class="ps-search">
@@ -206,6 +222,50 @@
         </div>
     </div>
 
+    <script>
+        (function() {
+            const container = document.getElementById('bg-particles');
+            if (!container) return;
+            const count = 30;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'bg-particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 15) + 's';
+                p.style.opacity = Math.random() * 0.5 + 0.1;
+                fragment.appendChild(p);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+    <script>
+        (function() {
+            const container = document.getElementById('bg-bubbles');
+            if (!container) return;
+            const count = 12;
+            const sizes = [18, 24, 30, 36, 42, 50];
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'bg-bubble';
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.animationDuration = (Math.random() * 18 + 14) + 's';
+                b.style.animationDelay = (Math.random() * 20) + 's';
+                b.style.opacity = Math.random() * 0.3 + 0.1;
+                fragment.appendChild(b);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+
     <script>document.body.classList.add('loaded')</script>
     <script>
         (function() {
@@ -224,6 +284,7 @@
                 .then(function(r) { return r.json(); })
                 .then(function(data) {
                     stories = data;
+                    document.getElementById('ps-total').textContent = data.length;
                     renderList();
                 });
 
