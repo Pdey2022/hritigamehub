@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🏗️ Super Builder — Free Creative Block Building Game for Kids | Play Online</title>
+    <meta name="description" content="Play Super Builder, a free block-building game for kids! Design houses, towers, and cities one block at a time in this creative builder game.">
+    <meta name="theme-color" content="#4a5568">
+    <meta property="og:title" content="🏗️ Super Builder — Free Online Game">
+    <meta property="og:description" content="Build houses, towers, and cities block by block in this fun creative builder game for kids. Play now!">
+    <meta property="og:url" content="https://hritihub.uk/games/super-builder/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🏗️ Super Builder — Free Online Game">
+    <meta name="twitter:description" content="Build houses, towers, and cities block by block in this free creative builder game for kids.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/games/super-builder/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link rel="stylesheet" href="/games/super-builder/css/super-builder.css?v=1">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Super Builder","description":"Design and build houses, towers, and cities block by block in this creative builder game for kids.","url":"https://hritihub.uk/games/super-builder/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="super-builder-page">
+
+    <!-- ===== HUD ===== -->
+    <header id="sb-hud">
+        <div class="sb-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Super Builder</span>
+            </nav>
+            <span class="sb-title">🏗️ Super Builder</span>
+        </div>
+        <div class="sb-hud-center">
+            <span class="sb-level-display">Level <span id="sb-level">1</span></span>
+        </div>
+        <div class="sb-hud-right">
+            <span class="sb-score-display">⭐ <span id="sb-score">0</span></span>
+            <button class="hud-btn mute-btn" id="sb-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn sb-reset-btn" id="sb-reset-btn" title="Reset level">🔄</button>
+        </div>
+    </header>
+
+    <!-- ===== GAME AREA ===== -->
+    <section id="sb-game-area">
+        <div class="sb-canvas-wrapper" id="sb-canvas-wrapper">
+            <canvas id="sb-canvas" width="500" height="550"></canvas>
+
+            <div class="sb-overlay" id="sb-start-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">🏗️</div>
+                    <div class="sb-overlay-title">Super Builder</div>
+                    <div class="sb-overlay-sub">Choose your blocks, follow the blueprint, and finish the build before time runs out!</div>
+                    <button class="sb-btn" id="sb-start-btn">Start Building ▶</button>
+                </div>
+            </div>
+
+            <div class="sb-overlay hidden" id="sb-gameover-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">💥</div>
+                    <div class="sb-overlay-title">Build Failed!</div>
+                    <div class="sb-overlay-sub" id="sb-gameover-stats">Try again and complete the design.</div>
+                    <button class="sb-btn" id="sb-restart-btn">Try Again 🔄</button>
+                </div>
+            </div>
+
+            <div class="sb-overlay hidden" id="sb-levelcomplete-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">🎉</div>
+                    <div class="sb-overlay-title">Build Complete!</div>
+                    <div class="sb-overlay-sub" id="sb-levelcomplete-stats">Great job — your structure is finished!</div>
+                    <button class="sb-btn" id="sb-next-btn">Next Design →</button>
+                </div>
+            </div>
+
+            <div class="sb-overlay hidden" id="sb-won-overlay">
+                <div class="sb-overlay-content">
+                    <div class="sb-overlay-icon">🏙️</div>
+                    <div class="sb-overlay-title">City Master!</div>
+                    <div class="sb-overlay-sub" id="sb-won-stats">You completed every design. Build your own city again!</div>
+                    <button class="sb-btn" id="sb-playagain-btn">Play Again 🔄</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="sb-bottom-hud">
+            <div class="sb-stat"><span class="sb-stat-label">Moves</span> <span id="sb-moves">0</span></div>
+            <div class="sb-stat"><span class="sb-stat-label">Remaining</span> <span id="sb-remaining">25</span></div>
+            <div class="sb-stat"><span class="sb-stat-label">Best</span> <span id="sb-best">0</span></div>
+        </div>
+
+        <div class="sb-palette" id="sb-palette">
+            <button class="sb-palette-btn selected" data-type="brick">🧱 Brick</button>
+            <button class="sb-palette-btn" data-type="glass">🟦 Glass</button>
+            <button class="sb-palette-btn" data-type="roof">🔶 Roof</button>
+            <button class="sb-palette-btn" data-type="erase">✖ Erase</button>
+        </div>
+
+        <div class="sb-status" id="sb-status">Follow the blueprint and place the right block in each space.</div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="sb-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="sb-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-sb-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/super-builder/js/game.js?v=1"></script>
+    <script>document.body.classList.add('loaded')</script>
+<script src="/assets/js/footer.js"></script>
+<script src="/assets/js/firebase-loader.js"></script></body>
+</html>

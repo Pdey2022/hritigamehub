@@ -165,8 +165,9 @@
     "icon": "🏗️",
     "desc": "Design and build houses, towers, and cities block by block!",
     "tags": ["🔨 Building", "🎨 Creative"],
-    "stats": ["🔧 Block Builder", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🔧 Block Builder", "🏗️ Creative Mode"],
+    "url": "/games/super-builder/",
+    "status": "live"
   },
   {
     "id": "math-games",
