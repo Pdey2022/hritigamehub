@@ -76,6 +76,17 @@ body.hangman-page {
 .hm-stat-label { display: block; color: rgba(255,255,255,0.65); font-size: 0.75rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
 .hm-stat span:last-child { color: #f8fafc; font-size: 1.05rem; font-weight: 700; }
 
+/* Full-screen confetti overlay for winning */
+.hm-confetti {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
 @media (max-width: 700px) {
     #hm-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .hm-stat { padding: 14px 12px; }

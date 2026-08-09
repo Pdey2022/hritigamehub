@@ -185,6 +185,53 @@
     osc.stop(ctx.currentTime + 0.12);
   }
 
+  function celebrate() {
+    const overlay = document.createElement('canvas');
+    overlay.className = 'hm-confetti';
+    overlay.width = window.innerWidth;
+    overlay.height = window.innerHeight;
+    document.body.appendChild(overlay);
+    const ctx2 = overlay.getContext('2d');
+    const colors = ['#f43f5e', '#f59e0b', '#22c55e', '#3b82f6', '#a855f7', '#fbbf24', '#2dd4bf', '#fb7185'];
+    const pieces = [];
+    const count = 150;
+    for (let i = 0; i < count; i++) {
+      pieces.push({
+        x: Math.random() * overlay.width,
+        y: Math.random() * -overlay.height,
+        w: 6 + Math.random() * 6,
+        h: 8 + Math.random() * 8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vy: 2 + Math.random() * 3.5,
+        vx: -1.5 + Math.random() * 3,
+        rot: Math.random() * Math.PI * 2,
+        vr: -0.1 + Math.random() * 0.2
+      });
+    }
+    let frames = 0;
+    const totalFrames = 230;
+    (function tick() {
+      ctx2.clearRect(0, 0, overlay.width, overlay.height);
+      pieces.forEach(p => {
+        p.x += p.vx + Math.sin(frames * 0.05 + p.rot) * 0.6;
+        p.y += p.vy;
+        p.rot += p.vr;
+        ctx2.save();
+        ctx2.translate(p.x, p.y);
+        ctx2.rotate(p.rot);
+        ctx2.fillStyle = p.color;
+        ctx2.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx2.restore();
+      });
+      frames++;
+      if (frames < totalFrames) {
+        requestAnimationFrame(tick);
+      } else {
+        overlay.remove();
+      }
+    })();
+  }
+
   function renderClue() {
     dom.clue.textContent = '💡 Clue: ' + state.clue;
   }
@@ -280,6 +327,7 @@
       state.score += TIER_POINTS[state.tier] || 100;
       dom.status.textContent = 'You saved the hangman! Great job.';
       playSound('win');
+      celebrate();
       updateBest();
       setTimeout(resetGame, 1200);
       return;
