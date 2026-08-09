@@ -167,6 +167,7 @@
     "tags": ["🔨 Building", "🎨 Creative"],
     "stats": ["🔧 Block Builder", "🏗️ Creative Mode"],
     "url": "/games/super-builder/",
+    "released": "2026-08-09",
     "status": "live"
   },
   {
@@ -216,6 +217,7 @@
     "tags": ["🎮 Classic", "🤖 VS AI"],
     "stats": ["✊🖐️✌️ Choices", "🏅 Live"],
     "url": "/games/rock-paper-scissors/",
+    "released": "2026-08-09",
     "status": "live"
   },
   {
@@ -226,6 +228,7 @@
     "tags": ["📚 Word", "🧠 Puzzle"],
     "stats": ["🔤 Letter Guessing", "🏅 Wins & Losses", "🏆 Leaderboard"],
     "url": "/games/hangman/",
+    "released": "2026-08-09",
     "status": "live"
   },
   {

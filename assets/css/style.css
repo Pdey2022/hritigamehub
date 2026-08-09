@@ -1697,6 +1697,29 @@ body.landing-page {
     box-shadow: none;
 }
 
+/* "New" badge on recently released game cards (shows for 15 days after release) */
+.new-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 6;
+    background: linear-gradient(135deg, #f59e0b, #f43f5e);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(244,63,94,0.4);
+    animation: newBadgePulse 1.6s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes newBadgePulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(244,63,94,0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 4px 22px rgba(244,63,94,0.65); }
+}
+
 /* Favorite heart button on game cards */
 .fav-btn {
     position: absolute;

@@ -255,17 +255,26 @@
     // ===== GAME DATA, GRID RENDERER, TRACKING =====
     (function() {
         // ----- Render game grid -----
+        function isNewGame(g) {
+            if (!g.released) return false;
+            const released = new Date(g.released + 'T00:00:00');
+            const days = (Date.now() - released.getTime()) / 86400000;
+            return days >= 0 && days <= 15;
+        }
+
         function renderGameGrid(games) {
             const grid = document.getElementById('game-grid');
             if (!grid) return;
             grid.innerHTML = games.map(g => {
                 const isLive = g.status === 'live';
                 const isFeatured = g.featured ? ' featured' : '';
+                const newBadge = isNewGame(g) ? '<span class="new-badge">✨ NEW</span>' : '';
                 const tagHtml = (g.tags || []).map(t => '<span class="tag">' + t + '</span>').join('');
                 const statHtml = (g.stats || []).map(s => '<span>' + s + '</span>').join('');
 
                 if (isLive) {
                     return '<a href="' + g.url + '" class="game-card' + isFeatured + '" aria-label="Play ' + g.title + ' - free online game for kids">' +
+                        newBadge +
                         '<div class="game-card-icon">' + g.icon + '</div>' +
                         '<h2 class="game-card-title">' + g.title + '</h2>' +
                         '<p class="game-card-desc">' + g.desc + '</p>' +
