@@ -16,6 +16,7 @@
   const AUTH_POLL_MS = 400;
 
   const DISMISS_KEY = 'hb_dismissed_announcements';
+  const SIG_KEY = 'hb_dismissed_signature';
   const dismissed = new Set(JSON.parse(localStorage.getItem(DISMISS_KEY) || '[]'));
 
   let barVisible = false;
@@ -25,8 +26,15 @@
     return typeof currentUser !== 'undefined' && !!currentUser;
   }
 
-  function saveDismissed() {
+  // Signature = sorted list of active announcement ids. Used to detect when the
+  // announcement set changes so we can re-show the bar after a dismissal.
+  function signatureOf(items) {
+    return items.map(i => i.id).sort().join('|');
+  }
+
+  function saveDismissed(allItems) {
     localStorage.setItem(DISMISS_KEY, JSON.stringify(Array.from(dismissed)));
+    localStorage.setItem(SIG_KEY, signatureOf(allItems));
   }
 
   function daysSince(isoDate) {
@@ -34,7 +42,7 @@
   }
 
   async function gather() {
-    const items = [];
+    const all = [];
 
     // 1) Auto: new games released within the window
     try {
@@ -43,7 +51,7 @@
         if (g.status !== 'live' || !g.released) return;
         const age = daysSince(g.released);
         if (age >= 0 && age <= NEW_GAME_DAYS) {
-          items.push({ id: 'game:' + g.id, icon: '🆕', text: 'New game: ' + g.title, url: g.url, cta: 'Play now →' });
+          all.push({ id: 'game:' + g.id, icon: '🆕', text: 'New game: ' + g.title, url: g.url, cta: 'Play now →' });
         }
       });
     } catch (e) { /* games.json unavailable */ }
@@ -56,15 +64,24 @@
         const startOk = !a.startDate || Date.now() >= new Date(a.startDate + 'T00:00:00').getTime();
         const endOk = !a.endDate || Date.now() <= new Date(a.endDate + 'T23:59:59').getTime();
         if (startOk && endOk) {
-          items.push({ id: 'manual:' + a.id, icon: a.icon || '✨', text: a.message, url: a.url, cta: a.cta || 'Check it out →' });
+          all.push({ id: 'manual:' + a.id, icon: a.icon || '✨', text: a.message, url: a.url, cta: a.cta || 'Check it out →' });
         }
       });
     } catch (e) { /* announcements.json unavailable */ }
 
-    return items.filter(i => !dismissed.has(i.id));
+    // Re-show the bar whenever the active announcement set changes since the
+    // last dismissal (e.g. a new game is released or an announcement is added).
+    const sig = signatureOf(all);
+    if (sig !== localStorage.getItem(SIG_KEY)) {
+      dismissed.clear();
+      localStorage.removeItem(DISMISS_KEY);
+      return { all, shown: all };
+    }
+
+    return { all, shown: all.filter(i => !dismissed.has(i.id)) };
   }
 
-  function buildBar(items) {
+  function buildBar(items, allItems) {
     const bar = document.createElement('div');
     bar.className = 'announce-bar';
 
@@ -87,7 +104,7 @@
     closeBtn.innerHTML = '✕';
     closeBtn.addEventListener('click', () => {
       items.forEach(i => dismissed.add(i.id));
-      saveDismissed();
+      saveDismissed(allItems);
       bar.classList.add('announce-bar-hiding');
       setTimeout(() => {
         bar.remove();
@@ -111,10 +128,10 @@
   async function maybeShow() {
     if (barVisible) return;
     if (!SHOW_TO_ALL && !isSignedIn()) return;
-    const items = await gather();
-    if (!items.length) return;
+    const result = await gather();
+    if (!result.shown.length) return;
     barVisible = true;
-    currentBar = buildBar(items);
+    currentBar = buildBar(result.shown, result.all);
     inject(currentBar);
     // Smooth entrance via rAF when available, with a timeout fallback so the bar
     // always appears even if rAF is throttled (background/hidden tabs).
