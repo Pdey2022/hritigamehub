@@ -181,6 +181,12 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://hritihub.uk/fun/fun-facts/</loc>
+    <lastmod>2026-08-09</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://hritihub.uk/about/</loc>
     <lastmod>2026-07-21</lastmod>
     <priority>0.5</priority>

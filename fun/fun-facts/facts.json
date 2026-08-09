@@ -1,0 +1,970 @@
+[
+  {
+    "id": "animals-giraffe-neck",
+    "emoji": "🦒",
+    "teaser": "Why do giraffes have such long necks?",
+    "fact": "A giraffe's neck can be up to 6 feet (2 meters) long — that's as tall as a grown-up! They use their long necks to reach tasty leaves at the very top of trees.",
+    "category": "Animals",
+    "tags": ["Animals", "Giraffe"]
+  },
+  {
+    "id": "animals-elephant-jump",
+    "emoji": "🐘",
+    "teaser": "Can elephants jump?",
+    "fact": "Nope! Elephants are the only animals that can't jump. Even though they are super strong, their heavy bodies just don't bounce like that!",
+    "category": "Animals",
+    "tags": ["Animals", "Elephant"]
+  },
+  {
+    "id": "animals-whale-heart",
+    "emoji": "🐋",
+    "teaser": "How big is a blue whale's heart?",
+    "fact": "A blue whale's heart is as big as a small car! It only beats about 8 to 10 times every minute — that's really slow.",
+    "category": "Animals",
+    "tags": ["Animals", "Whale", "Ocean"]
+  },
+  {
+    "id": "animals-octopus-brains",
+    "emoji": "🐙",
+    "teaser": "How many brains does an octopus have?",
+    "fact": "An octopus has NINE brains! One main brain in its head, and a mini brain in each of its eight arms.",
+    "category": "Animals",
+    "tags": ["Animals", "Octopus", "Ocean"]
+  },
+  {
+    "id": "animals-koala-prints",
+    "emoji": "🐨",
+    "teaser": "Do koalas have fingerprints?",
+    "fact": "Koalas have fingerprints that are almost exactly like human fingerprints! Even scientists can hardly tell them apart.",
+    "category": "Animals",
+    "tags": ["Animals", "Koala"]
+  },
+  {
+    "id": "animals-butterfly-feet",
+    "emoji": "🦋",
+    "teaser": "How do butterflies taste things?",
+    "fact": "Butterflies taste with their FEET! They land on a flower and know right away if it tastes yummy.",
+    "category": "Animals",
+    "tags": ["Animals", "Butterfly", "Insects"]
+  },
+  {
+    "id": "animals-arctic-fox",
+    "emoji": "🦊",
+    "teaser": "Why does the arctic fox change color?",
+    "fact": "An arctic fox's fur turns white in winter to hide in the snow, and brown in summer to blend in with the rocks and grass.",
+    "category": "Animals",
+    "tags": ["Animals", "Fox"]
+  },
+  {
+    "id": "animals-snail-teeth",
+    "emoji": "🐌",
+    "teaser": "How many teeth does a snail have?",
+    "fact": "A garden snail has about 14,000 tiny teeth on its tongue! They're so small you can't even see them.",
+    "category": "Animals",
+    "tags": ["Animals", "Snail"]
+  },
+  {
+    "id": "space-saturn-float",
+    "emoji": "🪐",
+    "teaser": "Could Saturn float in water?",
+    "fact": "Saturn is so light and fluffy that it would float in a giant bathtub of water! It is mostly made of gas, so it's lighter than water.",
+    "category": "Space",
+    "tags": ["Space", "Planets"]
+  },
+  {
+    "id": "space-sun-star",
+    "emoji": "☀️",
+    "teaser": "Is the sun a star?",
+    "fact": "Yes! The sun is a giant star in the middle of our solar system. It's so big that about 1.3 million Earths could fit inside it.",
+    "category": "Space",
+    "tags": ["Space", "Sun"]
+  },
+  {
+    "id": "space-moon-drift",
+    "emoji": "🌙",
+    "teaser": "Is the Moon moving away from Earth?",
+    "fact": "The Moon drifts about 1.5 inches (4 cm) farther from Earth every single year — that's about as fast as your fingernails grow!",
+    "category": "Space",
+    "tags": ["Space", "Moon"]
+  },
+  {
+    "id": "space-footprints",
+    "emoji": "🚀",
+    "teaser": "Do footprints stay on the Moon?",
+    "fact": "There's no wind or rain on the Moon, so the astronauts' footprints from 1969 are still there — they could stay for millions of years!",
+    "category": "Space",
+    "tags": ["Space", "Moon", "Astronaut"]
+  },
+  {
+    "id": "space-shooting-stars",
+    "emoji": "🌠",
+    "teaser": "What are shooting stars?",
+    "fact": "'Shooting stars' aren't stars at all — they are tiny bits of rock and dust burning up as they zoom through Earth's sky!",
+    "category": "Space",
+    "tags": ["Space", "Stars"]
+  },
+  {
+    "id": "space-silent",
+    "emoji": "🔇",
+    "teaser": "Is space silent?",
+    "fact": "Yes! Space is totally silent because sound needs air to travel, and there is no air in space.",
+    "category": "Space",
+    "tags": ["Space"]
+  },
+  {
+    "id": "dino-trex-teeth",
+    "emoji": "🦖",
+    "teaser": "How big were T-Rex teeth?",
+    "fact": "A T-Rex had teeth as big as bananas — up to 9 inches (23 cm) long! And when one fell out, a new one grew in its place.",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "T-Rex"]
+  },
+  {
+    "id": "dino-birds",
+    "emoji": "🐦",
+    "teaser": "Are birds really dinosaurs?",
+    "fact": "Yes! Birds are living dinosaurs. Scientists say chickens are the closest living relatives of the mighty T-Rex!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "Birds"]
+  },
+  {
+    "id": "dino-eggs",
+    "emoji": "🥚",
+    "teaser": "How big were dinosaur eggs?",
+    "fact": "Dinosaur eggs weren't that big — the biggest ones were about the size of a soccer ball, even though the dinos themselves were huge!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs"]
+  },
+  {
+    "id": "dino-stego-brain",
+    "emoji": "🧠",
+    "teaser": "How small was a Stegosaurus brain?",
+    "fact": "A Stegosaurus was as big as a bus, but its brain was only about the size of a walnut!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "Stegosaurus"]
+  },
+  {
+    "id": "dino-extinction",
+    "emoji": "🌋",
+    "teaser": "What killed the dinosaurs?",
+    "fact": "About 66 million years ago, a giant asteroid crashed into Earth. It kicked up dust that blocked the sun and cooled the planet, wiping out the dinosaurs.",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "Asteroid"]
+  },
+  {
+    "id": "ocean-shark-teeth",
+    "emoji": "🦈",
+    "teaser": "How many teeth do sharks have?",
+    "fact": "Sharks can grow and lose thousands of teeth in their lifetime — some lose a tooth every single week, but new ones keep growing!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Shark"]
+  },
+  {
+    "id": "ocean-immortal-jelly",
+    "emoji": "🎐",
+    "teaser": "Is there an immortal jellyfish?",
+    "fact": "There's a tiny jellyfish that can grow old and then turn back into a baby again — making it effectively immortal!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Jellyfish"]
+  },
+  {
+    "id": "ocean-loudest",
+    "emoji": "🐳",
+    "teaser": "What's the loudest animal in the ocean?",
+    "fact": "The sperm whale makes a clicking sound louder than a jet engine! It's the loudest sound made by any animal on Earth.",
+    "category": "Ocean",
+    "tags": ["Ocean", "Whale"]
+  },
+  {
+    "id": "ocean-puffer",
+    "emoji": "🐡",
+    "teaser": "Why do pufferfish puff up?",
+    "fact": "When scared, a pufferfish gulps water and blows up like a balloon to look bigger — and it's covered in spines to keep predators away!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Pufferfish"]
+  },
+  {
+    "id": "ocean-crabs",
+    "emoji": "🦀",
+    "teaser": "Why do crabs walk sideways?",
+    "fact": "Crabs have legs that bend in special joints, so it's much easier for them to scuttle sideways than to walk forwards!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Crab"]
+  },
+  {
+    "id": "penguin-no-fly",
+    "emoji": "🐧",
+    "teaser": "Can penguins fly?",
+    "fact": "Penguins can't fly in the air, but they are amazing 'flyers' underwater! They swim so fast it looks like they're flying through the sea.",
+    "category": "Penguins",
+    "tags": ["Penguins", "Animals"]
+  },
+  {
+    "id": "penguin-height",
+    "emoji": "📏",
+    "teaser": "How tall are emperor penguins?",
+    "fact": "Emperor penguins are the tallest penguins — they can grow about 4 feet (1.2 m) tall, about as tall as a 7-year-old!",
+    "category": "Penguins",
+    "tags": ["Penguins", "Emperor"]
+  },
+  {
+    "id": "penguin-tuxedo",
+    "emoji": "🎩",
+    "teaser": "Why do penguins look like they're wearing tuxedos?",
+    "fact": "A penguin's black-and-white colors are camouflage! The black blends with the dark ocean from above, and the white blends with the ice from below.",
+    "category": "Penguins",
+    "tags": ["Penguins", "Animals"]
+  },
+  {
+    "id": "penguin-toboggan",
+    "emoji": "🛝",
+    "teaser": "Do penguins slide on their bellies?",
+    "fact": "Yes! Penguins toboggan — they slide on their bellies across the ice because it's much faster and easier than waddling.",
+    "category": "Penguins",
+    "tags": ["Penguins"]
+  },
+  {
+    "id": "penguin-huddle",
+    "emoji": "🤗",
+    "teaser": "How do penguins stay warm?",
+    "fact": "Emperor penguins huddle together in huge groups, taking turns standing in the warm middle. They can be thousands strong!",
+    "category": "Penguins",
+    "tags": ["Penguins", "Emperor"]
+  },
+  {
+    "id": "insects-bee-dance",
+    "emoji": "🐝",
+    "teaser": "How do bees talk to each other?",
+    "fact": "Honeybees do a special 'waggle dance' to tell their friends exactly where to find yummy flowers!",
+    "category": "Insects",
+    "tags": ["Insects", "Bee"]
+  },
+  {
+    "id": "insects-spider-silk",
+    "emoji": "🕷️",
+    "teaser": "How strong is spider silk?",
+    "fact": "Spider silk is stronger than steel of the same weight! A web as thick as a pencil could stop a jumbo jet.",
+    "category": "Insects",
+    "tags": ["Insects", "Spider"]
+  },
+  {
+    "id": "insects-ant-strength",
+    "emoji": "🐜",
+    "teaser": "How strong are ants?",
+    "fact": "Ants can carry things 50 times their own body weight — that's like a kid lifting a whole car!",
+    "category": "Insects",
+    "tags": ["Insects", "Ant"]
+  },
+  {
+    "id": "insects-mosquito",
+    "emoji": "🦟",
+    "teaser": "Why do mosquitoes buzz?",
+    "fact": "A mosquito flaps its tiny wings up to 600 times every second — that fast flapping is what makes the buzzing sound!",
+    "category": "Insects",
+    "tags": ["Insects", "Mosquito"]
+  },
+  {
+    "id": "insects-six-legs",
+    "emoji": "🦗",
+    "teaser": "How many legs do insects have?",
+    "fact": "All insects have exactly six legs — spiders are NOT insects because they have eight legs!",
+    "category": "Insects",
+    "tags": ["Insects", "Spiders"]
+  },
+  {
+    "id": "birds-parrot-talk",
+    "emoji": "🦜",
+    "teaser": "Can parrots really talk?",
+    "fact": "Parrots can learn to copy human words. The cleverest, Alex the parrot, knew over 100 words and could even count!",
+    "category": "Birds",
+    "tags": ["Birds", "Parrot"]
+  },
+  {
+    "id": "birds-owl-neck",
+    "emoji": "🦉",
+    "teaser": "Can owls turn their heads all the way around?",
+    "fact": "Owls can't spin 360°, but they CAN turn their heads 270° — almost all the way around — to look behind them!",
+    "category": "Birds",
+    "tags": ["Birds", "Owl"]
+  },
+  {
+    "id": "birds-falcon",
+    "emoji": "🦅",
+    "teaser": "What's the fastest bird?",
+    "fact": "The peregrine falcon is the fastest animal on Earth! It can dive at over 240 mph (390 km/h).",
+    "category": "Birds",
+    "tags": ["Birds", "Falcon"]
+  },
+  {
+    "id": "birds-penguin",
+    "emoji": "🐧",
+    "teaser": "Are penguins birds?",
+    "fact": "Yes! Penguins are birds that can't fly. They have feathers, lay eggs, and are fantastic swimmers.",
+    "category": "Birds",
+    "tags": ["Birds", "Penguins"]
+  },
+  {
+    "id": "birds-hummingbird",
+    "emoji": "🐦",
+    "teaser": "How fast do hummingbirds flap?",
+    "fact": "A hummingbird's wings can flap up to 80 times every second — so fast they look like a blur!",
+    "category": "Birds",
+    "tags": ["Birds", "Hummingbird"]
+  },
+  {
+    "id": "science-atoms",
+    "emoji": "⚛️",
+    "teaser": "What is everything made of?",
+    "fact": "Everything around you — even you! — is made of tiny building blocks called atoms. They're so small that billions could fit on the head of a pin.",
+    "category": "Science",
+    "tags": ["Science", "Atoms"]
+  },
+  {
+    "id": "science-lightning",
+    "emoji": "⚡",
+    "teaser": "How hot is lightning?",
+    "fact": "A lightning bolt is about 5 times hotter than the surface of the sun — around 54,000°F (30,000°C)!",
+    "category": "Science",
+    "tags": ["Science", "Lightning"]
+  },
+  {
+    "id": "science-magnets",
+    "emoji": "🧲",
+    "teaser": "Why do magnets stick to things?",
+    "fact": "Magnets have an invisible force called magnetism that pulls some metals toward them — the same force that keeps compass needles pointing north!",
+    "category": "Science",
+    "tags": ["Science", "Magnets"]
+  },
+  {
+    "id": "science-rainbows",
+    "emoji": "🌈",
+    "teaser": "Why do rainbows appear?",
+    "fact": "Rainbows happen when sunlight passes through raindrops and splits into all the colors — red, orange, yellow, green, blue, indigo, and violet!",
+    "category": "Science",
+    "tags": ["Science", "Rainbows"]
+  },
+  {
+    "id": "science-earth-water",
+    "emoji": "💧",
+    "teaser": "How much of Earth is water?",
+    "fact": "About 71% of Earth's surface is covered in water — but only a tiny bit of it is fresh water that we can drink.",
+    "category": "Science",
+    "tags": ["Science", "Water", "World"]
+  },
+  {
+    "id": "food-honey",
+    "emoji": "🍯",
+    "teaser": "Does honey ever go bad?",
+    "fact": "Honey can last for thousands of years without going bad! Archaeologists found 3,000-year-old honey that was still yummy.",
+    "category": "Food",
+    "tags": ["Food", "Honey"]
+  },
+  {
+    "id": "food-popcorn",
+    "emoji": "🍿",
+    "teaser": "How old is popcorn?",
+    "fact": "People have been eating popcorn for over 5,000 years! Ancient people popped corn over open fires.",
+    "category": "Food",
+    "tags": ["Food", "Popcorn"]
+  },
+  {
+    "id": "food-carrots",
+    "emoji": "🥕",
+    "teaser": "Do carrots help you see better?",
+    "fact": "Carrots are full of vitamin A, which helps keep your eyes healthy — but they won't give you super night vision!",
+    "category": "Food",
+    "tags": ["Food", "Carrots"]
+  },
+  {
+    "id": "food-banana-berry",
+    "emoji": "🍌",
+    "teaser": "Are bananas berries?",
+    "fact": "Surprise! By science rules, bananas ARE berries — but strawberries and raspberries are not! Scientists group berries by how they grow.",
+    "category": "Food",
+    "tags": ["Food", "Fruit"]
+  },
+  {
+    "id": "food-apples",
+    "emoji": "🍎",
+    "teaser": "Do apples float in water?",
+    "fact": "Yes! Apples float because about 25% of their volume is air — that's also why they bob in a bowl of water.",
+    "category": "Food",
+    "tags": ["Food", "Fruit"]
+  },
+  {
+    "id": "world-earth-spin",
+    "emoji": "🌍",
+    "teaser": "How fast does Earth spin?",
+    "fact": "Earth spins at about 1,000 mph (1,600 km/h) at the equator — but you don't feel it because everything moves together!",
+    "category": "World",
+    "tags": ["World", "Earth"]
+  },
+  {
+    "id": "world-eiffel",
+    "emoji": "🗼",
+    "teaser": "Does the Eiffel Tower grow?",
+    "fact": "The Eiffel Tower can grow about 6 inches taller in summer! The metal expands when it gets hot.",
+    "category": "World",
+    "tags": ["World", "Landmarks"]
+  },
+  {
+    "id": "world-great-wall",
+    "emoji": "🧱",
+    "teaser": "Can you see the Great Wall from space?",
+    "fact": "You actually can't see the Great Wall of China from space with your eyes — it's too thin! That's a fun myth.",
+    "category": "World",
+    "tags": ["World", "Landmarks"]
+  },
+  {
+    "id": "world-volcanoes",
+    "emoji": "🌋",
+    "teaser": "How many volcanoes are erupting right now?",
+    "fact": "There are about 1,500 active volcanoes on Earth, and about 20 of them are erupting at any moment!",
+    "category": "World",
+    "tags": ["World", "Volcanoes"]
+  },
+  {
+    "id": "world-antarctica",
+    "emoji": "🧊",
+    "teaser": "Is Antarctica a desert?",
+    "fact": "Antarctica is a desert! It's the driest, windiest, and coldest continent — and it holds most of Earth's fresh water as ice.",
+    "category": "World",
+    "tags": ["World", "Antarctica"]
+  },
+  {
+    "id": "sport-soccer",
+    "emoji": "⚽",
+    "teaser": "What's the most popular sport?",
+    "fact": "Soccer (football) is the most popular sport in the world — more than 3.5 billion fans play or watch it!",
+    "category": "Sport",
+    "tags": ["Sport", "Soccer"]
+  },
+  {
+    "id": "sport-olympics",
+    "emoji": "🏅",
+    "teaser": "How old are the Olympics?",
+    "fact": "The first Olympic Games were held in Ancient Greece over 2,700 years ago!",
+    "category": "Sport",
+    "tags": ["Sport", "Olympics"]
+  },
+  {
+    "id": "sport-basketball-hoop",
+    "emoji": "🏀",
+    "teaser": "Why are basketball hoops 10 feet high?",
+    "fact": "Basketball hoops are 10 feet (3 m) high because that's the height of the gym balcony where the sport was invented!",
+    "category": "Sport",
+    "tags": ["Sport", "Basketball"]
+  },
+  {
+    "id": "sport-gold-medal",
+    "emoji": "🥇",
+    "teaser": "Are gold medals really made of gold?",
+    "fact": "Olympic gold medals are mostly silver with a thin layer of gold on top — but they are still super special!",
+    "category": "Sport",
+    "tags": ["Sport", "Olympics"]
+  },
+  {
+    "id": "tech-first-robot",
+    "emoji": "🤖",
+    "teaser": "When was the word 'robot' invented?",
+    "fact": "The word 'robot' came from a play in 1920! The first working robot in a factory was used in 1961.",
+    "category": "Tech",
+    "tags": ["Tech", "Robots"]
+  },
+  {
+    "id": "tech-computers",
+    "emoji": "🖥️",
+    "teaser": "How big were the first computers?",
+    "fact": "The first electronic computers filled entire rooms! The famous ENIAC computer weighed about 27 tons.",
+    "category": "Tech",
+    "tags": ["Tech", "Computers"]
+  },
+  {
+    "id": "tech-phones",
+    "emoji": "📱",
+    "teaser": "Are there more phones than people?",
+    "fact": "Yes! There are more mobile phones in the world than there are people on Earth.",
+    "category": "Tech",
+    "tags": ["Tech", "Phones"]
+  },
+  {
+    "id": "tech-internet",
+    "emoji": "🌐",
+    "teaser": "How old is the internet?",
+    "fact": "The internet started as a project in 1969 called ARPANET — it was built to connect just a few university computers.",
+    "category": "Tech",
+    "tags": ["Tech", "Internet"]
+  },
+  {
+    "id": "animals-panda-bamboo",
+    "emoji": "🐼",
+    "teaser": "What do pandas eat all day?",
+    "fact": "Pandas spend up to 12 hours a day eating bamboo — they munch on up to 30 kg (66 lbs) of it every single day!",
+    "category": "Animals",
+    "tags": ["Animals", "Panda"]
+  },
+  {
+    "id": "animals-lion-roar",
+    "emoji": "🦁",
+    "teaser": "How loud is a lion's roar?",
+    "fact": "A lion's roar can be heard from 5 miles (8 km) away — it's the loudest roar of all the big cats!",
+    "category": "Animals",
+    "tags": ["Animals", "Lion"]
+  },
+  {
+    "id": "animals-zebra-stripes",
+    "emoji": "🦓",
+    "teaser": "Are zebras black with white stripes?",
+    "fact": "Zebras are actually black with white stripes! Each zebra has its own unique stripe pattern, just like human fingerprints.",
+    "category": "Animals",
+    "tags": ["Animals", "Zebra"]
+  },
+  {
+    "id": "animals-hedgehog-spines",
+    "emoji": "🦔",
+    "teaser": "How many spines does a hedgehog have?",
+    "fact": "A hedgehog has about 5,000 to 7,000 spines on its back! Each one is a stiff, hollow hair that lies flat until danger appears.",
+    "category": "Animals",
+    "tags": ["Animals", "Hedgehog"]
+  },
+  {
+    "id": "animals-camel-hump",
+    "emoji": "🐪",
+    "teaser": "What's inside a camel's hump?",
+    "fact": "A camel's hump stores fat, not water! That fat gives camels energy when there's no food to find in the desert.",
+    "category": "Animals",
+    "tags": ["Animals", "Camel"]
+  },
+  {
+    "id": "animals-gecko-feet",
+    "emoji": "🦎",
+    "teaser": "How do geckos stick to walls?",
+    "fact": "Geckos have millions of tiny hairs on their feet that use a special force to stick to walls and even ceilings!",
+    "category": "Animals",
+    "tags": ["Animals", "Gecko"]
+  },
+  {
+    "id": "space-mars-volcano",
+    "emoji": "🌋",
+    "teaser": "What's the tallest volcano in the solar system?",
+    "fact": "Olympus Mons on Mars is the tallest volcano in the solar system — almost 3 times taller than Mount Everest!",
+    "category": "Space",
+    "tags": ["Space", "Mars", "Volcanoes"]
+  },
+  {
+    "id": "space-jupiter-spot",
+    "emoji": "🪐",
+    "teaser": "What is Jupiter's Great Red Spot?",
+    "fact": "Jupiter's Great Red Spot is a giant storm that has been raging for over 350 years — it's so big that Earth could fit inside it!",
+    "category": "Space",
+    "tags": ["Space", "Jupiter"]
+  },
+  {
+    "id": "space-suit-weight",
+    "emoji": "👨‍🚀",
+    "teaser": "How much does a spacesuit weigh?",
+    "fact": "A spacesuit weighs about 280 pounds (127 kg) on Earth, but in space it feels almost weightless!",
+    "category": "Space",
+    "tags": ["Space", "Astronaut"]
+  },
+  {
+    "id": "space-comet-tail",
+    "emoji": "☄️",
+    "teaser": "Why do comets have tails?",
+    "fact": "A comet's tail always points away from the sun! The sun's heat and wind blow the dust and gas back as the comet zooms along.",
+    "category": "Space",
+    "tags": ["Space", "Comets"]
+  },
+  {
+    "id": "space-milky-way",
+    "emoji": "🌌",
+    "teaser": "How many stars are in the Milky Way?",
+    "fact": "Our galaxy, the Milky Way, has between 100 and 400 billion stars — that's more stars than grains of sand on a beach!",
+    "category": "Space",
+    "tags": ["Space", "Stars"]
+  },
+  {
+    "id": "dino-diplodocus",
+    "emoji": "🦕",
+    "teaser": "What was the longest dinosaur?",
+    "fact": "Diplodocus could grow over 90 feet (27 m) long — longer than three buses parked end to end!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "Diplodocus"]
+  },
+  {
+    "id": "dino-trex-arms",
+    "emoji": "🦖",
+    "teaser": "Why were T-Rex arms so small?",
+    "fact": "Nobody knows for sure, but T-Rex's tiny arms were probably for holding prey close or helping it get back up from the ground!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "T-Rex"]
+  },
+  {
+    "id": "dino-nests",
+    "emoji": "🐣",
+    "teaser": "Did dinosaurs take care of their babies?",
+    "fact": "Yes! Some dinosaurs built nests and watched over their eggs, just like birds do today.",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "Eggs"]
+  },
+  {
+    "id": "dino-fastest",
+    "emoji": "🏃",
+    "teaser": "What was the fastest dinosaur?",
+    "fact": "The ostrich-like dinosaur Ornithomimus could run about 40 mph (64 km/h) — about as fast as a racehorse!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs"]
+  },
+  {
+    "id": "dino-baby-trex",
+    "emoji": "🥚",
+    "teaser": "How big was a baby T-Rex?",
+    "fact": "A baby T-Rex hatched from an egg about the size of a grapefruit and weighed about as much as a small dog!",
+    "category": "Dinosaurs",
+    "tags": ["Dinosaurs", "T-Rex", "Eggs"]
+  },
+  {
+    "id": "ocean-fish-sleep",
+    "emoji": "🐠",
+    "teaser": "Do fish sleep?",
+    "fact": "Fish don't sleep like we do, but they rest! Many find a safe spot and slow way down to save energy.",
+    "category": "Ocean",
+    "tags": ["Ocean", "Fish"]
+  },
+  {
+    "id": "ocean-giant-squid",
+    "emoji": "🦑",
+    "teaser": "How big is a giant squid?",
+    "fact": "A giant squid can grow longer than a school bus — up to 43 feet (13 m) long! Its eyes are as big as dinner plates.",
+    "category": "Ocean",
+    "tags": ["Ocean", "Squid"]
+  },
+  {
+    "id": "ocean-spider-crab",
+    "emoji": "🦀",
+    "teaser": "What's the widest animal?",
+    "fact": "The Japanese spider crab has legs that can stretch up to 12 feet (3.8 m) across — wider than any other animal!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Crab"]
+  },
+  {
+    "id": "ocean-dolphin-sleep",
+    "emoji": "🐬",
+    "teaser": "How do dolphins sleep?",
+    "fact": "Dolphins rest half their brain at a time so they can keep swimming and breathing while they sleep!",
+    "category": "Ocean",
+    "tags": ["Ocean", "Dolphin"]
+  },
+  {
+    "id": "ocean-clownfish",
+    "emoji": "🐡",
+    "teaser": "Where do clownfish live?",
+    "fact": "Clownfish live inside stinging sea anemones! The tentacles protect them from enemies, and they keep the anemone clean.",
+    "category": "Ocean",
+    "tags": ["Ocean", "Fish"]
+  },
+  {
+    "id": "penguin-speed",
+    "emoji": "🏊",
+    "teaser": "How fast can penguins swim?",
+    "fact": "Penguins can swim up to 22 mph (36 km/h) — faster than an Olympic swimmer!",
+    "category": "Penguins",
+    "tags": ["Penguins"]
+  },
+  {
+    "id": "penguin-egg-dad",
+    "emoji": "🍳",
+    "teaser": "Who keeps the penguin egg warm?",
+    "fact": "The daddy emperor penguin keeps the egg warm on his feet under a flap of skin for two whole months while mum goes to find food!",
+    "category": "Penguins",
+    "tags": ["Penguins", "Emperor"]
+  },
+  {
+    "id": "penguin-leap",
+    "emoji": "🦘",
+    "teaser": "Do penguins jump out of the water?",
+    "fact": "Yes! Penguins leap out of the water like little rockets to land safely on the ice or escape from enemies.",
+    "category": "Penguins",
+    "tags": ["Penguins"]
+  },
+  {
+    "id": "penguin-galapagos",
+    "emoji": "🏖️",
+    "teaser": "Do all penguins live where it's cold?",
+    "fact": "Not all! Galápagos penguins live near the equator where it's warm and sunny — the only penguins that live in warm places.",
+    "category": "Penguins",
+    "tags": ["Penguins"]
+  },
+  {
+    "id": "insects-cricket",
+    "emoji": "🦗",
+    "teaser": "Why do crickets chirp?",
+    "fact": "Male crickets chirp by rubbing their wings together to attract female crickets — they can chirp hundreds of times a minute!",
+    "category": "Insects",
+    "tags": ["Insects", "Cricket"]
+  },
+  {
+    "id": "insects-caterpillar",
+    "emoji": "🐛",
+    "teaser": "How does a caterpillar become a butterfly?",
+    "fact": "Inside its chrysalis, a caterpillar melts into goo and rebuilds its whole body — and comes out as a beautiful butterfly!",
+    "category": "Insects",
+    "tags": ["Insects", "Butterfly"]
+  },
+  {
+    "id": "insects-ants-farm",
+    "emoji": "🌱",
+    "teaser": "Do ants farm?",
+    "fact": "Some ants are farmers! Leafcutter ants grow their own fungus gardens, and some even keep tiny 'cows' called aphids.",
+    "category": "Insects",
+    "tags": ["Insects", "Ant"]
+  },
+  {
+    "id": "insects-honey-life",
+    "emoji": "🍯",
+    "teaser": "How much honey does a bee make?",
+    "fact": "A single honeybee makes only about 1/12 of a teaspoon of honey in its whole life — it takes thousands of bees to fill a jar!",
+    "category": "Insects",
+    "tags": ["Insects", "Bee", "Honey"]
+  },
+  {
+    "id": "insects-monarch",
+    "emoji": "🦋",
+    "teaser": "How far do monarch butterflies travel?",
+    "fact": "Monarch butterflies migrate up to 3,000 miles (4,800 km) — some fly for months to reach warm places!",
+    "category": "Insects",
+    "tags": ["Insects", "Butterfly"]
+  },
+  {
+    "id": "birds-migrate",
+    "emoji": "🦢",
+    "teaser": "Do birds really fly south for winter?",
+    "fact": "Many birds migrate! Some travel thousands of miles to find food and warmer weather when winter comes.",
+    "category": "Birds",
+    "tags": ["Birds"]
+  },
+  {
+    "id": "birds-ostrich",
+    "emoji": "🦤",
+    "teaser": "Can ostriches fly?",
+    "fact": "Ostriches can't fly, but they are the fastest running birds — they can sprint at 45 mph (70 km/h)!",
+    "category": "Birds",
+    "tags": ["Birds", "Ostrich"]
+  },
+  {
+    "id": "birds-duck-waterproof",
+    "emoji": "🦆",
+    "teaser": "Why don't ducks get wet?",
+    "fact": "Ducks have special oil on their feathers that makes water roll right off — they're naturally waterproof!",
+    "category": "Birds",
+    "tags": ["Birds", "Duck"]
+  },
+  {
+    "id": "birds-parrot-age",
+    "emoji": "🦜",
+    "teaser": "How long can parrots live?",
+    "fact": "Some parrots can live 80 years or more — a parrot can be your friend for your whole life!",
+    "category": "Birds",
+    "tags": ["Birds", "Parrot"]
+  },
+  {
+    "id": "science-sound-speed",
+    "emoji": "💨",
+    "teaser": "How fast does sound travel?",
+    "fact": "Sound travels about 767 mph (1,235 km/h) through air — faster than a jet plane!",
+    "category": "Science",
+    "tags": ["Science", "Sound"]
+  },
+  {
+    "id": "science-astronauts-float",
+    "emoji": "🪂",
+    "teaser": "Why do astronauts float?",
+    "fact": "Astronauts float because they are falling around Earth at the same speed as their spaceship — it's called free fall!",
+    "category": "Science",
+    "tags": ["Science", "Space"]
+  },
+  {
+    "id": "science-snowflakes",
+    "emoji": "❄️",
+    "teaser": "Are two snowflakes ever the same?",
+    "fact": "Snowflakes form in so many different ways that scientists believe no two snowflakes are exactly alike!",
+    "category": "Science",
+    "tags": ["Science", "Snow"]
+  },
+  {
+    "id": "science-sun-fusion",
+    "emoji": "☀️",
+    "teaser": "Where does the sun's energy come from?",
+    "fact": "The sun shines because of a huge reaction called fusion — it squishes hydrogen atoms together to make helium and release light and heat!",
+    "category": "Science",
+    "tags": ["Science", "Sun"]
+  },
+  {
+    "id": "science-static",
+    "emoji": "🎈",
+    "teaser": "Why does your hair stand up?",
+    "fact": "When you rub a balloon on your hair, tiny electric charges build up and make your hair stand on end!",
+    "category": "Science",
+    "tags": ["Science", "Electricity"]
+  },
+  {
+    "id": "food-potato",
+    "emoji": "🥔",
+    "teaser": "What vegetable is a potato?",
+    "fact": "Potatoes are actually roots, not vegetables! And a potato can grow a whole new plant from just one 'eye' on its skin.",
+    "category": "Food",
+    "tags": ["Food", "Vegetables"]
+  },
+  {
+    "id": "food-orange-name",
+    "emoji": "🍊",
+    "teaser": "Why are oranges called oranges?",
+    "fact": "The fruit came first! The color 'orange' was actually named after the fruit, not the other way around.",
+    "category": "Food",
+    "tags": ["Food", "Fruit"]
+  },
+  {
+    "id": "food-cheese-holes",
+    "emoji": "🧀",
+    "teaser": "Why does Swiss cheese have holes?",
+    "fact": "The holes in Swiss cheese are made by tiny gas bubbles from special bacteria during the cheese-making!",
+    "category": "Food",
+    "tags": ["Food", "Cheese"]
+  },
+  {
+    "id": "food-peanuts",
+    "emoji": "🥜",
+    "teaser": "Are peanuts really nuts?",
+    "fact": "Peanuts aren't nuts at all — they are legumes, related to beans and peas, and they grow underground!",
+    "category": "Food",
+    "tags": ["Food", "Peanuts"]
+  },
+  {
+    "id": "food-lemon-pucker",
+    "emoji": "🍋",
+    "teaser": "Why do lemons make you pucker?",
+    "fact": "Lemons are full of a sour acid called citric acid — it makes your mouth pucker when it touches your taste buds!",
+    "category": "Food",
+    "tags": ["Food", "Fruit"]
+  },
+  {
+    "id": "world-islands",
+    "emoji": "🏝️",
+    "teaser": "How many islands are there?",
+    "fact": "There are more than 900,000 islands in the world's oceans — but only about 11,000 are big enough for people to live on!",
+    "category": "World",
+    "tags": ["World", "Islands"]
+  },
+  {
+    "id": "world-everest",
+    "emoji": "🏔️",
+    "teaser": "What's the tallest mountain?",
+    "fact": "Mount Everest is about 5.5 miles (8.8 km) tall — high enough that you can see the curve of the Earth from the top!",
+    "category": "World",
+    "tags": ["World", "Mountains"]
+  },
+  {
+    "id": "world-nile",
+    "emoji": "🌊",
+    "teaser": "What's the longest river?",
+    "fact": "The Nile in Africa is the longest river — about 4,130 miles (6,650 km) long, running through 11 countries!",
+    "category": "World",
+    "tags": ["World", "Rivers"]
+  },
+  {
+    "id": "world-sahara",
+    "emoji": "🏜️",
+    "teaser": "What's the biggest desert?",
+    "fact": "The Sahara is the biggest hot desert — it's about the size of the whole United States!",
+    "category": "World",
+    "tags": ["World", "Deserts"]
+  },
+  {
+    "id": "world-time-zones",
+    "emoji": "🕰️",
+    "teaser": "Why do we have time zones?",
+    "fact": "Earth is round and spins, so different parts see the sun at different times — that's why we have 24 time zones!",
+    "category": "World",
+    "tags": ["World"]
+  },
+  {
+    "id": "sport-sailfish",
+    "emoji": "🐟",
+    "teaser": "Who swims faster than humans?",
+    "fact": "Sailfish are the fastest swimmers in the ocean — they can zip along at 68 mph (110 km/h)!",
+    "category": "Sport",
+    "tags": ["Sport", "Ocean"]
+  },
+  {
+    "id": "sport-world-cup",
+    "emoji": "🏆",
+    "teaser": "How often is the World Cup?",
+    "fact": "The soccer World Cup happens every 4 years, and billions of people around the world tune in to watch it!",
+    "category": "Sport",
+    "tags": ["Sport", "Soccer"]
+  },
+  {
+    "id": "sport-baseball-stitches",
+    "emoji": "⚾",
+    "teaser": "How many stitches are on a baseball?",
+    "fact": "A baseball has exactly 108 double stitches on its cover!",
+    "category": "Sport",
+    "tags": ["Sport", "Baseball"]
+  },
+  {
+    "id": "sport-marathon",
+    "emoji": "🏃",
+    "teaser": "Why is a marathon 26 miles?",
+    "fact": "A marathon is 26.2 miles (42 km) long — that's the distance from the town of Marathon in ancient Greece to the city of Athens!",
+    "category": "Sport",
+    "tags": ["Sport", "Running"]
+  },
+  {
+    "id": "sport-olympics-length",
+    "emoji": "🤸",
+    "teaser": "How long do the Olympics last?",
+    "fact": "The modern Summer Olympics last about 16 days and host thousands of athletes from almost every country on Earth!",
+    "category": "Sport",
+    "tags": ["Sport", "Olympics"]
+  },
+  {
+    "id": "tech-qwerty",
+    "emoji": "⌨️",
+    "teaser": "Why aren't keyboard keys in ABC order?",
+    "fact": "The QWERTY keyboard was designed over 140 years ago to keep the typewriter's hammers from jamming — and we still use it today!",
+    "category": "Tech",
+    "tags": ["Tech", "Computers"]
+  },
+  {
+    "id": "tech-floppy",
+    "emoji": "💾",
+    "teaser": "What was a floppy disk?",
+    "fact": "Before USB sticks, people saved their files on floppy disks — the earliest ones could only hold about as much as a small photo!",
+    "category": "Tech",
+    "tags": ["Tech", "Computers"]
+  },
+  {
+    "id": "tech-first-game",
+    "emoji": "🎮",
+    "teaser": "What was the first video game?",
+    "fact": "A game called 'Pong', made in 1972, was one of the first video games people could play at home!",
+    "category": "Tech",
+    "tags": ["Tech", "Games"]
+  },
+  {
+    "id": "tech-wifi",
+    "emoji": "📡",
+    "teaser": "How does Wi-Fi work?",
+    "fact": "Wi-Fi sends information through invisible radio waves — like a very fast, silent conversation between your device and the router!",
+    "category": "Tech",
+    "tags": ["Tech", "Internet"]
+  },
+  {
+    "id": "tech-binary",
+    "emoji": "🧮",
+    "teaser": "Do computers use 0 and 1?",
+    "fact": "Computers understand everything as tiny switches that are either ON (1) or OFF (0) — that's called binary code!",
+    "category": "Tech",
+    "tags": ["Tech", "Computers"]
+  }
+]

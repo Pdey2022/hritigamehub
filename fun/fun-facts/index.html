@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤯 Fun Facts for Kids — Amazing Animal, Space & Dinosaur Facts | Hriti's Game Hub</title>
+    <meta name="description" content="Discover amazing fun facts for kids! Learn incredible facts about animals, space, dinosaurs, the ocean, penguins, science and more — free to explore online!">
+    <meta name="theme-color" content="#1a1a3e">
+    <meta property="og:type" content="website" />
+    <meta name="keywords" content="fun facts for kids, animal facts, space facts, dinosaur facts, did you know, facts for children, amazing facts">
+    <meta name="google-site-verification" content="googledd54713c00a87540" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Fun Facts for Kids — Hriti's Game Hub","description":"Discover amazing fun facts about animals, space, dinosaurs, the ocean and more!","url":"https://hritihub.uk/fun/fun-facts/"}</script>
+    <meta property="og:title" content="🤯 Fun Facts for Kids — Amazing Facts to Explore">
+    <meta property="og:description" content="Discover amazing facts about animals, space, dinosaurs and the world around us!">
+    <meta property="og:url" content="https://hritihub.uk/fun/fun-facts/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🤯 Fun Facts for Kids">
+    <meta name="twitter:description" content="Amazing facts for kids! Tap a card to reveal and read aloud.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤯</text></svg>">
+    <link rel="canonical" href="https://hritihub.uk/fun/fun-facts/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .ff-page { background: #1a1a3e; min-height: 100vh; font-family: 'Fredoka', sans-serif; }
+        .ff-hero { position: relative; text-align: center; padding: 80px 20px 10px; max-width: 900px; margin: 0 auto; z-index: 1; }
+        .ff-hero h1 { font-size: 2.8rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+        .ff-hero p { font-size: 1rem; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+        .ff-hero .ff-count { display: inline-block; font-size: 0.75rem; color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); padding: 3px 12px; border-radius: 100px; }
+        .ff-hero .back-link {
+            display: inline-block; margin-top: 10px;
+            color: #ffd700; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+            padding: 8px 20px; border-radius: 100px;
+            background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.25);
+            animation: backLinkPulse 2s ease-in-out infinite;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ff-hero .back-link:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+        @keyframes backLinkPulse {
+            0%, 100% { box-shadow: 0 0 6px rgba(255,215,0,0.1); }
+            50% { box-shadow: 0 0 18px rgba(255,215,0,0.25); }
+        }
+
+        /* Surprise Me button */
+        .ff-surprise {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+            padding: 10px 24px; border-radius: 100px; cursor: pointer;
+            background: linear-gradient(135deg, rgba(255,215,0,0.25), rgba(255,107,107,0.25));
+            border: 1px solid rgba(255,215,0,0.4); color: #ffd700;
+            font-family: 'Fredoka', sans-serif; font-size: 0.95rem; font-weight: 700;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ff-surprise:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 0 24px rgba(255,215,0,0.25); }
+        .ff-surprise:active { transform: scale(0.97); }
+
+        /* Search bar */
+        .ff-search { max-width: 960px; margin: 12px auto 0; padding: 0 20px; }
+        .ff-search input {
+            width: 100%; padding: 10px 18px; border: 1.5px solid rgba(255,255,255,0.12);
+            border-radius: 100px; background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px); color: #fff; font-size: 0.9rem;
+            font-family: 'Fredoka', sans-serif; outline: none; box-sizing: border-box;
+            transition: all 0.3s;
+        }
+        .ff-search input:focus { border-color: rgba(255,215,0,0.4); box-shadow: 0 0 20px rgba(255,215,0,0.08); }
+        .ff-search input::placeholder { color: rgba(255,255,255,0.3); }
+
+        /* Category filters — matches landing page */
+        .ff-categories { max-width: 960px; margin: 12px auto 0; padding: 0 20px; }
+        .ff-categories .categories-grid {
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+        }
+        .ff-categories .category-card {
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
+            padding: 10px 14px 8px; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px; cursor: pointer; font-family: inherit; color: #fff;
+            transition: all 0.25s ease; text-align: center; position: relative; overflow: hidden;
+            background: rgba(255,255,255,0.04); min-width: 60px;
+        }
+        .ff-categories .category-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); border-color: rgba(255,255,255,0.25); }
+        .ff-categories .category-card-active { border-color: rgba(255,215,0,0.5) !important; box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important; background: rgba(255,215,0,0.08); }
+        .ff-categories .category-icon { font-size: 1.4rem; transition: transform 0.3s ease; }
+        .ff-categories .category-card:hover .category-icon { transform: scale(1.15) rotate(-5deg); }
+        .ff-categories .category-name { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.7); }
+        .ff-categories .category-count { font-size: 0.6rem; color: rgba(255,255,255,0.3); }
+
+        /* Fact tiles — compact masonry layout */
+        .ff-grid-wrap { max-width: 960px; margin: 16px auto 40px; padding: 0 20px; }
+        .ff-grid {
+            column-count: 3; column-gap: 16px; padding: 8px 0 16px;
+        }
+        .ff-card {
+            break-inside: avoid; -webkit-column-break-inside: avoid;
+            margin-bottom: 16px; position: relative;
+            background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 18px; padding: 18px 18px 14px;
+            backdrop-filter: blur(12px); overflow: hidden;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        }
+        .ff-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, rgba(255,215,0,0.4), rgba(255,107,107,0.4), rgba(83,144,217,0.4));
+            opacity: 0; transition: opacity 0.25s;
+        }
+        .ff-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); border-color: rgba(255,215,0,0.2); }
+        .ff-card:hover::before { opacity: 1; }
+        .ff-card:active { transform: scale(0.99); }
+        .ff-tile-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .ff-emoji {
+            font-size: 1.7rem; width: 38px; height: 38px; border-radius: 10px;
+            background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .ff-didyou { font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 700; color: #ffd700; text-transform: uppercase; }
+        .ff-teaser { font-size: 0.95rem; font-weight: 700; color: #fff; line-height: 1.4; margin-bottom: 6px; }
+        .ff-fact { font-size: 0.85rem; color: rgba(255,255,255,0.78); line-height: 1.55; }
+        .ff-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
+        .ff-cat-label { font-size: 0.6rem; color: rgba(255,215,0,0.7); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+        .ff-read {
+            padding: 5px 14px; border-radius: 100px; cursor: pointer;
+            background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.35);
+            color: #ffd700; font-family: 'Fredoka', sans-serif; font-size: 0.72rem; font-weight: 600;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .ff-read:hover { background: rgba(255,215,0,0.25); }
+        .ff-read.speaking { background: rgba(76,175,80,0.2); border-color: rgba(76,175,80,0.4); color: #4caf50; animation: ffPulse 1.2s ease-in-out infinite; }
+        @keyframes ffPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(76,175,80,0.3); } 50% { box-shadow: 0 0 16px 4px rgba(76,175,80,0.15); } }
+
+        .ff-empty {
+            text-align: center; padding: 40px 20px; color: rgba(255,255,255,0.3);
+            font-size: 0.9rem; column-span: all;
+        }
+
+        /* Surprise highlight */
+        .ff-card.surprise-flash { box-shadow: 0 0 0 3px rgba(255,215,0,0.6), 0 0 30px rgba(255,215,0,0.3); animation: ffFlash 1.2s ease; }
+        @keyframes ffFlash { 0%,100% { transform: scale(1); } 30% { transform: scale(1.03); } }
+
+        @media (max-width: 860px) {
+            .ff-grid { column-count: 2; }
+        }
+        @media (max-width: 600px) {
+            .ff-hero { padding: 70px 16px 16px; }
+            .ff-hero h1 { font-size: 2rem; }
+            .ff-hero p { font-size: 0.9rem; }
+            .ff-grid { column-count: 1; column-gap: 12px; padding: 0 14px; }
+            .ff-grid-wrap { padding: 0; }
+            .ff-card { margin-bottom: 12px; padding: 14px 14px 12px; }
+            .ff-teaser { font-size: 0.9rem; }
+            .ff-fact { font-size: 0.82rem; }
+            .ff-categories .category-card { padding: 8px 10px 6px; min-width: 50px; }
+            .ff-categories .category-icon { font-size: 1.1rem; }
+            .ff-categories .category-name { font-size: 0.6rem; }
+        }
+    </style>
+</head>
+<body class="landing-page ff-page">
+
+    <div class="bg-animation">
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+        <div class="bg-shape bg-shape-3"></div>
+        <div class="bg-shape bg-shape-4"></div>
+        <div class="bg-shape bg-shape-5"></div>
+        <div class="bg-shape bg-shape-6"></div>
+        <div class="bg-particles" id="bg-particles"></div>
+        <div class="bg-bubbles" id="bg-bubbles"></div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <a href="/" class="top-nav-logo">🌟 Hriti's HUB</a>
+            <div class="top-nav-right">
+                <a href="/about/" class="top-nav-link">About Me</a>
+                <div class="auth-container" id="auth-container"></div>
+                <div class="sync-status" id="sync-status"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ff-hero">
+        <h1>🤯 Fun Facts for Kids</h1>
+        <p>Browse and listen to <span id="ff-total">0</span> amazing facts!</p>
+        <button class="ff-surprise" id="ff-surprise">🎲 Surprise Me!</button>
+        <br>
+        <a href="/fun/" class="back-link">← Back to More Fun</a>
+    </div>
+
+    <div class="ff-search">
+        <input type="text" id="ff-search-input" placeholder="🔍 Search facts..." autocomplete="off">
+    </div>
+
+    <div class="ff-categories">
+        <div class="categories-grid" id="ff-categories"></div>
+    </div>
+
+    <div class="ff-grid-wrap">
+        <div class="ff-grid" id="ff-grid"></div>
+    </div>
+
+    <script>
+        (function() {
+            const container = document.getElementById('bg-particles');
+            if (!container) return;
+            const count = 30;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'bg-particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 15) + 's';
+                p.style.opacity = Math.random() * 0.5 + 0.1;
+                fragment.appendChild(p);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+    <script>
+        (function() {
+            const container = document.getElementById('bg-bubbles');
+            if (!container) return;
+            const count = 12;
+            const sizes = [18, 24, 30, 36, 42, 50];
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'bg-bubble';
+                const size = sizes[Math.floor(Math.random() * sizes.length)];
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.animationDuration = (Math.random() * 18 + 14) + 's';
+                b.style.animationDelay = (Math.random() * 20) + 's';
+                b.style.opacity = Math.random() * 0.3 + 0.1;
+                fragment.appendChild(b);
+            }
+            container.appendChild(fragment);
+        })();
+    </script>
+
+    <script>document.body.classList.add('loaded')</script>
+    <script>
+        (function() {
+            const grid = document.getElementById('ff-grid');
+            const totalEl = document.getElementById('ff-total');
+            let facts = [];
+            let activeCategory = 'All';
+
+            const CATEGORIES = {
+                'All':       { icon: '✨', color: 'rgba(255,255,255,0.04)' },
+                'Animals':   { icon: '🦁', color: 'linear-gradient(135deg, #e67e2222, #d3540011)' },
+                'Space':     { icon: '🪐', color: 'linear-gradient(135deg, #9b59b622, #8e44ad11)' },
+                'Dinosaurs': { icon: '🦖', color: 'linear-gradient(135deg, #4caf5022, #388e3c11)' },
+                'Ocean':     { icon: '🌊', color: 'linear-gradient(135deg, #3498db22, #2980b911)' },
+                'Penguins':  { icon: '🐧', color: 'linear-gradient(135deg, #00bcd422, #0097a711)' },
+                'Insects':   { icon: '🐛', color: 'linear-gradient(135deg, #1abc9c22, #16a08511)' },
+                'Birds':     { icon: '🦜', color: 'linear-gradient(135deg, #e74c3c22, #c0392b11)' },
+                'Science':   { icon: '🔬', color: 'linear-gradient(135deg, #3498db22, #2980b911)' },
+                'Food':      { icon: '🍕', color: 'linear-gradient(135deg, #ff980022, #f57c0011)' },
+                'World':     { icon: '🌍', color: 'linear-gradient(135deg, #2ecc7122, #27ae6011)' },
+                'Sport':     { icon: '⚽', color: 'linear-gradient(135deg, #e74c3c22, #c0392b11)' },
+                'Tech':      { icon: '🤖', color: 'linear-gradient(135deg, #8e44ad22, #6c348311)' }
+            };
+
+            fetch('/fun/fun-facts/facts.json')
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    facts = data;
+                    totalEl.textContent = data.length;
+                    renderCategories();
+                    renderGrid();
+                });
+
+            function renderCategories() {
+                var container = document.getElementById('ff-categories');
+                var html = '';
+                for (var key in CATEGORIES) {
+                    var count = key === 'All' ? facts.length : facts.filter(function(f) { return f.category === key; }).length;
+                    if (count === 0) continue;
+                    var active = key === activeCategory ? ' category-card-active' : '';
+                    html += '<div class="category-card' + active + '" data-cat="' + key + '" style="background:' + CATEGORIES[key].color + '">' +
+                        '<span class="category-icon">' + CATEGORIES[key].icon + '</span>' +
+                        '<span class="category-name">' + key + '</span>' +
+                        '<span class="category-count">' + count + '</span></div>';
+                }
+                container.innerHTML = html;
+                container.querySelectorAll('.category-card').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        var cat = btn.dataset.cat;
+                        activeCategory = cat;
+                        container.querySelectorAll('.category-card').forEach(function(b) { b.classList.remove('category-card-active'); });
+                        btn.classList.add('category-card-active');
+                        var searchVal = document.getElementById('ff-search-input').value;
+                        renderGrid(searchVal);
+                    });
+                });
+            }
+
+            function renderGrid(filter) {
+                var q = (filter || '').toLowerCase().trim();
+                var filtered = facts.filter(function(f) {
+                    var matchesCat = activeCategory === 'All' || f.category === activeCategory;
+                    if (!matchesCat) return false;
+                    if (!q) return true;
+                    return f.teaser.toLowerCase().includes(q) ||
+                           f.fact.toLowerCase().includes(q) ||
+                           f.tags.some(function(t) { return t.toLowerCase().includes(q); });
+                });
+                grid.innerHTML = filtered.map(function(f) {
+                    return '<div class="ff-card" data-id="' + f.id + '">' +
+                        '<div class="ff-tile-top">' +
+                            '<div class="ff-emoji">' + f.emoji + '</div>' +
+                            '<div class="ff-didyou">💡 Did You Know?</div>' +
+                        '</div>' +
+                        '<div class="ff-teaser">' + f.teaser + '</div>' +
+                        '<div class="ff-fact">' + f.fact + '</div>' +
+                        '<div class="ff-card-foot">' +
+                            '<div class="ff-cat-label">' + f.category + '</div>' +
+                            '<button class="ff-read">🔊 Read</button>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div class="ff-empty">🔍 No facts found. Try a different search!</div>';
+                }
+
+                grid.querySelectorAll('.ff-card').forEach(function(card) {
+                    var readBtn = card.querySelector('.ff-read');
+                    if (readBtn) {
+                        readBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            var id = card.dataset.id;
+                            var fact = facts.find(function(f) { return f.id === id; });
+                            if (fact) toggleSpeech(card, fact, readBtn);
+                        });
+                    }
+                });
+            }
+
+            // Search
+            var searchInput = document.getElementById('ff-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    renderGrid(this.value);
+                });
+            }
+
+            // ===== Read Aloud (SpeechSynthesis) =====
+            var synth = window.speechSynthesis;
+            var speakingCard = null;
+            var currentUtterance = null;
+
+            function toggleSpeech(card, fact, btn) {
+                if (speakingCard === card && currentUtterance) {
+                    stopSpeech();
+                    return;
+                }
+                stopSpeech();
+                if (!synth) { alert('Read Aloud is not supported in this browser.'); return; }
+                speakingCard = card;
+                btn.classList.add('speaking');
+                btn.textContent = '⏹ Stop';
+                currentUtterance = new SpeechSynthesisUtterance(fact.emoji + '. ' + fact.fact);
+                currentUtterance.rate = 0.95;
+                currentUtterance.pitch = 1.0;
+                currentUtterance.lang = 'en-US';
+                var voices = synth.getVoices();
+                var kidVoice = voices.find(function(v) { return /google.*uk|female|children/i.test(v.name); }) ||
+                               voices.find(function(v) { return /english/i.test(v.name); });
+                if (kidVoice) currentUtterance.voice = kidVoice;
+                currentUtterance.onend = function() { resetBtn(); };
+                currentUtterance.onerror = function() { resetBtn(); };
+                synth.speak(currentUtterance);
+            }
+
+            function resetBtn() {
+                if (speakingCard) {
+                    var btn = speakingCard.querySelector('.ff-read');
+                    if (btn) {
+                        btn.classList.remove('speaking');
+                        btn.textContent = '🔊 Read';
+                    }
+                }
+                speakingCard = null;
+                currentUtterance = null;
+            }
+
+            function stopSpeech() {
+                if (synth) synth.cancel();
+                resetBtn();
+            }
+
+            if (synth) {
+                synth.getVoices();
+                synth.onvoiceschanged = function() { synth.getVoices(); };
+            }
+
+            // ===== Surprise Me =====
+            document.getElementById('ff-surprise').addEventListener('click', function() {
+                if (facts.length === 0) return;
+                // Reset filters so the whole pool is available
+                activeCategory = 'All';
+                if (searchInput) searchInput.value = '';
+                renderCategories();
+                renderGrid();
+
+                var random = facts[Math.floor(Math.random() * facts.length)];
+                var card = grid.querySelector('.ff-card[data-id="' + random.id + '"]');
+                if (!card) return;
+
+                stopSpeech();
+                card.classList.add('surprise-flash');
+                setTimeout(function() { card.classList.remove('surprise-flash'); }, 1300);
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                var btn = card.querySelector('.ff-read');
+                if (btn) {
+                    var f = facts.find(function(x) { return x.id === random.id; });
+                    if (f) toggleSpeech(card, f, btn);
+                }
+            });
+        })();
+    </script>
+    <script src="/assets/js/firebase-loader.js"></script>
+    <script src="/assets/js/footer.js"></script>
+</body>
+</html>
