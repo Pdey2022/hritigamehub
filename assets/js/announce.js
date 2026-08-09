@@ -7,8 +7,8 @@
 (function() {
   'use strict';
 
-  // Set to true to show the bar to ALL visitors (not just signed-in users)
-  const SHOW_TO_ALL = false;
+  // Show the bar to ALL visitors. Set to false to show only to signed-in users.
+  const SHOW_TO_ALL = true;
   // Days a newly released game is announced after its release date
   const NEW_GAME_DAYS = 15;
   // Polls while we wait for Firebase auth to settle (async)
@@ -130,13 +130,22 @@
     maybeShow();
   });
 
-  // Wait for Firebase auth to settle, then show if eligible
-  let poll = 0;
-  (function waitForAuth() {
-    if (typeof currentUser !== 'undefined') {
+  function init() {
+    if (SHOW_TO_ALL) {
+      // Public bar — show immediately, no need to wait for auth
       maybeShow();
-    } else if (poll++ < MAX_AUTH_POLLS) {
-      setTimeout(waitForAuth, AUTH_POLL_MS);
+      return;
     }
-  })();
+    // Logged-in only: wait for Firebase auth to settle, then show if eligible
+    let poll = 0;
+    (function waitForAuth() {
+      if (typeof currentUser !== 'undefined') {
+        maybeShow();
+      } else if (poll++ < MAX_AUTH_POLLS) {
+        setTimeout(waitForAuth, AUTH_POLL_MS);
+      }
+    })();
+  }
+
+  init();
 })();
