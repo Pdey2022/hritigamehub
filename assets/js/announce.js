@@ -116,7 +116,14 @@
     barVisible = true;
     currentBar = buildBar(items);
     inject(currentBar);
-    requestAnimationFrame(() => currentBar.classList.add('announce-bar-show'));
+    // Smooth entrance via rAF when available, with a timeout fallback so the bar
+    // always appears even if rAF is throttled (background/hidden tabs).
+    requestAnimationFrame(function() {
+      if (currentBar) currentBar.classList.add('announce-bar-show');
+    });
+    setTimeout(function() {
+      if (currentBar) currentBar.classList.add('announce-bar-show');
+    }, 60);
   }
 
   function hideBar() {
