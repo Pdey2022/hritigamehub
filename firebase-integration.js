@@ -24,6 +24,10 @@ function initFirebase() {
         auth.onAuthStateChanged(user => {
             currentUser = user;
             updateAuthUI();
+            // Let other modules (e.g. announcement bar) react to auth changes
+            if (typeof window !== 'undefined' && window.dispatchEvent) {
+                window.dispatchEvent(new CustomEvent('auth-state-change', { detail: { user } }));
+            }
             if (user) {
                 // User just signed in — load cloud data
                 loadFromCloud();
