@@ -1,6 +1,6 @@
 /* ============================================
    ANNOUNCEMENT BAR — thin bar under the header
-   Alerts signed-in users to new games & features
+   Alerts ALL visitors to new games & features
    on the landing page. Data from games.json
    (auto new-game detection) + announcements.json.
    ============================================ */
