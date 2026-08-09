@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🟢 Simon Says — Free Memory Game for Kids | Play Online</title>
+    <meta name="description" content="Play Simon Says online! Watch the pattern, repeat the sequence, and test your memory. A fun free memory game for kids.">
+    <meta name="theme-color" content="#111827">
+    <meta property="og:title" content="🟢 Simon Says — Free Online Game">
+    <meta property="og:description" content="Watch the color pattern, repeat the sequence, and beat your high score in this classic memory game for kids.">
+    <meta property="og:url" content="https://hritihub.uk/games/simon-says/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🟢 Simon Says — Free Online Game">
+    <meta name="twitter:description" content="Watch the pattern, repeat the sequence, and test your memory. Play Simon Says online for kids.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="canonical" href="https://hritihub.uk/games/simon-says/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link rel="stylesheet" href="/games/simon-says/css/simon-says.css?v=1">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Simon Says","description":"Play Simon Says online by watching and repeating color patterns to test your memory.","url":"https://hritihub.uk/games/simon-says/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="simon-page">
+
+    <header id="simon-hud">
+        <div class="simon-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Simon Says</span>
+            </nav>
+            <span class="simon-title">🟢 Simon Says</span>
+        </div>
+        <div class="simon-hud-right">
+            <span class="simon-score-display">⭐ <span id="simon-score">0</span></span>
+            <button class="hud-btn mute-btn" id="simon-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn simon-reset-btn" id="simon-reset-btn" title="Reset game">🔄</button>
+        </div>
+    </header>
+
+    <section id="simon-game-area">
+        <div class="simon-panel">
+
+            <div class="simon-status-card">
+                <div class="simon-status-text" id="simon-status">Press Start to watch the pattern!</div>
+                <div class="simon-round">Round <span id="simon-round">0</span></div>
+            </div>
+
+            <div class="simon-board" id="simon-board" aria-label="Simon Says color pads">
+                <button class="simon-pad simon-green" data-pad="green" aria-label="Green pad"></button>
+                <button class="simon-pad simon-red" data-pad="red" aria-label="Red pad"></button>
+                <button class="simon-pad simon-yellow" data-pad="yellow" aria-label="Yellow pad"></button>
+                <button class="simon-pad simon-blue" data-pad="blue" aria-label="Blue pad"></button>
+                <button class="simon-start-btn" id="simon-start-btn">▶ Start</button>
+            </div>
+
+            <div class="simon-stats-bar">
+                <div class="simon-stat"><span class="simon-stat-label">Score</span><span id="simon-score-stat">0</span></div>
+                <div class="simon-stat"><span class="simon-stat-label">Lives</span><span id="simon-lives">♥♥♥</span></div>
+                <div class="simon-stat"><span class="simon-stat-label">Best</span><span id="simon-best">0</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="simon-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="simon-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-simon-says-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/simon-says/js/game.js?v=1"></script>
+    <script>document.body.classList.add('loaded')</script>
+    <script src="/assets/js/firebase-loader.js"></script>
+    <script src="/assets/js/footer.js"></script>
+</body>
+</html>

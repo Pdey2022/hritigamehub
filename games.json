@@ -237,8 +237,10 @@
     "icon": "🟢",
     "desc": "Watch the pattern, repeat the sequence, and test your memory!",
     "tags": ["🧠 Memory", "🎵 Pattern"],
-    "stats": ["🟢🔴🔵🟡 Colors", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🟢🔴🔵🟡 4 Colors", "❤️ 3 Lives", "🏆 Leaderboard"],
+    "url": "/games/simon-says/",
+    "released": "2026-08-09",
+    "status": "live"
   },
   {
     "id": "moto-rush",
