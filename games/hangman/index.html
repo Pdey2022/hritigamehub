@@ -55,6 +55,11 @@
                 <div class="hm-hangman" id="hm-hangman"></div>
                 <div class="hm-remaining">Wrong guesses left: <span id="hm-remaining">6</span></div>
             </div>
+            <div class="hm-difficulty" role="group" aria-label="Choose difficulty">
+                <button class="hm-diff-btn" data-tier="easy" title="Short, easy words">🟢 Easy</button>
+                <button class="hm-diff-btn active" data-tier="medium" title="Everyday words">🟡 Medium</button>
+                <button class="hm-diff-btn" data-tier="hard" title="Long, tricky words">🔴 Hard</button>
+            </div>
             <div class="hm-letters" id="hm-letters"></div>
             <div class="hm-stats-bar">
                 <div class="hm-stat"><span class="hm-stat-label">Wins</span><span id="hm-wins">0</span></div>
@@ -79,7 +84,7 @@
         </div>
     </section>
 
-    <script src="/games/hangman/js/game.js?v=2"></script>
+    <script src="/games/hangman/js/game.js?v=3"></script>
     <script>document.body.classList.add('loaded')</script>
     <script src="/assets/js/firebase-loader.js"></script>
     <script src="/assets/js/footer.js"></script>

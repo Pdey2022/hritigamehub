@@ -1,21 +1,82 @@
 // Hangman — Game Logic
 (function() {
-  const words = [
-    { word: 'dragon', clue: 'A fire-breathing creature that loves treasure and can fly' },
-    { word: 'castle', clue: 'A big stone building where kings and queens live' },
-    { word: 'wizard', clue: 'A magic person with a pointy hat and a wand' },
-    { word: 'pirate', clue: 'A sea sailor who hunts for buried treasure' },
-    { word: 'planet', clue: 'A big round world that orbits the sun' },
-    { word: 'rocket', clue: 'A spaceship that blasts off into space' },
-    { word: 'jungle', clue: 'A wild forest full of monkeys and vines' },
-    { word: 'treasure', clue: 'A chest overflowing with gold coins and gems' },
-    { word: 'monster', clue: 'A big friendly creature that might live under the bed' },
-    { word: 'dinosaur', clue: 'A giant reptile that lived millions of years ago' },
-    { word: 'adventure', clue: 'An exciting trip full of fun and surprises' },
-    { word: 'galaxy', clue: 'A huge group of stars and planets in space' },
-    { word: 'museum', clue: 'A building where you can see dinosaur bones' },
-    { word: 'unicorn', clue: 'A magical horse with a horn on its head' }
-  ];
+  const wordBanks = {
+    easy: [
+      { word: 'cat', clue: 'A furry pet that says meow' },
+      { word: 'dog', clue: 'A loyal pet that says woof' },
+      { word: 'sun', clue: 'The bright star that keeps us warm' },
+      { word: 'moon', clue: 'It glows in the night sky' },
+      { word: 'star', clue: 'A twinkling light in the night sky' },
+      { word: 'fish', clue: 'A swimmer with fins that lives in water' },
+      { word: 'bird', clue: 'An animal with feathers that can fly' },
+      { word: 'frog', clue: 'A green jumper that says ribbit' },
+      { word: 'cake', clue: 'A sweet treat with candles on birthdays' },
+      { word: 'tree', clue: 'A tall plant with leaves and branches' },
+      { word: 'hat', clue: 'Something you wear on your head' },
+      { word: 'bee', clue: 'A buzzy insect that makes honey' },
+      { word: 'fox', clue: 'A clever orange animal with a bushy tail' },
+      { word: 'owl', clue: 'A night bird that says hoot' },
+      { word: 'ant', clue: 'A tiny insect that works in a team' },
+      { word: 'pig', clue: 'A pink farm animal that says oink' },
+      { word: 'cow', clue: 'A farm animal that gives us milk' },
+      { word: 'duck', clue: 'A water bird that says quack' },
+      { word: 'worm', clue: 'A wiggly creature that lives in soil' },
+      { word: 'kite', clue: 'A toy that flies high in the wind' }
+    ],
+    medium: [
+      { word: 'dragon', clue: 'A fire-breathing creature that loves treasure and can fly' },
+      { word: 'castle', clue: 'A big stone building where kings and queens live' },
+      { word: 'wizard', clue: 'A magic person with a pointy hat and a wand' },
+      { word: 'pirate', clue: 'A sea sailor who hunts for buried treasure' },
+      { word: 'planet', clue: 'A big round world that orbits the sun' },
+      { word: 'rocket', clue: 'A spaceship that blasts off into space' },
+      { word: 'jungle', clue: 'A wild forest full of monkeys and vines' },
+      { word: 'galaxy', clue: 'A huge group of stars and planets in space' },
+      { word: 'museum', clue: 'A building where you can see dinosaur bones' },
+      { word: 'monkey', clue: 'A playful animal that swings from trees' },
+      { word: 'tiger', clue: 'A big striped cat from the jungle' },
+      { word: 'panda', clue: 'A black-and-white bear that eats bamboo' },
+      { word: 'rabbit', clue: 'A fluffy animal with long ears that hops' },
+      { word: 'turtle', clue: 'A slow animal with a shell on its back' },
+      { word: 'flower', clue: 'A colorful plant that blooms in spring' },
+      { word: 'school', clue: 'A place where you learn and play' },
+      { word: 'soccer', clue: 'A sport played by kicking a ball' },
+      { word: 'pizza', clue: 'A yummy round food with cheese on top' },
+      { word: 'robot', clue: 'A machine that can move and talk' },
+      { word: 'cloud', clue: 'Fluffy white shapes floating in the sky' },
+      { word: 'ocean', clue: 'The big blue body of water' },
+      { word: 'candy', clue: 'A sweet treat that comes in many colors' },
+      { word: 'apple', clue: 'A crunchy fruit that can be red or green' },
+      { word: 'magic', clue: 'Amazing tricks that seem impossible' },
+      { word: 'space', clue: 'The huge area beyond Earth full of stars' }
+    ],
+    hard: [
+      { word: 'treasure', clue: 'A chest overflowing with gold coins and gems' },
+      { word: 'unicorn', clue: 'A magical horse with a horn on its head' },
+      { word: 'monster', clue: 'A big friendly creature that might live under the bed' },
+      { word: 'dinosaur', clue: 'A giant reptile that lived millions of years ago' },
+      { word: 'adventure', clue: 'An exciting trip full of fun and surprises' },
+      { word: 'elephant', clue: 'A huge gray animal with a long trunk' },
+      { word: 'butterfly', clue: 'A colorful insect with big wings that flies' },
+      { word: 'chocolate', clue: 'A yummy brown sweet treat' },
+      { word: 'rainbow', clue: 'Colorful arcs in the sky after rain' },
+      { word: 'octopus', clue: 'A sea creature with eight arms' },
+      { word: 'mermaid', clue: 'A magical creature that lives in the sea' },
+      { word: 'astronaut', clue: 'A person who travels into space' },
+      { word: 'volcano', clue: 'A mountain that can erupt with hot lava' },
+      { word: 'mountain', clue: 'A very tall hill you can climb' },
+      { word: 'sunshine', clue: 'Warm bright light from the sun' },
+      { word: 'snowflake', clue: 'A tiny ice crystal that falls from the sky' },
+      { word: 'lighthouse', clue: 'A tall tower with a bright light for ships' },
+      { word: 'crocodile', clue: 'A big reptile with a long snout that lives in rivers' },
+      { word: 'hedgehog', clue: 'A spiky little animal that rolls into a ball' },
+      { word: 'kangaroo', clue: 'An animal that hops and carries babies in a pouch' },
+      { word: 'starfish', clue: 'A sea animal shaped like a star' },
+      { word: 'seahorse', clue: 'A tiny sea creature with a curly tail' }
+    ]
+  };
+
+  const TIER_POINTS = { easy: 50, medium: 100, hard: 150 };
 
   const dom = {
     score: document.getElementById('hm-score'),
@@ -30,6 +91,7 @@
     resetBtn: document.getElementById('hm-reset-btn'),
     hintBtn: document.getElementById('hm-hint-btn'),
     clue: document.getElementById('hm-clue'),
+    diffBtns: Array.from(document.querySelectorAll('.hm-diff-btn')),
     letters: document.getElementById('hm-letters')
   };
 
@@ -48,6 +110,8 @@
     wrong: [],
     maxWrong: 6,
     hints: 2,
+    tier: 'medium',
+    lastWords: [],
     score: 0,
     wins: 0,
     losses: 0,
@@ -57,7 +121,13 @@
   };
 
   function chooseWord() {
-    return words[Math.floor(Math.random() * words.length)];
+    const bank = wordBanks[state.tier] || wordBanks.medium;
+    const pool = bank.filter(entry => !state.lastWords.includes(entry.word));
+    const source = pool.length ? pool : bank;
+    const chosen = source[Math.floor(Math.random() * source.length)];
+    state.lastWords.push(chosen.word);
+    if (state.lastWords.length > 3) state.lastWords.shift();
+    return chosen;
   }
 
   function getDisplayWord() {
@@ -134,6 +204,12 @@
     checkGameEnd();
   }
 
+  function setTier(tier) {
+    if (!wordBanks[tier]) return;
+    state.tier = tier;
+    resetGame();
+  }
+
   function resetGame() {
     const chosen = chooseWord();
     state.secret = chosen.word;
@@ -142,6 +218,7 @@
     state.wrong = [];
     state.hints = 2;
     state.running = true;
+    dom.diffBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.tier === state.tier));
     dom.status.textContent = 'Guess letters to save the hangman.';
     drawHangman(0);
     renderClue();
@@ -200,7 +277,7 @@
     if (state.secret.split('').every(letter => state.guessed.includes(letter))) {
       state.running = false;
       state.wins += 1;
-      state.score += 100;
+      state.score += TIER_POINTS[state.tier] || 100;
       dom.status.textContent = 'You saved the hangman! Great job.';
       playSound('win');
       updateBest();
@@ -229,6 +306,7 @@
     dom.resetBtn.addEventListener('click', resetGame);
     dom.muteBtn.addEventListener('click', toggleMute);
     dom.hintBtn.addEventListener('click', revealHint);
+    dom.diffBtns.forEach(btn => btn.addEventListener('click', () => setTier(btn.dataset.tier)));
   }
 
   bindEvents();

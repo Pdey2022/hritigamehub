@@ -61,6 +61,10 @@ body.hangman-page {
 .hm-remaining { color: rgba(248,250,252,0.74); font-weight: 600; }
 
 .hm-letters { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 10px; justify-items: center; }
+.hm-difficulty { display: flex; justify-content: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+.hm-diff-btn { border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); color: rgba(248,250,252,0.85); font-size: 0.85rem; font-weight: 600; padding: 7px 18px; border-radius: 20px; cursor: pointer; transition: all 0.2s ease; }
+.hm-diff-btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.14); }
+.hm-diff-btn.active { background: rgba(251,191,36,0.22); border-color: rgba(251,191,36,0.55); color: #fbbf24; box-shadow: 0 4px 16px rgba(251,191,36,0.15); }
 .hm-letter-btn { width: 56px; height: 56px; border: none; border-radius: 14px; background: rgba(255,255,255,0.1); color: #f8fafc; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; }
 .hm-letter-btn:hover { transform: translateY(-2px); background: rgba(251,191,36,0.25); }
 .hm-letter-btn.guessed { background: rgba(255,255,255,0.04); color: rgba(248,250,252,0.4); cursor: default; }
