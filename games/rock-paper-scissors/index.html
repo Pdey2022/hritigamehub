@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>✂️ Rock Paper Scissors — Free Classic Game for Kids | Play Online</title>
+    <meta name="description" content="Play Rock Paper Scissors online against the computer. Classic hand game for kids with score tracking and fun animations.">
+    <meta name="theme-color" content="#1f2937">
+    <meta property="og:title" content="✂️ Rock Paper Scissors — Free Online Game">
+    <meta property="og:description" content="Play Rock Paper Scissors online against a friendly computer opponent. No download required!">
+    <meta property="og:url" content="https://hritihub.uk/games/rock-paper-scissors/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="✂️ Rock Paper Scissors — Free Online Game">
+    <meta name="twitter:description" content="Play the classic Rock Paper Scissors game online against a fun AI opponent.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="canonical" href="https://hritihub.uk/games/rock-paper-scissors/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link rel="stylesheet" href="/games/rock-paper-scissors/css/rock-paper-scissors.css?v=1">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Rock Paper Scissors","description":"Play Rock Paper Scissors online against a computer opponent.","url":"https://hritihub.uk/games/rock-paper-scissors/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="rps-page">
+
+    <header id="rps-hud">
+        <div class="rps-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Rock Paper Scissors</span>
+            </nav>
+            <span class="rps-title">✂️ Rock Paper Scissors</span>
+        </div>
+        <div class="rps-hud-right">
+            <span class="rps-score-display">⭐ <span id="rps-score">0</span></span>
+            <button class="hud-btn mute-btn" id="rps-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn rps-reset-btn" id="rps-reset-btn" title="Reset game">🔄</button>
+        </div>
+    </header>
+
+    <section id="rps-game-area">
+        <div class="rps-panel">
+            <div class="rps-card">
+                <div class="rps-card-header">Choose your move</div>
+                <div class="rps-options" id="rps-options">
+                    <button class="rps-option-btn" data-choice="rock">✊ Rock</button>
+                    <button class="rps-option-btn" data-choice="paper">✋ Paper</button>
+                    <button class="rps-option-btn" data-choice="scissors">✌️ Scissors</button>
+                </div>
+            </div>
+
+            <div class="rps-card rps-status-card">
+                <div class="rps-status-text" id="rps-status">Pick a move and challenge the computer!</div>
+                <div class="rps-result-row">
+                    <div><strong>You</strong>: <span id="rps-player-choice">–</span></div>
+                    <div><strong>Computer</strong>: <span id="rps-ai-choice">–</span></div>
+                </div>
+            </div>
+
+            <div class="rps-stats-bar">
+                <div class="rps-stat"><span class="rps-stat-label">Wins</span><span id="rps-wins">0</span></div>
+                <div class="rps-stat"><span class="rps-stat-label">Draws</span><span id="rps-draws">0</span></div>
+                <div class="rps-stat"><span class="rps-stat-label">Losses</span><span id="rps-losses">0</span></div>
+                <div class="rps-stat"><span class="rps-stat-label">Best</span><span id="rps-best">0</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="rps-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="rps-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-rps-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/rock-paper-scissors/js/game.js?v=2"></script>
+    <script>document.body.classList.add('loaded')</script>
+    <script src="/assets/js/firebase-loader.js"></script>
+    <script src="/assets/js/footer.js"></script>
+</body>
+</html>

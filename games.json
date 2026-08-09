@@ -214,8 +214,9 @@
     "icon": "✂️",
     "desc": "Challenge the computer in the classic hand game of strategy and luck!",
     "tags": ["🎮 Classic", "🤖 VS AI"],
-    "stats": ["✊🖐️✌️ Choices", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["✊🖐️✌️ Choices", "🏅 Live"],
+    "url": "/games/rock-paper-scissors/",
+    "status": "live"
   },
   {
     "id": "hangman",
@@ -223,8 +224,9 @@
     "icon": "💀",
     "desc": "Guess the hidden word letter by letter before the stick figure is complete!",
     "tags": ["📚 Word", "🧠 Puzzle"],
-    "stats": ["🔤 Letter Guessing", "🏗️ Under Construction"],
-    "status": "coming-soon"
+    "stats": ["🔤 Letter Guessing", "🏅 Wins & Losses", "🏆 Leaderboard"],
+    "url": "/games/hangman/",
+    "status": "live"
   },
   {
     "id": "simon-says",

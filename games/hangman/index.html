@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>💀 Hangman — Free Word Game for Kids | Play Online</title>
+    <meta name="description" content="Play Hangman online! Guess the word letter by letter before the hangman is complete.">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="💀 Hangman — Free Online Game">
+    <meta property="og:description" content="Guess the hidden word before the hangman is complete in this fun kids word game.">
+    <meta property="og:url" content="https://hritihub.uk/games/hangman/">
+    <meta property="og:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <meta property="og:site_name" content="Hriti's Game Hub">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="💀 Hangman — Free Online Game">
+    <meta name="twitter:description" content="Guess the hidden word before the hangman is complete. Play Hangman online for kids.">
+    <meta name="twitter:image" content="https://hritihub.uk/assets/images/hub-og.svg">
+    <link rel="canonical" href="https://hritihub.uk/games/hangman/">
+    <link rel="stylesheet" href="/assets/css/style.css?v=13">
+    <link rel="stylesheet" href="/games/hangman/css/hangman.css?v=1">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Hangman","description":"Play Hangman online by guessing a hidden word before the hangman is complete.","url":"https://hritihub.uk/games/hangman/","applicationCategory":"Game","operatingSystem":"Web Browser","browserRequirements":"Requires JavaScript"}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="hangman-page">
+
+    <header id="hm-hud">
+        <div class="hm-hud-left">
+            <a href="/" class="hud-btn back-btn" title="Back to Game Hub">🏠</a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span class="bc-sep">›</span>
+                <span>Hangman</span>
+            </nav>
+            <span class="hm-title">💀 Hangman</span>
+        </div>
+        <div class="hm-hud-right">
+            <span class="hm-score-display">⭐ <span id="hm-score">0</span></span>
+            <button class="hud-btn mute-btn" id="hm-mute-btn" title="Toggle sound">🔊</button>
+            <button class="hud-btn hm-reset-btn" id="hm-reset-btn" title="Reset game">🔄</button>
+        </div>
+    </header>
+
+    <section id="hm-game-area">
+        <div class="hm-main-card">
+            <div class="hm-word-card">
+                <div class="hm-word-head">
+                    <div class="hm-word-label">Word</div>
+                    <button class="hm-hint-btn" id="hm-hint-btn" title="Reveal one letter">💡 Hint</button>
+                </div>
+                <div class="hm-word-display" id="hm-word-display">_ _ _ _ _</div>
+                <div class="hm-clue" id="hm-clue">💡 Clue: A fire-breathing creature that loves treasure</div>
+            </div>
+            <div class="hm-status-card">
+                <div class="hm-status-text" id="hm-status">Guess letters to save the hangman.</div>
+                <div class="hm-hangman" id="hm-hangman"></div>
+                <div class="hm-remaining">Wrong guesses left: <span id="hm-remaining">6</span></div>
+            </div>
+            <div class="hm-letters" id="hm-letters"></div>
+            <div class="hm-stats-bar">
+                <div class="hm-stat"><span class="hm-stat-label">Wins</span><span id="hm-wins">0</span></div>
+                <div class="hm-stat"><span class="hm-stat-label">Losses</span><span id="hm-losses">0</span></div>
+                <div class="hm-stat"><span class="hm-stat-label">Best</span><span id="hm-best">0</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ad-banner ad-banner-bottom hidden-ad" aria-hidden="true"></div>
+
+    <section class="lb-section" id="hm-leaderboard">
+        <div class="lb-header">
+            <span class="lb-title">🏆 Leaderboard</span>
+            <button class="share-btn" id="hm-share-btn">📤 Share</button>
+        </div>
+        <div id="lb-hm-content">
+            <div class="lb-empty">
+                <div class="lb-empty-icon">🏆</div>
+                <div class="lb-empty-text">Sign in and play to top the leaderboard!</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/games/hangman/js/game.js?v=2"></script>
+    <script>document.body.classList.add('loaded')</script>
+    <script src="/assets/js/firebase-loader.js"></script>
+    <script src="/assets/js/footer.js"></script>
+</body>
+</html>

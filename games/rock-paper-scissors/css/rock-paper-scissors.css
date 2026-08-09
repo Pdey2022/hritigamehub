@@ -1,0 +1,75 @@
+/* ============================================
+   ROCK PAPER SCISSORS — Stylesheet
+   ============================================ */
+
+body.rps-page {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #374151 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+#rps-hud {
+    width: 100%; max-width: 900px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 24px; margin-top: 8px;
+    background: rgba(0,0,0,0.32);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.rps-hud-left, .rps-hud-right { display: flex; align-items: center; gap: 8px; }
+.rps-title { font-size: 1.2rem; font-weight: 700; color: #fbbf24; }
+.rps-score-display { font-size: 1.1rem; font-weight: 700; color: #ec4899; background: rgba(255,255,255,0.12); padding: 4px 16px; border-radius: 20px; }
+
+#rps-game-area { width: 100%; max-width: 900px; margin-top: 16px; display: flex; justify-content: center; }
+.rps-panel { width: 100%; display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+.rps-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.12); }
+.rps-card-header { font-size: 1.15rem; font-weight: 700; color: #f8fafc; margin-bottom: 18px; }
+
+.rps-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.rps-option-btn {
+    flex: 1 1 130px;
+    min-width: 130px;
+    border: none;
+    border-radius: 18px;
+    padding: 16px 18px;
+    background: linear-gradient(135deg, #f97316, #facc15);
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.rps-option-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(249,115,22,0.2); }
+
+.rps-status-card { text-align: center; }
+.rps-status-text { font-size: 1rem; color: #f8fafc; margin-bottom: 18px; transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease; }
+.rps-status-text.rps-win {
+    color: #a3e635;
+    text-shadow: 0 0 16px rgba(163,230,53,0.9);
+    animation: winPulse 0.8s ease;
+}
+.rps-result-row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; font-weight: 600; color: #e2e8f0; }
+
+@keyframes winPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.rps-stats-bar { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.rps-stat { background: rgba(255,255,255,0.05); padding: 16px 14px; border-radius: 16px; text-align: center; }
+.rps-stat-label { display: block; color: rgba(255,255,255,0.65); font-size: 0.75rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.rps-stat span:last-child { color: #f8fafc; font-size: 1.05rem; font-weight: 700; }
+
+@media (max-width: 660px) {
+    #rps-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .rps-options { flex-direction: column; }
+    .rps-stat { padding: 14px 12px; }
+}

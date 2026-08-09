@@ -1,0 +1,78 @@
+/* ============================================
+   HANGMAN — Stylesheet
+   ============================================ */
+
+body.hangman-page {
+    background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1f2937 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+#hm-hud {
+    width: 100%; max-width: 900px;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 24px; margin-top: 8px;
+    background: rgba(0,0,0,0.32);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+}
+
+.hm-hud-left, .hm-hud-right { display: flex; align-items: center; gap: 8px; }
+.hm-title { font-size: 1.2rem; font-weight: 700; color: #f43f5e; }
+.hm-score-display { font-size: 1.1rem; font-weight: 700; color: #fbbf24; background: rgba(255,255,255,0.12); padding: 4px 16px; border-radius: 20px; }
+
+#hm-game-area { width: 100%; max-width: 900px; margin-top: 16px; display: flex; justify-content: center; }
+.hm-main-card { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 24px; box-shadow: 0 18px 40px rgba(0,0,0,0.25); }
+
+.hm-word-card, .hm-status-card, .hm-letters, .hm-stats-bar { margin-bottom: 18px; }
+.hm-word-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.hm-word-label { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+.hm-hint-btn { border: none; cursor: pointer; background: linear-gradient(135deg, #f59e0b, #f43f5e); color: #0f172a; font-weight: 700; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px; transition: transform 0.2s ease, opacity 0.2s ease; }
+.hm-hint-btn:hover { transform: translateY(-2px); }
+.hm-hint-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+.hm-word-display { color: #f8fafc; font-size: 2rem; letter-spacing: 0.18em; text-align: center; padding: 18px 12px; border-radius: 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); }
+.hm-clue { margin-top: 10px; color: rgba(251,191,36,0.92); font-size: 0.95rem; text-align: center; background: rgba(251,191,36,0.1); border: 1px dashed rgba(251,191,36,0.35); padding: 10px 14px; border-radius: 14px; }
+
+.hm-status-card { text-align: center; }
+.hm-status-text { color: #e2e8f0; font-size: 1rem; margin-bottom: 14px; }
+.hm-hangman { width: 100%; height: 180px; margin: 0 auto 12px; background: linear-gradient(180deg, rgba(30,41,59,0.5), rgba(15,23,42,0.5)); border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); position: relative; }
+.hm-hangman::before {
+    content: 'HANGMAN';
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: rgba(248,250,252,0.12);
+    font-size: 2.5rem;
+    letter-spacing: 0.4em;
+    pointer-events: none;
+}
+.hm-canvas {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    display: block;
+}
+.hm-remaining { color: rgba(248,250,252,0.74); font-weight: 600; }
+
+.hm-letters { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 10px; justify-items: center; }
+.hm-letter-btn { width: 56px; height: 56px; border: none; border-radius: 14px; background: rgba(255,255,255,0.1); color: #f8fafc; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.2s ease, background 0.2s ease; }
+.hm-letter-btn:hover { transform: translateY(-2px); background: rgba(251,191,36,0.25); }
+.hm-letter-btn.guessed { background: rgba(255,255,255,0.04); color: rgba(248,250,252,0.4); cursor: default; }
+.hm-letter-btn.correct { background: #22c55e; color: #0f172a; }
+.hm-letter-btn.wrong { background: #ef4444; color: #0f172a; }
+
+.hm-stats-bar { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.hm-stat { background: rgba(255,255,255,0.05); padding: 16px 14px; border-radius: 16px; text-align: center; }
+.hm-stat-label { display: block; color: rgba(255,255,255,0.65); font-size: 0.75rem; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.hm-stat span:last-child { color: #f8fafc; font-size: 1.05rem; font-weight: 700; }
+
+@media (max-width: 700px) {
+    #hm-hud { padding: 10px 16px; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .hm-stat { padding: 14px 12px; }
+}
